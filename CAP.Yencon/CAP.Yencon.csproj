@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyName>CAP.Yencon</AssemblyName>
+		<RootNamespace>CAP</RootNamespace>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+	<Import Project="../CommonProjectSettings.targets" />
+	<PropertyGroup>
+		<Product>CAP.Yencon</Product>
+		<Description>Yencon Environment Configuration (CAP: Configuration and Properties)</Description>
+		<Authors>Takym</Authors>
+		<Copyright>Copyright (C) 2020 Takym.</Copyright>
+		<Version>0.0.0.0</Version>
+		<InformationalVersion>alpha00a0</InformationalVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="../License.md" Pack="true" PackagePath="/">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+</Project>

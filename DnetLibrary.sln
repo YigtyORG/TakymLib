@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
@@ -15,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exrecodel", "Exrecodel\Exrecodel.csproj", "{AC39250E-5E2F-4E47-95A7-DCC36A75F756}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAP.Yencon", "CAP.Yencon\CAP.Yencon.csproj", "{A7181D1B-427B-483F-983F-DD758A8D2F81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +26,10 @@ Global
 		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7181D1B-427B-483F-983F-DD758A8D2F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7181D1B-427B-483F-983F-DD758A8D2F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7181D1B-427B-483F-983F-DD758A8D2F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7181D1B-427B-483F-983F-DD758A8D2F81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
