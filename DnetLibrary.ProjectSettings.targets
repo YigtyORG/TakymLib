@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE Project>
+<!--*
+ * .NET Library for Yigty.ORG
+ * Copyright (C) 2020 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020 Takym.
+ *
+ * distributed under the MIT License.
+**-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="CommonProjectSettings.targets" />
+	<PropertyGroup>
+		<Authors>Takym</Authors>
+		<Copyright>Copyright (C) 2020 Yigty.ORG; all rights reserved. Copyright (C) 2020 Takym.</Copyright>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="..\License.md" Pack="true" PackagePath="/">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+</Project>

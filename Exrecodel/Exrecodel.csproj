@@ -4,23 +4,14 @@
 		<RootNamespace>Exrecodel</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
-	<Import Project="../CommonProjectSettings.targets" />
+	<Import Project="../DnetLibrary.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>Exrecodel</Product>
 		<Description>Extensible Regulation/Convention Descriptor Language</Description>
-		<Authors>Takym</Authors>
-		<Copyright>Copyright (C) 2020 Takym.</Copyright>
 		<Version>0.0.0.0</Version>
 		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<Content Include="../License.md" Pack="true" PackagePath="/">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<Visible>false</Visible>
-		</Content>
-		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<EmbeddedResource Update="Properties/Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
