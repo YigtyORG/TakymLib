@@ -160,7 +160,7 @@ namespace CAP.Yencon
 				throw new ArgumentOutOfRangeException(
 					nameof(index),
 					index,
-					string.Format(Resources.YArray_GetNode_ArgumentOutOfRangeException, index)
+					string.Format(Resources.YArray_GetNode_ArgumentOutOfRangeException, index, this.Count, nameof(index))
 				);
 			}
 			var result = this.Children[index];

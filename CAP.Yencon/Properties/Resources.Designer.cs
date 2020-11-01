@@ -61,7 +61,7 @@ namespace CAP.Properties {
         }
         
         /// <summary>
-        ///   YArray_GetNode_ArgumentOutOfRangeException {0} に類似しているローカライズされた文字列を検索します。
+        ///   YArray_GetNode_ArgumentOutOfRangeException {0} {1} {2} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string YArray_GetNode_ArgumentOutOfRangeException {
             get {
