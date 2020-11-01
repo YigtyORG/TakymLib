@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BEC7DAB-8B87-4D82-8367-EEDE17A5C17C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		CommonProjectSettings.targets = CommonProjectSettings.targets
+		HeaderComments.txt = HeaderComments.txt
+		License.md = License.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exrecodel", "Exrecodel\Exrecodel.csproj", "{AC39250E-5E2F-4E47-95A7-DCC36A75F756}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC39250E-5E2F-4E47-95A7-DCC36A75F756}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
+	EndGlobalSection
+EndGlobal
