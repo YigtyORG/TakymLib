@@ -15,12 +15,5 @@ namespace CAP.Yencon
 	/// </summary>
 	public abstract class YToken
 	{
-		/// <summary>
-		///  現在の字句を<see cref="CAP.Yencon.YNode"/>へ変換します。
-		/// </summary>
-		/// <returns>
-		///  <see cref="CAP.Yencon.YNode"/>オブジェクトです。
-		/// </returns>
-		public abstract YNode AsNode();
 	}
 }

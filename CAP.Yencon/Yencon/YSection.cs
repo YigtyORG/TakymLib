@@ -97,7 +97,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  新しい空値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public YEmpty? CreateEmpty(string name)
@@ -112,20 +112,15 @@ namespace CAP.Yencon
 		/// <summary>
 		///  新しいコメントを作成し追加します。
 		/// </summary>
-		/// <param name="name">新しいコメントの名前です。</param>
 		/// <returns>
 		///  新しいコメントを表すオブジェクトです。
-		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
-		public YComment? CreateComment(string name)
+		public YComment? CreateComment()
 		{
-			if (name == null) {
-				throw new ArgumentNullException(nameof(name));
-			}
 			++_version;
-			return this.CreateNodeCore<YComment>(name);
+			return this.CreateNodeCore<YComment>(string.Empty);
 		}
 
 		/// <summary>
@@ -135,7 +130,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  新しいセクションを表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public YSection? CreateSection(string name)
@@ -154,7 +149,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  新しい配列を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public YArray? CreateArray(string name)
@@ -173,7 +168,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  新しい文字列値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public YString? CreateString(string name)
@@ -192,7 +187,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  新しい数値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public YNumber? CreateNumber(string name)
@@ -211,7 +206,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  新しい論理値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public YBoolean? CreateBoolean(string name)
@@ -467,7 +462,15 @@ namespace CAP.Yencon
 				{
 					this.EnsureStatus();
 					++_index;
-					return 0 <= _index && _index < _owner.Count;
+					if (0 <= _index && _index < _owner.Count) {
+						if (string.IsNullOrEmpty(this.Current)) {
+							return this.MoveNext();
+						} else {
+							return true;
+						}
+					} else {
+						return false;
+					}
 				}
 
 				public void Reset()

@@ -30,7 +30,7 @@ namespace CAP.Yencon
 		/// </summary>
 		public abstract double ValueDF { get; set; }
 
-		// .ToString("0." + new string('#', 340))
+		// .ToString("0.0" + new string('#', 340))
 
 		/// <summary>
 		///  上書きされた場合、このノードが保持する10進数値を取得または設定します。

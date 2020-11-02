@@ -16,17 +16,21 @@ namespace CAP.Yencon
 	public abstract class YenconReader : DisposableBase
 	{
 		/// <summary>
-		///  上書きされた場合、現在の字句を取得します。
+		///  上書きされた場合、現在のノードを取得します。
 		/// </summary>
 		/// <returns>
-		///  <see cref="CAP.Yencon.YenconReader.Read"/>を一度も実行していない、または、ストリームの終端まで読み進めた場合は
-		///  <see langword="null"/>を返します。
+		///  ノード全体の読み込みが完了した場合はそのノード、
+		///  それ以外の場合は<see langword="null"/>を返します。
 		/// </returns>
-		public abstract YToken? Current { get; }
+		public abstract YNode? Current { get; }
 
 		/// <summary>
 		///  上書きされた場合、字句を読み取ります。
 		/// </summary>
-		public abstract void Read();
+		/// <returns>
+		///  読み取った字句を表すオブジェクトです。
+		///  ストリームの終端まで読み進めた場合は<see langword="null"/>を返します。
+		/// </returns>
+		public abstract YToken? Read();
 	}
 }
