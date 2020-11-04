@@ -31,5 +31,17 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
 		protected YLink(YNode parent, string name) : base(parent, name) { }
+
+		/// <summary>
+		///  このリンク文字列が参照しているノードを取得します。
+		/// </summary>
+		/// <returns>
+		///  このリンク文字列からノードを取得できた場合はそのノードを表すオブジェクト、
+		///  それ以外の場合は<see langword="null"/>を返します。
+		/// </returns>
+		public YNode? GetNode()
+		{
+			return this.GetDocument()?.GetNodeByLink(this.Value ?? string.Empty);
+		}
 	}
 }

@@ -16,12 +16,12 @@ namespace CAP.Yencon
 	///  ヱンコン環境設定ファイルを表します。
 	///  このクラスは抽象クラスです。
 	/// </summary>
-	public abstract class YDocument
+	public abstract class YDocument : YSection
 	{
 		/// <summary>
-		///  根セクションを取得します。
+		///  型'<see cref="CAP.Yencon.YDocument"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		public abstract YSection Root { get; }
+		protected YDocument() : base(null, string.Empty) { }
 
 		/// <summary>
 		///  指定したリーダーからヱンコン情報を読み取ります。
@@ -49,22 +49,14 @@ namespace CAP.Yencon
 			if (link == null) {
 				throw new ArgumentNullException(nameof(link));
 			}
-			string[] names = link.Split('.');
-			if (names.Length > 0 && names[0] == this.Root.Name) {
-				var section = this.Root;
-				if (names.Length == 1) {
-					return section;
-				}
-				for (int i = 1; i < names.Length - 1; ++i) {
-					var section2 = section.GetSection(names[i]);
-					if (section2 == null) {
-						return null;
-					} else {
-						section = section2;
-					}
-				}
-				if (section.TryGetNode(names[names.Length - 1], out var result)) {
-					return result;
+			string[] names   = link.Split('.');
+			YSection section = this;
+			for (int i = 0; i < names.Length - 1; ++i) {
+				var section2 = section.GetSection(names[i]);
+				if (section2 == null) {
+					return null;
+				} else {
+					section = section2;
 				}
 			}
 			return null;

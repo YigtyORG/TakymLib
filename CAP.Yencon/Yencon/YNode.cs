@@ -18,7 +18,8 @@ namespace CAP.Yencon
 	/// </summary>
 	public abstract class YNode
 	{
-		private string? _link_string;
+		private YDocument? _doc;
+		private string?    _link_string;
 
 		/// <summary>
 		///  このノードの親セクションまたは親配列を取得します。
@@ -61,6 +62,22 @@ namespace CAP.Yencon
 			}
 			this.Parent = parent;
 			this.Name   = name;
+		}
+
+		/// <summary>
+		///  このノードを保持する文書オブジェクトを取得します。
+		/// </summary>
+		/// <returns><see cref="CAP.Yencon.YDocument"/>オブジェクトです。</returns>
+		public YDocument? GetDocument()
+		{
+			if (_doc == null) {
+				if (this is YDocument doc) {
+					_doc = doc;
+				} else {
+					_doc = this.Parent?.GetDocument();
+				}
+			}
+			return _doc;
 		}
 
 		/// <summary>
