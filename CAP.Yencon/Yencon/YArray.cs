@@ -49,6 +49,7 @@ namespace CAP.Yencon
 		/// </param>
 		/// <param name="name">新しい配列の名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentException"/>
 		protected YArray(YNode parent, string name) : base(parent, name) { }
 
 		/// <summary>
@@ -67,7 +68,10 @@ namespace CAP.Yencon
 		/// <summary>
 		///  新しい空値を作成し追加します。
 		/// </summary>
-		/// <returns>新しい空値を表すオブジェクトです。</returns>
+		/// <returns>
+		///  新しい空値を表すオブジェクトです。
+		///  サポートされない場合は<see langword="null"/>を返します。
+		/// </returns>
 		public YEmpty? CreateEmpty()
 		{
 			return this.CreateNodeCore<YEmpty>();
@@ -78,7 +82,7 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <returns>
 		///  新しいコメントを表すオブジェクトです。
-		///  不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		public YComment? CreateComment()
 		{
@@ -90,7 +94,7 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <returns>
 		///  新しいセクションを表すオブジェクトです。
-		///  不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		public YSection? CreateSection()
 		{
@@ -102,9 +106,8 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <returns>
 		///  新しい配列を表すオブジェクトです。
-		///  不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
-		/// <exception cref="System.ArgumentNullException"/>
 		public YArray? CreateArray()
 		{
 			return this.CreateNodeCore<YArray>();
@@ -115,7 +118,7 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <returns>
 		///  新しい文字列値を表すオブジェクトです。
-		///  不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		public YString? CreateString()
 		{
@@ -127,7 +130,7 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <returns>
 		///  新しい数値を表すオブジェクトです。
-		///  不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		public YNumber? CreateNumber()
 		{
@@ -139,11 +142,23 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <returns>
 		///  新しい論理値を表すオブジェクトです。
-		///  不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  サポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		public YBoolean? CreateBoolean()
 		{
 			return this.CreateNodeCore<YBoolean>();
+		}
+
+		/// <summary>
+		///  新しいリンク文字列を作成し追加します。
+		/// </summary>
+		/// <returns>
+		///  新しいリンク文字列を表すオブジェクトです。
+		///  サポートされない場合は<see langword="null"/>を返します。
+		/// </returns>
+		public YLink? CreateLink()
+		{
+			return this.CreateNodeCore<YLink>();
 		}
 
 		/// <summary>

@@ -18,6 +18,8 @@ namespace CAP.Yencon
 	/// </summary>
 	public abstract class YNode
 	{
+		private string? _link_string;
+
 		/// <summary>
 		///  このノードの親セクションまたは親配列を取得します。
 		/// </summary>
@@ -37,6 +39,7 @@ namespace CAP.Yencon
 		/// </param>
 		/// <param name="name">新しいノードの名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentException"/>
 		protected YNode(YNode? parent, string name)
 		{
 			if (parent == null && !(this is YSection)) {
@@ -50,6 +53,22 @@ namespace CAP.Yencon
 			}
 			this.Parent = parent;
 			this.Name   = name;
+		}
+
+		/// <summary>
+		///  このノードのリンク文字列を取得します。
+		/// </summary>
+		/// <returns>このノードへのリンクを表す文字列です。</returns>
+		public string GetLink()
+		{
+			if (this.Parent == null) {
+				return this.Name;
+			} else {
+				if (_link_string == null) {
+					_link_string = $"{this.Parent.GetLink()}.{this.Name}";
+				}
+				return _link_string;
+			}
 		}
 	}
 }

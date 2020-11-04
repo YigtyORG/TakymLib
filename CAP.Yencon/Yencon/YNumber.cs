@@ -47,6 +47,7 @@ namespace CAP.Yencon
 		/// </param>
 		/// <param name="name">新しい数値の名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentException"/>
 		protected YNumber(YNode parent, string name) : base(parent, name) { }
 	}
 }

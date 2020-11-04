@@ -23,6 +23,7 @@ namespace CAP.Yencon
 		/// </param>
 		/// <param name="name">新しい空値の名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentException"/>
 		protected YEmpty(YNode parent, string name) : base(parent, name) { }
 	}
 }

@@ -25,12 +25,29 @@ namespace CAP.Yencon
 		public abstract YNode? Current { get; }
 
 		/// <summary>
-		///  上書きされた場合、字句を読み取ります。
+		///  上書きされた場合、字句を現在のストリーム位置から読み取ります。
 		/// </summary>
 		/// <returns>
 		///  読み取った字句を表すオブジェクトです。
 		///  ストリームの終端まで読み進めた場合は<see langword="null"/>を返します。
 		/// </returns>
-		public abstract YToken? Read();
+		public abstract YToken? ReadToken();
+
+		/// <summary>
+		///  ノードを現在のストリーム位置から読み取ります。
+		/// </summary>
+		/// <returns>
+		///  読み取ったノードを表すオブジェクトです。
+		///  ストリームの終端まで読み進めた場合は<see langword="null"/>を返します。
+		/// </returns>
+		public YNode? ReadNode()
+		{
+			while (this.ReadToken() != null) {
+				if (this.Current != null) {
+					return this.Current;
+				}
+			}
+			return null;
+		}
 	}
 }

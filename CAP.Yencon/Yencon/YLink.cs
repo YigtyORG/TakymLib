@@ -10,25 +10,26 @@
 namespace CAP.Yencon
 {
 	/// <summary>
-	///  論理値を保持するノードを表します。
+	///  リンク文字列を保持するノードを表します。
+	///  このノードは他のノードを参照します。
 	///  このクラスは抽象クラスです。
 	/// </summary>
-	public abstract class YBoolean : YNode
+	public abstract class YLink : YNode
 	{
 		/// <summary>
 		///  上書きされた場合、このノードが保持する値を取得または設定します。
 		/// </summary>
-		public abstract bool Value { get; set; }
+		public abstract string Value { get; set; }
 
 		/// <summary>
-		///  型'<see cref="CAP.Yencon.YBoolean"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="CAP.Yencon.YString"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="parent">
-		///  新しい論理値の親セクションまたは親配列です。
+		///  新しいリンク文字列の親セクションまたは親配列です。
 		/// </param>
-		/// <param name="name">新しい論理値の名前です。</param>
+		/// <param name="name">新しいリンク文字列の名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
-		protected YBoolean(YNode parent, string name) : base(parent, name) { }
+		protected YLink(YNode parent, string name) : base(parent, name) { }
 	}
 }

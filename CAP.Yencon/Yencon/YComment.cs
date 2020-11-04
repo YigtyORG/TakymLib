@@ -27,6 +27,7 @@ namespace CAP.Yencon
 		///  新しいコメントの親セクションまたは親配列です。
 		/// </param>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentException"/>
 		protected YComment(YNode parent) : base(parent, string.Empty) { }
 	}
 }

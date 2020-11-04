@@ -25,7 +25,7 @@ namespace CAP.Yencon.Extensions
 		/// <returns>
 		///  新しい文字列値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YString? CreateString(this YSection section, string name, string value)
@@ -49,7 +49,7 @@ namespace CAP.Yencon.Extensions
 		/// <returns>
 		///  新しい64ビット符号付き整数値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, long value)
@@ -73,7 +73,7 @@ namespace CAP.Yencon.Extensions
 		/// <returns>
 		///  新しい64ビット符号無し整数値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, ulong value)
@@ -97,7 +97,7 @@ namespace CAP.Yencon.Extensions
 		/// <returns>
 		///  新しい倍精度浮動小数点数値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, double value)
@@ -121,7 +121,7 @@ namespace CAP.Yencon.Extensions
 		/// <returns>
 		///  新しい10進数値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, decimal value)
@@ -145,7 +145,7 @@ namespace CAP.Yencon.Extensions
 		/// <returns>
 		///  新しい論理値を表すオブジェクトです。
 		///  <paramref name="name"/>が既に存在するノードと一致した場合、
-		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
+		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YBoolean? CreateBoolean(this YSection section, string name, bool value)
@@ -161,11 +161,36 @@ namespace CAP.Yencon.Extensions
 		}
 
 		/// <summary>
+		///  指定されたセクションに新しいリンク文字列を作成し追加します。
+		/// </summary>
+		/// <param name="section">新しいリンク文字列の保存先のセクションです。</param>
+		/// <param name="name">新しいリンク文字列の名前です。</param>
+		/// <param name="value">リンク文字列です。</param>
+		/// <returns>
+		///  新しいリンク文字列を表すオブジェクトです。
+		///  <paramref name="name"/>が既に存在するノードと一致した場合、
+		///  またはサポートされない場合は<see langword="null"/>を返します。
+		/// </returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static YLink? CreateLink(this YSection section, string name, string value)
+		{
+			if (section == null) {
+				throw new ArgumentNullException(nameof(section));
+			}
+			var result = section.CreateLink(name);
+			if (result != null) {
+				result.Value = value;
+			}
+			return result;
+		}
+
+		/// <summary>
 		///  指定されたセクションから指定された名前の空値を取得します。
 		/// </summary>
 		/// <param name="section">取得元のセクションです。</param>
 		/// <param name="name">取得する空値の名前です。</param>
 		/// <returns>取得に成功した場合は空値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YEmpty? GetEmpty(this YSection section, string name)
 		{
 			if (section == null) {
@@ -181,6 +206,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="section">取得元のセクションです。</param>
 		/// <param name="name">取得するセクションの名前です。</param>
 		/// <returns>取得に成功した場合はセクションを表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YSection? GetSection(this YSection section, string name)
 		{
 			if (section == null) {
@@ -196,6 +222,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="section">取得元のセクションです。</param>
 		/// <param name="name">取得する配列の名前です。</param>
 		/// <returns>取得に成功した場合は配列を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YArray? GetArray(this YSection section, string name)
 		{
 			if (section == null) {
@@ -211,6 +238,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="section">取得元のセクションです。</param>
 		/// <param name="name">取得する文字列値の名前です。</param>
 		/// <returns>取得に成功した場合は文字列値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YString? GetString(this YSection section, string name)
 		{
 			if (section == null) {
@@ -226,6 +254,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="section">取得元のセクションです。</param>
 		/// <param name="name">取得する数値の名前です。</param>
 		/// <returns>取得に成功した場合は数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? GetNumber(this YSection section, string name)
 		{
 			if (section == null) {
@@ -241,12 +270,29 @@ namespace CAP.Yencon.Extensions
 		/// <param name="section">取得元のセクションです。</param>
 		/// <param name="name">取得する論理値の名前です。</param>
 		/// <returns>取得に成功した場合は論理値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YBoolean? GetBoolean(this YSection section, string name)
 		{
 			if (section == null) {
 				throw new ArgumentNullException(nameof(section));
 			}
 			section.TryGetNode<YBoolean>(name, out var result);
+			return result;
+		}
+
+		/// <summary>
+		///  指定されたセクションから指定された名前のリンク文字列を取得します。
+		/// </summary>
+		/// <param name="section">取得元のセクションです。</param>
+		/// <param name="name">取得するリンク文字列の名前です。</param>
+		/// <returns>取得に成功した場合はリンク文字列を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static YLink? GetLink(this YSection section, string name)
+		{
+			if (section == null) {
+				throw new ArgumentNullException(nameof(section));
+			}
+			section.TryGetNode<YLink>(name, out var result);
 			return result;
 		}
 
@@ -259,6 +305,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="section">設定先のセクションです。</param>
 		/// <param name="name">設定する空値の名前です。</param>
 		/// <returns>設定に成功した場合は空値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YEmpty? SetEmpty(this YSection section, string name)
 		{
 			if (section == null) {
@@ -278,6 +325,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する文字列値の名前です。</param>
 		/// <param name="value">文字列値です。</param>
 		/// <returns>設定に成功した場合は文字列値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YString? SetString(this YSection section, string name, string value)
 		{
 			if (section == null) {
@@ -297,6 +345,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する64ビット符号付き整数値の名前です。</param>
 		/// <param name="value">64ビット符号付き整数値です。</param>
 		/// <returns>設定に成功した場合は64ビット符号付き整数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? SetNumber(this YSection section, string name, long value)
 		{
 			if (section == null) {
@@ -316,6 +365,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する64ビット符号無し整数値の名前です。</param>
 		/// <param name="value">64ビット符号無し整数値です。</param>
 		/// <returns>設定に成功した場合は64ビット符号無し整数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? SetNumber(this YSection section, string name, ulong value)
 		{
 			if (section == null) {
@@ -335,6 +385,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する倍精度浮動小数点数値の名前です。</param>
 		/// <param name="value">倍精度浮動小数点数値です。</param>
 		/// <returns>設定に成功した場合は倍精度浮動小数点数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? SetNumber(this YSection section, string name, double value)
 		{
 			if (section == null) {
@@ -354,6 +405,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する10進数値の名前です。</param>
 		/// <param name="value">10進数値です。</param>
 		/// <returns>設定に成功した場合は10進数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? SetNumber(this YSection section, string name, decimal value)
 		{
 			if (section == null) {
@@ -373,6 +425,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する論理値の名前です。</param>
 		/// <param name="value">論理値です。</param>
 		/// <returns>設定に成功した場合は論理値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
 		public static YBoolean? SetBoolean(this YSection section, string name, bool value)
 		{
 			if (section == null) {
@@ -380,6 +433,26 @@ namespace CAP.Yencon.Extensions
 			}
 			section.RemoveNode(name);
 			return section.CreateBoolean(name, value);
+		}
+
+		/// <summary>
+		///  指定されたセクションへ指定された名前のリンク文字列を設定します。
+		/// </summary>
+		/// <remarks>
+		///  同名の値が既に存在する場合は削除されます。
+		/// </remarks>
+		/// <param name="section">設定先のセクションです。</param>
+		/// <param name="name">設定するリンク文字列の名前です。</param>
+		/// <param name="value">リンク文字列です。</param>
+		/// <returns>設定に成功した場合はリンク文字列を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static YLink? SetLink(this YSection section, string name, string value)
+		{
+			if (section == null) {
+				throw new ArgumentNullException(nameof(section));
+			}
+			section.RemoveNode(name);
+			return section.CreateLink(name, value);
 		}
 	}
 }

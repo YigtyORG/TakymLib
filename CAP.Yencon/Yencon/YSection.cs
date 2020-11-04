@@ -64,6 +64,7 @@ namespace CAP.Yencon
 		/// </param>
 		/// <param name="name">新しいセクションの名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentException"/>
 		protected YSection(YNode? parent, string name) : base(parent, name)
 		{
 			_version = 0;
@@ -216,6 +217,25 @@ namespace CAP.Yencon
 			}
 			++_version;
 			return this.CreateNodeCore<YBoolean>(name);
+		}
+
+		/// <summary>
+		///  新しいリンク文字列を作成し追加します。
+		/// </summary>
+		/// <param name="name">新しいリンク文字列の名前です。</param>
+		/// <returns>
+		///  新しいリンク文字列を表すオブジェクトです。
+		///  <paramref name="name"/>が既に存在するノードと一致した場合、
+		///  またはサポートされない場合は<see langword="null"/>を返します。
+		/// </returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public YLink? CreateLink(string name)
+		{
+			if (name == null) {
+				throw new ArgumentNullException(nameof(name));
+			}
+			++_version;
+			return this.CreateNodeCore<YLink>(name);
 		}
 
 		/// <summary>
