@@ -28,6 +28,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YString? CreateString(this YSection section, string name, string value)
 		{
 			if (section == null) {
@@ -52,6 +53,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, long value)
 		{
 			if (section == null) {
@@ -76,6 +78,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, ulong value)
 		{
 			if (section == null) {
@@ -100,6 +103,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, double value)
 		{
 			if (section == null) {
@@ -124,6 +128,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, decimal value)
 		{
 			if (section == null) {
@@ -148,6 +153,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YBoolean? CreateBoolean(this YSection section, string name, bool value)
 		{
 			if (section == null) {
@@ -172,6 +178,7 @@ namespace CAP.Yencon.Extensions
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YLink? CreateLink(this YSection section, string name, string value)
 		{
 			if (section == null) {
@@ -306,6 +313,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="name">設定する空値の名前です。</param>
 		/// <returns>設定に成功した場合は空値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YEmpty? SetEmpty(this YSection section, string name)
 		{
 			if (section == null) {
@@ -326,6 +334,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">文字列値です。</param>
 		/// <returns>設定に成功した場合は文字列値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YString? SetString(this YSection section, string name, string value)
 		{
 			if (section == null) {
@@ -346,6 +355,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">64ビット符号付き整数値です。</param>
 		/// <returns>設定に成功した場合は64ビット符号付き整数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, long value)
 		{
 			if (section == null) {
@@ -366,6 +376,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">64ビット符号無し整数値です。</param>
 		/// <returns>設定に成功した場合は64ビット符号無し整数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, ulong value)
 		{
 			if (section == null) {
@@ -386,6 +397,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">倍精度浮動小数点数値です。</param>
 		/// <returns>設定に成功した場合は倍精度浮動小数点数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, double value)
 		{
 			if (section == null) {
@@ -406,6 +418,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">10進数値です。</param>
 		/// <returns>設定に成功した場合は10進数値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, decimal value)
 		{
 			if (section == null) {
@@ -426,6 +439,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">論理値です。</param>
 		/// <returns>設定に成功した場合は論理値を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YBoolean? SetBoolean(this YSection section, string name, bool value)
 		{
 			if (section == null) {
@@ -446,6 +460,7 @@ namespace CAP.Yencon.Extensions
 		/// <param name="value">リンク文字列です。</param>
 		/// <returns>設定に成功した場合はリンク文字列を表すオブジェクト、失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YLink? SetLink(this YSection section, string name, string value)
 		{
 			if (section == null) {

@@ -61,6 +61,15 @@ namespace CAP.Properties {
         }
         
         /// <summary>
+        ///   InvalidNodeNameException {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidNodeNameException {
+            get {
+                return ResourceManager.GetString("InvalidNodeNameException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   YArray_GetNode_ArgumentOutOfRangeException {0} {1} {2} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string YArray_GetNode_ArgumentOutOfRangeException {
@@ -75,6 +84,15 @@ namespace CAP.Properties {
         internal static string YArray_GetNode_NullReferenceException {
             get {
                 return ResourceManager.GetString("YArray_GetNode_NullReferenceException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   YenconException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconException {
+            get {
+                return ResourceManager.GetString("YenconException", resourceCulture);
             }
         }
         

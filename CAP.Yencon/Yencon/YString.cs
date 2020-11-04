@@ -29,6 +29,7 @@ namespace CAP.Yencon
 		/// <param name="name">新しい文字列値の名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		protected YString(YNode parent, string name) : base(parent, name) { }
 	}
 }

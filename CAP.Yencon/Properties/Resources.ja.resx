@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InvalidNodeNameException" xml:space="preserve">
+    <value>指定されたノード名「{0}」は利用できません。</value>
+  </data>
   <data name="YArray_GetNode_ArgumentOutOfRangeException" xml:space="preserve">
     <value>引数「{2}」の値は0以上{1}未満である必要があります。渡された実際の値は{0}です。</value>
   </data>
   <data name="YArray_GetNode_NullReferenceException" xml:space="preserve">
     <value>ノードの取得に失敗しました。戻り値が null です。</value>
+  </data>
+  <data name="YenconException" xml:space="preserve">
+    <value>ヱンコンに関するエラーが発生しました。</value>
   </data>
   <data name="YNode_ArgumentException" xml:space="preserve">
     <value>親ノードはセクションまたは配列である必要があります。引数名：「{0}」</value>

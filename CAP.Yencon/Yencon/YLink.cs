@@ -30,6 +30,7 @@ namespace CAP.Yencon
 		/// <param name="name">新しいリンク文字列の名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		protected YLink(YNode parent, string name) : base(parent, name) { }
 
 		/// <summary>

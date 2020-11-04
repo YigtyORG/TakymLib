@@ -9,6 +9,7 @@
 
 using System;
 using CAP.Properties;
+using CAP.Yencon.Exceptions;
 
 namespace CAP.Yencon
 {
@@ -49,6 +50,7 @@ namespace CAP.Yencon
 		/// <param name="name">新しいノードの名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		protected YNode(YNode? parent, string name)
 		{
 			if (parent == null && !(this is YSection)) {
@@ -61,7 +63,20 @@ namespace CAP.Yencon
 				throw new ArgumentNullException(nameof(name));
 			}
 			this.Parent = parent;
-			this.Name   = name;
+			this.Name   = name.Trim();
+			this.ValidateName();
+		}
+
+		private void ValidateName()
+		{
+			for (int i = 0; i < this.Name.Length; ++i) {
+				if (('0' > this.Name[i] || this.Name[i] > '9') &&
+					('A' > this.Name[i] || this.Name[i] > 'Z') &&
+					('a' > this.Name[i] || this.Name[i] > 'z') &&
+					(this.Name[i] != '_')) {
+					throw new InvalidNodeNameException(this.Name);
+				}
+			}
 		}
 
 		/// <summary>

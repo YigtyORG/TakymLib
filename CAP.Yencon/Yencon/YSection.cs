@@ -65,6 +65,7 @@ namespace CAP.Yencon
 		/// <param name="name">新しいセクションの名前です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		protected YSection(YNode? parent, string name) : base(parent, name)
 		{
 			_version = 0;
@@ -82,6 +83,7 @@ namespace CAP.Yencon
 		///  または不明なノードの種類が指定された場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public TNode? CreateNode<TNode>(string name) where TNode: YNode
 		{
 			if (name == null) {
@@ -101,6 +103,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YEmpty? CreateEmpty(string name)
 		{
 			if (name == null) {
@@ -134,6 +137,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YSection? CreateSection(string name)
 		{
 			if (name == null) {
@@ -153,6 +157,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YArray? CreateArray(string name)
 		{
 			if (name == null) {
@@ -172,6 +177,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YString? CreateString(string name)
 		{
 			if (name == null) {
@@ -191,6 +197,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YNumber? CreateNumber(string name)
 		{
 			if (name == null) {
@@ -210,6 +217,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YBoolean? CreateBoolean(string name)
 		{
 			if (name == null) {
@@ -229,6 +237,7 @@ namespace CAP.Yencon
 		///  またはサポートされない場合は<see langword="null"/>を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YLink? CreateLink(string name)
 		{
 			if (name == null) {
