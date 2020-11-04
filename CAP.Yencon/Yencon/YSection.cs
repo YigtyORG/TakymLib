@@ -33,7 +33,7 @@ namespace CAP.Yencon
 		///  現在の子ノードの名前を取得します。
 		/// </summary>
 		/// <exception cref="System.InvalidOperationException"/>
-		public string[] Names => _keys.ToArray();
+		public string[] ChildNames => _keys.ToArray();
 
 		/// <summary>
 		///  上書きされた場合、読み取り専用の子ノードのリストを取得します。

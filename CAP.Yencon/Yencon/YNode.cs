@@ -31,6 +31,14 @@ namespace CAP.Yencon
 		public string Name { get; }
 
 		/// <summary>
+		///  このノードが根セクションかどうか判定します。
+		/// </summary>
+		/// <returns>
+		///  根ノードである場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
+		/// </returns>
+		public bool IsRoot => this.Parent == null;
+
+		/// <summary>
 		///  型'<see cref="CAP.Yencon.YNode"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="parent">
