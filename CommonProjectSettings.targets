@@ -37,5 +37,6 @@
 		<Optimize>true</Optimize>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
+		<Prefer32Bit Condition="'$(OutputType)'=='Exe' Or '$(OutputType)'=='WinExe'">false</Prefer32Bit>
 	</PropertyGroup>
 </Project>
