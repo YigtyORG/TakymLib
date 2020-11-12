@@ -31,7 +31,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string Address
 		{
-			get => _address_elem.Value;
+			get => _address_elem.Value ?? string.Empty;
 			set => _address_elem.Value = value;
 		}
 

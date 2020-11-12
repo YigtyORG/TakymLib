@@ -15,6 +15,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 {
 	internal sealed class XrcdlLinkInfoImplementation : XrcdlLinkInfo
 	{
+		private const    string     _link_example = "https://example.com";
 		private readonly XmlElement _link_elem;
 		private          Uri?       _link;
 
@@ -23,7 +24,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 			get
 			{
 				if (_link == null) {
-					_link = new Uri(_link_elem.Value);
+					_link = new Uri(_link_elem.Value ?? _link_example);
 				}
 				return _link;
 			}

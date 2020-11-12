@@ -20,7 +20,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string AccountName
 		{
-			get => _account_elem.Value;
+			get => _account_elem.Value ?? string.Empty;
 			set => _account_elem.Value = value;
 		}
 

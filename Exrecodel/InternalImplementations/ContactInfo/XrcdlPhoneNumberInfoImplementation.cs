@@ -19,7 +19,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string Number
 		{
-			get => _num_elem.Value;
+			get => _num_elem.Value ?? string.Empty;
 			set => _num_elem.Value = value;
 		}
 

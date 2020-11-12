@@ -24,7 +24,7 @@ namespace Exrecodel.InternalImplementations
 		static XrcdlDocumentImplementation()
 		{
 			using (var sr = new StringReader(Resources.XmlSchema)) {
-				_schema = XmlSchema.Read(sr, (sender, e) => { /* do nothing */ });
+				_schema = XmlSchema.Read(sr, (sender, e) => { /* do nothing */ }) ?? new XmlSchema();
 			}
 		}
 
@@ -82,7 +82,7 @@ namespace Exrecodel.InternalImplementations
 		internal XmlElement GetElement(params string[] names)
 		{
 			this.EnsureRootElement();
-			return Utils.GetElement(this.CreateElement, _xmldoc.DocumentElement, names);
+			return Utils.GetElement(this.CreateElement, _xmldoc.DocumentElement!, names);
 		}
 
 		internal XmlElement CreateElement(string name)

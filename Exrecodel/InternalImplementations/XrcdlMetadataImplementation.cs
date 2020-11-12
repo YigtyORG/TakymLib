@@ -69,7 +69,7 @@ namespace Exrecodel.InternalImplementations
 		{
 			get
 			{
-				string s = this.GetElement(Constants.Creation).Value;
+				string? s = this.GetElement(Constants.Creation).Value;
 				if (string.IsNullOrEmpty(s)) {
 					return null;
 				} else {
@@ -94,7 +94,7 @@ namespace Exrecodel.InternalImplementations
 		{
 			get
 			{
-				string s = this.GetElement(Constants.LastModified).Value;
+				string? s = this.GetElement(Constants.LastModified).Value;
 				if (string.IsNullOrEmpty(s)) {
 					return null;
 				} else {

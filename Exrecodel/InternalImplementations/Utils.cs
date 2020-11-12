@@ -29,10 +29,12 @@ namespace Exrecodel.InternalImplementations
 		internal static XmlElement GetElement(Func<string, XmlElement> createElemFunc, XmlElement elem, params string[] names)
 		{
 			for (int i = 0; i < names.Length; ++i) {
-				if (elem[names[i]] == null) {
-					elem.AppendChild(createElemFunc(names[i]));
+				var elem2 = elem[names[i]];
+				if (elem2 == null) {
+					elem2 = createElemFunc(names[i]);
+					elem.AppendChild(elem2);
 				}
-				elem = elem[names[i]];
+				elem = elem2;
 			}
 			return elem;
 		}
