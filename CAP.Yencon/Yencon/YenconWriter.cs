@@ -20,5 +20,11 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <param name="node">書き込むノードを表すオブジェクトです。</param>
 		public abstract void Write(YNode node);
+
+		/// <summary>
+		///  上書きされた場合、字句を書き込みます。
+		/// </summary>
+		/// <param name="token">書き込む字句を表すオブジェクトです。</param>
+		public abstract void Write(YToken token);
 	}
 }

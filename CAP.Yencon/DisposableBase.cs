@@ -9,6 +9,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CAP.Properties;
 
 namespace CAP
 {
@@ -18,6 +19,11 @@ namespace CAP
 	/// </summary>
 	public abstract class DisposableBase : IDisposable, IAsyncDisposable
 	{
+		/// <summary>
+		///  このオブジェクトの破棄処理を実行している場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
+		/// </summary>
+		public bool IsDisposing { get; private set; }
+
 		/// <summary>
 		///  このオブジェクトが破棄されている場合は<see langword="true"/>、有効な場合は<see langword="false"/>を返します。
 		/// </summary>
@@ -36,20 +42,8 @@ namespace CAP
 		/// </summary>
 		~DisposableBase()
 		{
+			this.IsDisposing = true;
 			this.Dispose(false);
-		}
-
-		/// <summary>
-		///  現在のインスタンスが破棄されている場合に例外を発生させます。
-		/// </summary>
-		/// <exception cref="System.ObjectDisposedException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		protected void EnsureNotDisposed()
-		{
-			if (this.IsDisposed) {
-				throw new ObjectDisposedException(this.GetType().Name);
-			}
 		}
 
 		/// <summary>
@@ -57,17 +51,20 @@ namespace CAP
 		/// </summary>
 		public void Dispose()
 		{
+			this.IsDisposing = true;
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>
-		///  現在のオブジェクトインスタンスと利用しているリソースを非同期的に破棄します。
+		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
 		/// </summary>
 		public async ValueTask DisposeAsync()
 		{
-			this.Dispose();
-			await Task.CompletedTask;
+			this.IsDisposing = true;
+			await this.DisposeAsyncCore();
+			this.Dispose(false);
+			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>
@@ -81,6 +78,31 @@ namespace CAP
 		protected virtual void Dispose(bool disposing)
 		{
 			this.IsDisposed = true;
+		}
+
+		/// <summary>
+		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
+		///  この関数内で例外を発生させてはいけません。
+		/// </summary>
+		protected virtual ValueTask DisposeAsyncCore()
+		{
+			return default;
+		}
+
+		/// <summary>
+		///  現在のインスタンスが破棄されている場合に例外を発生させます。
+		/// </summary>
+		/// <exception cref="System.ObjectDisposedException" />
+		[DebuggerHidden()]
+		[StackTraceHidden()]
+		protected void EnsureNotDisposed()
+		{
+			if (this.IsDisposing) {
+				throw new ObjectDisposedException(this.GetType().Name, Resources.DisposableBase_ObjectDisposedException_IsDisposing);
+			}
+			if (this.IsDisposed) {
+				throw new ObjectDisposedException(this.GetType().Name);
+			}
 		}
 	}
 }
