@@ -18,7 +18,7 @@ namespace CAP.Yencon
 		/// <summary>
 		///  上書きされた場合、可読なメッセージを取得または設定します。
 		/// </summary>
-		public abstract string Message { get; set; }
+		public abstract string? Message { get; set; }
 
 		/// <summary>
 		///  型'<see cref="CAP.Yencon.YString"/>'の新しいインスタンスを生成します。

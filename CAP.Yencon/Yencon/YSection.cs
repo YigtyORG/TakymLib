@@ -426,7 +426,7 @@ namespace CAP.Yencon
 		/// </summary>
 		/// <param name="name">取得するノードの名前です。</param>
 		/// <returns>取得したノードを表すオブジェクトです。</returns>
-		protected abstract YNode GetNodeCore(string name);
+		protected abstract YNode? GetNodeCore(string name);
 
 		/// <summary>
 		///  上書きされた場合、指定されたノードを削除します。

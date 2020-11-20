@@ -19,7 +19,7 @@ namespace CAP.Yencon
 		/// <summary>
 		///  上書きされた場合、このノードが保持する値を取得または設定します。
 		/// </summary>
-		public abstract string Value { get; set; }
+		public abstract string? Value { get; set; }
 
 		/// <summary>
 		///  型'<see cref="CAP.Yencon.YString"/>'の新しいインスタンスを生成します。
