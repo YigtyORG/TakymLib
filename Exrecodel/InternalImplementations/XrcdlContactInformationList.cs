@@ -66,12 +66,12 @@ namespace Exrecodel.InternalImplementations
 			}
 		}
 
-		public XrcdlAddressInfo AppendAddressInfo(string address, long? zipcode = null)
+		public XrcdlAddressInfo AppendAddressInfo(string address, long? postcode = null)
 		{
 			return this.AppendInfoCore(Constants.AddressInfo, (elem) =>
 				new XrcdlAddressInfoImplementation(_metadata, elem) {
-					Address = address,
-					ZipCode = zipcode
+					Address  = address,
+					PostCode = postcode
 				}
 			);
 		}

@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using Exrecodel.ContactInfo;
-using Exrecodel.InternalImplementations;
 
 namespace Exrecodel
 {
@@ -23,9 +22,9 @@ namespace Exrecodel
 		///  新しい住所情報を作成して追加します。
 		/// </summary>
 		/// <param name="address">住所を表す文字列です。</param>
-		/// <param name="zipcode">郵便番号です。既定値は<see langword="null"/>です。</param>
+		/// <param name="postcode">郵便番号です。既定値は<see langword="null"/>です。</param>
 		/// <returns>新しく生成された住所情報を操作するオブジェクトです。</returns>
-		XrcdlAddressInfo AppendAddressInfo(string address, long? zipcode = null);
+		XrcdlAddressInfo AppendAddressInfo(string address, long? postcode = null);
 
 		/// <summary>
 		///  新しい電子メールアドレス情報を作成して追加します。
