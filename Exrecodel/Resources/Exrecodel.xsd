@@ -174,7 +174,7 @@
 											<xsd:complexType>
 												<xsd:simpleContent>
 													<xsd:extension base="xsd:string">
-														<xsd:attribute name="zipcode" type="xsd:long" use="optional">
+														<xsd:attribute name="postcode" type="xsd:long" use="optional">
 															<xsd:annotation>
 																<xsd:documentation>整数値で表現された郵便番号を表します。</xsd:documentation>
 															</xsd:annotation>

@@ -16,17 +16,17 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 	{
 		private readonly XmlElement _address_elem;
 
-		public override long? ZipCode
+		public override long? PostCode
 		{
 			get
 			{
-				if (long.TryParse(_address_elem.GetAttribute(Constants.ZipCode), out long result)) {
+				if (long.TryParse(_address_elem.GetAttribute(Constants.PostCode), out long result)) {
 					return result;
 				} else {
 					return null;
 				}
 			}
-			set => _address_elem.SetAttribute(Constants.ZipCode, value.ToString());
+			set => _address_elem.SetAttribute(Constants.PostCode, value.ToString());
 		}
 
 		public override string Address

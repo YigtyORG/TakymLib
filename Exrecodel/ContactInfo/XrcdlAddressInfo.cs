@@ -22,7 +22,7 @@ namespace Exrecodel.ContactInfo
 		/// <summary>
 		///  郵便番号を取得または設定します。
 		/// </summary>
-		public abstract long? ZipCode { get; set; }
+		public abstract long? PostCode { get; set; }
 
 		/// <summary>
 		///  住所を表す文字列を取得または設定します。
@@ -51,10 +51,10 @@ namespace Exrecodel.ContactInfo
 			var culture = Utils.FormatProviderToCultureInfo(formatProvider);
 			format ??= Resources.ResourceManager.GetString(nameof(Resources.XrcdlAddressInfo_Format), culture)!;
 			string zipcode;
-			if (this.ZipCode.HasValue) {
-				zipcode = this.ZipCode.Value.ToString(formatProvider);
+			if (this.PostCode.HasValue) {
+				zipcode = this.PostCode.Value.ToString(formatProvider);
 			} else {
-				zipcode = Resources.ResourceManager.GetString(nameof(Resources.XrcdlAddressInfo_NoZipCode), culture)!;
+				zipcode = Resources.ResourceManager.GetString(nameof(Resources.XrcdlAddressInfo_NoPostCode), culture)!;
 			}
 			return string.Format(format, this.Address, zipcode);
 		}

@@ -124,8 +124,8 @@
   <data name="XrcdlAddressInfo_Format" xml:space="preserve">
     <value>XrcdlAddressInfo_Format {0} {1}</value>
   </data>
-  <data name="XrcdlAddressInfo_NoZipCode" xml:space="preserve">
-    <value>XrcdlAddressInfo_NoZipCode</value>
+  <data name="XrcdlAddressInfo_NoPostCode" xml:space="preserve">
+    <value>XrcdlAddressInfo_NoPostCode</value>
   </data>
   <data name="XrcdlContactInformationEnumerator_InvalidOperationException" xml:space="preserve">
     <value>XrcdlContactInformationEnumerator_InvalidOperationException</value>

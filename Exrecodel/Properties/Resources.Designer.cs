@@ -66,8 +66,9 @@ namespace Exrecodel.Properties {
         ///&lt;!--*
         /// * Exrecodel - &quot;Extensible Regulation/Convention Descriptor Language&quot;
         /// *    「拡張可能な規則/規約記述言語」
+        /// * Copyright (C) 2020 Yigty.ORG; all rights reserved.
         /// * Copyright (C) 2020 Takym.
-        /// * 
+        /// *
         /// * distributed under the MIT License.
         ///**--&gt;
         ///&lt;xsd:schema
@@ -76,9 +77,7 @@ namespace Exrecodel.Properties {
         ///	elementFormDefault=&quot;qualified&quot;
         ///	xmlns:tns=&quot;Exrecodel.xsd&quot;
         ///	xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;
-        ///	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-        ///	&lt;xsd:complexType name=&quot;node&quot;&gt;
-        ///		&lt;x [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        ///	xmlns:xsi=&quot;http://www.w3.org/2001/XMLS [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string XmlSchema {
             get {
@@ -96,11 +95,11 @@ namespace Exrecodel.Properties {
         }
         
         /// <summary>
-        ///   XrcdlAddressInfo_NoZipCode に類似しているローカライズされた文字列を検索します。
+        ///   XrcdlAddressInfo_NoPostCode に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string XrcdlAddressInfo_NoZipCode {
+        internal static string XrcdlAddressInfo_NoPostCode {
             get {
-                return ResourceManager.GetString("XrcdlAddressInfo_NoZipCode", resourceCulture);
+                return ResourceManager.GetString("XrcdlAddressInfo_NoPostCode", resourceCulture);
             }
         }
         

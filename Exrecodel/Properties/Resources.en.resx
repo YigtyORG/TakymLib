@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="XrcdlAddressInfo_Format" xml:space="preserve">
-    <value>The zip code: {1}. The address: {0}</value>
+    <value>The post code: {1}. The address: {0}</value>
   </data>
-  <data name="XrcdlAddressInfo_NoZipCode" xml:space="preserve">
+  <data name="XrcdlAddressInfo_NoPostCode" xml:space="preserve">
     <value>unset</value>
   </data>
   <data name="XrcdlContactInformationEnumerator_InvalidOperationException" xml:space="preserve">

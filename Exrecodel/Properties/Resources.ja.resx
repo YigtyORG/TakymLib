@@ -120,7 +120,7 @@
   <data name="XrcdlAddressInfo_Format" xml:space="preserve">
     <value>郵便番号：{1}、住所：{0}</value>
   </data>
-  <data name="XrcdlAddressInfo_NoZipCode" xml:space="preserve">
+  <data name="XrcdlAddressInfo_NoPostCode" xml:space="preserve">
     <value>未指定</value>
   </data>
   <data name="XrcdlContactInformationEnumerator_InvalidOperationException" xml:space="preserve">
