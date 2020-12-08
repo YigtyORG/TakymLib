@@ -1,4 +1,5 @@
 # The MIT License
+Copyright (C) 2020 Yigty.ORG; all rights reserved.
 Copyright (C) 2020 Takym.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
