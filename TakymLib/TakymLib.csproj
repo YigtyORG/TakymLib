@@ -8,8 +8,6 @@
 	<PropertyGroup>
 		<Product>TakymLib</Product>
 		<Description>The common library for DnetLibrary components.</Description>
-		<Version>0.0.0.0</Version>
-		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Update="Properties/Resources.Designer.cs">

@@ -8,8 +8,6 @@
 	<PropertyGroup>
 		<Product>Exrecodel</Product>
 		<Description>Extensible Regulation/Convention Descriptor Language</Description>
-		<Version>0.0.0.0</Version>
-		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Properties/Resources.resx">

@@ -8,8 +8,6 @@
 	<PropertyGroup>
 		<Product>CAP.Yencon</Product>
 		<Description>Yencon Environment Configuration (CAP: Configuration and Properties)</Description>
-		<Version>0.0.0.0</Version>
-		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
