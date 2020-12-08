@@ -10,16 +10,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CommonProjectSettings.targets = CommonProjectSettings.targets
 		DnetLibrary.ProjectSettings.targets = DnetLibrary.ProjectSettings.targets
 		HeaderComments.txt = HeaderComments.txt
-		License.md = License.md
+		LICENSE.md = LICENSE.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exrecodel", "Exrecodel\Exrecodel.csproj", "{AC39250E-5E2F-4E47-95A7-DCC36A75F756}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CAP.Yencon", "CAP.Yencon\CAP.Yencon.csproj", "{A7181D1B-427B-483F-983F-DD758A8D2F81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CAP.YenconTests", "CAP.YenconTests\CAP.YenconTests.csproj", "{417AD915-5B50-4BC0-96A9-2203E1CE7A42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CAP.YenconTests", "CAP.YenconTests\CAP.YenconTests.csproj", "{417AD915-5B50-4BC0-96A9-2203E1CE7A42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib", "TakymLib\TakymLib.csproj", "{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{417AD915-5B50-4BC0-96A9-2203E1CE7A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{417AD915-5B50-4BC0-96A9-2203E1CE7A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{417AD915-5B50-4BC0-96A9-2203E1CE7A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

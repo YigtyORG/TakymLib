@@ -1,5 +1,5 @@
 ﻿/****
- * CAP - "Configuration and Property"
+ * TakymLib
  * Copyright (C) 2020 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020 Takym.
  *
@@ -9,9 +9,9 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using CAP.Properties;
+using TakymLib.Properties;
 
-namespace CAP
+namespace TakymLib
 {
 	/// <summary>
 	///  破棄可能なオブジェクトの基底クラスです。
@@ -30,7 +30,7 @@ namespace CAP
 		public bool IsDisposed { get; private set; }
 
 		/// <summary>
-		///  型'<see cref="CAP.DisposableBase"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		protected DisposableBase()
 		{
@@ -38,7 +38,7 @@ namespace CAP
 		}
 
 		/// <summary>
-		///  型'<see cref="CAP.DisposableBase"/>'の現在のインスタンスを破棄します。
+		///  型'<see cref="TakymLib.DisposableBase"/>'の現在のインスタンスを破棄します。
 		/// </summary>
 		~DisposableBase()
 		{
@@ -56,6 +56,7 @@ namespace CAP
 			GC.SuppressFinalize(this);
 		}
 
+#pragma warning disable CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
 		/// </summary>
@@ -66,6 +67,7 @@ namespace CAP
 			this.Dispose(false);
 			GC.SuppressFinalize(this);
 		}
+#pragma warning restore CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
 
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。

@@ -117,31 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidNodeNameException" xml:space="preserve">
-    <value>指定されたノード名「{0}」は利用できません。</value>
-  </data>
-  <data name="YArray_GetNode_ArgumentOutOfRangeException" xml:space="preserve">
-    <value>引数「{2}」の値は0以上{1}未満である必要があります。渡された実際の値は{0}です。</value>
-  </data>
-  <data name="YArray_GetNode_NullReferenceException" xml:space="preserve">
-    <value>ノードの取得に失敗しました。戻り値が null です。</value>
-  </data>
-  <data name="YenconException" xml:space="preserve">
-    <value>ヱンコンに関するエラーが発生しました。</value>
-  </data>
-  <data name="YNode_ArgumentException" xml:space="preserve">
-    <value>親ノードはセクションまたは配列である必要があります。引数名：「{0}」</value>
-  </data>
-  <data name="YNode_ArgumentNullException" xml:space="preserve">
-    <value>セクション以外のノードは親セクションまたは親配列を指定する必要があります。引数名：「{0}」</value>
-  </data>
-  <data name="YSection_GetNode_KeyNotFoundException" xml:space="preserve">
-    <value>指定された名前「{0}」のノードは存在しません。</value>
-  </data>
-  <data name="YSection_GetNode_NullReferenceException" xml:space="preserve">
-    <value>ノードの取得に失敗しました。戻り値が null です。</value>
-  </data>
-  <data name="YSection_KeyNameEnumerator" xml:space="preserve">
-    <value>ノード名の列挙中にセクションの操作が行われました。</value>
+  <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
+    <value>破棄中のオブジェクトは操作できません。</value>
   </data>
 </root>

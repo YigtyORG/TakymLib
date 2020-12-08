@@ -14,7 +14,7 @@
 		<Copyright>Copyright (C) 2020 Yigty.ORG; all rights reserved. Copyright (C) 2020 Takym.</Copyright>
 	</PropertyGroup>
 	<ItemGroup>
-		<Content Include="..\License.md" Pack="true" PackagePath="/">
+		<Content Include="..\LICENSE.md" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<Visible>false</Visible>
 		</Content>

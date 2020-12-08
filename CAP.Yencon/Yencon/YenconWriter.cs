@@ -13,7 +13,7 @@ namespace CAP.Yencon
 	///  ヱンコンファイルを書き込むライターを表します。
 	///  このクラスは抽象クラスです。
 	/// </summary>
-	public abstract class YenconWriter : DisposableBase
+	public abstract class YenconWriter : CapStream
 	{
 		/// <summary>
 		///  上書きされた場合、ノードを書き込みます。

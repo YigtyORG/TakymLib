@@ -1,18 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>CAP.Yencon</AssemblyName>
-		<RootNamespace>CAP</RootNamespace>
+		<AssemblyName>TakymLib</AssemblyName>
+		<RootNamespace>TakymLib</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 	<Import Project="../DnetLibrary.ProjectSettings.targets" />
 	<PropertyGroup>
-		<Product>CAP.Yencon</Product>
-		<Description>Yencon Environment Configuration (CAP: Configuration and Properties)</Description>
+		<Product>TakymLib</Product>
+		<Description>The common library for DnetLibrary components.</Description>
 		<Version>0.0.0.0</Version>
 		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
 		<Compile Update="Properties/Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>

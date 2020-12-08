@@ -13,7 +13,7 @@ namespace CAP.Yencon
 	///  ヱンコンファイルを読み込むリーダーを表します。
 	///  このクラスは抽象クラスです。
 	/// </summary>
-	public abstract class YenconReader : DisposableBase
+	public abstract class YenconReader : CapStream
 	{
 		/// <summary>
 		///  上書きされた場合、現在のノードを取得します。

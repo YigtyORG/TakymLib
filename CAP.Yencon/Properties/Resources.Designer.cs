@@ -61,15 +61,6 @@ namespace CAP.Properties {
         }
         
         /// <summary>
-        ///   DisposableBase_ObjectDisposedException_IsDisposing に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string DisposableBase_ObjectDisposedException_IsDisposing {
-            get {
-                return ResourceManager.GetString("DisposableBase_ObjectDisposedException_IsDisposing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   InvalidNodeNameException {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string InvalidNodeNameException {

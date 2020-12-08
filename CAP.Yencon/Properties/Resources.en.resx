@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
-    <value>Cannot operate an object during disposing.</value>
-  </data>
   <data name="InvalidNodeNameException" xml:space="preserve">
     <value>Cannot use the specified node name "{0}".</value>
   </data>
