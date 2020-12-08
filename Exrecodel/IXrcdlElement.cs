@@ -17,11 +17,17 @@ namespace Exrecodel
 		/// <summary>
 		///  現在の要素の名前を取得または設定します。
 		/// </summary>
-		string Name { get; set; }
+		public string Name { get; set; }
 
 		/// <summary>
 		///  現在の要素と関連付けられている文書を取得します。
 		/// </summary>
-		XrcdlDocument Document { get; }
+		public XrcdlDocument Document { get; }
+
+		/// <summary>
+		///  現在の要素の変換処理を行うオブジェクトを取得します。
+		/// </summary>
+		/// <returns><see cref="Exrecodel.IXrcdlConverter"/>へ変換可能なオブジェクトです。</returns>
+		public IXrcdlConverter GetConverter();
 	}
 }

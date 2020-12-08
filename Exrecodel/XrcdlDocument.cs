@@ -294,5 +294,14 @@ namespace Exrecodel
 		/// </summary>
 		/// <returns>根要素を表す<see cref="Exrecodel.XrcdlRoot"/>オブジェクトです。</returns>
 		public abstract XrcdlRoot GetRootNode();
+
+		/// <summary>
+		///  現在の文書の変換処理を行うオブジェクトを取得します。
+		/// </summary>
+		/// <returns><see cref="Exrecodel.IXrcdlConverter"/>へ変換可能なオブジェクトです。</returns>
+		public IXrcdlConverter GetConverter()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

@@ -7,6 +7,8 @@
  * distributed under the MIT License.
 ****/
 
+using System;
+
 namespace Exrecodel
 {
 	/// <summary>
@@ -39,6 +41,15 @@ namespace Exrecodel
 		{
 			this.Document = document;
 			this.Parent   = parent;
+		}
+
+		/// <summary>
+		///  現在の要素の変換処理を行うオブジェクトを取得します。
+		/// </summary>
+		/// <returns><see cref="Exrecodel.IXrcdlConverter"/>へ変換可能なオブジェクトです。</returns>
+		public IXrcdlConverter GetConverter()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

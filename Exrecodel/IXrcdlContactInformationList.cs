@@ -24,7 +24,7 @@ namespace Exrecodel
 		/// <param name="address">住所を表す文字列です。</param>
 		/// <param name="postcode">郵便番号です。既定値は<see langword="null"/>です。</param>
 		/// <returns>新しく生成された住所情報を操作するオブジェクトです。</returns>
-		XrcdlAddressInfo AppendAddressInfo(string address, long? postcode = null);
+		public XrcdlAddressInfo AppendAddressInfo(string address, long? postcode = null);
 
 		/// <summary>
 		///  新しい電子メールアドレス情報を作成して追加します。
@@ -33,28 +33,28 @@ namespace Exrecodel
 		/// <param name="subject">既定の件名を設定します。省略可能です。</param>
 		/// <param name="body">既定の本文を設定します。省略可能です。</param>
 		/// <returns>新しく生成された電子メールアドレス情報を操作するオブジェクトです。</returns>
-		XrcdlEmailInfo AppendEmailInfo(string email, string? subject = null, string? body = null);
+		public XrcdlEmailInfo AppendEmailInfo(string email, string? subject = null, string? body = null);
 
 		/// <summary>
 		///  新しい通話用の固定電話または携帯電話の電話番号情報を作成して追加します。
 		/// </summary>
 		/// <param name="telNumber">電話番号を表す文字列です。</param>
 		/// <returns>新しく生成された電話番号情報を操作するオブジェクトです。</returns>
-		XrcdlPhoneNumberInfo AppendTelInfo(string telNumber);
+		public XrcdlPhoneNumberInfo AppendTelInfo(string telNumber);
 
 		/// <summary>
 		///  新しい模写電送または写真電送用の電話番号情報を作成して追加します。
 		/// </summary>
 		/// <param name="faxNumber">電話番号を表す文字列です。</param>
 		/// <returns>新しく生成された電話番号情報を操作するオブジェクトです。</returns>
-		XrcdlPhoneNumberInfo AppendFaxInfo(string faxNumber);
+		public XrcdlPhoneNumberInfo AppendFaxInfo(string faxNumber);
 
 		/// <summary>
 		///  新しい短文の文字列メッセージの送受信用の電話番号情報を作成して追加します。
 		/// </summary>
 		/// <param name="smsNumber">電話番号を表す文字列です。</param>
 		/// <returns>新しく生成された電話番号情報を操作するオブジェクトです。</returns>
-		XrcdlPhoneNumberInfo AppendSmsInfo(string smsNumber);
+		public XrcdlPhoneNumberInfo AppendSmsInfo(string smsNumber);
 
 		/// <summary>
 		///  新しい社会ネットワークアカウント情報を作成して追加します。
@@ -63,7 +63,7 @@ namespace Exrecodel
 		/// <param name="uriPrefix">SNSサービスへのURLの接頭辞です。</param>
 		/// <param name="serviceName">SNSサービスの名前です。省略可能です。</param>
 		/// <returns>新しく生成された社会ネットワークアカウント情報を操作するオブジェクトです。</returns>
-		XrcdlSocialAccountInfo AppendSocialAccountInfo(string accountName, Uri uriPrefix, string? serviceName = null);
+		public XrcdlSocialAccountInfo AppendSocialAccountInfo(string accountName, Uri uriPrefix, string? serviceName = null);
 
 		/// <summary>
 		///  新しいURI形式のリンク情報を作成して追加します。
@@ -71,27 +71,27 @@ namespace Exrecodel
 		/// <param name="link">URI形式のリンクです。</param>
 		/// <param name="title">リンク先のオブジェクトの題名または概要です。省略可能です。</param>
 		/// <returns>新しく生成されたURI形式のリンク情報を操作するオブジェクトです。</returns>
-		XrcdlLinkInfo AppendLinkInfo(Uri link, string? title = null);
+		public XrcdlLinkInfo AppendLinkInfo(Uri link, string? title = null);
 
 		/// <summary>
 		///  指定された連絡先情報を削除します。
 		/// </summary>
 		/// <param name="contactInfo">削除する連絡先情報です。</param>
 		/// <returns>削除に成功した場合は<see langword="true"/>、失敗した場合は<see langword="false"/>を返します。</returns>
-		bool Remove(XrcdlContactInformation contactInfo);
+		public bool Remove(XrcdlContactInformation contactInfo);
 
 		/// <summary>
 		///  指定された連絡先情報が格納されているかどうか判定します。
 		/// </summary>
 		/// <param name="contactInfo">判定する連絡先情報です。</param>
 		/// <returns>格納されている場合は<see langword="true"/>、格納されていない場合は<see langword="false"/>を返します。</returns>
-		bool Contains(XrcdlContactInformation contactInfo);
+		public bool Contains(XrcdlContactInformation contactInfo);
 
 		/// <summary>
 		///  指定された連絡先情報の格納位置を判定します。
 		/// </summary>
 		/// <param name="contactInfo">判定する連絡先情報です。</param>
 		/// <returns>格納されている場合は正のインデックス番号、それ以外の場合は<c>-1</c>を返します。</returns>
-		int IndexOf(XrcdlContactInformation contactInfo);
+		public int IndexOf(XrcdlContactInformation contactInfo);
 	}
 }

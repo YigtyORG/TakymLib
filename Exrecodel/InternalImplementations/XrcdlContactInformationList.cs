@@ -177,6 +177,11 @@ namespace Exrecodel.InternalImplementations
 			return this.GetEnumerator();
 		}
 
+		public IXrcdlConverter GetConverter()
+		{
+			throw new NotImplementedException();
+		}
+
 		private struct XrcdlContactInformationEnumerator : IEnumerator<XrcdlContactInformation>
 		{
 			private          XrcdlContactInformationList _list;
