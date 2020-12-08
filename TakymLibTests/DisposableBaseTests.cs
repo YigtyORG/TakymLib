@@ -1,5 +1,5 @@
 ﻿/****
- * CAP - "Configuration and Property"
+ * TakymLib
  * Copyright (C) 2020 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020 Takym.
  *
@@ -8,17 +8,16 @@
 
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TakymLib.Tests;
 
-namespace CAP.Tests
+namespace TakymLib.Tests
 {
 	[TestClass()]
-	public class CapStreamTests : DisposableBaseTests
+	public class DisposableBaseTests
 	{
 		[TestMethod()]
-		public override void DisposeTest()
+		public virtual void DisposeTest()
 		{
-			var obj = new DummyCapStream();
+			var obj = new DisposableBaseMock();
 			using (obj) { }
 			Assert.IsNotNull(obj);
 			Assert.IsTrue(obj.IsDisposing);
@@ -26,16 +25,21 @@ namespace CAP.Tests
 		}
 
 		[TestMethod()]
-		public override void DisposeAsyncTest()
+		public virtual void DisposeAsyncTest()
 		{
-			var obj = new DummyCapStream();
+			var obj = new DisposableBaseMock();
 			DisposeAsyncTestCore(obj);
 			Assert.IsNotNull(obj);
 			Assert.IsTrue(obj.IsDisposing);
 			Assert.IsTrue(obj.IsDisposed);
 		}
 
-		private sealed class DummyCapStream : CapStream
+		protected static async void DisposeAsyncTestCore(DisposableBase disp)
+		{
+			await using (disp.ConfigureAwait(false)) { }
+		}
+
+		private sealed class DisposableBaseMock : DisposableBase
 		{
 			protected override void Dispose(bool disposing)
 			{

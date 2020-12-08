@@ -8,8 +8,11 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using TakymLib.Properties;
+
+[assembly: InternalsVisibleTo("CAP.Yencon")]
 
 namespace TakymLib
 {

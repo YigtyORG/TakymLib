@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CAP.YenconTests", "CAP.Yenc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib", "TakymLib\TakymLib.csproj", "{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib", "TakymLib\TakymLib.csproj", "{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLibTests", "TakymLibTests\TakymLibTests.csproj", "{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExrecodelTests", "ExrecodelTests\ExrecodelTests.csproj", "{7D10D5E7-7BFF-4C55-B60E-1262AE2A4562}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,12 +49,22 @@ Global
 		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D10D5E7-7BFF-4C55-B60E-1262AE2A4562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D10D5E7-7BFF-4C55-B60E-1262AE2A4562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D10D5E7-7BFF-4C55-B60E-1262AE2A4562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D10D5E7-7BFF-4C55-B60E-1262AE2A4562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{417AD915-5B50-4BC0-96A9-2203E1CE7A42} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
+		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
+		{7D10D5E7-7BFF-4C55-B60E-1262AE2A4562} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
