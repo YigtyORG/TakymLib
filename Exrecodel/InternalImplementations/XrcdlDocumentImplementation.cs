@@ -7,7 +7,10 @@
  * distributed under the MIT License.
 ****/
 
+using System;
 using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 using Exrecodel.Properties;
@@ -88,6 +91,69 @@ namespace Exrecodel.InternalImplementations
 		internal XmlElement CreateElement(string name)
 		{
 			return _xmldoc.CreateElement(name);
+		}
+
+		public override IXrcdlConverter GetConverter()
+		{
+			return new XrcdlConverter(this);
+		}
+
+		private readonly struct XrcdlConverter : IXrcdlAsyncConverter
+		{
+			private readonly XrcdlDocumentImplementation _doc;
+
+			internal XrcdlConverter(XrcdlDocumentImplementation doc)
+			{
+				_doc = doc;
+			}
+
+			public void ConvertToHtml(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				using (var convm = _doc.GetMetadata().GetConverter())
+				using (var convr = _doc.GetRootNode().GetConverter()) {
+					convm.ConvertToHtml(sb);
+					convr.ConvertToHtml(sb);
+				}
+			}
+
+			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				await this.ConvertToHtmlAsyncCore(sb, _doc.GetMetadata().GetConverter());
+				await this.ConvertToHtmlAsyncCore(sb, _doc.GetRootNode().GetConverter());
+			}
+
+			private async ValueTask ConvertToHtmlAsyncCore(StringBuilder sb, IXrcdlConverter conv)
+			{
+				switch (conv) {
+				case IXrcdlAsyncConverter asyncConv:
+					await using (asyncConv.ConfigureAwait(false)) {
+						await asyncConv.ConvertToHtmlAsync(sb);
+					}
+					break;
+				default:
+					using (conv) {
+						conv.ConvertToHtml(sb);
+					}
+					break;
+				}
+			}
+
+			public void Dispose()
+			{
+				// do nothing
+			}
+
+			public ValueTask DisposeAsync()
+			{
+				// do nothing
+				return default;
+			}
 		}
 	}
 }

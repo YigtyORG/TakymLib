@@ -23,7 +23,7 @@ namespace Exrecodel.InternalImplementations
 		internal const string VersionString                      = "version";
 		internal const string Creation                           = "creation";
 		internal const string LastModified                       = "lastmodified";
-		internal const string Contact                            = "contact";
+		internal const string Contacts                           = "contacts";
 		internal const string AddressInfo                        = "address";
 		internal const string PostCode                           = "postcode";
 		internal const string EmailInfo                          = "email";

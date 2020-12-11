@@ -71,7 +71,7 @@ namespace Exrecodel
 		/// <summary>
 		///  この文書の作成者の連絡先情報を格納したリストを取得します。
 		/// </summary>
-		public abstract IXrcdlContactInformationList Contact { get; }
+		public abstract IXrcdlContactInformationList Contacts { get; }
 
 		internal XrcdlMetadata(XrcdlDocument document)
 		{

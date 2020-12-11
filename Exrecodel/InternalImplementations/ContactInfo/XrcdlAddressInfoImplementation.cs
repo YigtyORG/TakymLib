@@ -7,6 +7,9 @@
  * distributed under the MIT License.
 ****/
 
+using System;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 using Exrecodel.ContactInfo;
 
@@ -43,6 +46,48 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 		public override string GetContactType()
 		{
 			return Constants.AddressInfo;
+		}
+
+		public override IXrcdlConverter GetConverter()
+		{
+			return new XrcdlConverter(this);
+		}
+
+		private readonly struct XrcdlConverter : IXrcdlAsyncConverter
+		{
+			private readonly XrcdlAddressInfoImplementation _info;
+
+			internal XrcdlConverter(XrcdlAddressInfoImplementation info)
+			{
+				_info = info;
+			}
+
+			public void ConvertToHtml(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				//
+			}
+
+			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				//
+			}
+
+			public void Dispose()
+			{
+				// do nothing
+			}
+
+			public ValueTask DisposeAsync()
+			{
+				// do nothing
+				return default;
+			}
 		}
 	}
 }

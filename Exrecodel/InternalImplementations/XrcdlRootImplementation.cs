@@ -9,6 +9,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace Exrecodel.InternalImplementations
@@ -40,6 +42,48 @@ namespace Exrecodel.InternalImplementations
 		private XmlElement GetElement(params string[] names)
 		{
 			return Utils.GetElement(_doc.CreateElement, _elem, names);
+		}
+
+		public override IXrcdlConverter GetConverter()
+		{
+			return new XrcdlConverter(this);
+		}
+
+		private readonly struct XrcdlConverter : IXrcdlAsyncConverter
+		{
+			private readonly XrcdlRootImplementation _node;
+
+			internal XrcdlConverter(XrcdlRootImplementation node)
+			{
+				_node = node;
+			}
+
+			public void ConvertToHtml(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				//
+			}
+
+			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				//
+			}
+
+			public void Dispose()
+			{
+				// do nothing
+			}
+
+			public ValueTask DisposeAsync()
+			{
+				// do nothing
+				return default;
+			}
 		}
 	}
 }

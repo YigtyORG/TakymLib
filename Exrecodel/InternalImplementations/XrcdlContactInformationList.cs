@@ -259,9 +259,6 @@ namespace Exrecodel.InternalImplementations
 			}
 		}
 
-		// TODO: XrcdlContactInformationConverter
-#error XrcdlContactInformationConverter
-
 		private readonly struct XrcdlContactInformationConverter : IXrcdlAsyncConverter
 		{
 			private readonly XrcdlContactInformationList _list;

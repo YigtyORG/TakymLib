@@ -8,6 +8,8 @@
 ****/
 
 using System;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace Exrecodel.InternalImplementations
@@ -115,13 +117,13 @@ namespace Exrecodel.InternalImplementations
 			}
 		}
 
-		public override IXrcdlContactInformationList Contact { get; }
+		public override IXrcdlContactInformationList Contacts { get; }
 
 		internal XrcdlMetadataImplementation(XrcdlDocumentImplementation document)
 			: base(document)
 		{
-			_doc         = document;
-			this.Contact = new XrcdlContactInformationList(this, this.GetElement(Constants.Contact));
+			_doc          = document;
+			this.Contacts = new XrcdlContactInformationList(this, this.GetElement(Constants.Contacts));
 		}
 
 		private XmlElement GetElement(params string[] names)
@@ -135,6 +137,48 @@ namespace Exrecodel.InternalImplementations
 		internal XrcdlDocumentImplementation GetDocument()
 		{
 			return _doc;
+		}
+
+		public override IXrcdlConverter GetConverter()
+		{
+			return new XrcdlConverter(this);
+		}
+
+		private readonly struct XrcdlConverter : IXrcdlAsyncConverter
+		{
+			private readonly XrcdlMetadataImplementation _meta;
+
+			internal XrcdlConverter(XrcdlMetadataImplementation meta)
+			{
+				_meta = meta;
+			}
+
+			public void ConvertToHtml(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				//
+			}
+
+			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				//
+			}
+
+			public void Dispose()
+			{
+				// do nothing
+			}
+
+			public ValueTask DisposeAsync()
+			{
+				// do nothing
+				return default;
+			}
 		}
 	}
 }
