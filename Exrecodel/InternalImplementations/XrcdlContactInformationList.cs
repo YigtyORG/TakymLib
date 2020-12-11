@@ -10,6 +10,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 using Exrecodel.ContactInfo;
 using Exrecodel.InternalImplementations.ContactInfo;
@@ -172,6 +175,11 @@ namespace Exrecodel.InternalImplementations
 			return new XrcdlContactInformationEnumerator(this);
 		}
 
+		public IAsyncEnumerator<XrcdlContactInformation> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+		{
+			return new XrcdlContactInformationEnumerator(this);
+		}
+
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return this.GetEnumerator();
@@ -179,12 +187,12 @@ namespace Exrecodel.InternalImplementations
 
 		public IXrcdlConverter GetConverter()
 		{
-			throw new NotImplementedException();
+			return new XrcdlContactInformationConverter(this);
 		}
 
-		private struct XrcdlContactInformationEnumerator : IEnumerator<XrcdlContactInformation>
+		private struct XrcdlContactInformationEnumerator : IEnumerator<XrcdlContactInformation>, IAsyncEnumerator<XrcdlContactInformation>
 		{
-			private          XrcdlContactInformationList _list;
+			private readonly XrcdlContactInformationList _list;
 			private          int                         _index;
 			private readonly ulong                       _version;
 			private          bool                        _is_disposed;
@@ -208,13 +216,6 @@ namespace Exrecodel.InternalImplementations
 				_is_disposed = false;
 			}
 
-#if false
-			~XrcdlContactInformationEnumerator()
-			{
-				this.Dispose(false);
-			}
-#endif
-
 			public void Reset()
 			{
 				this.EnsureValid();
@@ -228,32 +229,26 @@ namespace Exrecodel.InternalImplementations
 				return _index < _list.Count;
 			}
 
-#if true
+			public ValueTask<bool> MoveNextAsync()
+			{
+				return new ValueTask<bool>(this.MoveNext());
+			}
+
 			public void Dispose()
 			{
 				if (!_is_disposed) {
-					_list = null!;
 					_is_disposed = true;
 					GC.SuppressFinalize(this);
 				}
 			}
-#else
-			public void Dispose()
+
+			public ValueTask DisposeAsync()
 			{
-				this.Dispose(true);
-				GC.SuppressFinalize(this);
+				this.Dispose();
+				return default;
 			}
 
-			private void Dispose(bool disposing)
-			{
-				if (!_is_disposed) {
-					_list = null!;
-					_is_disposed = true;
-				}
-			}
-#endif
-
-			private void EnsureValid()
+			private readonly void EnsureValid()
 			{
 				if (_is_disposed) {
 					throw new ObjectDisposedException(nameof(XrcdlContactInformationEnumerator));
@@ -261,6 +256,88 @@ namespace Exrecodel.InternalImplementations
 				if (_version != _list._version) {
 					throw new InvalidOperationException(Resources.XrcdlContactInformationEnumerator_InvalidOperationException);
 				}
+			}
+		}
+
+		// TODO: XrcdlContactInformationConverter
+#error XrcdlContactInformationConverter
+
+		private readonly struct XrcdlContactInformationConverter : IXrcdlAsyncConverter
+		{
+			private readonly XrcdlContactInformationList _list;
+
+			internal XrcdlContactInformationConverter(XrcdlContactInformationList list)
+			{
+				_list = list;
+			}
+
+			public void ConvertToHtml(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				this.PreList(sb);
+				foreach (var item in _list) {
+					this.PreListItem(sb, item);
+					using (var conv = item.GetConverter()) {
+						conv.ConvertToHtml(sb);
+					}
+					this.PostListItem(sb, item);
+				}
+				this.PostList(sb);
+			}
+
+			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			{
+				if (sb == null) {
+					throw new ArgumentNullException(nameof(sb));
+				}
+				this.PreList(sb);
+				await foreach (var item in _list) {
+					this.PreListItem(sb, item);
+					var conv = item.GetConverter();
+					switch (conv) {
+					case IXrcdlAsyncConverter asyncConv:
+						await using (asyncConv.ConfigureAwait(false)) {
+							await asyncConv.ConvertToHtmlAsync(sb);
+						}
+						break;
+					default:
+						using (conv) {
+							conv.ConvertToHtml(sb);
+						}
+						break;
+					}
+					this.PostListItem(sb, item);
+				}
+				this.PostList(sb);
+			}
+
+			private void PreList(StringBuilder sb)
+			{
+			}
+
+			private void PreListItem(StringBuilder sb, XrcdlContactInformation info)
+			{
+			}
+
+			private void PostListItem(StringBuilder sb, XrcdlContactInformation info)
+			{
+			}
+
+			private void PostList(StringBuilder sb)
+			{
+			}
+
+			public void Dispose()
+			{
+				// do nothing
+			}
+
+			public ValueTask DisposeAsync()
+			{
+				// do nothing
+				return default;
 			}
 		}
 	}

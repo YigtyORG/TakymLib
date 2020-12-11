@@ -65,10 +65,7 @@ namespace Exrecodel
 		///  現在の連絡先情報の変換処理を行うオブジェクトを取得します。
 		/// </summary>
 		/// <returns><see cref="Exrecodel.IXrcdlConverter"/>へ変換可能なオブジェクトです。</returns>
-		public IXrcdlConverter GetConverter()
-		{
-			throw new NotImplementedException();
-		}
+		public abstract IXrcdlConverter GetConverter();
 
 		/// <summary>
 		///  この連絡先情報を可読な文字列へ変換します。

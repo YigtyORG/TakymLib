@@ -16,7 +16,7 @@ namespace Exrecodel
 	/// <summary>
 	///  連絡先情報を格納したリストを提供します。
 	/// </summary>
-	public interface IXrcdlContactInformationList : IXrcdlElement, IReadOnlyList<XrcdlContactInformation>
+	public interface IXrcdlContactInformationList : IXrcdlElement, IReadOnlyList<XrcdlContactInformation>, IAsyncEnumerable<XrcdlContactInformation>
 	{
 		/// <summary>
 		///  新しい住所情報を作成して追加します。

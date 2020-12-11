@@ -48,7 +48,7 @@ namespace Exrecodel.Extensions
 			}
 			var sb   = new StringBuilder();
 			var conv = element.GetConverter();
-			if (conv is IXrcdlConverterAsync convAsync) {
+			if (conv is IXrcdlAsyncConverter convAsync) {
 				await using (convAsync.ConfigureAwait(false)) {
 					await convAsync.ConvertToHtmlAsync(sb);
 				}

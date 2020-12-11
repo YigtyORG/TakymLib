@@ -299,9 +299,6 @@ namespace Exrecodel
 		///  現在の文書の変換処理を行うオブジェクトを取得します。
 		/// </summary>
 		/// <returns><see cref="Exrecodel.IXrcdlConverter"/>へ変換可能なオブジェクトです。</returns>
-		public IXrcdlConverter GetConverter()
-		{
-			throw new NotImplementedException();
-		}
+		public abstract IXrcdlConverter GetConverter();
 	}
 }

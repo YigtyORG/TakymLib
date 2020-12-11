@@ -28,7 +28,7 @@ namespace Exrecodel
 	/// <summary>
 	///  <see cref="Exrecodel"/>文書の変換を非同期的に行います。
 	/// </summary>
-	public interface IXrcdlConverterAsync : IXrcdlConverter, IAsyncDisposable
+	public interface IXrcdlAsyncConverter : IXrcdlConverter, IAsyncDisposable
 	{
 		/// <summary>
 		///  非同期でHTML文書へ変換し、指定された文字列バッファへ書き込みます。
