@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Exrecodel.ContactInfo;
+using Exrecodel.Properties;
 
 namespace Exrecodel.InternalImplementations.ContactInfo
 {
@@ -67,15 +68,20 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 				if (sb == null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
-				//
+				sb.AppendStartContactInfo(_info);
+				sb.Append($"<p>{_info.Address}</p>");
+				if (_info.PostCode.HasValue) {
+					sb.Append("<p>");
+					sb.AppendFormat(HtmlTexts.ContactInfo_address_PostCode, $"<code>{_info.PostCode}</code>");
+					sb.Append("</p>");
+				}
+				sb.AppendEndContactInfo();
 			}
 
-			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			public Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb == null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
-				//
+				this.ConvertToHtml(sb);
+				return Task.CompletedTask;
 			}
 
 			public void Dispose()

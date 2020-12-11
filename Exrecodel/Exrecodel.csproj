@@ -19,5 +19,14 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
+		<EmbeddedResource Update="Properties/HtmlTexts.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>HtmlTexts.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<Compile Update="Properties/HtmlTexts.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>HtmlTexts.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 </Project>
