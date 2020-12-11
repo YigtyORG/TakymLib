@@ -8,6 +8,7 @@
 ****/
 
 using System;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -35,6 +36,24 @@ namespace Exrecodel.InternalImplementations
 				}
 			}
 			set => this.GetElement(Constants.Type).Value = value.ToString().ToLower();
+		}
+
+		public override CultureInfo Language
+		{
+			get
+			{
+				string? lang = this.GetElement(Constants.Language).Value;
+				if (string.IsNullOrEmpty(lang)) {
+					return CultureInfo.CurrentCulture;
+				} else {
+					try {
+						return CultureInfo.GetCultureInfo(lang);
+					} catch (CultureNotFoundException) {
+						return CultureInfo.CurrentCulture;
+					}
+				}
+			}
+			set => this.GetElement(Constants.Language).Value = value.Name;
 		}
 
 		public override string? BaseDocumentPath

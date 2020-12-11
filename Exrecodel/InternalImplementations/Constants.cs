@@ -16,6 +16,7 @@ namespace Exrecodel.InternalImplementations
 		internal const string Root                               = "root";
 		internal const string Name                               = "name";
 		internal const string Type                               = "type";
+		internal const string Language                           = "lang";
 		internal const string BaseDocumentPath                   = "base";
 		internal const string Title                              = "title";
 		internal const string Author                             = "author";

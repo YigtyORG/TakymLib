@@ -8,6 +8,7 @@
 ****/
 
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace Exrecodel
@@ -32,6 +33,11 @@ namespace Exrecodel
 		///  この文書の種類を取得または設定します。
 		/// </summary>
 		public abstract XrcdlDocumentType Type { get; set; }
+
+		/// <summary>
+		///  この文書の言語を取得または設定します。
+		/// </summary>
+		public abstract CultureInfo Language { get; set; }
 
 		/// <summary>
 		///  この文書の基底となる文書への絶対パスまたは相対パスを取得または設定します。
