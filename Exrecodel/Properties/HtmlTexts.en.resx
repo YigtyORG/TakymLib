@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ContactInfo_address" xml:space="preserve">
-    <value>The address:</value>
+    <value>The postal address:</value>
   </data>
   <data name="ContactInfo_address_PostCode" xml:space="preserve">
-    <value>The post code: {0}</value>
+    <value>The postcode: {0}</value>
+  </data>
+  <data name="ContactInfo_email" xml:space="preserve">
+    <value>The email address:</value>
   </data>
 </root>

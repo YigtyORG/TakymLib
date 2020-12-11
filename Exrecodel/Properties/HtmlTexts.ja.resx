@@ -123,4 +123,7 @@
   <data name="ContactInfo_address_PostCode" xml:space="preserve">
     <value>郵便番号：{0}</value>
   </data>
+  <data name="ContactInfo_email" xml:space="preserve">
+    <value>電子メールアドレス</value>
+  </data>
 </root>

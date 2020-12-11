@@ -123,4 +123,7 @@
   <data name="ContactInfo_address_PostCode" xml:space="preserve">
     <value>ContactInfo_address_PostCode {0}</value>
   </data>
+  <data name="ContactInfo_email" xml:space="preserve">
+    <value>ContactInfo_email</value>
+  </data>
 </root>

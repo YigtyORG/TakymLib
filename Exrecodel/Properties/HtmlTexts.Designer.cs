@@ -77,5 +77,14 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("ContactInfo_address_PostCode", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ContactInfo_email に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_email {
+            get {
+                return ResourceManager.GetString("ContactInfo_email", resourceCulture);
+            }
+        }
     }
 }

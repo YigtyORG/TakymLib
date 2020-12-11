@@ -18,7 +18,7 @@ namespace Exrecodel.InternalImplementations
 		{
 			string? caption = HtmlTexts.ResourceManager.GetString("ContactInfo_" + info.GetContactType(), info.Metadata.Language);
 			sb.Append($"<address class=\"{info.GetContactType()}\">");
-			sb.Append($"<h3>{caption}</h3>");
+			sb.Append($"<h4>{caption}</h4>");
 		}
 
 		internal static void AppendEndContactInfo(this StringBuilder sb)
