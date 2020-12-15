@@ -70,7 +70,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 				try {
 					sb.Append($"<p><a href=\"{_info.AsUri().OriginalString}\">{_info.Number}</a></p>");
 				} catch (FormatException e) {
-					sb.Append($"<p><a>{_info.Number}</a></p><div class=\"error\"><pre>{e}</pre></div>");
+					sb.Append($"<p class=\"error\">{e.Message}</p>");
 				}
 				sb.AppendEndContactInfo();
 			}
