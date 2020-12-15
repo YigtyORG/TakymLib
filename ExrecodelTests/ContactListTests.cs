@@ -116,7 +116,7 @@ namespace Exrecodel.Tests
 		public void ConverterTestEN()
 		{
 			// Ensure the current culture is: en.
-			CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en");
+			CultureInfo.CurrentCulture   = CultureInfo.GetCultureInfo("en");
 			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
 
 			var list = XrcdlDocument.Create().GetMetadata().Contacts;

@@ -279,7 +279,7 @@ namespace Exrecodel.InternalImplementations
 						conv.ConvertToHtml(sb);
 					}
 				}
-				sb.AppendEndContactInfo();
+				sb.AppendEndContactList();
 			}
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
@@ -303,7 +303,7 @@ namespace Exrecodel.InternalImplementations
 						break;
 					}
 				}
-				sb.AppendEndContactInfo();
+				sb.AppendEndContactList();
 			}
 
 			public void Dispose()
