@@ -120,4 +120,29 @@
   <data name="HtmlConverterResult" xml:space="preserve">
     <value>&lt;div class="contacts" id="contacts"&gt;&lt;h3&gt;ContactList&lt;/h3&gt;&lt;address class="address"&gt;&lt;h4&gt;ContactInfo_address&lt;/h4&gt;&lt;p&gt;XYZ&lt;/p&gt;&lt;/address&gt;&lt;address class="address"&gt;&lt;h4&gt;ContactInfo_address&lt;/h4&gt;&lt;p&gt;ABCDEF&lt;/p&gt;&lt;p&gt;ContactInfo_address_PostCode &lt;code&gt;1234&lt;/code&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="email"&gt;&lt;h4&gt;ContactInfo_email&lt;/h4&gt;&lt;p&gt;&lt;a href="mailto:abcd@example.com"&gt;abcd@example.com&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="email"&gt;&lt;h4&gt;ContactInfo_email&lt;/h4&gt;&lt;p&gt;&lt;a href="mailto:abcd@example.com?subject=件名&amp;body=本文"&gt;abcd@example.com&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="tel"&gt;&lt;h4&gt;ContactInfo_tel&lt;/h4&gt;&lt;p&gt;&lt;a href="tel:123-456-789"&gt;123-456-789&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="fax"&gt;&lt;h4&gt;ContactInfo_fax&lt;/h4&gt;&lt;p&gt;&lt;a href="fax:456(789)123"&gt;456(789)123&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="sms"&gt;&lt;h4&gt;ContactInfo_sms&lt;/h4&gt;&lt;p&gt;&lt;a href="sms:789+123+456"&gt;789+123+456&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="tel"&gt;&lt;h4&gt;ContactInfo_tel&lt;/h4&gt;&lt;p class="error"&gt;XrcdlPhoneNumberInfo_Normalize_FormatException aaa&lt;/p&gt;&lt;/address&gt;&lt;address class="link"&gt;&lt;h4&gt;ContactInfo_link&lt;/h4&gt;&lt;p&gt;&lt;a href="https://example.com/abcxyx/index.html"&gt;https://example.com/abcxyx/index.html&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="link"&gt;&lt;h4&gt;ContactInfo_link&lt;/h4&gt;&lt;p&gt;&lt;a href="https://example.com/abcxyx/hello/world"&gt;Hello, World!!&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="link"&gt;&lt;h4&gt;ContactInfo_link&lt;/h4&gt;&lt;p&gt;&lt;a href="https://xn--zckzah"&gt;．テスト&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="link"&gt;&lt;h4&gt;ContactInfo_link&lt;/h4&gt;&lt;p&gt;&lt;a href="https://localhost"&gt;localhost&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="sns"&gt;&lt;h4&gt;ContactInfo_sns&lt;/h4&gt;&lt;p&gt;&lt;a href="https://hoge.example.com/user/foobar"&gt;@foobar&lt;/a&gt;&lt;/p&gt;&lt;/address&gt;&lt;address class="sns"&gt;&lt;h4&gt;ContactInfo_sns&lt;/h4&gt;&lt;p&gt;&lt;a href="https://hoge.example.com/user/foobar"&gt;@foobar&lt;/a&gt;&lt;/p&gt;&lt;p&gt;ContactInfo_sns_ServiceProvider &lt;span&gt;FugaPiyo&lt;/span&gt;&lt;/p&gt;&lt;/address&gt;&lt;/div&gt;</value>
   </data>
+  <data name="ToXmlResult" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;!DOCTYPE xrcdl PUBLIC "" ""[]&gt;
+&lt;xrcdl&gt;
+	&lt;metadata&gt;
+		&lt;contacts&gt;
+			&lt;address postcode=""&gt;XYZ&lt;/address&gt;
+			&lt;address postcode="1234"&gt;ABCDEF&lt;/address&gt;
+			&lt;email subject="" body=""&gt;abcd@example.com&lt;/email&gt;
+			&lt;email subject="件名" body="本文"&gt;abcd@example.com&lt;/email&gt;
+			&lt;tel&gt;123-456-789&lt;/tel&gt;
+			&lt;fax&gt;456(789)123&lt;/fax&gt;
+			&lt;sms&gt;789+123+456&lt;/sms&gt;
+			&lt;tel&gt;aaa&lt;/tel&gt;
+			&lt;link name=""&gt;https://example.com/abcxyx/index.html&lt;/link&gt;
+			&lt;link name="Hello, World!!"&gt;https://example.com/abcxyx/hello/world&lt;/link&gt;
+			&lt;link name="．テスト"&gt;https://xn--zckzah&lt;/link&gt;
+			&lt;link name="localhost"&gt;https://localhost&lt;/link&gt;
+			&lt;sns url="https://hoge.example.com/user/" name=""&gt;foobar&lt;/sns&gt;
+			&lt;sns url="https://hoge.example.com/user/" name="FugaPiyo"&gt;foobar&lt;/sns&gt;
+		&lt;/contacts&gt;
+	&lt;/metadata&gt;
+	&lt;root /&gt;
+&lt;/xrcdl&gt;</value>
+  </data>
 </root>

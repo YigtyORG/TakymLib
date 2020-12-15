@@ -101,6 +101,14 @@ namespace Exrecodel.Tests
 		}
 
 		[TestMethod()]
+		public void ToXmlTest()
+		{
+			var list = XrcdlDocument.Create().GetMetadata().Contacts;
+			AppendInfo(list);
+			Assert.AreEqual(Resources.ToXmlResult, list.Document.ToXml());
+		}
+
+		[TestMethod()]
 		public void ConverterTestIV()
 		{
 			// Ensure the current culture is an invariant culture.

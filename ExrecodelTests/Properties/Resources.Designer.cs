@@ -68,5 +68,28 @@ namespace Exrecodel.Tests.Properties {
                 return ResourceManager.GetString("HtmlConverterResult", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;
+        ///&lt;!DOCTYPE xrcdl PUBLIC &quot;&quot; &quot;&quot;[]&gt;
+        ///&lt;xrcdl&gt;
+        ///	&lt;metadata&gt;
+        ///		&lt;contacts&gt;
+        ///			&lt;address postcode=&quot;&quot;&gt;XYZ&lt;/address&gt;
+        ///			&lt;address postcode=&quot;1234&quot;&gt;ABCDEF&lt;/address&gt;
+        ///			&lt;email subject=&quot;&quot; body=&quot;&quot;&gt;abcd@example.com&lt;/email&gt;
+        ///			&lt;email subject=&quot;件名&quot; body=&quot;本文&quot;&gt;abcd@example.com&lt;/email&gt;
+        ///			&lt;tel&gt;123-456-789&lt;/tel&gt;
+        ///			&lt;fax&gt;456(789)123&lt;/fax&gt;
+        ///			&lt;sms&gt;789+123+456&lt;/sms&gt;
+        ///			&lt;tel&gt;aaa&lt;/tel&gt;
+        ///			&lt;link name=&quot;&quot;&gt;https://example.com/abcxyx/index.html&lt;/link&gt;
+        ///			&lt;link name=&quot;Hello, World!!&quot;&gt;https://e [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ToXmlResult {
+            get {
+                return ResourceManager.GetString("ToXmlResult", resourceCulture);
+            }
+        }
     }
 }
