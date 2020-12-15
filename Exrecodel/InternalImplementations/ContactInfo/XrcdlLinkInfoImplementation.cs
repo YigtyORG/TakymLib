@@ -73,7 +73,11 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactInfo(_info);
-				sb.Append($"<p><a href=\"{_info._link?.OriginalString}\">{_info.Title}</a></p>");
+				if (string.IsNullOrEmpty(_info.Title)) {
+					sb.Append($"<p><a href=\"{_info._link?.OriginalString}\">{_info._link?.OriginalString}</a></p>");
+				} else {
+					sb.Append($"<p><a href=\"{_info._link?.OriginalString}\">{_info.Title}</a></p>");
+				}
 				sb.AppendEndContactInfo();
 			}
 
