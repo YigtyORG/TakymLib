@@ -100,10 +100,23 @@ namespace Exrecodel.Tests
 		}
 
 		[TestMethod()]
-		public void ConverterTest()
+		public void ConverterTestJA()
 		{
 			// Ensure the current culture is: ja.
 			CultureInfo.CurrentCulture   = CultureInfo.GetCultureInfo("ja");
+			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
+
+			var list = XrcdlDocument.Create().GetMetadata().Contacts;
+			AppendInfo(list);
+
+			Assert.Fail(list.ConvertToHtml());
+		}
+
+		[TestMethod()]
+		public void ConverterTestEN()
+		{
+			// Ensure the current culture is: en.
+			CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en");
 			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
 
 			var list = XrcdlDocument.Create().GetMetadata().Contacts;
