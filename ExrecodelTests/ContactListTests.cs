@@ -46,11 +46,11 @@ namespace Exrecodel.Tests
 			Assert.AreEqual(1234,     addr.PostCode);
 
 			// Email
-			var mail = list2.AppendEmailInfo("a@b.com", "件名", "本文");
+			var mail = list2.AppendEmailInfo("abcd@example.com", "件名", "本文");
 			Assert.IsNotNull(mail, nameof(mail));
-			Assert.AreEqual("a@b.com", mail.Address);
-			Assert.AreEqual("件名",    mail.Subject);
-			Assert.AreEqual("本文",    mail.Body);
+			Assert.AreEqual("abcd@example.com", mail.Address);
+			Assert.AreEqual("件名",             mail.Subject);
+			Assert.AreEqual("本文",             mail.Body);
 
 			// Phone
 			var tel = list2.AppendTelInfo("123-456-789");
@@ -70,17 +70,17 @@ namespace Exrecodel.Tests
 			Assert.AreEqual("789-123-456", sms.Number);
 
 			// Link
-			var link = list2.AppendLinkInfo(new Uri("https://abc.com/hello/world"), "Hello, World!!");
+			var link = list2.AppendLinkInfo(new Uri("https://example.com/abcxyx/hello/world"), "Hello, World!!");
 			Assert.IsNotNull(link, nameof(link));
-			Assert.AreEqual("https://abc.com/hello/world", link.Link.OriginalString);
-			Assert.AreEqual("Hello, World!!",              link.Title);
+			Assert.AreEqual("https://example.com/abcxyx/hello/world", link.Link.OriginalString);
+			Assert.AreEqual("Hello, World!!",                         link.Title);
 
 			// SNS
-			var sns = list2.AppendSocialAccountInfo("foobar", new Uri("https://www.hoge.net/user/"), "FugaPiyo");
+			var sns = list2.AppendSocialAccountInfo("foobar", new Uri("https://hoge.example.com/user/"), "FugaPiyo");
 			Assert.IsNotNull(sns, nameof(sns));
-			Assert.AreEqual("foobar",                     sns.AccountName);
-			Assert.AreEqual("https://www.hoge.net/user/", sns.UriPrefix.OriginalString);
-			Assert.AreEqual("FugaPiyo",                   sns.ServiceName);
+			Assert.AreEqual("foobar",                         sns.AccountName);
+			Assert.AreEqual("https://hoge.example.com/user/", sns.UriPrefix.OriginalString);
+			Assert.AreEqual("FugaPiyo",                       sns.ServiceName);
 
 			Assert.IsTrue(list2.Contains(addr), nameof(addr));
 			Assert.IsTrue(list2.Contains(mail), nameof(mail));
@@ -101,15 +101,17 @@ namespace Exrecodel.Tests
 			var list = XrcdlDocument.Create().GetMetadata().Contacts;
 			list.AppendAddressInfo("XYZ");
 			list.AppendAddressInfo("ABCDEF", 1234);
-			list.AppendEmailInfo("a@b.com");
-			list.AppendEmailInfo("a@b.com", "件名", "本文");
+			list.AppendEmailInfo("abcd@example.com");
+			list.AppendEmailInfo("abcd@example.com", "件名", "本文");
 			list.AppendTelInfo("123-456-789");
 			list.AppendFaxInfo("456-789-123");
 			list.AppendSmsInfo("789-123-456");
-			list.AppendLinkInfo(new Uri("https://abc.com/index.html"));
-			list.AppendLinkInfo(new Uri("https://abc.com/hello/world"), "Hello, World!!");
-			list.AppendSocialAccountInfo("foobar", new Uri("https://www.hoge.net/user/"));
-			list.AppendSocialAccountInfo("foobar", new Uri("https://www.hoge.net/user/"), "FugaPiyo");
+			list.AppendLinkInfo(new Uri("https://example.com/abcxyx/index.html"));
+			list.AppendLinkInfo(new Uri("https://example.com/abcxyx/hello/world"), "Hello, World!!");
+			list.AppendLinkInfo(new Uri("https://xn--zckzah"),                     "．テスト");
+			list.AppendLinkInfo(new Uri("https://localhost"),                      "localhost");
+			list.AppendSocialAccountInfo("foobar", new Uri("https://hoge.example.com/user/"));
+			list.AppendSocialAccountInfo("foobar", new Uri("https://hoge.example.com/user/"), "FugaPiyo");
 
 			Assert.Fail(list.ConvertToHtml());
 		}
