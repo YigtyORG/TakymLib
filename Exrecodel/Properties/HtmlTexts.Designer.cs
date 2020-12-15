@@ -86,5 +86,59 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("ContactInfo_email", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ContactInfo_fax に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_fax {
+            get {
+                return ResourceManager.GetString("ContactInfo_fax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ContactInfo_link に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_link {
+            get {
+                return ResourceManager.GetString("ContactInfo_link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ContactInfo_sms に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_sms {
+            get {
+                return ResourceManager.GetString("ContactInfo_sms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ContactInfo_sns に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_sns {
+            get {
+                return ResourceManager.GetString("ContactInfo_sns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ContactInfo_sns_ServiceProvider {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_sns_Provider {
+            get {
+                return ResourceManager.GetString("ContactInfo_sns_Provider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ContactInfo_tel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactInfo_tel {
+            get {
+                return ResourceManager.GetString("ContactInfo_tel", resourceCulture);
+            }
+        }
     }
 }

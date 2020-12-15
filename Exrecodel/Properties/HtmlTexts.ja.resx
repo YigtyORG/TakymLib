@@ -126,4 +126,22 @@
   <data name="ContactInfo_email" xml:space="preserve">
     <value>電子メールアドレス</value>
   </data>
+  <data name="ContactInfo_fax" xml:space="preserve">
+    <value>電話番号(FAX)</value>
+  </data>
+  <data name="ContactInfo_link" xml:space="preserve">
+    <value>リンク</value>
+  </data>
+  <data name="ContactInfo_sms" xml:space="preserve">
+    <value>電話番号(SMS)</value>
+  </data>
+  <data name="ContactInfo_sns" xml:space="preserve">
+    <value>SNSアカウント</value>
+  </data>
+  <data name="ContactInfo_sns_Provider" xml:space="preserve">
+    <value>サービスプロバイダ：{0}</value>
+  </data>
+  <data name="ContactInfo_tel" xml:space="preserve">
+    <value>電話番号(TEL)</value>
+  </data>
 </root>

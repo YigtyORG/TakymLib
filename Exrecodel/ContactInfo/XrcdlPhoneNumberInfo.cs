@@ -75,6 +75,7 @@ namespace Exrecodel.ContactInfo
 		///  この関数を呼び出すと正規化処理も実行されます。
 		/// </summary>
 		/// <returns><see cref="System.Uri"/>オブジェクトを返します。</returns>
+		/// <exception cref="System.FormatException"/>
 		public sealed override Uri AsUri()
 		{
 			this.Normalize();

@@ -72,15 +72,15 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 				if (sb == null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
-				//
+				sb.AppendStartContactInfo(_info);
+				sb.Append($"<p><a href=\"{_info._link?.OriginalString}\">{_info.Title}</a></p>");
+				sb.AppendEndContactInfo();
 			}
 
-			public async Task ConvertToHtmlAsync(StringBuilder sb)
+			public Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb == null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
-				//
+				this.ConvertToHtml(sb);
+				return Task.CompletedTask;
 			}
 
 			public void Dispose()

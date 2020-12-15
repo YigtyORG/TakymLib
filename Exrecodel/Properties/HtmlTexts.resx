@@ -126,4 +126,22 @@
   <data name="ContactInfo_email" xml:space="preserve">
     <value>ContactInfo_email</value>
   </data>
+  <data name="ContactInfo_fax" xml:space="preserve">
+    <value>ContactInfo_fax</value>
+  </data>
+  <data name="ContactInfo_link" xml:space="preserve">
+    <value>ContactInfo_link</value>
+  </data>
+  <data name="ContactInfo_sms" xml:space="preserve">
+    <value>ContactInfo_sms</value>
+  </data>
+  <data name="ContactInfo_sns" xml:space="preserve">
+    <value>ContactInfo_sns</value>
+  </data>
+  <data name="ContactInfo_sns_Provider" xml:space="preserve">
+    <value>ContactInfo_sns_ServiceProvider {0}</value>
+  </data>
+  <data name="ContactInfo_tel" xml:space="preserve">
+    <value>ContactInfo_tel</value>
+  </data>
 </root>
