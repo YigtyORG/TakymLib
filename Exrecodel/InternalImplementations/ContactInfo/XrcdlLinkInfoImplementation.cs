@@ -26,14 +26,14 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 			get
 			{
 				if (_link == null) {
-					_link = new Uri(_link_elem.Value ?? _link_example);
+					_link = new Uri(_link_elem.InnerText ?? _link_example);
 				}
 				return _link;
 			}
 			set
 			{
 				_link = value;
-				_link_elem.Value = _link.OriginalString;
+				_link_elem.InnerText = _link.OriginalString;
 			}
 		}
 

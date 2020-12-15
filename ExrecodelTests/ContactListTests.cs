@@ -31,7 +31,8 @@ namespace Exrecodel.Tests
 			Assert.IsNotNull(list, nameof(list));
 		}
 
-		public void AppendTests()
+		[TestMethod()]
+		public void AppendTest()
 		{
 			var list1 = XrcdlDocument.Create()?.GetMetadata()?.Contacts;
 			Assert.IsNotNull(list1, nameof(list1));

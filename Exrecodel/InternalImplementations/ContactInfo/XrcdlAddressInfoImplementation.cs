@@ -35,8 +35,8 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string Address
 		{
-			get => _address_elem.Value ?? string.Empty;
-			set => _address_elem.Value = value;
+			get => _address_elem.InnerText ?? string.Empty;
+			set => _address_elem.InnerText = value;
 		}
 
 		internal XrcdlAddressInfoImplementation(XrcdlMetadataImplementation metadata, XmlElement addressElement) : base(metadata)

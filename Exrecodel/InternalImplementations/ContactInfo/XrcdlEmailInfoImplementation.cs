@@ -21,8 +21,8 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string Address
 		{
-			get => _email_elem.Value ?? string.Empty;
-			set => _email_elem.Value = value;
+			get => _email_elem.InnerText ?? string.Empty;
+			set => _email_elem.InnerText = value;
 		}
 
 		public override string? Subject

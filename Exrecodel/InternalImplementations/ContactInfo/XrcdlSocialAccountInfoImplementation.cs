@@ -23,8 +23,8 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string AccountName
 		{
-			get => _account_elem.Value ?? string.Empty;
-			set => _account_elem.Value = value;
+			get => _account_elem.InnerText ?? string.Empty;
+			set => _account_elem.InnerText = value;
 		}
 
 		public override Uri UriPrefix

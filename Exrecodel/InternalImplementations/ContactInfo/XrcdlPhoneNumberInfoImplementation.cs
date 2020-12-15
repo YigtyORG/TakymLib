@@ -22,8 +22,8 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 		public override string Number
 		{
-			get => _num_elem.Value ?? string.Empty;
-			set => _num_elem.Value = value;
+			get => _num_elem.InnerText ?? string.Empty;
+			set => _num_elem.InnerText = value;
 		}
 
 		public override XrcdlPhoneNumberType Type
