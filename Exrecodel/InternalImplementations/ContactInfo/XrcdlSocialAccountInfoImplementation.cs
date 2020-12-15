@@ -79,9 +79,12 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactInfo(_info);
-				sb.Append($"<p><a href=\"{_info.AsUri()}\">@{_info.AccountName}</a></p><p>");
-				sb.AppendFormat(HtmlTexts.ContactInfo_sns_Provider, $"<span>{_info.ServiceName}</span>");
-				sb.Append("</p>");
+				sb.Append($"<p><a href=\"{_info.AsUri()}\">@{_info.AccountName}</a></p>");
+				if (!string.IsNullOrEmpty(_info.ServiceName)) {
+					sb.Append("<p>");
+					sb.AppendFormat(HtmlTexts.ContactInfo_sns_Provider, $"<span>{_info.ServiceName}</span>");
+					sb.Append("</p>");
+				}
 				sb.AppendEndContactInfo();
 			}
 
