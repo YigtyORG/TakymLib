@@ -11,6 +11,7 @@ using System;
 using System.Globalization;
 using Exrecodel.ContactInfo;
 using Exrecodel.Extensions;
+using Exrecodel.Tests.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Exrecodel.Tests
@@ -100,16 +101,21 @@ namespace Exrecodel.Tests
 		}
 
 		[TestMethod()]
+		public void ConverterTestIV()
+		{
+			// Ensure the current culture is an invariant culture.
+			CultureInfo.CurrentCulture   = CultureInfo.InvariantCulture;
+			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
+			ConverterTestCore();
+		}
+
+		[TestMethod()]
 		public void ConverterTestJA()
 		{
 			// Ensure the current culture is: ja.
 			CultureInfo.CurrentCulture   = CultureInfo.GetCultureInfo("ja");
 			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
-
-			var list = XrcdlDocument.Create().GetMetadata().Contacts;
-			AppendInfo(list);
-
-			Assert.Fail(list.ConvertToHtml());
+			ConverterTestCore();
 		}
 
 		[TestMethod()]
@@ -118,11 +124,14 @@ namespace Exrecodel.Tests
 			// Ensure the current culture is: en.
 			CultureInfo.CurrentCulture   = CultureInfo.GetCultureInfo("en");
 			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
+			ConverterTestCore();
+		}
 
+		private static void ConverterTestCore()
+		{
 			var list = XrcdlDocument.Create().GetMetadata().Contacts;
 			AppendInfo(list);
-
-			Assert.Fail(list.ConvertToHtml());
+			Assert.AreEqual(Resources.HtmlConverterResult, list.ConvertToHtml());
 		}
 
 		private static void AppendInfo(IXrcdlContactInformationList list)
