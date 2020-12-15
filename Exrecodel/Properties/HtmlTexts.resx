@@ -144,4 +144,7 @@
   <data name="ContactInfo_tel" xml:space="preserve">
     <value>ContactInfo_tel</value>
   </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>ContactList</value>
+  </data>
 </root>

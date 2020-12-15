@@ -144,4 +144,7 @@
   <data name="ContactInfo_tel" xml:space="preserve">
     <value>電話番号(TEL)</value>
   </data>
+  <data name="ContactList" xml:space="preserve">
+    <value>連絡先</value>
+  </data>
 </root>

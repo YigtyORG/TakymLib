@@ -14,6 +14,12 @@ namespace Exrecodel.InternalImplementations
 {
 	internal static class ConverterHelper
 	{
+		internal static void AppendStartContactList(this StringBuilder sb)
+		{
+			sb.Append("<div class=\"contacts\" id=\"contacts\">");
+			sb.Append($"<h3>{HtmlTexts.ContactList}</h3>");
+		}
+
 		internal static void AppendStartContactInfo(this StringBuilder sb, XrcdlContactInformation info)
 		{
 			string? caption = HtmlTexts.ResourceManager.GetString("ContactInfo_" + info.GetContactType(), info.Metadata.Language);
@@ -24,6 +30,11 @@ namespace Exrecodel.InternalImplementations
 		internal static void AppendEndContactInfo(this StringBuilder sb)
 		{
 			sb.Append("</address>");
+		}
+
+		internal static void AppendEndContactList(this StringBuilder sb)
+		{
+			sb.Append("</div>");
 		}
 	}
 }

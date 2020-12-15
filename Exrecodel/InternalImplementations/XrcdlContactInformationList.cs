@@ -273,15 +273,13 @@ namespace Exrecodel.InternalImplementations
 				if (sb == null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
-				this.PreList(sb);
+				sb.AppendStartContactList();
 				foreach (var item in _list) {
-					this.PreListItem(sb, item);
 					using (var conv = item.GetConverter()) {
 						conv.ConvertToHtml(sb);
 					}
-					this.PostListItem(sb, item);
 				}
-				this.PostList(sb);
+				sb.AppendEndContactInfo();
 			}
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
@@ -289,9 +287,8 @@ namespace Exrecodel.InternalImplementations
 				if (sb == null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
-				this.PreList(sb);
+				sb.AppendStartContactList();
 				await foreach (var item in _list) {
-					this.PreListItem(sb, item);
 					var conv = item.GetConverter();
 					switch (conv) {
 					case IXrcdlAsyncConverter asyncConv:
@@ -305,25 +302,8 @@ namespace Exrecodel.InternalImplementations
 						}
 						break;
 					}
-					this.PostListItem(sb, item);
 				}
-				this.PostList(sb);
-			}
-
-			private void PreList(StringBuilder sb)
-			{
-			}
-
-			private void PreListItem(StringBuilder sb, XrcdlContactInformation info)
-			{
-			}
-
-			private void PostListItem(StringBuilder sb, XrcdlContactInformation info)
-			{
-			}
-
-			private void PostList(StringBuilder sb)
-			{
+				sb.AppendEndContactInfo();
 			}
 
 			public void Dispose()

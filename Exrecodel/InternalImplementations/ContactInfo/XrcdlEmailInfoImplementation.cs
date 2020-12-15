@@ -67,11 +67,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactInfo(_info);
-				sb.Append("<p><a href=\"mailto:");
-				sb.Append(_info.Address);
-				sb.AppendFormat("?subject={0}", Uri.EscapeDataString(_info.Subject ?? string.Empty));
-				sb.AppendFormat("&body={0}",    Uri.EscapeDataString(_info.Body    ?? string.Empty));
-				sb.Append($"\">{_info.Address}</a></p>");
+				sb.Append($"<p><a href=\"{_info.AsUri()}\">{_info.Address}</a></p>");
 				sb.AppendEndContactInfo();
 			}
 

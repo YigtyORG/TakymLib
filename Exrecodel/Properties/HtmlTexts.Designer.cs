@@ -140,5 +140,14 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("ContactInfo_tel", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ContactList に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ContactList {
+            get {
+                return ResourceManager.GetString("ContactList", resourceCulture);
+            }
+        }
     }
 }
