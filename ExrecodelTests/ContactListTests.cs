@@ -54,8 +54,8 @@ namespace Exrecodel.Tests
 
 			// Phone
 			var tel = list2.AppendTelInfo("123-456-789");
-			var fax = list2.AppendFaxInfo("456-789-123");
-			var sms = list2.AppendSmsInfo("789-123-456");
+			var fax = list2.AppendFaxInfo("456(789)123");
+			var sms = list2.AppendSmsInfo("789+123+456"); // test for '+'
 			Assert.IsNotNull(tel, nameof(tel));
 			Assert.IsNotNull(fax, nameof(fax));
 			Assert.IsNotNull(sms, nameof(sms));
@@ -66,8 +66,15 @@ namespace Exrecodel.Tests
 			fax.Normalize();
 			sms.Normalize();
 			Assert.AreEqual("123-456-789", tel.Number);
-			Assert.AreEqual("456-789-123", fax.Number);
-			Assert.AreEqual("789-123-456", sms.Number);
+			Assert.AreEqual("456(789)123", fax.Number);
+			Assert.AreEqual("789+123+456", sms.Number);
+
+			// Invalid Phone
+			var inv = list2.AppendTelInfo("aaa");
+			Assert.IsNotNull(inv, nameof(inv));
+			Assert.AreEqual(XrcdlPhoneNumberType.Telephone, inv.Type);
+			Assert.AreEqual("aaa", inv.Number);
+			Assert.IsFalse(inv.Validate());
 
 			// Link
 			var link = list2.AppendLinkInfo(new Uri("https://example.com/abcxyx/hello/world"), "Hello, World!!");
@@ -87,6 +94,7 @@ namespace Exrecodel.Tests
 			Assert.IsTrue(list2.Contains(tel),  nameof(tel));
 			Assert.IsTrue(list2.Contains(fax),  nameof(fax));
 			Assert.IsTrue(list2.Contains(sms),  nameof(sms));
+			Assert.IsTrue(list2.Contains(inv),  nameof(inv));
 			Assert.IsTrue(list2.Contains(link), nameof(link));
 			Assert.IsTrue(list2.Contains(sns),  nameof(sns));
 		}
@@ -99,21 +107,27 @@ namespace Exrecodel.Tests
 			CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture;
 
 			var list = XrcdlDocument.Create().GetMetadata().Contacts;
+			AppendInfo(list);
+
+			Assert.Fail(list.ConvertToHtml());
+		}
+
+		private static void AppendInfo(IXrcdlContactInformationList list)
+		{
 			list.AppendAddressInfo("XYZ");
 			list.AppendAddressInfo("ABCDEF", 1234);
 			list.AppendEmailInfo("abcd@example.com");
 			list.AppendEmailInfo("abcd@example.com", "件名", "本文");
 			list.AppendTelInfo("123-456-789");
-			list.AppendFaxInfo("456-789-123");
-			list.AppendSmsInfo("789-123-456");
+			list.AppendFaxInfo("456(789)123");
+			list.AppendSmsInfo("789+123+456");
+			list.AppendTelInfo("aaa");
 			list.AppendLinkInfo(new Uri("https://example.com/abcxyx/index.html"));
 			list.AppendLinkInfo(new Uri("https://example.com/abcxyx/hello/world"), "Hello, World!!");
-			list.AppendLinkInfo(new Uri("https://xn--zckzah"),                     "．テスト");
-			list.AppendLinkInfo(new Uri("https://localhost"),                      "localhost");
+			list.AppendLinkInfo(new Uri("https://xn--zckzah"), "．テスト");
+			list.AppendLinkInfo(new Uri("https://localhost"), "localhost");
 			list.AppendSocialAccountInfo("foobar", new Uri("https://hoge.example.com/user/"));
 			list.AppendSocialAccountInfo("foobar", new Uri("https://hoge.example.com/user/"), "FugaPiyo");
-
-			Assert.Fail(list.ConvertToHtml());
 		}
 	}
 }
