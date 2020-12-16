@@ -425,7 +425,7 @@ namespace TakymLib.IO
 		{
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
-				return this.GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern));
+				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern));
 			} else {
 				return null;
 			}
