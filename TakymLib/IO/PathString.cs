@@ -103,7 +103,7 @@ namespace TakymLib.IO
 			try {
 				_path = Path.GetFullPath(path);
 				if (_path.EndsWith(Path.DirectorySeparatorChar.ToString())) {
-					_path.Remove(_path.Length - 1);
+					_path = _path.Remove(_path.Length - 1);
 				}
 				_uri = new Uri(_path);
 			} catch (ArgumentException ae) {
@@ -449,7 +449,7 @@ namespace TakymLib.IO
 		{
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
-				return this.GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, searchOption));
+				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, searchOption));
 			} else {
 				return null;
 			}
@@ -476,13 +476,13 @@ namespace TakymLib.IO
 			}
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
-				return this.GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));
+				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));
 			} else {
 				return null;
 			}
 		}
 
-		private IEnumerable<PathString> GetEntriesCore(IEnumerable<string> pathList)
+		private static IEnumerable<PathString> GetEntriesCore(IEnumerable<string> pathList)
 		{
 			return new FileSystemEntryList(pathList);
 		}
