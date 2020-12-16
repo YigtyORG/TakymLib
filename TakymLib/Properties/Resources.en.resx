@@ -120,4 +120,10 @@
   <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
     <value>Cannot operate an object during disposing.</value>
   </data>
+  <data name="InvalidPathFormatException" xml:space="preserve">
+    <value>The specified string "{0}" is an invalid path string.</value>
+  </data>
+  <data name="PathString_EnsureFileSystemInfo_IOException" xml:space="preserve">
+    <value>Failed to load the file system information. The path: "{0}".</value>
+  </data>
 </root>

@@ -68,5 +68,23 @@ namespace TakymLib.Properties {
                 return ResourceManager.GetString("DisposableBase_ObjectDisposedException_IsDisposing", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   InvalidPathFormatException {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string InvalidPathFormatException {
+            get {
+                return ResourceManager.GetString("InvalidPathFormatException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PathString_EnsureFileSystemInfo_IOException {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PathString_EnsureFileSystemInfo_IOException {
+            get {
+                return ResourceManager.GetString("PathString_EnsureFileSystemInfo_IOException", resourceCulture);
+            }
+        }
     }
 }
