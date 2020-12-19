@@ -42,8 +42,8 @@ namespace CAP.Yencon
 		/// </returns>
 		public YNode? ReadNode()
 		{
-			while (this.ReadToken() != null) {
-				if (this.Current != null) {
+			while (this.ReadToken() is not null) {
+				if (this.Current is not null) {
 					return this.Current;
 				}
 			}

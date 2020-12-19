@@ -302,7 +302,7 @@ namespace CAP.Yencon
 				return false;
 			}
 			result = this.GetNodeCore(name);
-			return result != null;
+			return result is not null;
 		}
 
 		/// <summary>
@@ -316,7 +316,7 @@ namespace CAP.Yencon
 		{
 			if (this.TryGetNode(name, out var result2)) {
 				result = result2 as TNode;
-				return result != null;
+				return result is not null;
 			} else {
 				result = null;
 				return false;
@@ -354,7 +354,7 @@ namespace CAP.Yencon
 				throw new ArgumentNullException(nameof(name));
 			}
 			var node = this.GetNodeCore(name);
-			if (node != null) {
+			if (node is not null) {
 				if (this.RemoveNodeCore(node)) {
 					++_version;
 					return true;

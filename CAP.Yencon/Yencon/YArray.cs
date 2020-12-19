@@ -215,7 +215,7 @@ namespace CAP.Yencon
 				return false;
 			}
 			result = this.Children[index];
-			return result != null;
+			return result is not null;
 		}
 
 		/// <summary>
@@ -229,7 +229,7 @@ namespace CAP.Yencon
 		{
 			if (this.TryGetNode(index, out var result2)) {
 				result = result2 as TNode;
-				return result != null;
+				return result is not null;
 			} else {
 				result = null;
 				return false;
@@ -261,7 +261,7 @@ namespace CAP.Yencon
 				return false;
 			}
 			var node = this.Children[index];
-			if (node != null) {
+			if (node is not null) {
 				return this.RemoveNodeCore(node);
 			} else {
 				return false;

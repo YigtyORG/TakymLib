@@ -35,7 +35,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateString(name);
-			if (result != null) {
+			if (result is not null) {
 				result.Value = value;
 			}
 			return result;
@@ -60,7 +60,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateNumber(name);
-			if (result != null) {
+			if (result is not null) {
 				result.ValueS64= value;
 			}
 			return result;
@@ -85,7 +85,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateNumber(name);
-			if (result != null) {
+			if (result is not null) {
 				result.ValueU64 = value;
 			}
 			return result;
@@ -110,7 +110,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateNumber(name);
-			if (result != null) {
+			if (result is not null) {
 				result.ValueDF = value;
 			}
 			return result;
@@ -135,7 +135,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateNumber(name);
-			if (result != null) {
+			if (result is not null) {
 				result.ValueM = value;
 			}
 			return result;
@@ -160,7 +160,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateBoolean(name);
-			if (result != null) {
+			if (result is not null) {
 				result.Value = value;
 			}
 			return result;
@@ -185,7 +185,7 @@ namespace CAP.Yencon.Extensions
 				throw new ArgumentNullException(nameof(section));
 			}
 			var result = section.CreateLink(name);
-			if (result != null) {
+			if (result is not null) {
 				result.Value = value;
 			}
 			return result;
