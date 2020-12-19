@@ -28,7 +28,7 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static Version? GetVersion(this XrcdlMetadata metadata)
 		{
-			if (metadata == null) {
+			if (metadata is null) {
 				throw new ArgumentNullException(nameof(metadata));
 			}
 			if (Version.TryParse(metadata.VersionString, out var result)) {
@@ -46,10 +46,10 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static void SetVersion(this XrcdlMetadata metadata, Version version)
 		{
-			if (metadata == null) {
+			if (metadata is null) {
 				throw new ArgumentNullException(nameof(metadata));
 			}
-			if (version == null) {
+			if (version is null) {
 				throw new ArgumentNullException(nameof(version));
 			}
 			metadata.VersionString = version.ToString();

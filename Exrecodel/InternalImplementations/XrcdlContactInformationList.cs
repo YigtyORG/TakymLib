@@ -270,7 +270,7 @@ namespace Exrecodel.InternalImplementations
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactList();
@@ -284,7 +284,7 @@ namespace Exrecodel.InternalImplementations
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactList();

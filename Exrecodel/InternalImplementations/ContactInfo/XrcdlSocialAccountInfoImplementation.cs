@@ -31,7 +31,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 		{
 			get
 			{
-				if (_uri_prefix == null) {
+				if (_uri_prefix is null) {
 					_uri_prefix = new Uri(_account_elem.GetAttribute(Constants.UriPrefix));
 				}
 				return _uri_prefix;
@@ -75,7 +75,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactInfo(_info);

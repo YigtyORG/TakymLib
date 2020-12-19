@@ -65,7 +65,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactInfo(_info);

@@ -91,7 +91,7 @@ namespace Exrecodel.ContactInfo
 		public sealed override string ToString(string? format, IFormatProvider? formatProvider)
 		{
 			var culture = Utils.FormatProviderToCultureInfo(formatProvider);
-			if (format == null) {
+			if (format is null) {
 				switch (this.Type) {
 				case XrcdlPhoneNumberType.Telephone:
 					format = Resources.ResourceManager.GetString(nameof(Resources.XrcdlPhoneNumberInfo_Format_Telephone), culture)!;

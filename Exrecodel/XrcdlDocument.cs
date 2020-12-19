@@ -83,7 +83,7 @@ namespace Exrecodel
 		/// <exception cref="System.IO.IOException"/>
 		public void Load()
 		{
-			if (this.FilePath == null) {
+			if (this.FilePath is null) {
 				throw new InvalidOperationException(Resources.XrcdlDocument_Load_InvalidOperationException);
 			}
 			try {
@@ -117,7 +117,7 @@ namespace Exrecodel
 		/// <exception cref="System.Security.SecurityException"/>
 		public void Load(string filename)
 		{
-			if (filename == null) {
+			if (filename is null) {
 				throw new ArgumentNullException(nameof(filename));
 			}
 			string path = Path.GetFullPath(filename);
@@ -138,7 +138,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.Schema.XmlSchemaException"/>
 		public void Load(Stream stream)
 		{
-			if (stream == null) {
+			if (stream is null) {
 				throw new ArgumentNullException(nameof(stream));
 			}
 			using (var sr = new StreamReader(stream, _enc, true, -1, true)) {
@@ -156,7 +156,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.Schema.XmlSchemaException"/>
 		public void Load(TextReader reader)
 		{
-			if (reader == null) {
+			if (reader is null) {
 				throw new ArgumentNullException(nameof(reader));
 			}
 			using (var xr = XmlReader.Create(reader, _reader_settings)) {
@@ -173,7 +173,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.Schema.XmlSchemaException"/>
 		public void Load(XmlReader reader)
 		{
-			if (reader == null) {
+			if (reader is null) {
 				throw new ArgumentNullException(nameof(reader));
 			}
 			this.LoadCore(reader);
@@ -189,7 +189,7 @@ namespace Exrecodel
 		/// <exception cref="System.IO.IOException"/>
 		public void Save()
 		{
-			if (this.FilePath == null) {
+			if (this.FilePath is null) {
 				throw new InvalidOperationException(Resources.XrcdlDocument_Save_InvalidOperationException);
 			}
 			try {
@@ -222,7 +222,7 @@ namespace Exrecodel
 		/// <exception cref="System.Security.SecurityException"/>
 		public void Save(string filename)
 		{
-			if (filename == null) {
+			if (filename is null) {
 				throw new ArgumentNullException(nameof(filename));
 			}
 			string path = Path.GetFullPath(filename);
@@ -242,7 +242,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.XmlException"/>
 		public void Save(Stream stream)
 		{
-			if (stream == null) {
+			if (stream is null) {
 				throw new ArgumentNullException(nameof(stream));
 			}
 			using (var sw = new StreamWriter(stream, _enc, -1, true)) {
@@ -259,7 +259,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.XmlException"/>
 		public void Save(TextWriter writer)
 		{
-			if (writer == null) {
+			if (writer is null) {
 				throw new ArgumentNullException(nameof(writer));
 			}
 			using (var xw = XmlWriter.Create(writer, GetWriterSettings(writer))) {
@@ -275,7 +275,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.XmlException"/>
 		public void Save(XmlWriter writer)
 		{
-			if (writer == null) {
+			if (writer is null) {
 				throw new ArgumentNullException(nameof(writer));
 			}
 			this.SaveCore(writer);

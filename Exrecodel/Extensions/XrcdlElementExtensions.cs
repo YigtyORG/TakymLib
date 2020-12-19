@@ -26,7 +26,7 @@ namespace Exrecodel.Extensions
 		/// <returns>HTML文書を表す文字列です。</returns>
 		public static string ConvertToHtml(this IXrcdlElement element)
 		{
-			if (element == null) {
+			if (element is null) {
 				throw new ArgumentNullException(nameof(element));
 			}
 			var sb = new StringBuilder();
@@ -43,7 +43,7 @@ namespace Exrecodel.Extensions
 		/// <returns>HTML文書を表す文字列を格納した非同期操作です。</returns>
 		public static async Task<string> ConvertToHtmlAsync(this IXrcdlElement element)
 		{
-			if (element == null) {
+			if (element is null) {
 				throw new ArgumentNullException(nameof(element));
 			}
 			var sb   = new StringBuilder();

@@ -30,7 +30,7 @@ namespace Exrecodel.InternalImplementations
 		{
 			for (int i = 0; i < names.Length; ++i) {
 				var elem2 = elem[names[i]];
-				if (elem2 == null) {
+				if (elem2 is null) {
 					elem2 = createElemFunc(names[i]);
 					elem.AppendChild(elem2);
 				}

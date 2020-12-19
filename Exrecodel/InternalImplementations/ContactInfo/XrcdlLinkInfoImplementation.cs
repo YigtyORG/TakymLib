@@ -25,7 +25,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 		{
 			get
 			{
-				if (_link == null) {
+				if (_link is null) {
 					_link = new Uri(_link_elem.InnerText ?? _link_example);
 				}
 				return _link;
@@ -69,7 +69,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				sb.AppendStartContactInfo(_info);

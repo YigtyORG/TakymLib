@@ -86,7 +86,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public TNode? CreateNode<TNode>(string name) where TNode: YNode
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -106,7 +106,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YEmpty? CreateEmpty(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -140,7 +140,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YSection? CreateSection(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -160,7 +160,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YArray? CreateArray(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -180,7 +180,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YString? CreateString(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -200,7 +200,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YNumber? CreateNumber(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -220,7 +220,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YBoolean? CreateBoolean(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -240,7 +240,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YLink? CreateLink(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			++_version;
@@ -257,14 +257,14 @@ namespace CAP.Yencon
 		/// <exception cref="System.Collections.Generic.KeyNotFoundException"/>
 		public YNode GetNode(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			if (!this.ContainsNameCore(name)) {
 				throw new KeyNotFoundException(string.Format(Resources.YSection_GetNode_KeyNotFoundException, name));
 			}
 			var result = this.GetNodeCore(name);
-			if (result == null) {
+			if (result is null) {
 				throw new NullReferenceException(Resources.YSection_GetNode_NullReferenceException);
 			} else {
 				return result;
@@ -295,7 +295,7 @@ namespace CAP.Yencon
 		public bool TryGetNode(string name, [NotNullWhen(true)] out YNode? result)
 		{
 			result = null;
-			if (name == null) {
+			if (name is null) {
 				return false;
 			}
 			if (!this.ContainsNameCore(name)) {
@@ -331,7 +331,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool RemoveNode(YNode node)
 		{
-			if (node == null) {
+			if (node is null) {
 				throw new ArgumentNullException(nameof(node));
 			}
 			if (this.RemoveNodeCore(node)) {
@@ -350,7 +350,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool RemoveNode(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			var node = this.GetNodeCore(name);
@@ -374,7 +374,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool ContainsName(string name)
 		{
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			return this.ContainsNameCore(name);

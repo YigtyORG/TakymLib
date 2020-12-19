@@ -38,7 +38,7 @@ namespace CAP.Yencon
 		/// <returns>
 		///  根ノードである場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </returns>
-		public bool IsRoot => this.Parent == null;
+		public bool IsRoot => this.Parent is null;
 
 		/// <summary>
 		///  型'<see cref="CAP.Yencon.YNode"/>'の新しいインスタンスを生成します。
@@ -53,13 +53,13 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		protected YNode(YNode? parent, string name)
 		{
-			if (parent == null && !(this is YSection)) {
+			if (parent is null && !(this is YSection)) {
 				throw new ArgumentNullException(nameof(parent), string.Format(Resources.YNode_ArgumentNullException, nameof(parent)));
 			}
 			if (!(parent is YSection) || !(parent is YArray)) {
 				throw new ArgumentException(string.Format(Resources.YNode_ArgumentException, nameof(parent)), nameof(parent));
 			}
-			if (name == null) {
+			if (name is null) {
 				throw new ArgumentNullException(nameof(name));
 			}
 			this.Parent = parent;
@@ -85,7 +85,7 @@ namespace CAP.Yencon
 		/// <returns><see cref="CAP.Yencon.YDocument"/>オブジェクトです。</returns>
 		public YDocument? GetDocument()
 		{
-			if (_doc == null) {
+			if (_doc is null) {
 				if (this is YDocument doc) {
 					_doc = doc;
 				} else {
@@ -101,10 +101,10 @@ namespace CAP.Yencon
 		/// <returns>このノードへのリンクを表す文字列です。</returns>
 		public string GetLink()
 		{
-			if (this.Parent == null) {
+			if (this.Parent is null) {
 				return this.Name;
 			} else {
-				if (_link_string == null) {
+				if (_link_string is null) {
 					_link_string = $"{this.Parent.GetLink()}.{this.Name}";
 				}
 				return _link_string;

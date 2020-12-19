@@ -27,7 +27,7 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.Xml.XmlException"/>
 		public static void FromXml(this XrcdlDocument document, string? xml)
 		{
-			if (document == null) {
+			if (document is null) {
 				throw new ArgumentNullException(nameof(document));
 			}
 			xml ??= string.Empty;
@@ -45,7 +45,7 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.Xml.XmlException"/>
 		public static string ToXml(this XrcdlDocument document)
 		{
-			if (document == null) {
+			if (document is null) {
 				throw new ArgumentNullException(nameof(document));
 			}
 			using (var sw = new StringWriter()) {

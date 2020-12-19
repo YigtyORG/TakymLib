@@ -74,8 +74,8 @@ namespace Exrecodel.InternalImplementations
 
 		private void EnsureRootElement()
 		{
-			if (_xmldoc.DocumentElement == null) {
-				if (_xmldoc.DocumentType == null) {
+			if (_xmldoc.DocumentElement is null) {
+				if (_xmldoc.DocumentType is null) {
 					_xmldoc.AppendChild(_xmldoc.CreateDocumentType(Constants.Document, string.Empty, string.Empty, string.Empty));
 				}
 				_xmldoc.AppendChild(_xmldoc.CreateElement(Constants.Document));
@@ -109,7 +109,7 @@ namespace Exrecodel.InternalImplementations
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				using (var convm = _doc.GetMetadata().GetConverter())
@@ -121,7 +121,7 @@ namespace Exrecodel.InternalImplementations
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb == null) {
+				if (sb is null) {
 					throw new ArgumentNullException(nameof(sb));
 				}
 				await this.ConvertToHtmlAsyncCore(sb, _doc.GetMetadata().GetConverter());

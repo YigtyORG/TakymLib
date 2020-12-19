@@ -180,7 +180,7 @@ namespace CAP.Yencon
 				);
 			}
 			var result = this.Children[index];
-			if (result == null) {
+			if (result is null) {
 				throw new NullReferenceException(Resources.YArray_GetNode_NullReferenceException);
 			} else {
 				return result;
@@ -244,7 +244,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool RemoveNode(YNode node)
 		{
-			if (node == null) {
+			if (node is null) {
 				throw new ArgumentNullException(nameof(node));
 			}
 			return this.RemoveNodeCore(node);

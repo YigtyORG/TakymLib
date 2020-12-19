@@ -96,7 +96,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException" />
 		public PathString(string path)
 		{
-			if (path == null) {
+			if (path is null) {
 				throw new ArgumentNullException(nameof(path));
 			}
 			_org_path = path;
@@ -195,7 +195,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException" />
 		public PathString Combine(params string?[]? paths)
 		{
-			if (paths == null || paths.Length == 0) {
+			if (paths is null || paths.Length == 0) {
 				return this;
 			} else {
 				var paths2 = new List<string>(paths.Length + 1);
@@ -383,7 +383,7 @@ namespace TakymLib.IO
 		/// </exception>
 		public string? GetRelativePath(PathString relativeTo)
 		{
-			if (relativeTo == null) {
+			if (relativeTo is null) {
 				throw new ArgumentNullException(nameof(relativeTo));
 			}
 			return Path.GetRelativePath(relativeTo._path, _path);
@@ -402,7 +402,7 @@ namespace TakymLib.IO
 		public PathString[]? GetEntryArray()
 		{
 			var entries = this.GetEntries();
-			if (entries == null) {
+			if (entries is null) {
 				return null;
 			} else {
 				return new List<PathString>(entries).ToArray();
@@ -471,7 +471,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException"/>
 		public IEnumerable<PathString>? GetEntries(string searchPattern, EnumerationOptions enumerationOptions)
 		{
-			if (enumerationOptions == null) {
+			if (enumerationOptions is null) {
 				throw new ArgumentNullException(nameof(enumerationOptions));
 			}
 			if (this.IsDirectory) {
@@ -532,14 +532,14 @@ namespace TakymLib.IO
 		private void EnsureFileSystemInfo()
 		{
 			try {
-				if (_fsinfo == null) {
+				if (_fsinfo is null) {
 					if (this.IsDirectory) {
 						_fsinfo = new DirectoryInfo(_path);
 					} else if (this.IsFile) {
 						_fsinfo = new FileInfo(_path);
 					}
 				}
-				if (this.IsDrive && _dinfo == null) {
+				if (this.IsDrive && _dinfo is null) {
 					_dinfo = new DriveInfo(_path);
 				}
 			} catch (Exception e) {

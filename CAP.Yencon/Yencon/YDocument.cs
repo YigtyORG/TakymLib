@@ -46,14 +46,14 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public YNode? GetNodeByLink(string link)
 		{
-			if (link == null) {
+			if (link is null) {
 				throw new ArgumentNullException(nameof(link));
 			}
 			string[] names   = link.Split('.');
 			YSection section = this;
 			for (int i = 0; i < names.Length - 1; ++i) {
 				var section2 = section.GetSection(names[i]);
-				if (section2 == null) {
+				if (section2 is null) {
 					return null;
 				} else {
 					section = section2;
