@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Exrecodel.ContactInfo;
+using TakymLib;
 
 namespace Exrecodel.InternalImplementations.ContactInfo
 {
@@ -63,9 +64,7 @@ namespace Exrecodel.InternalImplementations.ContactInfo
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				sb.AppendStartContactInfo(_info);
 				sb.Append($"<p><a href=\"{_info.AsUri()}\">{_info.Address}</a></p>");
 				sb.AppendEndContactInfo();

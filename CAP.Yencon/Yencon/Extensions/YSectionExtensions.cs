@@ -8,6 +8,7 @@
 ****/
 
 using System;
+using TakymLib;
 
 namespace CAP.Yencon.Extensions
 {
@@ -31,9 +32,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YString? CreateString(this YSection section, string name, string value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateString(name);
 			if (result is not null) {
 				result.Value = value;
@@ -56,9 +55,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, long value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateNumber(name);
 			if (result is not null) {
 				result.ValueS64= value;
@@ -81,9 +78,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, ulong value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateNumber(name);
 			if (result is not null) {
 				result.ValueU64 = value;
@@ -106,9 +101,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, double value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateNumber(name);
 			if (result is not null) {
 				result.ValueDF = value;
@@ -131,9 +124,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? CreateNumber(this YSection section, string name, decimal value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateNumber(name);
 			if (result is not null) {
 				result.ValueM = value;
@@ -156,9 +147,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YBoolean? CreateBoolean(this YSection section, string name, bool value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateBoolean(name);
 			if (result is not null) {
 				result.Value = value;
@@ -181,9 +170,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YLink? CreateLink(this YSection section, string name, string value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			var result = section.CreateLink(name);
 			if (result is not null) {
 				result.Value = value;
@@ -200,9 +187,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YEmpty? GetEmpty(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YEmpty>(name, out var result);
 			return result;
 		}
@@ -216,9 +201,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YSection? GetSection(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YSection>(name, out var result);
 			return result;
 		}
@@ -232,9 +215,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YArray? GetArray(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YArray>(name, out var result);
 			return result;
 		}
@@ -248,9 +229,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YString? GetString(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YString>(name, out var result);
 			return result;
 		}
@@ -264,9 +243,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YNumber? GetNumber(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YNumber>(name, out var result);
 			return result;
 		}
@@ -280,9 +257,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YBoolean? GetBoolean(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YBoolean>(name, out var result);
 			return result;
 		}
@@ -296,9 +271,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static YLink? GetLink(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.TryGetNode<YLink>(name, out var result);
 			return result;
 		}
@@ -316,9 +289,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YEmpty? SetEmpty(this YSection section, string name)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateEmpty(name);
 		}
@@ -337,9 +308,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YString? SetString(this YSection section, string name, string value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateString(name, value);
 		}
@@ -358,9 +327,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, long value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateNumber(name, value);
 		}
@@ -379,9 +346,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, ulong value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateNumber(name, value);
 		}
@@ -400,9 +365,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, double value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateNumber(name, value);
 		}
@@ -421,9 +384,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YNumber? SetNumber(this YSection section, string name, decimal value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateNumber(name, value);
 		}
@@ -442,9 +403,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YBoolean? SetBoolean(this YSection section, string name, bool value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateBoolean(name, value);
 		}
@@ -463,9 +422,7 @@ namespace CAP.Yencon.Extensions
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public static YLink? SetLink(this YSection section, string name, string value)
 		{
-			if (section is null) {
-				throw new ArgumentNullException(nameof(section));
-			}
+			section.EnsureNotNull(nameof(section));
 			section.RemoveNode(name);
 			return section.CreateLink(name, value);
 		}

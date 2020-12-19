@@ -9,6 +9,7 @@
 
 using System;
 using CAP.Yencon.Extensions;
+using TakymLib;
 
 namespace CAP.Yencon
 {
@@ -46,9 +47,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public YNode? GetNodeByLink(string link)
 		{
-			if (link is null) {
-				throw new ArgumentNullException(nameof(link));
-			}
+			link.EnsureNotNull(nameof(link));
 			string[] names   = link.Split('.');
 			YSection section = this;
 			for (int i = 0; i < names.Length - 1; ++i) {

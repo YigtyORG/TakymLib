@@ -120,6 +120,12 @@
   <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
     <value>Cannot operate an object during disposing.</value>
   </data>
+  <data name="ErrorHelper_EnsureWithinClosedRange" xml:space="preserve">
+    <value>The value should be greater than or equal {0} and less than or equal {1}.</value>
+  </data>
+  <data name="ErrorHelper_EnsureWithinOpenRange" xml:space="preserve">
+    <value>The value should be greater than {0} and less than {1}.</value>
+  </data>
   <data name="InvalidPathFormatException" xml:space="preserve">
     <value>The specified string "{0}" is an invalid path string.</value>
   </data>

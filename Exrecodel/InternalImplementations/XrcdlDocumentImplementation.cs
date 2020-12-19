@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 using Exrecodel.Properties;
+using TakymLib;
 
 namespace Exrecodel.InternalImplementations
 {
@@ -109,9 +110,7 @@ namespace Exrecodel.InternalImplementations
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				using (var convm = _doc.GetMetadata().GetConverter())
 				using (var convr = _doc.GetRootNode().GetConverter()) {
 					convm.ConvertToHtml(sb);
@@ -121,9 +120,7 @@ namespace Exrecodel.InternalImplementations
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				await this.ConvertToHtmlAsyncCore(sb, _doc.GetMetadata().GetConverter());
 				await this.ConvertToHtmlAsyncCore(sb, _doc.GetRootNode().GetConverter());
 			}

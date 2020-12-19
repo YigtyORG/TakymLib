@@ -10,6 +10,7 @@
 using System;
 using CAP.Properties;
 using CAP.Yencon.Exceptions;
+using TakymLib;
 
 namespace CAP.Yencon
 {
@@ -53,15 +54,13 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		protected YNode(YNode? parent, string name)
 		{
-			if (parent is null && !(this is YSection)) {
+			if (parent is null && this is not YSection) {
 				throw new ArgumentNullException(nameof(parent), string.Format(Resources.YNode_ArgumentNullException, nameof(parent)));
 			}
-			if (!(parent is YSection) || !(parent is YArray)) {
+			if (parent is not YSection || parent is not YArray) {
 				throw new ArgumentException(string.Format(Resources.YNode_ArgumentException, nameof(parent)), nameof(parent));
 			}
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			this.Parent = parent;
 			this.Name   = name.Trim();
 			this.ValidateName();

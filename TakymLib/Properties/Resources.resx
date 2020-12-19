@@ -120,6 +120,12 @@
   <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
     <value>DisposableBase_ObjectDisposedException_IsDisposing</value>
   </data>
+  <data name="ErrorHelper_EnsureWithinClosedRange" xml:space="preserve">
+    <value>ErrorHelper_EnsureWithinClosedRange {0} {1}</value>
+  </data>
+  <data name="ErrorHelper_EnsureWithinOpenRange" xml:space="preserve">
+    <value>ErrorHelper_EnsureWithinOpenRange {0} {1}</value>
+  </data>
   <data name="InvalidPathFormatException" xml:space="preserve">
     <value>InvalidPathFormatException {0}</value>
   </data>

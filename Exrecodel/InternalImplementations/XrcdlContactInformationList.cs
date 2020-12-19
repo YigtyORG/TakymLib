@@ -17,6 +17,7 @@ using System.Xml;
 using Exrecodel.ContactInfo;
 using Exrecodel.InternalImplementations.ContactInfo;
 using Exrecodel.Properties;
+using TakymLib;
 
 namespace Exrecodel.InternalImplementations
 {
@@ -270,9 +271,7 @@ namespace Exrecodel.InternalImplementations
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				sb.AppendStartContactList();
 				foreach (var item in _list) {
 					using (var conv = item.GetConverter()) {
@@ -284,9 +283,7 @@ namespace Exrecodel.InternalImplementations
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				sb.AppendStartContactList();
 				await foreach (var item in _list) {
 					var conv = item.GetConverter();

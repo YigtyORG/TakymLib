@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CAP.Properties;
+using TakymLib;
 
 namespace CAP.Yencon
 {
@@ -86,9 +87,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public TNode? CreateNode<TNode>(string name) where TNode: YNode
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<TNode>(name);
 		}
@@ -106,9 +105,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YEmpty? CreateEmpty(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YEmpty>(name);
 		}
@@ -140,9 +137,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YSection? CreateSection(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YSection>(name);
 		}
@@ -160,9 +155,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YArray? CreateArray(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YArray>(name);
 		}
@@ -180,9 +173,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YString? CreateString(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YString>(name);
 		}
@@ -200,9 +191,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YNumber? CreateNumber(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YNumber>(name);
 		}
@@ -220,9 +209,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YBoolean? CreateBoolean(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YBoolean>(name);
 		}
@@ -240,9 +227,7 @@ namespace CAP.Yencon
 		/// <exception cref="CAP.Yencon.Exceptions.InvalidNodeNameException"/>
 		public YLink? CreateLink(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			++_version;
 			return this.CreateNodeCore<YLink>(name);
 		}
@@ -257,9 +242,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.Collections.Generic.KeyNotFoundException"/>
 		public YNode GetNode(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			if (!this.ContainsNameCore(name)) {
 				throw new KeyNotFoundException(string.Format(Resources.YSection_GetNode_KeyNotFoundException, name));
 			}
@@ -331,9 +314,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool RemoveNode(YNode node)
 		{
-			if (node is null) {
-				throw new ArgumentNullException(nameof(node));
-			}
+			node.EnsureNotNull(nameof(node));
 			if (this.RemoveNodeCore(node)) {
 				++_version;
 				return true;
@@ -350,9 +331,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool RemoveNode(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			var node = this.GetNodeCore(name);
 			if (node is not null) {
 				if (this.RemoveNodeCore(node)) {
@@ -374,9 +353,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool ContainsName(string name)
 		{
-			if (name is null) {
-				throw new ArgumentNullException(nameof(name));
-			}
+			name.EnsureNotNull(nameof(name));
 			return this.ContainsNameCore(name);
 		}
 

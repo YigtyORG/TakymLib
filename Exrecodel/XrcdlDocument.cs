@@ -14,6 +14,7 @@ using System.Xml;
 using System.Xml.Schema;
 using Exrecodel.InternalImplementations;
 using Exrecodel.Properties;
+using TakymLib;
 
 namespace Exrecodel
 {
@@ -117,9 +118,7 @@ namespace Exrecodel
 		/// <exception cref="System.Security.SecurityException"/>
 		public void Load(string filename)
 		{
-			if (filename is null) {
-				throw new ArgumentNullException(nameof(filename));
-			}
+			filename.EnsureNotNull(nameof(filename));
 			string path = Path.GetFullPath(filename);
 			using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read)) {
 				this.Load(fs);
@@ -138,9 +137,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.Schema.XmlSchemaException"/>
 		public void Load(Stream stream)
 		{
-			if (stream is null) {
-				throw new ArgumentNullException(nameof(stream));
-			}
+			stream.EnsureNotNull(nameof(stream));
 			using (var sr = new StreamReader(stream, _enc, true, -1, true)) {
 				this.Load(sr);
 			}
@@ -156,9 +153,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.Schema.XmlSchemaException"/>
 		public void Load(TextReader reader)
 		{
-			if (reader is null) {
-				throw new ArgumentNullException(nameof(reader));
-			}
+			reader.EnsureNotNull(nameof(reader));
 			using (var xr = XmlReader.Create(reader, _reader_settings)) {
 				this.Load(xr);
 			}
@@ -173,9 +168,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.Schema.XmlSchemaException"/>
 		public void Load(XmlReader reader)
 		{
-			if (reader is null) {
-				throw new ArgumentNullException(nameof(reader));
-			}
+			reader.EnsureNotNull(nameof(reader));
 			this.LoadCore(reader);
 		}
 
@@ -222,9 +215,7 @@ namespace Exrecodel
 		/// <exception cref="System.Security.SecurityException"/>
 		public void Save(string filename)
 		{
-			if (filename is null) {
-				throw new ArgumentNullException(nameof(filename));
-			}
+			filename.EnsureNotNull(nameof(filename));
 			string path = Path.GetFullPath(filename);
 			using (var fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None)) {
 				this.Save(fs);
@@ -242,9 +233,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.XmlException"/>
 		public void Save(Stream stream)
 		{
-			if (stream is null) {
-				throw new ArgumentNullException(nameof(stream));
-			}
+			stream.EnsureNotNull(nameof(stream));
 			using (var sw = new StreamWriter(stream, _enc, -1, true)) {
 				this.Save(sw);
 			}
@@ -259,9 +248,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.XmlException"/>
 		public void Save(TextWriter writer)
 		{
-			if (writer is null) {
-				throw new ArgumentNullException(nameof(writer));
-			}
+			writer.EnsureNotNull(nameof(writer));
 			using (var xw = XmlWriter.Create(writer, GetWriterSettings(writer))) {
 				this.Save(xw);
 			}
@@ -275,9 +262,7 @@ namespace Exrecodel
 		/// <exception cref="System.Xml.XmlException"/>
 		public void Save(XmlWriter writer)
 		{
-			if (writer is null) {
-				throw new ArgumentNullException(nameof(writer));
-			}
+			writer.EnsureNotNull(nameof(writer));
 			this.SaveCore(writer);
 		}
 

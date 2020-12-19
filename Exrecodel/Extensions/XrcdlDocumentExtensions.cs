@@ -9,6 +9,7 @@
 
 using System;
 using System.IO;
+using TakymLib;
 
 namespace Exrecodel.Extensions
 {
@@ -27,9 +28,7 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.Xml.XmlException"/>
 		public static void FromXml(this XrcdlDocument document, string? xml)
 		{
-			if (document is null) {
-				throw new ArgumentNullException(nameof(document));
-			}
+			document.EnsureNotNull(nameof(document));
 			xml ??= string.Empty;
 			using (var sr = new StringReader(xml)) {
 				document.Load(sr);
@@ -45,9 +44,7 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.Xml.XmlException"/>
 		public static string ToXml(this XrcdlDocument document)
 		{
-			if (document is null) {
-				throw new ArgumentNullException(nameof(document));
-			}
+			document.EnsureNotNull(nameof(document));
 			using (var sw = new StringWriter()) {
 				document.Save(sw);
 				return sw.ToString();

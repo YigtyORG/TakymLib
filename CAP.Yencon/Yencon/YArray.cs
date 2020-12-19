@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CAP.Properties;
+using TakymLib;
 
 namespace CAP.Yencon
 {
@@ -244,9 +245,7 @@ namespace CAP.Yencon
 		/// <exception cref="System.ArgumentNullException"/>
 		public bool RemoveNode(YNode node)
 		{
-			if (node is null) {
-				throw new ArgumentNullException(nameof(node));
-			}
+			node.EnsureNotNull(nameof(node));
 			return this.RemoveNodeCore(node);
 		}
 

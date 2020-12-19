@@ -8,6 +8,7 @@
 ****/
 
 using System;
+using TakymLib;
 
 namespace Exrecodel.Extensions
 {
@@ -28,9 +29,7 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static Version? GetVersion(this XrcdlMetadata metadata)
 		{
-			if (metadata is null) {
-				throw new ArgumentNullException(nameof(metadata));
-			}
+			metadata.EnsureNotNull(nameof(metadata));
 			if (Version.TryParse(metadata.VersionString, out var result)) {
 				return result;
 			} else {
@@ -46,12 +45,8 @@ namespace Exrecodel.Extensions
 		/// <exception cref="System.ArgumentNullException"/>
 		public static void SetVersion(this XrcdlMetadata metadata, Version version)
 		{
-			if (metadata is null) {
-				throw new ArgumentNullException(nameof(metadata));
-			}
-			if (version is null) {
-				throw new ArgumentNullException(nameof(version));
-			}
+			metadata.EnsureNotNull(nameof(metadata));
+			version .EnsureNotNull(nameof(version));
 			metadata.VersionString = version.ToString();
 		}
 	}

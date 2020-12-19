@@ -10,6 +10,7 @@
 		<Description>Extensible Regulation/Convention Descriptor Language</Description>
 	</PropertyGroup>
 	<ItemGroup>
+		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
 		<EmbeddedResource Update="Properties/Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -96,9 +96,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException" />
 		public PathString(string path)
 		{
-			if (path is null) {
-				throw new ArgumentNullException(nameof(path));
-			}
+			path.EnsureNotNull(nameof(path));
 			_org_path = path;
 			try {
 				_path = Path.GetFullPath(path);
@@ -383,9 +381,7 @@ namespace TakymLib.IO
 		/// </exception>
 		public string? GetRelativePath(PathString relativeTo)
 		{
-			if (relativeTo is null) {
-				throw new ArgumentNullException(nameof(relativeTo));
-			}
+			relativeTo.EnsureNotNull(nameof(relativeTo));
 			return Path.GetRelativePath(relativeTo._path, _path);
 		}
 
@@ -471,9 +467,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException"/>
 		public IEnumerable<PathString>? GetEntries(string searchPattern, EnumerationOptions enumerationOptions)
 		{
-			if (enumerationOptions is null) {
-				throw new ArgumentNullException(nameof(enumerationOptions));
-			}
+			enumerationOptions.EnsureNotNull(nameof(enumerationOptions));
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
 				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));

@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using TakymLib;
 
 namespace Exrecodel.InternalImplementations
 {
@@ -174,17 +175,13 @@ namespace Exrecodel.InternalImplementations
 
 			public void ConvertToHtml(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				//
 			}
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
-				if (sb is null) {
-					throw new ArgumentNullException(nameof(sb));
-				}
+				sb.EnsureNotNull(nameof(sb));
 				//
 			}
 

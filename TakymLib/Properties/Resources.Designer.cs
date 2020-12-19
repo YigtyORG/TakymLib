@@ -70,6 +70,24 @@ namespace TakymLib.Properties {
         }
         
         /// <summary>
+        ///   ErrorHelper_EnsureWithinClosedRange {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ErrorHelper_EnsureWithinClosedRange {
+            get {
+                return ResourceManager.GetString("ErrorHelper_EnsureWithinClosedRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ErrorHelper_EnsureWithinOpenRange {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ErrorHelper_EnsureWithinOpenRange {
+            get {
+                return ResourceManager.GetString("ErrorHelper_EnsureWithinOpenRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   InvalidPathFormatException {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string InvalidPathFormatException {
