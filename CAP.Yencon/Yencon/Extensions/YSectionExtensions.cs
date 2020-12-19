@@ -7,7 +7,6 @@
  * distributed under the MIT License.
 ****/
 
-using System;
 using TakymLib;
 
 namespace CAP.Yencon.Extensions
