@@ -13,10 +13,10 @@ using TakymLib.Properties;
 namespace TakymLib
 {
 	/// <summary>
-	///  例外の発生を行います。
+	///  引数に関する例外の発生を行います。
 	///  このクラスは静的クラスです。
 	/// </summary>
-	public static class ErrorHelper
+	public static class ArgumentHelper
 	{
 		/// <summary>
 		///  引数から渡されたオブジェクトが<see langword="null"/>である場合に例外を発生させます。
