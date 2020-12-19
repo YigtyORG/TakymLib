@@ -61,6 +61,24 @@ namespace TakymLib.Properties {
         }
         
         /// <summary>
+        ///   ConsoleUtil_Pause に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ConsoleUtil_Pause {
+            get {
+                return ResourceManager.GetString("ConsoleUtil_Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ConsoleUtil_ReadPassword に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ConsoleUtil_ReadPassword {
+            get {
+                return ResourceManager.GetString("ConsoleUtil_ReadPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   DisposableBase_ObjectDisposedException_IsDisposing に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string DisposableBase_ObjectDisposedException_IsDisposing {
@@ -102,6 +120,24 @@ namespace TakymLib.Properties {
         internal static string PathString_EnsureFileSystemInfo_IOException {
             get {
                 return ResourceManager.GetString("PathString_EnsureFileSystemInfo_IOException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SecureStringExtensions_SecurityException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SecureStringExtensions_SecurityException {
+            get {
+                return ResourceManager.GetString("SecureStringExtensions_SecurityException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SerializationInfoExtensions_SerializationException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SerializationInfoExtensions_SerializationException {
+            get {
+                return ResourceManager.GetString("SerializationInfoExtensions_SerializationException", resourceCulture);
             }
         }
     }

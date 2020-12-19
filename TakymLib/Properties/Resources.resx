@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ConsoleUtil_Pause" xml:space="preserve">
+    <value>ConsoleUtil_Pause</value>
+  </data>
+  <data name="ConsoleUtil_ReadPassword" xml:space="preserve">
+    <value>ConsoleUtil_ReadPassword</value>
+  </data>
   <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
     <value>DisposableBase_ObjectDisposedException_IsDisposing</value>
   </data>
@@ -131,5 +137,11 @@
   </data>
   <data name="PathString_EnsureFileSystemInfo_IOException" xml:space="preserve">
     <value>PathString_EnsureFileSystemInfo_IOException {0}</value>
+  </data>
+  <data name="SecureStringExtensions_SecurityException" xml:space="preserve">
+    <value>SecureStringExtensions_SecurityException</value>
+  </data>
+  <data name="SerializationInfoExtensions_SerializationException" xml:space="preserve">
+    <value>SerializationInfoExtensions_SerializationException</value>
   </data>
 </root>

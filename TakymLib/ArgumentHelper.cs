@@ -8,6 +8,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using TakymLib.Properties;
 
 namespace TakymLib
@@ -26,7 +27,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureNotNull(this object? obj, string? argName)
+		public static void EnsureNotNull([NotNull()] this object? obj, string? argName)
 		{
 			if (obj is null) {
 				throw new ArgumentNullException(argName);
@@ -86,7 +87,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureNotNullWithinClosedRange(this IComparable? actual, object? min, object? max, string? argName)
+		public static void EnsureNotNullWithinClosedRange([NotNull()] this IComparable? actual, object? min, object? max, string? argName)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -111,7 +112,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureNotNullWithinOpenRange(this IComparable? actual, object? min, object? max, string? argName)
+		public static void EnsureNotNullWithinOpenRange([NotNull()] this IComparable? actual, object? min, object? max, string? argName)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
