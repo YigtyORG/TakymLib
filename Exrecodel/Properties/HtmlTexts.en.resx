@@ -147,4 +147,49 @@
   <data name="ContactList" xml:space="preserve">
     <value>The Contacts</value>
   </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>The Metadata</value>
+  </data>
+  <data name="Metadata_Author" xml:space="preserve">
+    <value>The author</value>
+  </data>
+  <data name="Metadata_Copyright" xml:space="preserve">
+    <value>The copyright</value>
+  </data>
+  <data name="Metadata_Creation" xml:space="preserve">
+    <value>The creation date/time</value>
+  </data>
+  <data name="Metadata_DateTimeFormat" xml:space="preserve">
+    <value>ddd, MMM dd, yyyy tthh:mm:ss.fffffff</value>
+  </data>
+  <data name="Metadata_Language" xml:space="preserve">
+    <value>The language</value>
+  </data>
+  <data name="Metadata_LastModified" xml:space="preserve">
+    <value>The last modified date/time</value>
+  </data>
+  <data name="Metadata_Title" xml:space="preserve">
+    <value>The title</value>
+  </data>
+  <data name="Metadata_Type" xml:space="preserve">
+    <value>The type of this document</value>
+  </data>
+  <data name="Metadata_Type_License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="Metadata_Type_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="Metadata_Type_Specification" xml:space="preserve">
+    <value>Specification</value>
+  </data>
+  <data name="Metadata_Type_Thesis" xml:space="preserve">
+    <value>Thesis</value>
+  </data>
+  <data name="Metadata_Type_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Metadata_Version" xml:space="preserve">
+    <value>The version</value>
+  </data>
 </root>

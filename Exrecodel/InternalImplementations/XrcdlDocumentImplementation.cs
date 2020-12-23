@@ -110,18 +110,18 @@ namespace Exrecodel.InternalImplementations
 			public void ConvertToHtml(StringBuilder sb)
 			{
 				sb.EnsureNotNull(nameof(sb));
-				using (var convm = _doc.GetMetadata().GetConverter())
-				using (var convr = _doc.GetRootNode().GetConverter()) {
-					convm.ConvertToHtml(sb);
+				using (var convr = _doc.GetRootNode().GetConverter())
+				using (var convm = _doc.GetMetadata().GetConverter()) {
 					convr.ConvertToHtml(sb);
+					convm.ConvertToHtml(sb);
 				}
 			}
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
 				sb.EnsureNotNull(nameof(sb));
-				await this.ConvertToHtmlAsyncCore(sb, _doc.GetMetadata().GetConverter());
 				await this.ConvertToHtmlAsyncCore(sb, _doc.GetRootNode().GetConverter());
+				await this.ConvertToHtmlAsyncCore(sb, _doc.GetMetadata().GetConverter());
 			}
 
 			private async ValueTask ConvertToHtmlAsyncCore(StringBuilder sb, IXrcdlConverter conv)

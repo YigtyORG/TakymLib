@@ -7,6 +7,7 @@
  * distributed under the MIT License.
 ****/
 
+using System;
 using System.Text;
 using Exrecodel.Properties;
 
@@ -14,6 +15,31 @@ namespace Exrecodel.InternalImplementations
 {
 	internal static class ConverterHelper
 	{
+		internal static void AppendStartMetadata(this StringBuilder sb)
+		{
+			sb.Append("<article class=\"metadata\" id=\"metadata\">");
+			sb.Append($"<h2>{HtmlTexts.Metadata}</h2>");
+		}
+
+		internal static void AppendStartMetadataTable(this StringBuilder sb)
+		{
+			sb.Append("<table class=\"metadata-table\"><tbody>");
+		}
+
+		internal static void AppendMetadataTableRow(this StringBuilder sb, string keyName, string keyValue)
+		{
+			sb.Append("<tr><th>");
+			sb.Append(keyName);
+			sb.Append("</th><td>");
+			sb.Append(keyValue);
+			sb.Append("</td></tr>");
+		}
+
+		internal static void AppendEndMetadataTable(this StringBuilder sb)
+		{
+			sb.Append("</tbody></table>");
+		}
+
 		internal static void AppendStartContactList(this StringBuilder sb)
 		{
 			sb.Append("<div class=\"contacts\" id=\"contacts\">");
@@ -35,6 +61,21 @@ namespace Exrecodel.InternalImplementations
 		internal static void AppendEndContactList(this StringBuilder sb)
 		{
 			sb.Append("</div>");
+		}
+
+		internal static void AppendEndMetadata(this StringBuilder sb)
+		{
+			sb.Append("</article>");
+		}
+
+		internal static string? Localize(this XrcdlDocumentType type)
+		{
+			return HtmlTexts.ResourceManager.GetString("Metadata_Type_" + type.ToString());
+		}
+
+		internal static string? Localize(this DateTime dt)
+		{
+			return dt.ToString(HtmlTexts.Metadata_DateTimeFormat);
 		}
 	}
 }

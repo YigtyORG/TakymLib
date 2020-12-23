@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Exrecodel.Properties;
 using TakymLib;
 
 namespace Exrecodel.InternalImplementations
@@ -176,13 +177,47 @@ namespace Exrecodel.InternalImplementations
 			public void ConvertToHtml(StringBuilder sb)
 			{
 				sb.EnsureNotNull(nameof(sb));
-				//
+				sb.AppendStartMetadata();
+				this.ConvertToHtmlCore(sb);
+				using (var conv = _meta.Contacts.GetConverter()) {
+					conv.ConvertToHtml(sb);
+				}
+				sb.AppendEndMetadata();
 			}
 
 			public async Task ConvertToHtmlAsync(StringBuilder sb)
 			{
 				sb.EnsureNotNull(nameof(sb));
-				//
+				sb.AppendStartMetadata();
+				this.ConvertToHtmlCore(sb);
+				var conv = _meta.Contacts.GetConverter();
+				switch (conv) {
+				case IXrcdlAsyncConverter asyncConv:
+					await using (asyncConv.ConfigureAwait(false)) {
+						await asyncConv.ConvertToHtmlAsync(sb);
+					}
+					break;
+				default:
+					using (conv) {
+						conv.ConvertToHtml(sb);
+					}
+					break;
+				}
+				sb.AppendEndMetadata();
+			}
+
+			private void ConvertToHtmlCore(StringBuilder sb)
+			{
+				sb.AppendStartMetadataTable();
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Title,        _meta.Title                    ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Type,         _meta.Type.Localize()          ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Author,       _meta.Author                   ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Copyright,    _meta.Copyright                ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Version,      _meta.VersionString            ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Language,     _meta.Language?.DisplayName    ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_Creation,     _meta.Creation    ?.Localize() ?? string.Empty);
+				sb.AppendMetadataTableRow(HtmlTexts.Metadata_LastModified, _meta.LastModified?.Localize() ?? string.Empty);
+				sb.AppendEndMetadataTable();
 			}
 
 			public void Dispose()

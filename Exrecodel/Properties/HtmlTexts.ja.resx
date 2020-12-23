@@ -147,4 +147,49 @@
   <data name="ContactList" xml:space="preserve">
     <value>連絡先</value>
   </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>メタ情報</value>
+  </data>
+  <data name="Metadata_Author" xml:space="preserve">
+    <value>作成者</value>
+  </data>
+  <data name="Metadata_Copyright" xml:space="preserve">
+    <value>著作権</value>
+  </data>
+  <data name="Metadata_Creation" xml:space="preserve">
+    <value>作成日時</value>
+  </data>
+  <data name="Metadata_DateTimeFormat" xml:space="preserve">
+    <value>yyyy'年'MM'月'dd'日('dddd')'HH'時'mm'分'ss.fffffff'秒'</value>
+  </data>
+  <data name="Metadata_Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Metadata_LastModified" xml:space="preserve">
+    <value>更新日時</value>
+  </data>
+  <data name="Metadata_Title" xml:space="preserve">
+    <value>題名</value>
+  </data>
+  <data name="Metadata_Type" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="Metadata_Type_License" xml:space="preserve">
+    <value>許諾書</value>
+  </data>
+  <data name="Metadata_Type_PrivacyPolicy" xml:space="preserve">
+    <value>個人情報保護方針</value>
+  </data>
+  <data name="Metadata_Type_Specification" xml:space="preserve">
+    <value>仕様書</value>
+  </data>
+  <data name="Metadata_Type_Thesis" xml:space="preserve">
+    <value>論文</value>
+  </data>
+  <data name="Metadata_Type_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Metadata_Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
 </root>

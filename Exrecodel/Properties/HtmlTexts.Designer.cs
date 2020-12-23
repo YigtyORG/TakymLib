@@ -149,5 +149,140 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("ContactList", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Metadata に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata {
+            get {
+                return ResourceManager.GetString("Metadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Author に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Author {
+            get {
+                return ResourceManager.GetString("Metadata_Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Copyright に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Copyright {
+            get {
+                return ResourceManager.GetString("Metadata_Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Creation に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Creation {
+            get {
+                return ResourceManager.GetString("Metadata_Creation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   yyyy/MM/dd HH:mm:ss.fffffff に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_DateTimeFormat {
+            get {
+                return ResourceManager.GetString("Metadata_DateTimeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Language に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Language {
+            get {
+                return ResourceManager.GetString("Metadata_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_LastModified に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_LastModified {
+            get {
+                return ResourceManager.GetString("Metadata_LastModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Title に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Title {
+            get {
+                return ResourceManager.GetString("Metadata_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Type {
+            get {
+                return ResourceManager.GetString("Metadata_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Type_License に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Type_License {
+            get {
+                return ResourceManager.GetString("Metadata_Type_License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Type_PrivacyPolicy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Type_PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("Metadata_Type_PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Type_Specification に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Type_Specification {
+            get {
+                return ResourceManager.GetString("Metadata_Type_Specification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Type_Thesis に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Type_Thesis {
+            get {
+                return ResourceManager.GetString("Metadata_Type_Thesis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Type_Unknown に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Type_Unknown {
+            get {
+                return ResourceManager.GetString("Metadata_Type_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Metadata_Version に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Metadata_Version {
+            get {
+                return ResourceManager.GetString("Metadata_Version", resourceCulture);
+            }
+        }
     }
 }
