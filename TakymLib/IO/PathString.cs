@@ -83,6 +83,98 @@ namespace TakymLib.IO
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <param name="path1">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <param name="path2">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <exception cref="System.ArgumentException" />
+		/// <exception cref="System.ArgumentNullException">
+		///  <paramref name="path1"/>または<paramref name="path2"/>が<see langword="null"/>に設定されています。
+		/// </exception>
+		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
+		///  無効なパス文字列が渡されました。
+		/// </exception>
+		/// <exception cref="System.Security.SecurityException" />
+		public PathString(string path1, string path2) : this(Path.Combine(path1, path2)) { }
+
+		/// <summary>
+		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="path1">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <param name="path2">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <param name="path3">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <exception cref="System.ArgumentException" />
+		/// <exception cref="System.ArgumentNullException">
+		///  <paramref name="path1"/>、<paramref name="path2"/>、または<paramref name="path3"/>が<see langword="null"/>に設定されています。
+		/// </exception>
+		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
+		///  無効なパス文字列が渡されました。
+		/// </exception>
+		/// <exception cref="System.Security.SecurityException" />
+		public PathString(string path1, string path2, string path3) : this(Path.Combine(path1, path2, path3)) { }
+
+		/// <summary>
+		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="path1">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <param name="path2">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <param name="path3">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <param name="path4">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <exception cref="System.ArgumentException" />
+		/// <exception cref="System.ArgumentNullException">
+		///  <paramref name="path1"/>、<paramref name="path2"/>、<paramref name="path3"/>、または<paramref name="path4"/>が<see langword="null"/>に設定されています。
+		/// </exception>
+		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
+		///  無効なパス文字列が渡されました。
+		/// </exception>
+		/// <exception cref="System.Security.SecurityException" />
+		public PathString(string path1, string path2, string path3, string path4) : this(Path.Combine(path1, path2, path3, path4)) { }
+
+		/// <summary>
+		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="paths">
+		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  相対パスの場合、絶対パスへ自動的に変換されます。
+		/// </param>
+		/// <exception cref="System.ArgumentException" />
+		/// <exception cref="System.ArgumentNullException">
+		///  <paramref name="paths"/>が<see langword="null"/>に設定されています。
+		/// </exception>
+		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
+		///  無効なパス文字列が渡されました。
+		/// </exception>
+		/// <exception cref="System.Security.SecurityException" />
+		public PathString(params string[] paths) : this(Path.Combine(paths)) { }
+
+		/// <summary>
+		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
+		/// </summary>
 		/// <param name="path">
 		///  新しいインスタンスに設定するパス文字列です。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
