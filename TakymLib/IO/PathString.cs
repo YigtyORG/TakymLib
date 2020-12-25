@@ -195,7 +195,7 @@ namespace TakymLib.IO
 				if (_path.EndsWith(Path.DirectorySeparatorChar.ToString())) {
 					_path = _path.Remove(_path.Length - 1);
 				}
-				_uri = new Uri(_path);
+				_uri = new Uri("file:///" + _path);
 			} catch (ArgumentException ae) {
 				throw new InvalidPathFormatException(path, ae);
 			} catch (NotSupportedException nse) {
