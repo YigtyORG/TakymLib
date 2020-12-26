@@ -46,5 +46,25 @@ namespace Exrecodel
 		/// </summary>
 		/// <returns><see cref="Exrecodel.IXrcdlConverter"/>へ変換可能なオブジェクトです。</returns>
 		public abstract IXrcdlConverter GetConverter();
+
+		/// <summary>
+		///  現在の要素と子要素を検証します。
+		/// </summary>
+		/// <param name="onError">検証に失敗した時に呼び出されます。</param>
+		/// <returns>
+		///  現在の要素が有効な<see cref="Exrecodel"/>要素である場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>です。
+		/// </returns>
+		public abstract bool Validate(XrcdlNodeValidationError onError);
+
+		/// <summary>
+		///  現在の要素と子要素を検証します。
+		/// </summary>
+		/// <returns>
+		///  現在の要素が有効な<see cref="Exrecodel"/>要素である場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>です。
+		/// </returns>
+		public bool Validate()
+		{
+			return this.Validate((_, _) => { });
+		}
 	}
 }
