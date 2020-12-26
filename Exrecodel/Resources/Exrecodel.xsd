@@ -19,7 +19,6 @@
 		<xsd:annotation>
 			<xsd:documentation>Exrecodel文書の要素を表します。</xsd:documentation>
 		</xsd:annotation>
-		<!--{*}-->
 		<xsd:attribute name="name" type="xsd:NCName" use="optional">
 			<xsd:annotation>
 				<xsd:documentation>要素の名前を設定します。</xsd:documentation>
@@ -290,12 +289,50 @@
 					<xsd:complexType>
 						<xsd:complexContent>
 							<xsd:extension base="tns:node">
-								<!--{*}-->
+								<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+									<xsd:element ref="tns:terms" />
+								</xsd:sequence>
 							</xsd:extension>
 						</xsd:complexContent>
 					</xsd:complexType>
 				</xsd:element>
 			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="terms" nillable="false">
+		<xsd:annotation>
+			<xsd:documentation>用語の一覧を表します。</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="tns:node">
+					<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+						<xsd:element name="term" nillable="false">
+							<xsd:annotation>
+								<xsd:documentation>用語を定義します。</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="tns:node">
+										<xsd:sequence>
+											<xsd:element name="name" type="xsd:string" nillable="false">
+												<xsd:annotation>
+													<xsd:documentation>定義する用語です。</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+											<xsd:element name="description" type="xsd:string" nillable="false">
+												<xsd:annotation>
+													<xsd:documentation>定義する用語の説明です。</xsd:documentation>
+												</xsd:annotation>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:extension>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
 		</xsd:complexType>
 	</xsd:element>
 </xsd:schema>
