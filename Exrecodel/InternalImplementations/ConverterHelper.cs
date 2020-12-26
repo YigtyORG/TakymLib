@@ -17,8 +17,8 @@ namespace Exrecodel.InternalImplementations
 	{
 		internal static void AppendStartMetadata(this StringBuilder sb)
 		{
-			sb.Append("<article class=\"metadata\" id=\"metadata\">");
-			sb.Append($"<h2>{HtmlTexts.Metadata}</h2>");
+			sb.Append("<article class=\"metadata\" id=\"metadata\"><details>");
+			sb.Append($"<summary><h2>{HtmlTexts.Metadata}</h2></summary>");
 		}
 
 		internal static void AppendStartMetadataTable(this StringBuilder sb)
@@ -65,7 +65,7 @@ namespace Exrecodel.InternalImplementations
 
 		internal static void AppendEndMetadata(this StringBuilder sb)
 		{
-			sb.Append("</article>");
+			sb.Append("</details></article>");
 		}
 
 		internal static string? Localize(this XrcdlDocumentType type)
