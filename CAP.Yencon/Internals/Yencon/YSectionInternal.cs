@@ -23,7 +23,7 @@ namespace CAP.Internals.Yencon
 			this.Children = _children.AsReadOnly();
 		}
 
-		protected override TNode? CreateNodeCore<TNode>(string name) where TNode : class
+		protected override TNode? CreateNodeCore<TNode>(string name) where TNode: class
 		{
 			YNode? result = null;
 			var    t      = typeof(TNode);
