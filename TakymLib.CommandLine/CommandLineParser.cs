@@ -27,7 +27,7 @@ namespace TakymLib.CommandLine
 		/// </summary>
 		/// <param name="args">コマンド行引数です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
-		public CommandLineParser(string[] args)
+		protected CommandLineParser(string[] args)
 		{
 			args.EnsureNotNull(nameof(args));
 			_args = args;
@@ -106,65 +106,45 @@ namespace TakymLib.CommandLine
 		private async ValueTask ParseCore(ParseResult pr)
 		{
 			await this.OnPreParse(pr.Command);
-			{
-				int count = pr.Values.Count;
-				for (int i = 0; i < count; ++i) {
-					await this.OnParse(null, null, pr.Values[i]);
+			var tasks = new List<ValueTask>();
+			tasks.Add(this.OnParse(null, null, pr.Values.ToArray()));
+			int count0 = pr.Options.Count;
+			for (int i = 0; i < count0; ++i) {
+				var opt = pr.Options[i];
+				tasks.Add(this.OnParse(null, opt.Name, opt.Values.ToArray()));
+			}
+			int count1 = pr.Switches.Count;
+			for (int i = 0; i < count1; ++i) {
+				var    swt    = pr.Switches[i];
+				string name_s = swt.Name;
+				tasks.Add(this.OnParse(name_s, null, swt.Values.ToArray()));
+				int count2 = swt.Options.Count;
+				for (int j = 0; j < count2; ++j) {
+					var opt = swt.Options[j];
+					tasks.Add(this.OnParse(name_s, opt.Name, opt.Values.ToArray()));
 				}
 			}
-			{
-				int count = pr.Options.Count;
-				for (int i = 0; i < count; ++i) {
-					string name   = pr.Options[i].Name;
-					var    vals   = pr.Options[i].Values;
-					int    count2 = vals.Count;
-					for (int j = 0; j < count2; ++j) {
-						await this.OnParse(null, name, vals[j]);
-					}
-				}
-			}
-			{
-				int count = pr.Switches.Count;
-				for (int i = 0; i < count; ++i) {
-					string name_s = pr.Switches[i].Name;
-					{
-						var vals   = pr.Switches[i].Values;
-						int count2 = vals.Count;
-						for (int j = 0; j < count2; ++j) {
-							await this.OnParse(name_s, null, vals[j]);
-						}
-					}
-					{
-						var opts   = pr.Switches[i].Options;
-						int count2 = opts.Count;
-						for (int j = 0; j < count2; ++j) {
-							string name_o = opts[j].Name;
-							var    vals   = opts[j].Values;
-							int    count3 = vals.Count;
-							for (int k = 0; k < count3; ++k) {
-								await this.OnParse(name_s, name_o, vals[k]);
-							}
-						}
-					}
-				}
+			int count3 = tasks.Count;
+			for (int i = 0; i < count3; ++i) {
+				await tasks[i].ConfigureAwait(false);
 			}
 		}
 
 		/// <summary>
-		///  解析前に呼び出されます。
+		///  上書きされた場合、解析前に呼び出されます。
 		/// </summary>
 		/// <param name="subCommand">子コマンドです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		protected abstract ValueTask OnPreParse(string? subCommand);
 
 		/// <summary>
-		///  解析時に呼び出されます。
+		///  上書きされた場合、解析時に呼び出されます。
 		/// </summary>
 		/// <param name="switchName">スイッチ名です。</param>
 		/// <param name="optionName">オプション名です。</param>
-		/// <param name="value">値です。</param>
+		/// <param name="values">文字列配列です。</param>
 		/// <returns>この処理の非同期操作です。</returns>
-		protected abstract ValueTask OnParse(string? switchName, string? optionName, string value);
+		protected abstract ValueTask OnParse(string? switchName, string? optionName, string[] values);
 
 		private sealed class ParseResult
 		{
