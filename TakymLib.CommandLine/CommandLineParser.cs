@@ -16,8 +16,9 @@ namespace TakymLib.CommandLine
 {
 	/// <summary>
 	///  コマンド行引数を解析します。
+	///  このクラスは抽象クラスです。
 	/// </summary>
-	public class CommandLineParser
+	public abstract class CommandLineParser
 	{
 		private readonly string[] _args;
 
@@ -104,7 +105,7 @@ namespace TakymLib.CommandLine
 
 		private void ParseCore(ParseResult pr)
 		{
-			this.OnPreParse();
+			this.OnPreParse(pr.Command);
 			{
 				int count = pr.Values.Count;
 				for (int i = 0; i < count; ++i) {
@@ -152,7 +153,8 @@ namespace TakymLib.CommandLine
 		/// <summary>
 		///  解析前に呼び出されます。
 		/// </summary>
-		protected virtual void OnPreParse() { }
+		/// <param name="subCommand">子コマンドです。</param>
+		protected abstract void OnPreParse(string? subCommand);
 
 		/// <summary>
 		///  解析時に呼び出されます。
@@ -160,7 +162,7 @@ namespace TakymLib.CommandLine
 		/// <param name="switchName">スイッチ名です。</param>
 		/// <param name="optionName">オプション名です。</param>
 		/// <param name="value">値です。</param>
-		protected virtual void OnParse(string? switchName, string? optionName, string value) { }
+		protected abstract void OnParse(string? switchName, string? optionName, string value);
 
 		private sealed class ParseResult
 		{
