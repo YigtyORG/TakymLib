@@ -38,18 +38,18 @@ namespace TakymLib.CommandLine
 		/// </summary>
 		public void Parse()
 		{
-			this.ParseCore(ParseCore(new ArrayAsyncEnumerator(_args), true).ConfigureAwait(false).GetAwaiter().GetResult());
+			var pr = ParseCore(new ArrayAsyncEnumerator(_args), true).ConfigureAwait(false).GetAwaiter().GetResult();
+			this.ParseCore(pr).ConfigureAwait(false).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
 		///  コマンド行引数の解析を非同期的に実行します。
 		/// </summary>
-		/// <returns>
-		///  この処理の非同期操作です。
-		/// </returns>
+		/// <returns>この処理の非同期操作です。</returns>
 		public async Task ParseAsync()
 		{
-			this.ParseCore(await ParseCore(new ArrayAsyncEnumerator(_args), true).ConfigureAwait(false));
+			var pr = await ParseCore(new ArrayAsyncEnumerator(_args), true).ConfigureAwait(false);
+			await this.ParseCore(pr).ConfigureAwait(false);
 		}
 
 		private static async Task<ParseResult> ParseCore(IAsyncEnumerable<string> args, bool readCommand)
@@ -103,13 +103,13 @@ namespace TakymLib.CommandLine
 			return result;
 		}
 
-		private void ParseCore(ParseResult pr)
+		private async ValueTask ParseCore(ParseResult pr)
 		{
-			this.OnPreParse(pr.Command);
+			await this.OnPreParse(pr.Command);
 			{
 				int count = pr.Values.Count;
 				for (int i = 0; i < count; ++i) {
-					this.OnParse(null, null, pr.Values[i]);
+					await this.OnParse(null, null, pr.Values[i]);
 				}
 			}
 			{
@@ -119,7 +119,7 @@ namespace TakymLib.CommandLine
 					var    vals   = pr.Options[i].Values;
 					int    count2 = vals.Count;
 					for (int j = 0; j < count2; ++j) {
-						this.OnParse(null, name, vals[j]);
+						await this.OnParse(null, name, vals[j]);
 					}
 				}
 			}
@@ -131,7 +131,7 @@ namespace TakymLib.CommandLine
 						var vals   = pr.Switches[i].Values;
 						int count2 = vals.Count;
 						for (int j = 0; j < count2; ++j) {
-							this.OnParse(name_s, null, vals[j]);
+							await this.OnParse(name_s, null, vals[j]);
 						}
 					}
 					{
@@ -142,7 +142,7 @@ namespace TakymLib.CommandLine
 							var    vals   = opts[j].Values;
 							int    count3 = vals.Count;
 							for (int k = 0; k < count3; ++k) {
-								this.OnParse(name_s, name_o, vals[k]);
+								await this.OnParse(name_s, name_o, vals[k]);
 							}
 						}
 					}
@@ -154,7 +154,8 @@ namespace TakymLib.CommandLine
 		///  解析前に呼び出されます。
 		/// </summary>
 		/// <param name="subCommand">子コマンドです。</param>
-		protected abstract void OnPreParse(string? subCommand);
+		/// <returns>この処理の非同期操作です。</returns>
+		protected abstract ValueTask OnPreParse(string? subCommand);
 
 		/// <summary>
 		///  解析時に呼び出されます。
@@ -162,7 +163,8 @@ namespace TakymLib.CommandLine
 		/// <param name="switchName">スイッチ名です。</param>
 		/// <param name="optionName">オプション名です。</param>
 		/// <param name="value">値です。</param>
-		protected abstract void OnParse(string? switchName, string? optionName, string value);
+		/// <returns>この処理の非同期操作です。</returns>
+		protected abstract ValueTask OnParse(string? switchName, string? optionName, string value);
 
 		private sealed class ParseResult
 		{
