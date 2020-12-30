@@ -4,10 +4,10 @@
 		<RootNamespace>TakymLib.CommandLine</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
-	<Import Project="../DnetLibrary.ProjectSettings.targets" />
+	<Import Project="../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib.CommandLine</Product>
-		<Description>The command-line arguments parser library for DnetLibrary components.</Description>
+		<Description>The command-line arguments parser library.</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />

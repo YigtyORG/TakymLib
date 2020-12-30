@@ -8,9 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		CommonProjectSettings.targets = CommonProjectSettings.targets
-		DnetLibrary.ProjectSettings.targets = DnetLibrary.ProjectSettings.targets
 		HeaderComments.txt = HeaderComments.txt
 		LICENSE.md = LICENSE.md
+		TakymLib.ProjectSettings.targets = TakymLib.ProjectSettings.targets
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"

@@ -1,31 +1,31 @@
 /****
- * プロジェクト名
+ * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
  *
- * 利用規約
+ * distributed under the MIT License.
 ****/
 
 <!--*
- * プロジェクト名
+ * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
  *
- * 利用規約
+ * distributed under the MIT License.
 **-->
 
 @****
- * プロジェクト名
+ * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
  *
- * 利用規約
+ * distributed under the MIT License.
 ****@
 
 #|***
- * プロジェクト名
+ * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
  *
- * 利用規約
+ * distributed under the MIT License.
 ***|#

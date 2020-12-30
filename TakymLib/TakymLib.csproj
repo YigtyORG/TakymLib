@@ -4,10 +4,10 @@
 		<RootNamespace>TakymLib</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
-	<Import Project="../DnetLibrary.ProjectSettings.targets" />
+	<Import Project="../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib</Product>
-		<Description>The common library for DnetLibrary components.</Description>
+		<Description>The common library.</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Update="Properties/Resources.Designer.cs">
