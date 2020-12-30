@@ -66,8 +66,8 @@ namespace Exrecodel.Properties {
         ///&lt;!--*
         /// * Exrecodel - &quot;Extensible Regulation/Convention Descriptor Language&quot;
         /// *    「拡張可能な規則/規約記述言語」
-        /// * Copyright (C) 2020 Yigty.ORG; all rights reserved.
-        /// * Copyright (C) 2020 Takym.
+        /// * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
+        /// * Copyright (C) 2020-2021 Takym.
         /// *
         /// * distributed under the MIT License.
         ///**--&gt;

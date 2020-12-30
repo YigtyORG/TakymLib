@@ -1,8 +1,8 @@
 ﻿/****
  * Yencon - "Yencon Environment Configuration"
  *    「ヱンコン環境設定ファイル」
- * Copyright (C) 2020 Yigty.ORG; all rights reserved.
- * Copyright (C) 2020 Takym.
+ * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2021 Takym.
  *
  * distributed under the MIT License.
 ****/
