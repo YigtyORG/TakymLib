@@ -31,7 +31,16 @@ namespace TakymLib.CommandLine
 		///  非同期的に実行する場合は<see langword="true"/>、同期的に実行する場合は<see langword="false"/>を設定します。
 		///  既定値は<see langword="false"/>です。
 		/// </value>
-		public bool DoConvertAsynchronously { get; set; }
+		public bool DoConvertAsync { get; set; }
+
+		/// <summary>
+		///  イベントハンドラを非同期的に実行するかどうかを表す論理値を取得または設定します。
+		/// </summary>
+		/// <value>
+		///  非同期的に実行する場合は<see langword="true"/>、同期的に実行する場合は<see langword="false"/>を設定します。
+		///  既定値は<see langword="false"/>です。
+		/// </value>
+		public bool RunEventsAsync { get; set; }
 
 		/// <summary>
 		///  解析前に呼び出されます。
@@ -146,10 +155,13 @@ namespace TakymLib.CommandLine
 		/// </summary>
 		/// <param name="subCommand">子コマンドです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
-		protected sealed override ValueTask OnPreParse(string? subCommand)
+		protected sealed override async ValueTask OnPreParse(string? subCommand)
 		{
-			this.OnPreParse(new PreParseEventArgs(subCommand));
-			return default;
+			if (this.RunEventsAsync) {
+				await Task.Run(() => this.OnPreParse(new PreParseEventArgs(subCommand)));
+			} else {
+				this.OnPreParse(new PreParseEventArgs(subCommand));
+			}
 		}
 
 		/// <summary>
@@ -173,13 +185,17 @@ namespace TakymLib.CommandLine
 			switchName = switchName ?? string.Empty;
 			optionName = optionName ?? string.Empty;
 			if (_types.ContainsKey(switchName)) {
-				if (this.DoConvertAsynchronously) {
+				if (this.DoConvertAsync) {
 					await Task.Run(() => _types[switchName].SetValue(optionName, values));
 				} else {
 					_types[switchName].SetValue(optionName, values);
 				}
 			}
-			this.OnParseNext(new ParseEventArgs(switchName, optionName, values));
+			if (this.RunEventsAsync) {
+				await Task.Run(() => this.OnParseNext(new ParseEventArgs(switchName, optionName, values)));
+			} else {
+				this.OnParseNext(new ParseEventArgs(switchName, optionName, values));
+			}
 		}
 
 		/// <summary>
