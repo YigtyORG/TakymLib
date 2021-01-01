@@ -106,6 +106,26 @@ namespace TakymLib
 				throw new ObjectDisposedException(this.GetType().Name);
 			}
 		}
+
+		/// <summary>
+		///  <see cref="TakymLib.DisposableBase.EnsureNotDisposed"/>を呼び出します。
+		/// </summary>
+		/// <remarks>
+		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
+		/// </remarks>
+		/// <exception cref="System.ObjectDisposedException" />
+		protected void ThrowIfDisposed()
+		{
+			this.LogThrowIfDisposed();
+			this.EnsureNotDisposed();
+		}
+
+		[Conditional("DEBUG")]
+		private void LogThrowIfDisposed()
+		{
+			Debug.WriteIf(this.IsDisposing, $"{this.GetType().Name}.{nameof(this.IsDisposing)} == {true}");
+			Debug.WriteIf(this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
+		}
 	}
 }
 
