@@ -144,4 +144,10 @@
   <data name="SerializationInfoExtensions_SerializationException" xml:space="preserve">
     <value>SerializationInfoExtensions_SerializationException</value>
   </data>
+  <data name="VersionInfo_Copyright" xml:space="preserve">
+    <value>VersionInfo_Copyright</value>
+  </data>
+  <data name="VersionInfo_DisplayName" xml:space="preserve">
+    <value>VersionInfo_DisplayName</value>
+  </data>
 </root>

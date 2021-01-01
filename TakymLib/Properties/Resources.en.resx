@@ -144,4 +144,10 @@
   <data name="SerializationInfoExtensions_SerializationException" xml:space="preserve">
     <value>The unexpected exception occurred when deserializing.</value>
   </data>
+  <data name="VersionInfo_Copyright" xml:space="preserve">
+    <value>Unknown copyright</value>
+  </data>
+  <data name="VersionInfo_DisplayName" xml:space="preserve">
+    <value>Unknown product name</value>
+  </data>
 </root>

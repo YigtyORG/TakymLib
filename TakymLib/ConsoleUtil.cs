@@ -91,5 +91,18 @@ namespace TakymLib
 			Console.WriteLine(new string(splitter, 16));
 			Console.WriteLine();
 		}
+
+		/// <summary>
+		///  題名、バージョン情報、及び著作者情報をコンソール画面に出力します。
+		/// </summary>
+		/// <param name="version">バージョン情報を表すオブジェクトです。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static void Print(this VersionInfo version)
+		{
+			version.EnsureNotNull(nameof(version));
+			Console.WriteLine(version.GetCaption());
+			Console.WriteLine(version.Copyright);
+			Console.WriteLine();
+		}
 	}
 }

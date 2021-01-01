@@ -140,5 +140,23 @@ namespace TakymLib.Properties {
                 return ResourceManager.GetString("SerializationInfoExtensions_SerializationException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   VersionInfo_Copyright に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VersionInfo_Copyright {
+            get {
+                return ResourceManager.GetString("VersionInfo_Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   VersionInfo_DisplayName に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VersionInfo_DisplayName {
+            get {
+                return ResourceManager.GetString("VersionInfo_DisplayName", resourceCulture);
+            }
+        }
     }
 }
