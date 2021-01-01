@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ManualBuilder_Build_Switch_Desc" xml:space="preserve">
+    <value>ManualBuilder_Build_Switch_Desc {0}</value>
+  </data>
+  <data name="ManualBuilder_Build_Switch_Options" xml:space="preserve">
+    <value>ManualBuilder_Build_Switch_Options {0}</value>
+  </data>
+  <data name="ManualBuilder_WriteUsage" xml:space="preserve">
+    <value>ManualBuilder_WriteUsage {0}</value>
+  </data>
+  <data name="ManualBuilder_WriteVersion" xml:space="preserve">
+    <value>ManualBuilder_WriteVersion</value>
+  </data>
 </root>

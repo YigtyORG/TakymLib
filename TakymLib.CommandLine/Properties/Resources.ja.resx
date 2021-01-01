@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ManualBuilder_Build_Switch_Desc" xml:space="preserve">
+    <value>スイッチ「{0}」：</value>
+  </data>
+  <data name="ManualBuilder_Build_Switch_Options" xml:space="preserve">
+    <value>スイッチ「{0}」内のオプション：</value>
+  </data>
+  <data name="ManualBuilder_WriteUsage" xml:space="preserve">
+    <value>使用法&gt; {0}</value>
+  </data>
+  <data name="ManualBuilder_WriteVersion" xml:space="preserve">
+    <value>コマンド行引数説明書</value>
+  </data>
 </root>

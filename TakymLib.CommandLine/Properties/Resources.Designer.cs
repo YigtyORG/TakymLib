@@ -59,5 +59,41 @@ namespace TakymLib.CommandLine.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   ManualBuilder_Build_Switch_Desc {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ManualBuilder_Build_Switch_Desc {
+            get {
+                return ResourceManager.GetString("ManualBuilder_Build_Switch_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ManualBuilder_Build_Switch_Options {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ManualBuilder_Build_Switch_Options {
+            get {
+                return ResourceManager.GetString("ManualBuilder_Build_Switch_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ManualBuilder_WriteUsage {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ManualBuilder_WriteUsage {
+            get {
+                return ResourceManager.GetString("ManualBuilder_WriteUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ManualBuilder_WriteVersion に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ManualBuilder_WriteVersion {
+            get {
+                return ResourceManager.GetString("ManualBuilder_WriteVersion", resourceCulture);
+            }
+        }
     }
 }

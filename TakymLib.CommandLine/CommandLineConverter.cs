@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -120,6 +121,24 @@ namespace TakymLib.CommandLine
 			} else {
 				return null;
 			}
+		}
+
+		/// <summary>
+		///  コマンド行引数により生成された全てのオブジェクトを取得します。
+		/// </summary>
+		/// <returns>オブジェクトを格納している列挙体を返します。</returns>
+		public IEnumerable<object> GetAll()
+		{
+			return _insts.Values;
+		}
+
+		/// <summary>
+		///  コマンド行引数により生成された全てのオブジェクトを配列として取得します。
+		/// </summary>
+		/// <returns>オブジェクトを格納している配列のコピーを返します。</returns>
+		public object[] GetAllAsArray()
+		{
+			return _insts.Values.ToArray();
 		}
 
 		/// <summary>

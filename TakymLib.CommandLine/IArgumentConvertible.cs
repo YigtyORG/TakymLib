@@ -11,6 +11,9 @@ namespace TakymLib.CommandLine
 	/// <summary>
 	///  コマンド行引数からの変換可能である事を示します。
 	/// </summary>
+	/// <remarks>
+	///  <see cref="TakymLib.CommandLine.OptionAttribute"/>属性を付加した変数の型で実装します。
+	/// </remarks>
 	public interface IArgumentConvertible
 	{
 		/// <summary>
