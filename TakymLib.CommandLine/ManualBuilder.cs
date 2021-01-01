@@ -47,19 +47,19 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public void WriteVersion(Assembly asm)
 		{
-			asm.EnsureNotNull(nameof(asm));
-			_appName = asm.GetName().Name;
 			this.WriteVersion(new VersionInfo(asm));
 		}
 
 		/// <summary>
 		///  バージョン情報を書き込みます。
+		///  プログラム名も設定されます。
 		/// </summary>
 		/// <param name="ver">バージョン情報を表すオブジェクトです。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		public void WriteVersion(VersionInfo ver)
 		{
 			ver.EnsureNotNull(nameof(ver));
+			_appName = ver.Assembly.GetName().Name;
 			_sb.Append(ver.GetCaption());
 			_sb.Append(" - ");
 			_sb.AppendLine(Resources.ManualBuilder_WriteVersion);
@@ -70,7 +70,7 @@ namespace TakymLib.CommandLine
 		/// <summary>
 		///  使用法を表す文字列を書き込みます。
 		/// </summary>
-		/// <param name="usage"></param>
+		/// <param name="usage">使用法を表す文字列です。</param>
 		public void WriteUsage(string usage)
 		{
 			if (_appName is null) {
@@ -140,9 +140,27 @@ namespace TakymLib.CommandLine
 		/// <summary>
 		///  バージョン情報と使用法を書き込み、
 		///  コマンド行引数説明書の生成を開始します。
+		///  プログラム名も設定されます。
 		/// </summary>
+		/// <param name="asm">アセンブリ情報を表すオブジェクトです。</param>
+		/// <param name="usages">使用法を表す文字列です。複数設定できます。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public void BuildFull(Assembly asm, params string[] usages)
+		{
+			this.BuildFull(new VersionInfo(asm), usages);
+		}
+
+		/// <summary>
+		///  バージョン情報と使用法を書き込み、
+		///  コマンド行引数説明書の生成を開始します。
+		///  プログラム名も設定されます。
+		/// </summary>
+		/// <param name="ver">バージョン情報を表すオブジェクトです。</param>
+		/// <param name="usages">使用法を表す文字列です。複数設定できます。</param>
+		/// <exception cref="System.ArgumentNullException"/>
 		public void BuildFull(VersionInfo ver, params string[] usages)
 		{
+			usages.EnsureNotNull(nameof(usages));
 			this.WriteVersion(ver);
 			for (int i = 0; i < usages.Length; ++i) {
 				this.WriteUsage(usages[i]);
