@@ -33,6 +33,16 @@ namespace TakymLib.CommandLine
 		public bool DoConvertAsynchronously { get; set; }
 
 		/// <summary>
+		///  解析前に呼び出されます。
+		/// </summary>
+		public event EventHandler<PreParseEventArgs>? PreParse;
+
+		/// <summary>
+		///  解析時に呼び出されます。
+		/// </summary>
+		public event EventHandler<ParseEventArgs>? ParseNext;
+
+		/// <summary>
 		///  型'<see cref="TakymLib.CommandLine.CommandLineConverter"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="args">コマンド行引数です。</param>
@@ -117,9 +127,19 @@ namespace TakymLib.CommandLine
 		/// </summary>
 		/// <param name="subCommand">子コマンドです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
-		protected override ValueTask OnPreParse(string? subCommand)
+		protected sealed override ValueTask OnPreParse(string? subCommand)
 		{
+			this.OnPreParse(new PreParseEventArgs(subCommand));
 			return default;
+		}
+
+		/// <summary>
+		///  <see cref="TakymLib.CommandLine.CommandLineConverter.PreParse"/>イベントを発生させます。
+		/// </summary>
+		/// <param name="e">イベントデータを格納しているオブジェクトです。</param>
+		protected virtual void OnPreParse(PreParseEventArgs e)
+		{
+			this.PreParse?.Invoke(this, e);
 		}
 
 		/// <summary>
@@ -129,15 +149,27 @@ namespace TakymLib.CommandLine
 		/// <param name="optionName">オプション名です。</param>
 		/// <param name="values">文字列配列です。</param>
 		/// <returns>この処理の非同期操作です。</returns>
-		protected override async ValueTask OnParse(string? switchName, string? optionName, string[] values)
+		protected sealed override async ValueTask OnParse(string? switchName, string? optionName, string[] values)
 		{
-			if (switchName is not null && optionName is not null && _types.ContainsKey(switchName)) {
+			switchName = switchName ?? string.Empty;
+			optionName = optionName ?? string.Empty;
+			if (_types.ContainsKey(switchName)) {
 				if (this.DoConvertAsynchronously) {
 					await Task.Run(() => _types[switchName].SetValue(optionName, values));
 				} else {
 					_types[switchName].SetValue(optionName, values);
 				}
 			}
+			this.OnParseNext(new ParseEventArgs(switchName, optionName, values));
+		}
+
+		/// <summary>
+		///  <see cref="TakymLib.CommandLine.CommandLineConverter.ParseNext"/>イベントを発生させます。
+		/// </summary>
+		/// <param name="e">イベントデータを格納しているオブジェクトです。</param>
+		protected virtual void OnParseNext(ParseEventArgs e)
+		{
+			this.ParseNext?.Invoke(this, e);
 		}
 
 		private sealed class TypeEntry
