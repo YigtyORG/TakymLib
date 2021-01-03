@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>TakymLib.CommandLine</AssemblyName>
-		<RootNamespace>TakymLib.CommandLine</RootNamespace>
+		<AssemblyName>TakymLib.Threading.Distributed</AssemblyName>
+		<RootNamespace>TakymLib.Threading.Distributed</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 	<Import Project="../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
-		<Product>TakymLib.CommandLine</Product>
-		<Description>The common command-line arguments parser library.</Description>
+		<Product>TakymLib.Threading.Distributed</Product>
+		<Description>The common distributed computing library.</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
