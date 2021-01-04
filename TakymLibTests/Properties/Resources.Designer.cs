@@ -61,6 +61,32 @@ namespace TakymLibTests.Properties {
         }
         
         /// <summary>
+        ///   
+        ///ManualBuilder_Build_Switch_Options /A
+        ///  -a        --option-a
+        ///  -b        --option-b
+        ///  -c        --option-c
+        ///            --long-option
+        ///
+        ///ManualBuilder_Build_Switch_Desc /B
+        ///  test switch
+        ///ManualBuilder_Build_Switch_Options /B
+        ///  -a        --option-a                test option A
+        ///  -b        --option-b                test option B
+        ///  -c        --option-c                test option C
+        ///            --long-option             test long option
+        ///
+        ///ManualBuilder_Build_Switch_Options /C
+        ///  -a        --option-a
+        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CL_ManualBuilder_Result {
+            get {
+                return ResourceManager.GetString("CL_ManualBuilder_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   C:\aaa\bbb\ccc\\ccc\\123.xyz\\123\\C:\aaa\bbb\ccc\123.xyz\\C:\aaa\bbb\ccc\123.xyz\\C:\\\file:///C:/aaa/bbb/ccc/123.xyz\\.xyz\\ABCD に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PathStringToStringResult {

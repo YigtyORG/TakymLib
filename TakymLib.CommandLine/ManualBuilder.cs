@@ -101,22 +101,57 @@ namespace TakymLib.CommandLine
 				var     provider = swt as IHelpProvider;
 				if (sname is not null) {
 					if (provider is not null) {
-						_sb.AppendLine(string.Format(Resources.ManualBuilder_Build_Switch_Desc, sname));
-						_sb.Append('\t');
+						_sb.AppendLine(string.Format(Resources.ManualBuilder_Build_Switch_Desc, "/" + sname));
+						_sb.Append("  ");
 						provider.WriteHelp(_sb, null);
+						_sb.AppendLine();
 					}
-					_sb.AppendLine(string.Format(Resources.ManualBuilder_Build_Switch_Options, sname));
+					_sb.AppendLine(string.Format(Resources.ManualBuilder_Build_Switch_Options, "/" + sname));
 					var props = type.GetProperties();
 					for (int i = 0; i < props.Length; ++i) {
 						WriteOption(props[i], provider);
 					}
-					var fields = type.GetProperties();
+					var fields = type.GetFields();
 					for (int i = 0; i < fields.Length; ++i) {
 						WriteOption(fields[i], provider);
 					}
 					_sb.AppendLine();
 				}
 			}
+#if true
+			void WriteOption(MemberInfo mi, IHelpProvider? provider)
+			{
+				var o = mi.GetCustomAttribute<OptionAttribute>();
+				if (o is not null) {
+					int pos;
+					if (o.ShortName is null) {
+						_sb.Append("    ");
+						pos = 4;
+					} else {
+						_sb.Append("  -");
+						_sb.Append(o.ShortName);
+						pos = 3 + o.ShortName.Length;
+					}
+					if (pos < 12) {
+						_sb.Append(' ', 12 - pos);
+					} else {
+						_sb.Append("  ");
+					}
+					_sb.Append("--");
+					_sb.Append(o.LongName);
+					if (provider is not null) {
+						pos = o.LongName.Length;
+						if (pos < 24) {
+							_sb.Append(' ', 24 - pos);
+						} else {
+							_sb.Append("  ");
+						}
+						provider.WriteHelp(_sb, o.LongName);
+					}
+					_sb.AppendLine();
+				}
+			}
+#else
 			void WriteOption(MemberInfo mi, IHelpProvider? provider)
 			{
 				var o = mi.GetCustomAttribute<OptionAttribute>();
@@ -133,8 +168,10 @@ namespace TakymLib.CommandLine
 						_sb.Append("\t\t");
 						provider.WriteHelp(_sb, o.LongName);
 					}
+					_sb.AppendLine();
 				}
 			}
+#endif
 		}
 
 		/// <summary>

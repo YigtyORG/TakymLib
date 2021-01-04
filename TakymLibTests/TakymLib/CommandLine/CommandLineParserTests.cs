@@ -25,27 +25,33 @@ namespace TakymLibTests.TakymLib.CommandLine
 		}
 
 		[TestMethod()]
-		public void Test01()
+		public void ParseTest()
 		{
 			var conv = Create();
-			conv.PreParse  += this.Conv_PreParse;
-			conv.ParseNext += this.Conv_ParseNext;
+			conv.PreParse  += this.conv_PreParse;
+			conv.ParseNext += this.conv_ParseNext;
 			conv.Parse();
-		}
-
-		private static CommandLineConverter Create(params string[] args)
-		{
-			// CommandLineParser は抽象型なので、
-			// CommandLineConverter を利用して実験する。
-			return new(args);
 		}
 
 		private static CommandLineConverter Create()
 		{
-			return Create("command", "a", "b", "c", "-o", "--option", "/S", "/switch", "val0", "val1", "-x", "val2", "val3", "-y", "--z", "/", "a", "-", "abc");
+			// CommandLineParser は抽象型なので、
+			// CommandLineConverter を利用して実験する。
+			return CLConvFactory.Create(
+				"command", "a", "b", "c",
+					"-o",
+					"--option",
+				"/S",
+				"/switch", "val0", "val1",
+					"-x", "val2", "val3",
+					"-y",
+					"--z",
+				"/", "a",
+					"-", "abc"
+			);
 		}
 
-		private void Conv_PreParse(object? sender, PreParseEventArgs e)
+		private void conv_PreParse(object? sender, PreParseEventArgs e)
 		{
 			if (_state != -1) {
 				throw new InvalidOperationException();
@@ -54,7 +60,7 @@ namespace TakymLibTests.TakymLib.CommandLine
 			++_state;
 		}
 
-		private void Conv_ParseNext(object? sender, ParseEventArgs e)
+		private void conv_ParseNext(object? sender, ParseEventArgs e)
 		{
 			switch (_state) {
 			case 0:

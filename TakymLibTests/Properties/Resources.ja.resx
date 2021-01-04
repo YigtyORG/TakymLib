@@ -119,29 +119,26 @@
   </resheader>
   <data name="CL_ManualBuilder_Result" xml:space="preserve">
     <value>
-ManualBuilder_Build_Switch_Options /A
+スイッチ「/A」内のオプション：
   -a        --option-a
   -b        --option-b
   -c        --option-c
             --long-option
 
-ManualBuilder_Build_Switch_Desc /B
+スイッチ「/B」：
   test switch
-ManualBuilder_Build_Switch_Options /B
+スイッチ「/B」内のオプション：
   -a        --option-a                test option A
   -b        --option-b                test option B
   -c        --option-c                test option C
             --long-option             test long option
 
-ManualBuilder_Build_Switch_Options /C
+スイッチ「/C」内のオプション：
   -a        --option-a
   -b        --option-b
   -c        --option-c
             --long-option
 
 </value>
-  </data>
-  <data name="PathStringToStringResult" xml:space="preserve">
-    <value>C:\aaa\bbb\ccc\\ccc\\123.xyz\\123\\C:\aaa\bbb\ccc\123.xyz\\C:\aaa\bbb\ccc\123.xyz\\C:\\\file:///C:/aaa/bbb/ccc/123.xyz\\.xyz\\ABCD</value>
   </data>
 </root>
