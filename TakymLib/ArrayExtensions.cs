@@ -8,6 +8,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace TakymLib
@@ -27,11 +28,11 @@ namespace TakymLib
 		/// <param name="arrays">結合する配列です。</param>
 		/// <returns>結合された新しい配列です。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
-		public static T[] Join<T>(this T[] baseArray, params T[][] arrays)
+		public static T?[] Combine<T>(this T?[] baseArray, params T?[][] arrays)
 		{
 			baseArray.EnsureNotNull(nameof(baseArray));
 			arrays   .EnsureNotNull(nameof(arrays));
-			return baseArray.JoinCore(arrays);
+			return baseArray.CombineCore(arrays);
 		}
 
 		/// <summary>
@@ -42,11 +43,11 @@ namespace TakymLib
 		/// <param name="arrays">結合するオブジェクト配列です。</param>
 		/// <returns>結合された新しいオブジェクト配列です。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
-		public static object?[] Join(this object?[] baseArray, params object?[][] arrays)
+		public static object?[] Combine(this object?[] baseArray, params object?[][] arrays)
 		{
 			baseArray.EnsureNotNull(nameof(baseArray));
 			arrays   .EnsureNotNull(nameof(arrays));
-			return baseArray.JoinCore(arrays);
+			return baseArray.CombineCore(arrays);
 		}
 
 		/// <summary>
@@ -57,11 +58,11 @@ namespace TakymLib
 		/// <param name="arrays">結合する配列です。</param>
 		/// <returns>結合された新しい配列を含む非同期操作です。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
-		public static async Task<T[]> JoinAsync<T>(this T[] baseArray, params T[][] arrays)
+		public static ConfiguredTaskAwaitable<T?[]> CombineAsync<T>(this T?[] baseArray, params T?[][] arrays)
 		{
 			baseArray.EnsureNotNull(nameof(baseArray));
 			arrays   .EnsureNotNull(nameof(arrays));
-			return await Task.Run(() => baseArray.JoinCore(arrays)).ConfigureAwait(false);
+			return Task.Run(() => baseArray.CombineCore(arrays)).ConfigureAwait(false);
 		}
 
 		/// <summary>
@@ -71,16 +72,16 @@ namespace TakymLib
 		/// <param name="arrays">結合するオブジェクト配列です。</param>
 		/// <returns>結合された新しいオブジェクト配列を含む非同期操作です。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
-		public static async Task<object?[]> JoinAsync(this object?[] baseArray, params object?[][] arrays)
+		public static ConfiguredTaskAwaitable<object?[]> CombineAsync(this object?[] baseArray, params object?[][] arrays)
 		{
 			baseArray.EnsureNotNull(nameof(baseArray));
 			arrays   .EnsureNotNull(nameof(arrays));
-			return await Task.Run(() => baseArray.JoinCore(arrays)).ConfigureAwait(false);
+			return Task.Run(() => baseArray.CombineCore(arrays)).ConfigureAwait(false);
 		}
 
-		private static T[] JoinCore<T>(this T[] baseArray, T[][] arrays)
+		private static T?[] CombineCore<T>(this T?[] baseArray, T?[][] arrays)
 		{
-			var result = new List<T>(baseArray);
+			var result = new List<T?>(baseArray);
 			for (int i = 0; i < arrays.Length; ++i) {
 				if (arrays[i] is not null) {
 					result.AddRange(arrays[i]);
@@ -89,7 +90,7 @@ namespace TakymLib
 			return result.ToArray();
 		}
 
-		private static object?[] JoinCore(this object?[] baseArray, object?[][] arrays)
+		private static object?[] CombineCore(this object?[] baseArray, object?[][] arrays)
 		{
 			var result = new ArrayList(baseArray);
 			for (int i = 0; i < arrays.Length; ++i) {

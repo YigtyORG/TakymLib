@@ -144,6 +144,9 @@
   <data name="SerializationInfoExtensions_SerializationException" xml:space="preserve">
     <value>SerializationInfoExtensions_SerializationException</value>
   </data>
+  <data name="StringExtensions_ToBoolean" xml:space="preserve">
+    <value>StringExtensions_ToBoolean {0}</value>
+  </data>
   <data name="VersionInfo_Copyright" xml:space="preserve">
     <value>VersionInfo_Copyright</value>
   </data>

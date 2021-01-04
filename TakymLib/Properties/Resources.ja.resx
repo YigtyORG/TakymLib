@@ -144,6 +144,9 @@
   <data name="SerializationInfoExtensions_SerializationException" xml:space="preserve">
     <value>逆直列化中に未知のエラーが発生しました。</value>
   </data>
+  <data name="StringExtensions_ToBoolean" xml:space="preserve">
+    <value>指定された文字列「{0}」を論理値へ変換する事はできません。</value>
+  </data>
   <data name="VersionInfo_Copyright" xml:space="preserve">
     <value>著作者情報不明</value>
   </data>

@@ -142,6 +142,15 @@ namespace TakymLib.Properties {
         }
         
         /// <summary>
+        ///   StringExtensions_ToBoolean {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string StringExtensions_ToBoolean {
+            get {
+                return ResourceManager.GetString("StringExtensions_ToBoolean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   VersionInfo_Copyright に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string VersionInfo_Copyright {
