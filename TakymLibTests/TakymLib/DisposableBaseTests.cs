@@ -16,7 +16,7 @@ namespace TakymLibTests.TakymLib
 	public class DisposableBaseTests
 	{
 		[TestMethod()]
-		public virtual void DisposeTest()
+		public void DisposeTest()
 		{
 			var obj = new DisposableBaseMock();
 			using (obj) { }
@@ -26,7 +26,7 @@ namespace TakymLibTests.TakymLib
 		}
 
 		[TestMethod()]
-		public virtual void DisposeAsyncTest()
+		public void DisposeAsyncTest()
 		{
 			var obj = new DisposableBaseMock();
 			DisposeAsyncTestCore(obj);
@@ -35,7 +35,7 @@ namespace TakymLibTests.TakymLib
 			Assert.IsTrue(obj.IsDisposed);
 		}
 
-		protected static async void DisposeAsyncTestCore(DisposableBase disp)
+		private static async void DisposeAsyncTestCore(DisposableBase disp)
 		{
 			await using (disp.ConfigureAwait(false)) { }
 		}
