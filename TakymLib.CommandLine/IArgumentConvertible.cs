@@ -17,6 +17,12 @@ namespace TakymLib.CommandLine
 	public interface IArgumentConvertible
 	{
 		/// <summary>
+		///  指定された文字列から現在のインスタンスに値を設定します。
+		/// </summary>
+		/// <param name="value">文字列です。</param>
+		public void FromString(string value);
+
+		/// <summary>
 		///  指定された文字列配列から現在のインスタンスに値を設定します。
 		/// </summary>
 		/// <param name="array">文字列配列です。</param>

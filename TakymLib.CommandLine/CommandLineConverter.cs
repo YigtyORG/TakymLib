@@ -275,7 +275,7 @@ namespace TakymLib.CommandLine
 
 			private static object? ConvertToObject(string[] args, Type target)
 			{
-				if (target == typeof(string)) {
+				if (target == typeof(string) || target == typeof(object)) {
 					return args.Length > 0 ? args[0] : string.Empty;
 				} else if (target == typeof(PathString)) {
 					try {
@@ -292,7 +292,7 @@ namespace TakymLib.CommandLine
 				} else if (target == typeof(char)) {
 					return (args.Length > 0 && args[0].Length > 0) ? args[0][0] : '\0';
 				} else if (target == typeof(bool)) {
-					return args.Length == 0 ? true : bool.TryParse(args[0], out bool result) ? result : false;
+					return args.Length == 0 ? true : args[0].TryToBoolean(out bool result) ? result : false;
 				} else if (target == typeof(byte)) {
 					return args.Length == 0 ? default : byte.TryParse(args[0], out byte result) ? result : default;
 				} else if (target == typeof(sbyte)) {
@@ -325,6 +325,12 @@ namespace TakymLib.CommandLine
 					return args.Length == 0 ? IPAddress.Loopback : IPAddress.TryParse(args[0], out var result) ? result : IPAddress.Loopback;
 				} else if (target == typeof(string[])) {
 					return args;
+				} else if (target == typeof(object[])) {
+					object[] result = new object[args.Length];
+					for (int i = 0; i < args.Length; ++i) {
+						result[i] = args[i];
+					}
+					return result;
 				} else if (target == typeof(PathString[])) {
 					var result = new PathString[args.Length];
 					for (int i = 0; i < args.Length; ++i) {
@@ -354,7 +360,7 @@ namespace TakymLib.CommandLine
 				} else if (target == typeof(bool[])) {
 					bool[] result = new bool[args.Length];
 					for (int i = 0; i < args.Length; ++i) {
-						result[i] = bool.TryParse(args[i], out bool r) ? r : false;
+						result[i] = args[0].TryToBoolean(out bool r) ? r : false;
 					}
 					return result;
 				} else if (target == typeof(byte[])) {
@@ -455,6 +461,17 @@ namespace TakymLib.CommandLine
 					} catch {
 						return null;
 					}
+				} else if (target.IsArray && typeof(IArgumentConvertible).IsAssignableFrom(target.GetElementType())) {
+					var result = new IArgumentConvertible?[args.Length];
+					for (int i = 0; i < args.Length; ++i) {
+						try {
+							result[i] = Activator.CreateInstance(target) as IArgumentConvertible;
+							result[i]?.FromStringArray(new[] { args[i] });
+						} catch {
+							result[i] = null;
+						}
+					}
+					return result;
 				} else {
 					return null;
 				}
