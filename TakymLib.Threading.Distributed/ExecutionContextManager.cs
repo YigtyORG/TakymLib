@@ -25,6 +25,7 @@ namespace TakymLib.Threading.Distributed
 		/// </summary>
 		/// <remarks>
 		///  このインスタンスを破棄(<see cref="System.IDisposable.Dispose"/>の呼び出し)しないでください。
+		///  アプリケーション終了時のみ破棄できます。
 		/// </remarks>
 		/// <returns>有効な<see cref="TakymLib.Threading.Distributed.ExecutionContextManager"/>オブジェクトです。</returns>
 		public static ExecutionContextManager GetDefault()
