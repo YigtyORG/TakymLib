@@ -22,11 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLibTests", "TakymLibTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.CommandLine", "TakymLib.CommandLine\TakymLib.CommandLine.csproj", "{1051F12A-B95B-4776-B632-58B452A66C62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.CommandLineTests", "TakymLib.CommandLineTests\TakymLib.CommandLineTests.csproj", "{D1E59948-1653-4DD5-8A47-1F0A13494CC6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Distributed", "TakymLib.Threading.Distributed\TakymLib.Threading.Distributed.csproj", "{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Threading.DistributedTests", "TakymLib.Threading.DistributedTests\TakymLib.Threading.DistributedTests.csproj", "{65E97301-0B87-48E8-9FDF-F2921DA942E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,26 +42,16 @@ Global
 		{1051F12A-B95B-4776-B632-58B452A66C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1051F12A-B95B-4776-B632-58B452A66C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1051F12A-B95B-4776-B632-58B452A66C62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1E59948-1653-4DD5-8A47-1F0A13494CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1E59948-1653-4DD5-8A47-1F0A13494CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1E59948-1653-4DD5-8A47-1F0A13494CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1E59948-1653-4DD5-8A47-1F0A13494CC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65E97301-0B87-48E8-9FDF-F2921DA942E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65E97301-0B87-48E8-9FDF-F2921DA942E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65E97301-0B87-48E8-9FDF-F2921DA942E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65E97301-0B87-48E8-9FDF-F2921DA942E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
-		{D1E59948-1653-4DD5-8A47-1F0A13494CC6} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
-		{65E97301-0B87-48E8-9FDF-F2921DA942E5} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}

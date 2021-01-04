@@ -7,9 +7,10 @@
 ****/
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TakymLib.Tests.Properties;
+using TakymLib.IO;
+using TakymLibTests.Properties;
 
-namespace TakymLib.IO.Tests
+namespace TakymLibTests.IO
 {
 	[TestClass()]
 	public class PathStringFormatterTests

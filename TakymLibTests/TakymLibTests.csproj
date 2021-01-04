@@ -3,7 +3,7 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<IsPackable>false</IsPackable>
 		<Nullable>enable</Nullable>
-		<RootNamespace>TakymLib.Tests</RootNamespace>
+		<RootNamespace>TakymLibTests</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
@@ -13,6 +13,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
+		<ProjectReference Include="../TakymLib.CommandLine/TakymLib.CommandLine.csproj" />
+		<ProjectReference Include="../TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj" />
 		<EmbeddedResource Update="Properties/Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>

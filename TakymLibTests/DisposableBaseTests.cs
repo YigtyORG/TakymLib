@@ -8,8 +8,9 @@
 
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TakymLib;
 
-namespace TakymLib.Tests
+namespace TakymLibTests
 {
 	[TestClass()]
 	public class DisposableBaseTests
