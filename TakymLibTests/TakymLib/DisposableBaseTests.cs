@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib;
 
-namespace TakymLibTests
+namespace TakymLibTests.TakymLib
 {
 	[TestClass()]
 	public class DisposableBaseTests
