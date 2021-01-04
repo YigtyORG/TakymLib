@@ -13,7 +13,7 @@ using TakymLib.CommandLine;
 namespace TakymLibTests.TakymLib.CommandLine
 {
 	[TestClass()]
-	public class CommandLineConverterTests
+	public class CommandLineParserTests
 	{
 		private int _state;
 
@@ -35,6 +35,8 @@ namespace TakymLibTests.TakymLib.CommandLine
 
 		private static CommandLineConverter Create(params string[] args)
 		{
+			// CommandLineParser は抽象型なので、
+			// CommandLineConverter を利用して実験する。
 			return new(args);
 		}
 
