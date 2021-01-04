@@ -86,5 +86,23 @@ namespace TakymLib.Threading.Distributed
 		/// <param name="thread">スレッドです。</param>
 		/// <returns><see cref="TakymLib.Threading.Distributed.ExecutionContext"/>オブジェクトです。</returns>
 		protected abstract ExecutionContext GetServerContextCore(Thread thread);
+
+		/// <summary>
+		///  指定されたスレッドへ接続します。
+		/// </summary>
+		/// <param name="thread">接続先のスレッドです。</param>
+		/// <returns>接続情報を表すオブジェクトです。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ObjectDisposedException"/>
+		public ConnectedContext Connect(Thread thread)
+		{
+			thread.EnsureNotNull(nameof(thread));
+			this.EnsureNotDisposed();
+			return new ConnectedContext(
+				this.GetServerContextCore(thread),
+				this.GetClientContextCore(),
+				true
+			);
+		}
 	}
 }

@@ -1,0 +1,121 @@
+﻿/****
+ * TakymLib
+ * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2021 Takym.
+ *
+ * distributed under the MIT License.
+****/
+
+using System.Threading.Tasks;
+
+namespace TakymLib.Threading.Distributed
+{
+	/// <summary>
+	///  スレッド間で接続された文脈情報を表します。
+	/// </summary>
+	public class ConnectedContext : DisposableBase
+	{
+		private readonly bool _leave_open;
+
+		/// <summary>
+		///  接続先のスレッドの実行文脈情報を取得します。
+		/// </summary>
+		public ExecutionContext Server { get; }
+
+		/// <summary>
+		///  現在のスレッドの実行文脈情報を取得します。
+		/// </summary>
+		public ExecutionContext Client { get; }
+
+		/// <summary>
+		///  型'<see cref="TakymLib.Threading.Distributed.ConnectedContext"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="server">接続先のスレッドの実行文脈情報です。</param>
+		/// <param name="client">現在のスレッドの実行文脈情報です。</param>
+		/// <param name="leaveOpen">
+		///  <see cref="TakymLib.Threading.Distributed.ConnectedContext"/>を破棄した後に、
+		///  <paramref name="server"/>と<paramref name="client"/>を破棄する場合は<see langword="false"/>、
+		///  それ以外の場合は<see langword="true"/>です。
+		///  既定値は<see langword="false"/>です。
+		/// </param>
+		public ConnectedContext(ExecutionContext server, ExecutionContext client, bool leaveOpen = false)
+		{
+			this.Server = server;
+			this.Client = client;
+			_leave_open = leaveOpen;
+		}
+
+		/// <summary>
+		///  オブジェクトを接続先のスレッドへ送信します。
+		/// </summary>
+		/// <param name="obj">送信するオブジェクトです。</param>
+		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		public async ValueTask SendObject(object obj)
+		{
+			this.EnsureNotDisposed();
+			await this.Server.SendObject(this.Client, obj);
+		}
+
+		/// <summary>
+		///  接続先のスレッドからオブジェクトを受信します。
+		///  <see cref="TakymLib.Threading.Distributed.ConnectedContext.Server"/>以外の送信元を持つオブジェクトは読み飛ばされます。
+		/// </summary>
+		/// <returns>受信したオブジェクトを含む非同期操作です。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		public async ValueTask<object> ReceiveObject()
+		{
+			this.EnsureNotDisposed();
+			while (true) {
+				var data = await this.Client.ReceiveObjectWithSender();
+				if (data.sender == this.Server) {
+					return data.obj;
+				}
+			}
+		}
+
+		/// <summary>
+		///  接続先のスレッドへオブジェクトを送信し、結果の受信が完了するまで待機します。
+		/// </summary>
+		/// <param name="obj">送信するオブジェクトです。</param>
+		/// <returns>受信したオブジェクトを含む非同期操作です。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		public async ValueTask<object> SendAndReceive(object obj)
+		{
+			await this.SendObject(obj);
+			return await this.ReceiveObject();
+		}
+
+		/// <summary>
+		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。
+		///  この関数内で例外を発生させてはいけません。
+		/// </summary>
+		/// <param name="disposing">
+		///  マネージドオブジェクトとアンマネージオブジェクト両方を破棄する場合は<see langword="true"/>、
+		///  アンマネージオブジェクトのみを破棄する場合は<see langword="false"/>を設定します。
+		/// </param>
+		protected override void Dispose(bool disposing)
+		{
+			if (!this.IsDisposed) {
+				if (disposing && !_leave_open) {
+					this.Server.Dispose();
+					this.Client.Dispose();
+				}
+				base.Dispose(disposing);
+			}
+		}
+
+		/// <summary>
+		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
+		///  この関数内で例外を発生させてはいけません。
+		/// </summary>
+		protected override async ValueTask DisposeAsyncCore()
+		{
+			if (!_leave_open) {
+				await this.Server.ConfigureAwait(false).DisposeAsync();
+				await this.Client.ConfigureAwait(false).DisposeAsync();
+			}
+			await base.DisposeAsyncCore();
+		}
+	}
+}

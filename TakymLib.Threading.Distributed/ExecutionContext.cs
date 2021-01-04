@@ -28,10 +28,10 @@ namespace TakymLib.Threading.Distributed
 		}
 
 		/// <summary>
-		///  参照型オブジェクトを別スレッドへ送信します。
+		///  オブジェクトを別スレッドへ送信します。
 		/// </summary>
 		/// <param name="sender">オブジェクトの送信を行うスレッドの実行文脈です。</param>
-		/// <param name="obj">送信する参照型オブジェクトです。</param>
+		/// <param name="obj">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public ConfiguredTaskAwaitable SendObject(ExecutionContext? sender, object obj)
@@ -45,9 +45,9 @@ namespace TakymLib.Threading.Distributed
 		}
 
 		/// <summary>
-		///  参照型オブジェクトを別スレッドへ送信します。
+		///  オブジェクトを別スレッドへ送信します。
 		/// </summary>
-		/// <param name="obj">送信する参照型オブジェクトです。</param>
+		/// <param name="obj">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public async ValueTask SendObject(object obj)
@@ -56,10 +56,10 @@ namespace TakymLib.Threading.Distributed
 		}
 
 		/// <summary>
-		///  別スレッドから参照型オブジェクトを受信します。
+		///  別スレッドからオブジェクトを受信します。
 		///  また、送信元スレッドの実行文脈も取得します。
 		/// </summary>
-		/// <returns>送信元情報と受信した参照型オブジェクトを含む非同期操作です。</returns>
+		/// <returns>送信元情報と受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public ConfiguredTaskAwaitable<(ExecutionContext? sender, object obj)> ReceiveObjectWithSender()
 		{
@@ -73,9 +73,9 @@ namespace TakymLib.Threading.Distributed
 		}
 
 		/// <summary>
-		///  別スレッドから参照型オブジェクトを受信します。
+		///  別スレッドからオブジェクトを受信します。
 		/// </summary>
-		/// <returns>受信した参照型オブジェクトを含む非同期操作です。</returns>
+		/// <returns>受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public async ValueTask<object> ReceiveObject()
 		{

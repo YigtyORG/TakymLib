@@ -90,7 +90,7 @@ namespace TakymLib.Threading.Distributed.Internals
 			}
 		}
 
-		protected async override ValueTask DisposeAsyncCore()
+		protected override async ValueTask DisposeAsyncCore()
 		{
 			try {
 				_rwlock.EnterWriteLock();
