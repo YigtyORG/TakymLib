@@ -9,7 +9,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -210,12 +209,11 @@ namespace TakymLib.CommandLine
 
 		private sealed class TypeEntry
 		{
-			private  static readonly Uri                                       _default_uri = new Uri("http://localhost");
-			private  static readonly Version                                   _default_ver = new Version(0, 0, 0, 0);
-			private  static readonly Expression<Func<string[], Type, object?>> _to_obj      = (a, b) => ConvertToObject(a, b);
-			internal        readonly Type                                      _type;
-			internal        readonly object?                                   _inst;
-			private         readonly Dictionary<string, Action<string[]>>      _opts;
+			private  static readonly Uri                                  _default_uri = new Uri("http://localhost");
+			private  static readonly Version                              _default_ver = new Version(0, 0, 0, 0);
+			internal        readonly Type                                 _type;
+			internal        readonly object?                              _inst;
+			private         readonly Dictionary<string, Action<string[]>> _opts;
 
 			internal TypeEntry(Type t)
 			{
@@ -245,28 +243,10 @@ namespace TakymLib.CommandLine
 				for (int i = 0; i < props.Length; ++i) {
 					var o = props[i].GetCustomAttribute<OptionAttribute>();
 					if (o is not null) {
-						var prop = props[i];
-#if true
-						var args   = Expression.Parameter(typeof(string[]));
-						var obj    = Expression.TypeAs(
-							Expression.Invoke(_to_obj, args, Expression.Constant(prop.PropertyType)),
-							prop.PropertyType
-						);
-						var action = Expression.Lambda<Action<string[]>>(
-							Expression.IfThen(
-								Expression.NotEqual(obj, Expression.Constant(null)),
-								Expression.Assign(
-									Expression.Property(Expression.Constant(_inst), prop),
-									obj
-								)
-							),
-							args
-						).Compile();
-#else
+						var prop   = props[i];
 						var action = new Action<string[]>(args => {
 							prop.SetValue(_inst, ConvertToObject(args, prop.PropertyType));
 						});
-#endif
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
 							_opts.Add(o.ShortName, action);
@@ -281,28 +261,10 @@ namespace TakymLib.CommandLine
 				for (int i = 0; i < fields.Length; ++i) {
 					var o = fields[i].GetCustomAttribute<OptionAttribute>();
 					if (o is not null) {
-						var field = fields[i];
-#if true
-						var args   = Expression.Parameter(typeof(string[]));
-						var obj    = Expression.TypeAs(
-							Expression.Invoke(_to_obj, args, Expression.Constant(field.FieldType)),
-							field.FieldType
-						);
-						var action = Expression.Lambda<Action<string[]>>(
-							Expression.IfThen(
-								Expression.NotEqual(obj, Expression.Constant(null)),
-								Expression.Assign(
-									Expression.Field(Expression.Constant(_inst), field),
-									obj
-								)
-							),
-							args
-						).Compile();
-#else
+						var field  = fields[i];
 						var action = new Action<string[]>(args => {
 							field.SetValue(_inst, ConvertToObject(args, field.FieldType));
 						});
-#endif
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
 							_opts.Add(o.ShortName, action);
