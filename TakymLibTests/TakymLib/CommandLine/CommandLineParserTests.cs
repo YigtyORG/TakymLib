@@ -47,7 +47,9 @@ namespace TakymLibTests.TakymLib.CommandLine
 					"-y",
 					"--z",
 				"/", "a",
-					"-", "abc"
+					"-", "abc",
+				"/123",
+					"!/123", "!!!", "#--aa"
 			);
 		}
 
@@ -92,6 +94,9 @@ namespace TakymLibTests.TakymLib.CommandLine
 				break;
 			case 9:
 				Compare(e, string.Empty, string.Empty, "abc");
+				break;
+			case 10:
+				Compare(e, "123", string.Empty, "/123", "!!");
 				break;
 			default:
 				Assert.Fail("the state value: " + _state);

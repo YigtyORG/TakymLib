@@ -93,6 +93,9 @@ namespace TakymLib.CommandLine
 							break;
 						case '#':
 							break;
+						case '!':
+							result.AddValue(argData);
+							break;
 						default:
 							result.AddValue(arg);
 							break;
