@@ -23,6 +23,7 @@ namespace TakymLib.CommandLine
 	{
 		private readonly Dictionary<string, TypeEntry> _types;
 		private readonly Dictionary<Type,   object>    _insts;
+		private          IArgumentConverter?           _custom_converter;
 
 		/// <summary>
 		///  変換処理を非同期的に実行するかどうかを表す論理値を取得または設定します。
@@ -94,13 +95,22 @@ namespace TakymLib.CommandLine
 			if (s is null || s.Name is null || _types.ContainsKey(s.Name)) {
 				return false;
 			} else {
-				var entry = new TypeEntry(t);
+				var entry = new TypeEntry(this, t);
 				_types.Add(s.Name, entry);
 				if (entry._inst is not null) {
 					_insts.Add(t, entry._inst);
 				}
 				return true;
 			}
+		}
+
+		/// <summary>
+		///  コマンド行引数のオプションの変換を行うオブジェクトを設定します。
+		/// </summary>
+		/// <param name="converter"><see cref="TakymLib.CommandLine.IArgumentConverter"/>オブジェクトです。</param>
+		public void SetCustomConverter(IArgumentConverter? converter)
+		{
+			_custom_converter = converter;
 		}
 
 		/// <summary>
@@ -211,18 +221,20 @@ namespace TakymLib.CommandLine
 		{
 			private  static readonly Uri                                  _default_uri = new Uri("http://localhost");
 			private  static readonly Version                              _default_ver = new Version(0, 0, 0, 0);
+			private         readonly CommandLineConverter                 _owner;
 			internal        readonly Type                                 _type;
 			internal        readonly object?                              _inst;
 			private         readonly Dictionary<string, Action<string[]>> _opts;
 			private                  bool                                 _init;
 
-			internal TypeEntry(Type t)
+			internal TypeEntry(CommandLineConverter owner, Type t)
 			{
 				try {
-					_type = t;
-					_inst = Activator.CreateInstance(t);
-					_opts = new Dictionary<string, Action<string[]>>();
-					_init = true;
+					_owner = owner;
+					_type  = t;
+					_inst  = Activator.CreateInstance(t);
+					_opts  = new Dictionary<string, Action<string[]>>();
+					_init  = true;
 				} catch (Exception e) {
 					throw new AggregateException(e);
 				}
@@ -250,7 +262,7 @@ namespace TakymLib.CommandLine
 					if (o is not null) {
 						var prop   = props[i];
 						var action = new Action<string[]>(args => {
-							prop.SetValue(_inst, ConvertToObject(args, prop.PropertyType));
+							prop.SetValue(_inst, this.ConvertToObject(args, prop.PropertyType));
 						});
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
@@ -268,7 +280,7 @@ namespace TakymLib.CommandLine
 					if (o is not null) {
 						var field  = fields[i];
 						var action = new Action<string[]>(args => {
-							field.SetValue(_inst, ConvertToObject(args, field.FieldType));
+							field.SetValue(_inst, this.ConvertToObject(args, field.FieldType));
 						});
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
@@ -278,7 +290,7 @@ namespace TakymLib.CommandLine
 				}
 			}
 
-			private static object? ConvertToObject(string[] args, Type target)
+			private object? ConvertToObject(string[] args, Type target)
 			{
 				if (target == typeof(string) || target == typeof(object)) {
 					return args.Length > 0 ? args[0] : string.Empty;
@@ -478,7 +490,7 @@ namespace TakymLib.CommandLine
 					}
 					return result;
 				} else {
-					return null;
+					return _owner._custom_converter?.ConvertToObject(args, target);
 				}
 			}
 		}
