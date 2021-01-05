@@ -9,7 +9,7 @@
 namespace TakymLib
 {
 	/// <summary>
-	///  <see cref="TakymLib.StringExtensions.RemoveControlChars(string, ControlCharsReplaceMode)"/>の動作モードを指定します。
+	///  <see cref="TakymLib.StringExtensions.RemoveControlChars(string, ControlCharsReplaceMode, bool, bool, bool)"/>の動作モードを指定します。
 	/// </summary>
 	public enum ControlCharsReplaceMode
 	{
