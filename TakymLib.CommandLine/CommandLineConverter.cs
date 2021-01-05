@@ -214,6 +214,7 @@ namespace TakymLib.CommandLine
 			internal        readonly Type                                 _type;
 			internal        readonly object?                              _inst;
 			private         readonly Dictionary<string, Action<string[]>> _opts;
+			private                  bool                                 _init;
 
 			internal TypeEntry(Type t)
 			{
@@ -221,8 +222,7 @@ namespace TakymLib.CommandLine
 					_type = t;
 					_inst = Activator.CreateInstance(t);
 					_opts = new Dictionary<string, Action<string[]>>();
-					this.InitProperties();
-					this.InitFields();
+					_init = true;
 				} catch (Exception e) {
 					throw new AggregateException(e);
 				}
@@ -230,6 +230,11 @@ namespace TakymLib.CommandLine
 
 			internal void SetValue(string name, string[] args)
 			{
+				if (_init) {
+					this.InitProperties();
+					this.InitFields();
+					_init = false;
+				}
 				if (_opts.ContainsKey(name)) {
 					lock (this) {
 						_opts[name](args);
