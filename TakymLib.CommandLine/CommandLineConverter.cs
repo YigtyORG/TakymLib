@@ -209,8 +209,9 @@ namespace TakymLib.CommandLine
 
 		private sealed class TypeEntry
 		{
-			private  static readonly Uri                                  _default_uri = new Uri("http://localhost");
-			private  static readonly Version                              _default_ver = new Version(0, 0, 0, 0);
+			private  static readonly Uri                                  _default_uri  = new Uri("http://localhost");
+			private  static readonly Version                              _default_ver  = new Version(0, 0, 0, 0);
+			private  static readonly Action<string[]>                     _empty_action = new Action<string[]>(_ => { });
 			internal        readonly Type                                 _type;
 			internal        readonly object?                              _inst;
 			private         readonly Dictionary<string, Action<string[]>> _opts;
@@ -244,9 +245,10 @@ namespace TakymLib.CommandLine
 					var o = props[i].GetCustomAttribute<OptionAttribute>();
 					if (o is not null) {
 						var prop   = props[i];
-						var action = new Action<string[]>(args => {
-							prop.SetValue(_inst, ConvertToObject(args, prop.PropertyType));
-						});
+						var setter = prop.SetMethod?.CreateDelegate<Action<object?>>(_inst);
+						var action = setter is null ? _empty_action : args => {
+							setter(ConvertToObject(args, prop.PropertyType));
+						};
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
 							_opts.Add(o.ShortName, action);
