@@ -38,19 +38,29 @@ namespace TakymLib.IO
 		private readonly Uri             _uri;
 		private          FileSystemInfo? _fsinfo;
 		private          DriveInfo?      _dinfo;
+		private          PathString?     _base_path;
 
 		/// <summary>
 		///  基底のパス文字列を取得します。
 		/// </summary>
 		/// <remarks>
-		///  <see cref="TakymLib.IO.PathString.GetDirectoryName"/>と全く同じ動作を行います。
+		///  <see cref="TakymLib.IO.PathString.GetDirectoryName"/>を内部キャッシュします。
 		/// </remarks>
-		public PathString? BasePath => this.GetDirectoryName();
+		public PathString? BasePath
+		{
+			get
+			{
+				if (_base_path is null) {
+					_base_path = this.GetDirectoryName();
+				}
+				return _base_path;
+			}
+		}
 
 		/// <summary>
 		///  現在のパス文字列がルートディレクトリを表しているかどうかを判定します。
 		/// </summary>
-		public bool IsRoot => this == this.GetRootPath();
+		public bool IsRoot => _path == Path.GetDirectoryName(_path);
 
 		/// <summary>
 		///  現在のパス文字列が実際に存在し、ドライブである場合は<see langword="true"/>を返します。
