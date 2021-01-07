@@ -59,5 +59,23 @@ namespace TakymLib.Logging.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   S に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Option {
+            get {
+                return ResourceManager.GetString("Option", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TakymLib.Logging.Globalization.JapaneseErrorReportBuilder, TakymLib.Logging に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
     }
 }

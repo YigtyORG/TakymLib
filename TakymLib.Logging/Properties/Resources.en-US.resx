@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Option" xml:space="preserve">
-    <value>S</value>
+    <value />
   </data>
   <data name="Type" xml:space="preserve">
-    <value>TakymLib.Logging.Globalization.JapaneseErrorReportBuilder, TakymLib.Logging</value>
+    <value>TakymLib.Logging.Globalization.EnglishErrorReportBuilder, TakymLib.Logging</value>
   </data>
 </root>
