@@ -107,12 +107,8 @@ namespace TakymLib.Logging
 		/// <exception cref="System.ArgumentNullException"/>
 		protected ErrorReportBuilder(Exception exception, string option, IEnumerable<ICustomErrorDetailProvider> detailProviders)
 		{
-			if (exception == null) {
-				throw new ArgumentNullException(nameof(exception));
-			}
-			if (detailProviders == null) {
-				throw new ArgumentNullException(nameof(detailProviders));
-			}
+			exception      .EnsureNotNull(nameof(exception));
+			detailProviders.EnsureNotNull(nameof(detailProviders));
 			this.DateTime        = DateTime.Now;
 			this.Exception       = exception;
 			this.Option          = option;
@@ -125,7 +121,7 @@ namespace TakymLib.Logging
 		/// <param name="dir">ログファイルの保管場所を表すパス文字列です。</param>
 		/// <param name="name">エラーレポートの名前です。</param>
 		/// <returns>自動生成された保存先のファイルパスです。</returns>
-		public PathString Save(PathString dir, string? name = null)
+		public PathString Save(PathString dir, string? name)
 		{
 			if (string.IsNullOrEmpty(name)) {
 				name = "ErrorReport";

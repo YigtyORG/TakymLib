@@ -29,6 +29,9 @@ namespace TakymLib.Logging
 		/// <returns>翻訳済みの文字列です。</returns>
 		public string GetLocalizedDetail(Exception exception)
 		{
+			if (exception is null) {
+				return string.Empty;
+			}
 			string result = $"H-RESULT Message: {new Win32Exception(exception.HResult).Message}";
 			if (exception is Win32Exception w32e) {
 				return result + Environment.NewLine
