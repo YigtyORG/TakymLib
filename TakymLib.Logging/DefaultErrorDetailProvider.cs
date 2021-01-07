@@ -92,6 +92,12 @@ namespace TakymLib.Logging
 				break;
 			case OperationCanceledException oce:
 				sb.AppendLine($" - Was cancellation requested? {oce.CancellationToken.IsCancellationRequested}");
+				sb.AppendLine($" - Can be canceled? {oce.CancellationToken.CanBeCanceled}");
+				sb.AppendLine($" - Is the wait handle closed? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsClosed}");
+				sb.AppendLine($" - Is the wait handle invalid? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsInvalid}");
+				break;
+			case ObjectDisposedException ode:
+				sb.AppendLine($" - The object name: {ode.ObjectName}");
 				break;
 			case ExternalException xe:
 				sb.AppendLine($" - The error code is: 0x{xe.ErrorCode:X08} ({xe.ErrorCode}).");

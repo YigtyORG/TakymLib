@@ -8,6 +8,7 @@
 
 using System;
 using System.IO;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLib.Logging;
@@ -38,7 +39,41 @@ namespace TakymLibTests.TakymLib.Logging
 			SaveER(dir, new StackOverflowException());
 			SaveER(dir, new ObjectDisposedException("a"));
 			SaveER(dir, new ArgumentNullException("b"));
+			SaveER(dir, new OperationCanceledException());
 			SaveER(dir, new AggregateException(new Exception(), new Exception(), new Exception("c", new Exception("d", new Exception()))));
+		}
+
+		[TestMethod()]
+		public void SaveTest2()
+		{
+			var dir = new PathString("Temp/Logs");
+			Directory.CreateDirectory(dir);
+			var cts  = new CancellationTokenSource();
+			var cts2 = new CancellationTokenSource();
+			cts2.Cancel();
+			var ex = new AggregateException(
+				new Exception(),
+				new NullReferenceException(),
+				new DivideByZeroException(),
+				new InvalidOperationException(),
+				new InvalidDataException(),
+				new InvalidPathFormatException("xyz"),
+				new AccessViolationException(),
+				new StackOverflowException(),
+				new ObjectDisposedException("a"),
+				new ArgumentNullException("b"),
+				new OperationCanceledException(),
+				new AggregateException(
+					new Exception(),
+					new Exception(),
+					new Exception("c", new Exception("d", new Exception("e",
+						new OperationCanceledException(cts.Token)
+					)))
+				),
+				new OperationCanceledException(cts2.Token),
+				new OperationCanceledException(CancellationToken.None)
+			);
+			ErrorReportBuilder.Create(ex).Save(dir, "FULL");
 		}
 
 		private static void SaveER(PathString dir, Exception ex)
