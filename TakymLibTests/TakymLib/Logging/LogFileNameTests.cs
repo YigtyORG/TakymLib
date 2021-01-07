@@ -8,7 +8,6 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TakymLib.IO;
 using TakymLib.Logging;
 
 namespace TakymLibTests.TakymLib.Logging
