@@ -16,6 +16,7 @@ Copyright (C) 2020-2021 Takym.
 The common libraries used by Yigty.ORG.
 * **TakymLib** - the common library.
 * **TakymLib.CommandLine** - the common command-line arguments parser library.
+* **TakymLib.Logging** - The common logging library.
 * **TakymLib.Threading.Distributed** - the common distributed computing library.
 
 ## License
@@ -27,6 +28,7 @@ Distributed under the [MIT License](LICENSE.md).
 Yigty.ORG で利用される共通ライブラリです。
 * **TakymLib** - 共通ライブラリです。
 * **TakymLib.CommandLine** - 共通コマンド行引数解析ライブラリです。
+* **TakymLib.Logging** - 共通ログ出力ライブラリです。
 * **TakymLib.Threading.Distributed** - 共通分散コンピューティングライブラリです。
 
 ## 利用規約
