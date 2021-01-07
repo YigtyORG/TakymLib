@@ -139,7 +139,9 @@ namespace TakymLib.Logging
 		/// <param name="path">エラーレポートの保存先のファイルパスです。</param>
 		public void Save(PathString path)
 		{
-			this.Save(new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.Read));
+			using (var fs = new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.Read)) {
+				this.Save(fs);
+			}
 		}
 
 		/// <summary>
@@ -148,7 +150,9 @@ namespace TakymLib.Logging
 		/// <param name="stream">エラーレポートの保存先のストリームです。</param>
 		public void Save(Stream stream)
 		{
-			this.Save(new StreamWriter(stream, Encoding.UTF8));
+			using (var sw = new StreamWriter(stream, Encoding.UTF8, -1, true)) {
+				this.Save(sw);
+			}
 		}
 
 		/// <summary>
