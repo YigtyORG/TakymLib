@@ -120,11 +120,15 @@ namespace TakymLib
 			this.EnsureNotDisposed();
 		}
 
+		[DebuggerHidden()]
+		[StackTraceHidden()]
 		[Conditional("DEBUG")]
 		private void LogThrowIfDisposed()
 		{
-			Debug.WriteIf(this.IsDisposing, $"{this.GetType().Name}.{nameof(this.IsDisposing)} == {true}");
-			Debug.WriteIf(this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
+			Debug.WriteLineIf( this.IsDisposing, $"{this.GetType().Name}.{nameof(this.IsDisposing)} == {true}");
+			Debug.WriteLineIf( this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
+			Debug.Assert     (!this.IsDisposing, $"{this.GetType().Name} is disposing.");
+			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
 		}
 	}
 }

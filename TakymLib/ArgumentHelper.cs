@@ -237,5 +237,29 @@ namespace TakymLib
 				);
 			}
 		}
+
+		/// <summary>
+		///  <see cref="TakymLib.ArgumentHelper.EnsureNotNull(object?, string?)"/>を呼び出します。
+		/// </summary>
+		/// <remarks>
+		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
+		/// </remarks>
+		/// <param name="obj">検証するオブジェクトです。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
+		/// <exception cref="System.ArgumentNullException" />
+		public static void ThrowIfNull([NotNull()] this object? obj, string? argName)
+		{
+			obj.LogThrowIfNull(argName);
+			obj.EnsureNotNull(argName);
+		}
+
+		[DebuggerHidden()]
+		[StackTraceHidden()]
+		[Conditional("DEBUG")]
+		private static void LogThrowIfNull([NotNull()] this object? obj, string? argName)
+		{
+			Debug.WriteLineIf(obj is     null, $"{argName} == null");
+			Debug.Assert     (obj is not null, $"{argName} is null.");
+		}
 	}
 }
