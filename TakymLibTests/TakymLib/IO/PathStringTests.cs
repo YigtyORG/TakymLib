@@ -6,6 +6,8 @@
  * distributed under the MIT License.
 ****/
 
+using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLibTests.Properties;
@@ -20,11 +22,17 @@ namespace TakymLibTests.TakymLib.IO
 		[TestMethod()]
 		public void ToStringTest()
 		{
-			string formatted1 = new PathString(Path).ToString(PathStringFormatterTests.Format);
-			Assert.AreEqual(Resources.PathStringToStringResult, formatted1);
+			if (OperatingSystem.IsWindows()) {
 
-			string formatted2 = new PathString(Path).ToString("");
-			Assert.AreEqual(Path, formatted2);
+				string formatted1 = new PathString(Path).ToString(PathStringFormatterTests.Format);
+				Assert.AreEqual(Resources.PathStringToStringResult, formatted1);
+
+				string formatted2 = new PathString(Path).ToString("");
+				Assert.AreEqual(Path, formatted2);
+
+			} else {
+				Debug.WriteLine($"Skipped the {nameof(this.ToStringTest)} in {typeof(PathStringTests).AssemblyQualifiedName}");
+			}
 		}
 	}
 }
