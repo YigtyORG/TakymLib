@@ -94,5 +94,50 @@ namespace TakymLibTests.Properties {
                 return ResourceManager.GetString("PathStringToStringResult", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    !&quot;#$%&amp;&apos;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RemoveControlCharsTests_0 {
+            get {
+                return ResourceManager.GetString("RemoveControlCharsTests_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   [NUL][SOH][STX][ETX][EOT][ENQ][ACK][BEL][BS]	[LF][VT][FF][CR][SO][SI][DLE][DC1][DC2][DC3][DC4][NAK][SYN][ETB][CAN][EM][SUB][ESC][FS][GS][RS][US] !&quot;#$%&amp;&apos;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~[DEL][&lt;control-0080&gt;][&lt;control-0081&gt;][&lt;control-0082&gt;][&lt;control-0083&gt;][&lt;control-0084&gt;][&lt;control-0085&gt;][&lt;control-0086&gt;][CUS][NSB][NSE][FIL][PLD][PLU][ZWJ][ZWNJ][SS3][&lt;control-0090&gt;][EAB][EAE][ISB][ISE][SIB][SIE][SSB][SSE][INC][&lt;control-009A&gt;][&lt;control-009B&gt;][KWB][KWE][PSB][P [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RemoveControlCharsTests_1 {
+            get {
+                return ResourceManager.GetString("RemoveControlCharsTests_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ␀␁␂␃␄␅␆␇␈	␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟ !&quot;#$%&amp;&apos;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~␡␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RemoveControlCharsTests_2 {
+            get {
+                return ResourceManager.GetString("RemoveControlCharsTests_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   [NUL][SOH][STX][ETX][EOT][ENQ][ACK][BEL][BS][TAB][LF][VT][FF][CR][SO][SI][DLE][DC1][DC2][DC3][DC4][NAK][SYN][ETB][CAN][EM][SUB][ESC][FS][GS][RS][US][SPh]!&quot;#$%&amp;&apos;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~[DEL][&lt;control-0080&gt;][&lt;control-0081&gt;][&lt;control-0082&gt;][&lt;control-0083&gt;][&lt;control-0084&gt;][&lt;control-0085&gt;][&lt;control-0086&gt;][CUS][NSB][NSE][FIL][TCI][ICI][OSC][SS2][SS3][&lt;control-0090&gt;][EAB][EAE][ISB][ISE][SIB][SIE][SSB][SSE][INC][&lt;control-009A&gt;][&lt;control-009B&gt;][KWB][KWE] [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RemoveControlCharsTests_3 {
+            get {
+                return ResourceManager.GetString("RemoveControlCharsTests_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ␀␁␂␃␄␅␆␇␈␣␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟␠!&quot;#$%&amp;&apos;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~␡␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥␥ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RemoveControlCharsTests_4 {
+            get {
+                return ResourceManager.GetString("RemoveControlCharsTests_4", resourceCulture);
+            }
+        }
     }
 }

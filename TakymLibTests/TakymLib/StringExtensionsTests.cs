@@ -9,6 +9,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib;
+using TakymLibTests.Properties;
 
 namespace TakymLibTests.TakymLib
 {
@@ -67,6 +68,40 @@ namespace TakymLibTests.TakymLib
 		{
 			Assert.AreEqual("abcxyz123",        "abcxyz123".FitToLine());
 			Assert.AreEqual("[CR][LF][TB][SP]", "\r\n\t　" .FitToLine());
+		}
+
+		[TestMethod()]
+		public void RemoveControlCharsTests()
+		{
+			char[] chars = new char[0xA0];
+			for (int i = 0; i < chars.Length; ++i) {
+				chars[i] = ((char)(i));
+			}
+
+			Assert.AreEqual(
+				Resources.RemoveControlCharsTests_0,
+				new(chars.RemoveControlChars(ControlCharsReplaceMode.RemoveAll))
+			);
+
+			Assert.AreEqual(
+				Resources.RemoveControlCharsTests_1,
+				new(chars.RemoveControlChars(ControlCharsReplaceMode.ConvertToText))
+			);
+
+			Assert.AreEqual(
+				Resources.RemoveControlCharsTests_2,
+				new(chars.RemoveControlChars(ControlCharsReplaceMode.ConvertToIcon))
+			);
+
+			Assert.AreEqual(
+				Resources.RemoveControlCharsTests_3,
+				new(chars.RemoveControlChars(ControlCharsReplaceMode.ConvertToText, true, true, true))
+			);
+
+			Assert.AreEqual(
+				Resources.RemoveControlCharsTests_4,
+				new(chars.RemoveControlChars(ControlCharsReplaceMode.ConvertToIcon, true, true, true))
+			);
 		}
 	}
 }
