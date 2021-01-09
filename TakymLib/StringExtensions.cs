@@ -169,6 +169,150 @@ namespace TakymLib
 			if (s.Length == 0) {
 				return s;
 			} else {
+				return new(s.AsSpan().RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName));
+			}
+		}
+
+		/// <summary>
+		///  指定された文字列から制御文字を削除します。
+		/// </summary>
+		/// <param name="s">制御文字を削除する文字配列です。</param>
+		/// <param name="mode">制御文字の削除または変換の方法を指定します。</param>
+		/// <param name="removeSpace">
+		///  空白文字を制御文字として扱う場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="tabIsSpace">
+		///  タブ文字を空白文字として扱う場合は<see langword="true"/>、
+		///  制御文字として扱う場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="useAltName">
+		///  一部の制御文字で別名を利用する場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
+		/// </param>
+		/// <returns>制御文字が削除された文字列です。</returns>
+		public static ReadOnlySpan<char> RemoveControlChars(
+			this char[] s,
+			ControlCharsReplaceMode mode,
+			bool removeSpace = false,
+			bool tabIsSpace = true,
+			bool useAltName = false)
+		{
+			return s.AsSpan().RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName);
+		}
+
+		/// <summary>
+		///  指定された文字列から制御文字を削除します。
+		/// </summary>
+		/// <param name="s">制御文字を削除する文字メモリです。</param>
+		/// <param name="mode">制御文字の削除または変換の方法を指定します。</param>
+		/// <param name="removeSpace">
+		///  空白文字を制御文字として扱う場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="tabIsSpace">
+		///  タブ文字を空白文字として扱う場合は<see langword="true"/>、
+		///  制御文字として扱う場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="useAltName">
+		///  一部の制御文字で別名を利用する場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
+		/// </param>
+		/// <returns>制御文字が削除された文字列です。</returns>
+		public static ReadOnlyMemory<char> RemoveControlChars(
+			this Memory<char> s,
+			ControlCharsReplaceMode mode,
+			bool removeSpace = false,
+			bool tabIsSpace = true,
+			bool useAltName = false)
+		{
+			return ((ReadOnlyMemory<char>)(s)).RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName);
+		}
+
+		/// <summary>
+		///  指定された文字列から制御文字を削除します。
+		/// </summary>
+		/// <param name="s">制御文字を削除する読み取り専用文字メモリです。</param>
+		/// <param name="mode">制御文字の削除または変換の方法を指定します。</param>
+		/// <param name="removeSpace">
+		///  空白文字を制御文字として扱う場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="tabIsSpace">
+		///  タブ文字を空白文字として扱う場合は<see langword="true"/>、
+		///  制御文字として扱う場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="useAltName">
+		///  一部の制御文字で別名を利用する場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
+		/// </param>
+		/// <returns>制御文字が削除された文字列です。</returns>
+		public static ReadOnlyMemory<char> RemoveControlChars(
+			this ReadOnlyMemory<char> s,
+			ControlCharsReplaceMode mode,
+			bool removeSpace = false,
+			bool tabIsSpace = true,
+			bool useAltName = false)
+		{
+			return new(s.Span.RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName).ToArray());
+		}
+
+		/// <summary>
+		///  指定された文字列から制御文字を削除します。
+		/// </summary>
+		/// <param name="s">制御文字を削除する文字スパンです。</param>
+		/// <param name="mode">制御文字の削除または変換の方法を指定します。</param>
+		/// <param name="removeSpace">
+		///  空白文字を制御文字として扱う場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="tabIsSpace">
+		///  タブ文字を空白文字として扱う場合は<see langword="true"/>、
+		///  制御文字として扱う場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="useAltName">
+		///  一部の制御文字で別名を利用する場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
+		/// </param>
+		/// <returns>制御文字が削除された文字列です。</returns>
+		public static ReadOnlySpan<char> RemoveControlChars(
+			this Span<char>         s,
+			ControlCharsReplaceMode mode,
+			bool                    removeSpace = false,
+			bool                    tabIsSpace  = true,
+			bool                    useAltName  = false)
+		{
+			return ((ReadOnlySpan<char>)(s)).RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName);
+		}
+
+		/// <summary>
+		///  指定された文字列から制御文字を削除します。
+		/// </summary>
+		/// <param name="s">制御文字を削除する読み取り専用文字スパンです。</param>
+		/// <param name="mode">制御文字の削除または変換の方法を指定します。</param>
+		/// <param name="removeSpace">
+		///  空白文字を制御文字として扱う場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="tabIsSpace">
+		///  タブ文字を空白文字として扱う場合は<see langword="true"/>、
+		///  制御文字として扱う場合は<see langword="false"/>を指定します。
+		/// </param>
+		/// <param name="useAltName">
+		///  一部の制御文字で別名を利用する場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
+		/// </param>
+		/// <returns>制御文字が削除された文字列です。</returns>
+		public static ReadOnlySpan<char> RemoveControlChars(this ReadOnlySpan<char> s, ControlCharsReplaceMode mode, bool removeSpace = false, bool tabIsSpace = true, bool useAltName = false)
+		{
+			if (s.Length == 0) {
+				return ReadOnlySpan<char>.Empty;
+			} else {
 				var sb = new StringBuilder(mode switch {
 					ControlCharsReplaceMode.ConvertToText => s.Length * 5,
 					_                                     => s.Length
