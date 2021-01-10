@@ -6,6 +6,7 @@
  * distributed under the MIT License.
 ****/
 
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLibTests.Properties;
@@ -20,11 +21,13 @@ namespace TakymLibTests.TakymLib.IO
 		[TestMethod()]
 		public void FormatTest()
 		{
-			var path      = new PathString(PathStringTests.Path);
-			var formatter = new PathStringFormatter();
+			if (OperatingSystem.IsWindows()) {
+				var path      = new PathString(PathStringTests.Path);
+				var formatter = new PathStringFormatter();
 
-			string formatted = formatter.Format(Format, path, null);
-			Assert.AreEqual(Resources.PathStringToStringResult, formatted);
+				string formatted = formatter.Format(Format, path, null);
+				Assert.AreEqual(Resources.PathStringToStringResult, formatted);
+			}
 		}
 	}
 }
