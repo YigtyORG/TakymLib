@@ -1,4 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE Project>
+<!--*
+ * TakymLib
+ * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2021 Takym.
+ *
+ * distributed under the MIT License.
+**-->
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyName>TakymLib.Threading.Distributed</AssemblyName>
 		<RootNamespace>TakymLib.Threading.Distributed</RootNamespace>
