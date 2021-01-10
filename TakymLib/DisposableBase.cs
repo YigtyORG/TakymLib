@@ -60,6 +60,7 @@ namespace TakymLib
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
 		/// </summary>
+		/// <remarks>この処理の非同期操作です。</remarks>
 		public async ValueTask DisposeAsync()
 		{
 			this.IsDisposing = true;
@@ -86,6 +87,7 @@ namespace TakymLib
 		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
 		///  この関数内で例外を発生させてはいけません。
 		/// </summary>
+		/// <remarks>この処理の非同期操作です。</remarks>
 		protected virtual ValueTask DisposeAsyncCore()
 		{
 			return default;

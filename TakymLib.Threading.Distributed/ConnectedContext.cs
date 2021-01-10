@@ -109,6 +109,7 @@ namespace TakymLib.Threading.Distributed
 		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
 		///  この関数内で例外を発生させてはいけません。
 		/// </summary>
+		/// <remarks>この処理の非同期操作です。</remarks>
 		protected override async ValueTask DisposeAsyncCore()
 		{
 			if (!_leave_open) {
