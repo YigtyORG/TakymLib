@@ -25,6 +25,7 @@
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
 		<ProjectReference Include="../TakymLib.CommandLine/TakymLib.CommandLine.csproj" />
 		<ProjectReference Include="../TakymLib.Logging/TakymLib.Logging.csproj" />
+		<ProjectReference Include="../TakymLib.Security/TakymLib.Security.csproj" />
 		<ProjectReference Include="../TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj" />
 		<EmbeddedResource Update="Properties/Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
