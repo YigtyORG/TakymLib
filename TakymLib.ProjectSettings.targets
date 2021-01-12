@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE Project>
 <!--*
  * TakymLib
@@ -19,10 +19,20 @@
 	<ItemGroup>
 		<Content Include="../LICENSE.md" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 			<Visible>false</Visible>
 		</Content>
+	</ItemGroup>
+	<ItemGroup Condition="Exists('Resources/Logo.png')">
 		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup Condition="!Exists('Resources/Logo.png')">
+		<Content Include="../LOGO.png" Link="Resources/Logo.png" Pack="true" PackagePath="/">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 		</Content>
 	</ItemGroup>
 </Project>
