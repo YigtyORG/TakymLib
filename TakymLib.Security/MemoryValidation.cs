@@ -114,7 +114,7 @@ namespace TakymLib.Security
 		/// <exception cref="System.AggregateException"/>
 		public ConfiguredTaskAwaitable StopAsync()
 		{
-			_cts.Cancel();
+			this.StopImmediately();
 			return Task.Run(async () => {
 				while (_thread.ThreadState.HasFlag(ThreadState.Running)) {
 					await Task.Yield();
