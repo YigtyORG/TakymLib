@@ -2,10 +2,10 @@
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
 
-![.NET - Debug (Windows)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Debug%20(Windows)/badge.svg)
-![.NET - Release (Windows)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Release%20(Windows)/badge.svg)
-![.NET - Debug (Ubuntu)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Debug%20(Ubuntu)/badge.svg)
-![.NET - Release (Ubuntu)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Release%20(Ubuntu)/badge.svg)
+![.NET - Debug (Windows)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Debug%20%28Windows%29/badge.svg)
+![.NET - Release (Windows)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Release%20%28Windows%29/badge.svg)
+![.NET - Debug (Ubuntu)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Debug%20%28Ubuntu%29/badge.svg)
+![.NET - Release (Ubuntu)](https://github.com/Takym/TakymLib/workflows/.NET%20-%20Release%20%28Ubuntu%29/badge.svg)
 
 [日本語](#ja)
 [English](#en)
