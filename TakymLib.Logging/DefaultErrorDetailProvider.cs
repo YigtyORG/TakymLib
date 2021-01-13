@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Text.Json;
 using System.Xml;
@@ -98,6 +99,17 @@ namespace TakymLib.Logging
 				break;
 			case ObjectDisposedException ode:
 				sb.AppendLine($" - The object name: {ode.ObjectName}");
+				break;
+			case SecurityException see:
+				sb.AppendLine(" - There is a problem about security.");
+				sb.AppendLine($" - The permission type         : {see.PermissionType?.AssemblyQualifiedName}");
+				sb.AppendLine($" - The permission state        : {see.PermissionState}");
+				sb.AppendLine($" - The failed assembly info    : {see.FailedAssemblyInfo?.FullName}");
+				sb.AppendLine($" - The refused set             : {see.RefusedSet}");
+				sb.AppendLine($" - The granted set             : {see.GrantedSet}");
+				sb.AppendLine($" - The demanded                : {see.Demanded}");
+				sb.AppendLine($" - The deny        set instance: {see.DenySetInstance}");
+				sb.AppendLine($" - The permit only set instance: {see.PermitOnlySetInstance}");
 				break;
 			case ExternalException xe:
 				sb.AppendLine($" - The error code is: 0x{xe.ErrorCode:X08} ({xe.ErrorCode}).");

@@ -8,6 +8,7 @@
 
 using System;
 using System.IO;
+using System.Security;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
@@ -48,8 +49,8 @@ namespace TakymLibTests.TakymLib.Logging
 		{
 			var dir = new PathString("Temp/Logs");
 			Directory.CreateDirectory(dir);
-			var cts  = new CancellationTokenSource();
-			var cts2 = new CancellationTokenSource();
+			using var cts  = new CancellationTokenSource();
+			using var cts2 = new CancellationTokenSource();
 			cts2.Cancel();
 			var ex = new AggregateException(
 				new Exception(),
@@ -68,7 +69,17 @@ namespace TakymLibTests.TakymLib.Logging
 					new Exception(),
 					new Exception("c", new Exception("d", new Exception("e",
 						new OperationCanceledException(cts.Token)
-					)))
+					))),
+					new SecurityException(),
+					new SecurityException(
+						"message",
+						this.GetType(),
+						"state"
+					),
+					new SecurityException(
+						"message",
+						new Exception()
+					)
 				),
 				new OperationCanceledException(cts2.Token),
 				new OperationCanceledException(CancellationToken.None)
