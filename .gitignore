@@ -342,3 +342,6 @@ healthchecksdb
 
 # desktop.ini
 desktop.ini
+
+# local files
+/!L_*
