@@ -6,6 +6,7 @@
  * distributed under the MIT License.
 ****/
 
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.Security;
 
@@ -14,14 +15,6 @@ namespace TakymLibTests.TakymLib.Security
 	[TestClass()]
 	public class MemoryValidationTests
 	{
-		private MemoryValidation? _mv;
-
-		[TestInitialize()]
-		public void Initialize()
-		{
-			_mv = MemoryValidation.Start();
-		}
-
 		[TestMethod()]
 		public void StartTest()
 		{
@@ -31,19 +24,22 @@ namespace TakymLibTests.TakymLib.Security
 		[TestMethod()]
 		public void StopImmediatelyTest()
 		{
-			_mv?.StopImmediately();
+			using (var mv = MemoryValidation.Start()) {
+				mv.StopImmediately();
+			}
 		}
 
 		[TestMethod()]
 		public void StopAsyncTest()
 		{
-			_mv?.StopAsync().GetAwaiter().GetResult();
+			using (var mv = MemoryValidation.Start()) {
+				StopAsyncTestCore(mv).ConfigureAwait(true).GetAwaiter().GetResult();
+			}
 		}
 
-		[TestCleanup()]
-		public void Cleanup()
+		private static async Task StopAsyncTestCore(MemoryValidation mv)
 		{
-			_mv?.Dispose();
+			await mv.StopAsync();
 		}
 	}
 }
