@@ -20,6 +20,12 @@ The common libraries used by Yigty.ORG.
 * **TakymLib.Security** - the common secutiy library.
 * **TakymLib.Threading.Distributed** - the common distributed computing library.
 
+## Repositories
+- [GitHub](https://github.com/Takym/TakymLib) (Main)
+- [GitLab](https://gitlab.com/Takym/TakymLib) (Mirror)
+- [Gitee](https://gitee.com/Takym/TakymLib) (Mirror)
+- [Bitbucket](https://bitbucket.org/Takym/takymlib) (Mirror)
+
 ## License
 Distributed under the [MIT License](LICENSE.md).
 
@@ -32,6 +38,12 @@ Yigty.ORG で利用される共通ライブラリです。
 * **TakymLib.Logging** - 共通ログ出力ライブラリです。
 * **TakymLib.Security** - 共通安全保障ライブラリです。
 * **TakymLib.Threading.Distributed** - 共通分散コンピューティングライブラリです。
+
+## 保管庫
+- [GitHub](https://github.com/Takym/TakymLib) (メイン)
+- [GitLab](https://gitlab.com/Takym/TakymLib) (ミラー)
+- [Gitee](https://gitee.com/Takym/TakymLib) (ミラー)
+- [Bitbucket](https://bitbucket.org/Takym/takymlib) (ミラー)
 
 ## 利用規約
 [MITライセンス](LICENSE.md)の下で配布されています。
