@@ -23,14 +23,14 @@
 			<Visible>false</Visible>
 		</Content>
 	</ItemGroup>
-	<ItemGroup Condition="Exists('Resources/Logo.png')">
-		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/">
+	<ItemGroup Condition="!Exists('Resources/Logo.png')">
+		<Content Include="../LOGO.png" Link="Resources/Logo.png" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 		</Content>
 	</ItemGroup>
-	<ItemGroup Condition="!Exists('Resources/Logo.png')">
-		<Content Include="../LOGO.png" Link="Resources/Logo.png" Pack="true" PackagePath="/">
+	<ItemGroup Condition="Exists('Resources/Logo.png')">
+		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/LOGO.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 		</Content>
