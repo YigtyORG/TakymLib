@@ -7,7 +7,6 @@
 ****/
 
 using System;
-using System.Runtime.CompilerServices;
 using System.Security;
 using System.Security.Cryptography;
 using System.Threading;
@@ -104,22 +103,6 @@ namespace TakymLib.Security
 		{
 			this.EnsureNotDisposed();
 			_cts.Cancel(true);
-		}
-
-		/// <summary>
-		///  メモリ検証スレッドに終了要求を発行し、終了するまで待機します。
-		/// </summary>
-		/// <returns>この処理の非同期操作です。</returns>
-		/// <exception cref="System.ObjectDisposedException"/>
-		/// <exception cref="System.AggregateException"/>
-		public ConfiguredTaskAwaitable StopAsync()
-		{
-			this.StopImmediately();
-			return Task.Run(async () => {
-				while (_thread.ThreadState.HasFlag(ThreadState.Running)) {
-					await Task.Yield();
-				}
-			}).ConfigureAwait(false);
 		}
 
 		/// <summary>
