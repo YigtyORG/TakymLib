@@ -59,5 +59,14 @@ namespace TakymLib.Security.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   MemoryValidation_SecurityException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MemoryValidation_SecurityException {
+            get {
+                return ResourceManager.GetString("MemoryValidation_SecurityException", resourceCulture);
+            }
+        }
     }
 }
