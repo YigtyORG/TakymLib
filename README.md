@@ -2,8 +2,8 @@
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
 
-![Debug](https://github.com/Takym/TakymLib/workflows/Debug/badge.svg)
-![Release](https://github.com/Takym/TakymLib/workflows/Release/badge.svg)
+[![Debug](https://github.com/Takym/TakymLib/workflows/Debug/badge.svg)](https://github.com/Takym/TakymLib/actions?query=workflow%3ADebug)
+[![Release](https://github.com/Takym/TakymLib/workflows/Release/badge.svg)](https://github.com/Takym/TakymLib/actions?query=workflow%3ARelease)
 
 [日本語](#ja)
 [English](#en)
