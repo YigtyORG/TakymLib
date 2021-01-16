@@ -1,6 +1,8 @@
-# ![Takym](LOGO.png)Lib
+# TakymLib
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
+
+![Takym](LOGO.png)
 
 [![Version](https://img.shields.io/badge/version-none-inactive)](https://github.com/Takym/TakymLib/releases)
 [![License](https://img.shields.io/github/license/Takym/TakymLib)](LICENSE.md)
