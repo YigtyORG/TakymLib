@@ -245,7 +245,7 @@ namespace TakymLib.IO
 			if (string.IsNullOrEmpty(path)) {
 				return this;
 			}
-			return new PathString(Path.Combine(_path, path!));
+			return PathStringPool.Get(Path.Combine(_path, path!));
 		}
 
 		/// <summary>
@@ -263,7 +263,7 @@ namespace TakymLib.IO
 			if (string.IsNullOrEmpty(path1) && string.IsNullOrEmpty(path2)) {
 				return this;
 			}
-			return new PathString(Path.Combine(_path, path1 ?? string.Empty, path2 ?? string.Empty));
+			return PathStringPool.Get(Path.Combine(_path, path1 ?? string.Empty, path2 ?? string.Empty));
 		}
 
 		/// <summary>
@@ -282,7 +282,7 @@ namespace TakymLib.IO
 			if (string.IsNullOrEmpty(path1) && string.IsNullOrEmpty(path2) && string.IsNullOrEmpty(path3)) {
 				return this;
 			}
-			return new PathString(Path.Combine(_path, path1 ?? string.Empty, path2 ?? string.Empty, path3 ?? string.Empty));
+			return PathStringPool.Get(Path.Combine(_path, path1 ?? string.Empty, path2 ?? string.Empty, path3 ?? string.Empty));
 		}
 
 		/// <summary>
@@ -306,7 +306,7 @@ namespace TakymLib.IO
 						paths2.Add(paths[i]!);
 					}
 				}
-				return new PathString(Path.Combine(paths2.ToArray()));
+				return PathStringPool.Get(Path.Combine(paths2.ToArray()));
 			}
 		}
 
@@ -324,7 +324,7 @@ namespace TakymLib.IO
 			if (string.IsNullOrEmpty(baseDir)) {
 				return null;
 			}
-			return new PathString(baseDir);
+			return PathStringPool.Get(baseDir);
 		}
 
 		/// <summary>
@@ -424,7 +424,7 @@ namespace TakymLib.IO
 			if (newpath == _path) {
 				return this;
 			}
-			return new PathString(newpath);
+			return PathStringPool.Get(newpath);
 		}
 
 		/// <summary>
@@ -461,7 +461,7 @@ namespace TakymLib.IO
 			if (root == _path) {
 				return this;
 			}
-			return new PathString(root);
+			return PathStringPool.Get(root);
 		}
 
 		/// <summary>
@@ -471,7 +471,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.PlatformNotSupportedException" />
 		public string? GetRelativePath()
 		{
-			return this.GetRelativePath(new PathString());
+			return this.GetRelativePath(PathStringPool.Get());
 		}
 
 		/// <summary>
@@ -823,7 +823,7 @@ namespace TakymLib.IO
 		/// <returns><paramref name="left"/>への相対パスです。</returns>
 		/// <exception cref="System.PlatformNotSupportedException" />
 		public static string? operator -(PathString left, PathString? right)
-			=> left.GetRelativePath(right ?? new PathString());
+			=> left.GetRelativePath(right ?? PathStringPool.Get());
 
 		/// <summary>
 		///  指定された二つのパス文字列が等価かどうか判定します。
@@ -896,6 +896,6 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		public static explicit operator PathString(string path) => new PathString(path);
+		public static explicit operator PathString(string path) => PathStringPool.Get(path);
 	}
 }

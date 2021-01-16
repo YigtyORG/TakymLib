@@ -24,7 +24,7 @@ namespace TakymLib.IO
 			if (value is PathString path) {
 				return path;
 			} else if (value is string text) {
-				return new PathString(text);
+				return PathStringPool.Get(text);
 			} else {
 				return base.ConvertFrom(context, culture, value);
 			}
@@ -41,7 +41,7 @@ namespace TakymLib.IO
 				if (value is PathString path) {
 					return path;
 				} else if (value is string text) {
-					return new PathString(text);
+					return PathStringPool.Get(text);
 				} else {
 					return base.ConvertTo(context, culture, value, destinationType);
 				}

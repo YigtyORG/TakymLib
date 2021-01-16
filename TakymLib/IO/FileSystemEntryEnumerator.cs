@@ -24,7 +24,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  現在選択されている項目を取得します。
 		/// </summary>
-		public PathString Current => new PathString(_entries.Current);
+		public PathString Current => PathStringPool.Get(_entries.Current);
 
 		object? IEnumerator.Current => this.Current;
 
