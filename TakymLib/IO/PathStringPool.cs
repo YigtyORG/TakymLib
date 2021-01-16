@@ -41,7 +41,7 @@ namespace TakymLib.IO
 		{
 			path.EnsureNotNull(nameof(path));
 			if (!_cache.TryGetValue(path, out var result)) {
-				result = PathStringPool.Get(path);
+				result = new PathString(path);
 				_cache.Add(result, result);
 			}
 			return result;
