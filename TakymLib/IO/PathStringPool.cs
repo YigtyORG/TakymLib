@@ -46,5 +46,17 @@ namespace TakymLib.IO
 			}
 			return result;
 		}
+
+		/// <summary>
+		///  キャッシュされた全てのパス文字列を削除します。
+		/// </summary>
+		public static void Clear()
+		{
+			_cache.Clear();
+
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			GC.Collect();
+		}
 	}
 }
