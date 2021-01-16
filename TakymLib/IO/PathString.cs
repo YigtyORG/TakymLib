@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using TakymLib.Properties;
 
@@ -24,7 +25,7 @@ namespace TakymLib.IO
 	/// </remarks>
 	[Serializable()]
 	[TypeConverter(typeof(PathStringConverter))]
-	public sealed partial class PathString :
+	public sealed class PathString :
 		ISerializable,
 		IFormattable,
 		IEquatable<PathString?>,
@@ -499,12 +500,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException"/>
 		public PathString[]? GetEntryArray()
 		{
-			var entries = this.GetEntries();
-			if (entries is null) {
-				return null;
-			} else {
-				return new List<PathString>(entries).ToArray();
-			}
+			return this.GetEntries()?.ToArray();
 		}
 
 		/// <summary>
@@ -519,11 +515,11 @@ namespace TakymLib.IO
 		/// <exception cref="System.IO.IOException"/>
 		/// <exception cref="System.UnauthorizedAccessException"/>
 		/// <exception cref="System.Security.SecurityException"/>
-		public IEnumerable<PathString>? GetEntries(string searchPattern = "*")
+		public FileSystemEntryEnumerator? GetEntries(string searchPattern = "*")
 		{
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
-				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern));
+				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern));
 			} else {
 				return null;
 			}
@@ -543,11 +539,11 @@ namespace TakymLib.IO
 		/// <exception cref="System.IO.IOException"/>
 		/// <exception cref="System.UnauthorizedAccessException"/>
 		/// <exception cref="System.Security.SecurityException"/>
-		public IEnumerable<PathString>? GetEntries(string searchPattern, SearchOption searchOption)
+		public FileSystemEntryEnumerator? GetEntries(string searchPattern, SearchOption searchOption)
 		{
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
-				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, searchOption));
+				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern, searchOption));
 			} else {
 				return null;
 			}
@@ -567,20 +563,15 @@ namespace TakymLib.IO
 		/// <exception cref="System.IO.IOException"/>
 		/// <exception cref="System.UnauthorizedAccessException"/>
 		/// <exception cref="System.Security.SecurityException"/>
-		public IEnumerable<PathString>? GetEntries(string searchPattern, EnumerationOptions enumerationOptions)
+		public FileSystemEntryEnumerator? GetEntries(string searchPattern, EnumerationOptions enumerationOptions)
 		{
 			enumerationOptions.EnsureNotNull(nameof(enumerationOptions));
 			if (this.IsDirectory) {
 				searchPattern ??= "*";
-				return GetEntriesCore(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));
+				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));
 			} else {
 				return null;
 			}
-		}
-
-		private static IEnumerable<PathString> GetEntriesCore(IEnumerable<string> pathList)
-		{
-			return new FileSystemEntryList(pathList);
 		}
 
 		/// <summary>
