@@ -22,7 +22,7 @@ namespace TakymLibTests.TakymLib.IO
 		public void FormatTest()
 		{
 			if (OperatingSystem.IsWindows()) {
-				var path      = new PathString(PathStringTests.Path);
+				var path      = PathStringPool.Get(PathStringTests.Path);
 				var formatter = new PathStringFormatter();
 
 				string formatted = formatter.Format(Format, path, null);

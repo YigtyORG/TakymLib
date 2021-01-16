@@ -24,10 +24,10 @@ namespace TakymLibTests.TakymLib.IO
 		{
 			if (OperatingSystem.IsWindows()) {
 
-				string formatted1 = new PathString(Path).ToString(PathStringFormatterTests.Format);
+				string formatted1 = PathStringPool.Get(Path).ToString(PathStringFormatterTests.Format);
 				Assert.AreEqual(Resources.PathStringToStringResult, formatted1);
 
-				string formatted2 = new PathString(Path).ToString("");
+				string formatted2 = PathStringPool.Get(Path).ToString("");
 				Assert.AreEqual(Path, formatted2);
 
 			} else {

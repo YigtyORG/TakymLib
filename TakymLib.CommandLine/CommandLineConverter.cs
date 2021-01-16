@@ -296,9 +296,9 @@ namespace TakymLib.CommandLine
 					return args.Length > 0 ? args[0] : string.Empty;
 				} else if (target == typeof(PathString)) {
 					try {
-						return args.Length > 0 ? new PathString(args[0]) : new PathString();
+						return args.Length > 0 ? PathStringPool.Get(args[0]) : PathStringPool.Get();
 					} catch {
-						return new PathString();
+						return PathStringPool.Get();
 					}
 				} else if (target == typeof(Uri)) {
 					try {
@@ -352,9 +352,9 @@ namespace TakymLib.CommandLine
 					var result = new PathString[args.Length];
 					for (int i = 0; i < args.Length; ++i) {
 						try {
-							result[i] = new PathString(args[i]);
+							result[i] = PathStringPool.Get(args[i]);
 						} catch {
-							result[i] = new PathString();
+							result[i] = PathStringPool.Get();
 						}
 					}
 					return result;

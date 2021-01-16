@@ -28,7 +28,7 @@ namespace TakymLibTests.TakymLib.Logging
 		[TestMethod()]
 		public void SaveTest()
 		{
-			var dir = new PathString("Temp/Logs");
+			var dir = PathStringPool.Get("Temp/Logs");
 			Directory.CreateDirectory(dir);
 			SaveER(dir, new Exception());
 			SaveER(dir, new NullReferenceException());
@@ -47,7 +47,7 @@ namespace TakymLibTests.TakymLib.Logging
 		[TestMethod()]
 		public void SaveTest2()
 		{
-			var dir = new PathString("Temp/Logs");
+			var dir = PathStringPool.Get("Temp/Logs");
 			Directory.CreateDirectory(dir);
 			using var cts  = new CancellationTokenSource();
 			using var cts2 = new CancellationTokenSource();
