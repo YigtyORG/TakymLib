@@ -43,14 +43,7 @@ namespace TakymLib.Logging
 			var sb = new StringBuilder();
 			sb.AppendLine("Detailed information (English):");
 			switch (exception) {
-			case NotImplementedException _:
-				sb.AppendLine(" - The process was not implemented.");
-				break;
-			case SystemException se:
-				sb.AppendLine(" - This is a system exception.");
-				this.SystemException(sb, se);
-				break;
-			case ApplicationException _:
+			case ApplicationException:
 				sb.AppendLine(" - This is an application exception.");
 				break;
 			case JsonException je:
@@ -58,71 +51,82 @@ namespace TakymLib.Logging
 				sb.AppendLine($" - The line number is: {je.LineNumber}");
 				sb.AppendLine($" - The byte position in line: {je.BytePositionInLine}");
 				break;
+			case NotImplementedException:
+				sb.AppendLine(" - The process was not implemented.");
+				break;
+			case SystemException se:
+				sb.AppendLine(" - This is a system exception."); switch (se) {
+				case ArgumentException ae:
+					sb.AppendLine($" - The parameter name is: \"{ae.ParamName}\".");
+					switch (ae) {
+					case ArgumentOutOfRangeException aoore:
+						sb.AppendLine($" - The actual value is: \"{aoore.ActualValue}\".");
+						break;
+					case CultureNotFoundException cnfe:
+						sb.AppendLine($" - The invalid culture name is: \"{cnfe.InvalidCultureName}\".");
+						sb.AppendLine($" - The invalid culture identifier is: {cnfe.InvalidCultureId}.");
+						break;
+					}
+					break;
+				case ExternalException xe:
+					sb.AppendLine($" - The error code is: 0x{xe.ErrorCode:X08} ({xe.ErrorCode}).");
+					switch (xe) {
+					case Win32Exception w32e:
+						sb.AppendLine($" - The native error code is: \"{w32e.NativeErrorCode}\".");
+						break;
+					}
+					break;
+				case InvalidOperationException ioe:
+					switch (ioe) {
+					case ObjectDisposedException ode:
+						sb.AppendLine($" - The object name: {ode.ObjectName}");
+						break;
+					}
+					break;
+				case IOException ioe:
+					switch (ioe) {
+					case FileLoadException fle:
+						sb.AppendLine($" - Could not load the file \"{fle.FileName}\".");
+						sb.AppendLine($" - The fusion log is: \"{fle.FusionLog}\".");
+						break;
+					case FileNotFoundException fnfe:
+						sb.AppendLine($" - The file \"{fnfe.FileName}\" does not exist.");
+						sb.AppendLine($" - The fusion log is: \"{fnfe.FusionLog}\".");
+						break;
+					case InvalidPathFormatException ipfe:
+						sb.AppendLine($" - The invalid path is: \"{ipfe.InvalidPath}\".");
+						break;
+					}
+					break;
+				case OperationCanceledException oce:
+					sb.AppendLine($" - Was cancellation requested? {oce.CancellationToken.IsCancellationRequested}");
+					sb.AppendLine($" - Can be canceled? {oce.CancellationToken.CanBeCanceled}");
+					sb.AppendLine($" - Is the wait handle closed? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsClosed}");
+					sb.AppendLine($" - Is the wait handle invalid? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsInvalid}");
+					break;
+				case SecurityException see:
+					sb.AppendLine(" - There is a problem about security.");
+					sb.AppendLine($" - The permission type         : {see.PermissionType?.AssemblyQualifiedName}");
+					sb.AppendLine($" - The permission state        : {see.PermissionState}");
+					sb.AppendLine($" - The failed assembly info    : {see.FailedAssemblyInfo?.FullName}");
+					sb.AppendLine($" - The refused set             : {see.RefusedSet}");
+					sb.AppendLine($" - The granted set             : {see.GrantedSet}");
+					sb.AppendLine($" - The demanded                : {see.Demanded}");
+					sb.AppendLine($" - The deny        set instance: {see.DenySetInstance}");
+					sb.AppendLine($" - The permit only set instance: {see.PermitOnlySetInstance}");
+					break;
+				case XmlException xe:
+					sb.AppendLine($" - The target (source URI) is: \"{xe.SourceUri}\".");
+					sb.AppendLine($" - The line number   is: {xe.LineNumber}.");
+					sb.AppendLine($" - The line position is: {xe.LinePosition}.");
+					break;
+				}
+				break;
 			default:
 				sb.AppendLine(" - No more information.");
 				break;
 			}
 			return sb.ToString();
-		}
-
-		private void SystemException(StringBuilder sb, SystemException se)
-		{
-			switch (se) {
-			case ArgumentException ae:
-				sb.AppendLine($" - The parameter name is: \"{ae.ParamName}\".");
-				if (ae is ArgumentOutOfRangeException aoore) {
-					sb.AppendLine($" - The actual value is: \"{aoore.ActualValue}\".");
-				}
-				if (ae is CultureNotFoundException cnfe) {
-					sb.AppendLine($" - The invalid culture name is: \"{cnfe.InvalidCultureName}\".");
-					sb.AppendLine($" - The invalid culture identifier is: {cnfe.InvalidCultureId}.");
-				}
-				break;
-			case IOException ioe:
-				if (ioe is FileNotFoundException fnfe) {
-					sb.AppendLine($" - The file \"{fnfe.FileName}\" does not exist.");
-					sb.AppendLine($" - The fusion log is: \"{fnfe.FusionLog}\".");
-				}
-				if (ioe is FileLoadException fle) {
-					sb.AppendLine($" - Could not load the file \"{fle.FileName}\".");
-					sb.AppendLine($" - The fusion log is: \"{fle.FusionLog}\".");
-				}
-				if (ioe is InvalidPathFormatException ipfe) {
-					sb.AppendLine($" - The invalid path is: \"{ipfe.InvalidPath}\".");
-				}
-				break;
-			case OperationCanceledException oce:
-				sb.AppendLine($" - Was cancellation requested? {oce.CancellationToken.IsCancellationRequested}");
-				sb.AppendLine($" - Can be canceled? {oce.CancellationToken.CanBeCanceled}");
-				sb.AppendLine($" - Is the wait handle closed? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsClosed}");
-				sb.AppendLine($" - Is the wait handle invalid? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsInvalid}");
-				break;
-			case ObjectDisposedException ode:
-				sb.AppendLine($" - The object name: {ode.ObjectName}");
-				break;
-			case SecurityException see:
-				sb.AppendLine(" - There is a problem about security.");
-				sb.AppendLine($" - The permission type         : {see.PermissionType?.AssemblyQualifiedName}");
-				sb.AppendLine($" - The permission state        : {see.PermissionState}");
-				sb.AppendLine($" - The failed assembly info    : {see.FailedAssemblyInfo?.FullName}");
-				sb.AppendLine($" - The refused set             : {see.RefusedSet}");
-				sb.AppendLine($" - The granted set             : {see.GrantedSet}");
-				sb.AppendLine($" - The demanded                : {see.Demanded}");
-				sb.AppendLine($" - The deny        set instance: {see.DenySetInstance}");
-				sb.AppendLine($" - The permit only set instance: {see.PermitOnlySetInstance}");
-				break;
-			case ExternalException xe:
-				sb.AppendLine($" - The error code is: 0x{xe.ErrorCode:X08} ({xe.ErrorCode}).");
-				if (xe is Win32Exception w32e) {
-					sb.AppendLine($" - The native error code is: \"{w32e.NativeErrorCode}\".");
-				}
-				break;
-			case XmlException xe:
-				sb.AppendLine($" - The target (source URI) is: \"{xe.SourceUri}\".");
-				sb.AppendLine($" - The line number   is: {xe.LineNumber}.");
-				sb.AppendLine($" - The line position is: {xe.LinePosition}.");
-				break;
-			}
 		}
 	}
 }
