@@ -89,11 +89,18 @@ namespace TakymLib.IO
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.IO.PathStringPool.Get()"/>を利用してキャッシュされたパス文字列を取得します。
+		/// </remarks>
+		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString() : this(Environment.CurrentDirectory) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.IO.PathStringPool.Get(string, string)"/>を利用してキャッシュされたパス文字列を取得します。
+		/// </remarks>
 		/// <param name="path1">
 		///  新しいインスタンスに設定する分割されたパス文字列です。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
@@ -110,11 +117,15 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2) : this(Path.Combine(path1, path2)) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.IO.PathStringPool.Get(string, string, string)"/>を利用してキャッシュされたパス文字列を取得します。
+		/// </remarks>
 		/// <param name="path1">
 		///  新しいインスタンスに設定する分割されたパス文字列です。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
@@ -135,11 +146,15 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2, string path3) : this(Path.Combine(path1, path2, path3)) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.IO.PathStringPool.Get(string, string, string, string)"/>を利用してキャッシュされたパス文字列を取得します。
+		/// </remarks>
 		/// <param name="path1">
 		///  新しいインスタンスに設定する分割されたパス文字列です。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
@@ -164,13 +179,17 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2, string path3, string path4) : this(Path.Combine(path1, path2, path3, path4)) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.IO.PathStringPool.Get(string[])"/>を利用してキャッシュされたパス文字列を取得します。
+		/// </remarks>
 		/// <param name="paths">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を含む配列です。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <exception cref="System.ArgumentException" />
@@ -181,11 +200,15 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(params string[] paths) : this(Path.Combine(paths)) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.IO.PathString"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.IO.PathStringPool.Get(string)"/>を利用してキャッシュされたパス文字列を取得します。
+		/// </remarks>
 		/// <param name="path">
 		///  新しいインスタンスに設定するパス文字列です。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
@@ -197,6 +220,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path)
 		{
 			path.EnsureNotNull(nameof(path));
@@ -218,8 +242,10 @@ namespace TakymLib.IO
 			}
 		}
 
+#pragma warning disable TakymLib_PathString_ctor // 型またはメンバーが旧型式です
 		private PathString(SerializationInfo info, StreamingContext context)
 			: this(info.GetString("_")!) { }
+#pragma warning restore TakymLib_PathString_ctor // 型またはメンバーが旧型式です
 
 		/// <summary>
 		///  現在のパス文字列を直列化します。
