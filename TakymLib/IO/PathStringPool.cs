@@ -127,9 +127,12 @@ namespace TakymLib.IO
 		public static PathString Get(string path)
 		{
 			path.EnsureNotNull(nameof(path));
-			if (!_cache.TryGetValue(path, out var result)) {
-				result = new PathString(path);
-				_cache.Add(path, result);
+			PathString? result;
+			lock (_cache) {
+				if (!_cache.TryGetValue(path, out result)) {
+					result = new(path);
+					_cache.Add(path, result);
+				}
 			}
 			return result;
 		}
@@ -140,7 +143,9 @@ namespace TakymLib.IO
 		/// </summary>
 		public static void Clear()
 		{
-			_cache.Clear();
+			lock (_cache) {
+				_cache.Clear();
+			}
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
