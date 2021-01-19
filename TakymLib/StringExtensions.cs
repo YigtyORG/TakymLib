@@ -98,12 +98,14 @@ namespace TakymLib
 		///  <paramref name="s"/>の文字数が<paramref name="count"/>と同じ場合はそのまま返します。
 		/// </remarks>
 		/// <param name="s">省略する文字列です。</param>
-		/// <param name="count">省略後の文字数です。</param>
+		/// <param name="count">省略後の文字数です。4文字以上でなければなりません。</param>
 		/// <returns>
 		///  指定された文字数に収まる文字列です。
 		/// </returns>
+		/// <exception cref="System.ArgumentOutOfRangeException"/>
 		public static string Abridge(this string s, int count)
 		{
+			count.EnsureNotNullWithinClosedRange(4, int.MaxValue, nameof(count));
 			s ??= string.Empty;
 			if (s.Length > count) {
 				return s.Remove(count - 3) + "...";
@@ -192,14 +194,14 @@ namespace TakymLib
 		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
 		/// </param>
 		/// <returns>制御文字が削除された文字列です。</returns>
-		public static ReadOnlySpan<char> RemoveControlChars(
+		public static char[] RemoveControlChars(
 			this char[] s,
 			ControlCharsReplaceMode mode,
 			bool removeSpace = false,
 			bool tabIsSpace = true,
 			bool useAltName = false)
 		{
-			return s.AsSpan().RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName);
+			return ((ReadOnlySpan<char>)(s.AsSpan())).RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName).ToArray();
 		}
 
 		/// <summary>
@@ -228,7 +230,7 @@ namespace TakymLib
 			bool tabIsSpace = true,
 			bool useAltName = false)
 		{
-			return ((ReadOnlyMemory<char>)(s)).RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName);
+			return new(((ReadOnlySpan<char>)(s.Span)).RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName).ToArray());
 		}
 
 		/// <summary>
@@ -308,7 +310,12 @@ namespace TakymLib
 		///  このオプションは<paramref name="mode"/>が<see cref="TakymLib.ControlCharsReplaceMode.ConvertToText"/>の時にのみ有効です。
 		/// </param>
 		/// <returns>制御文字が削除された文字列です。</returns>
-		public static ReadOnlySpan<char> RemoveControlChars(this ReadOnlySpan<char> s, ControlCharsReplaceMode mode, bool removeSpace = false, bool tabIsSpace = true, bool useAltName = false)
+		public static ReadOnlySpan<char> RemoveControlChars(
+			this ReadOnlySpan<char> s,
+			ControlCharsReplaceMode mode,
+			bool                    removeSpace = false,
+			bool                    tabIsSpace  = true,
+			bool                    useAltName  = false)
 		{
 			if (s.Length == 0) {
 				return ReadOnlySpan<char>.Empty;

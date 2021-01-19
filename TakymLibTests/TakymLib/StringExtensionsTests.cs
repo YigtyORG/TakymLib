@@ -57,9 +57,10 @@ namespace TakymLibTests.TakymLib
 		{
 			Assert.AreEqual("abcd",     "abcd"   .Abridge(4));
 			Assert.AreEqual("abcd    ", "abcd"   .Abridge(8));
-			Assert.AreEqual("xyz",      "xyz"    .Abridge(3));
+			Assert.AreEqual("xyz ",     "xyz"    .Abridge(4));
 			Assert.AreEqual("xyz     ", "xyz"    .Abridge(8));
 			Assert.AreEqual("123...",   "1234567".Abridge(6));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => string.Empty.Abridge(0));
 		}
 
 		[Obsolete()]

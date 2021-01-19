@@ -85,14 +85,14 @@ namespace TakymLib
 		/// <returns>題名を表す文字列です。</returns>
 		public string GetCaption()
 		{
-			return $"{this.DisplayName} [{this.GetFullVersionStringCore()}]";
+			return $"{this.DisplayName} [{this.GetFullVersionString()}]";
 		}
 
 		/// <summary>
 		///  バージョン情報の長い形式を取得します。
 		/// </summary>
 		/// <returns>バージョン情報を表す文字列です。</returns>
-		private string GetFullVersionStringCore()
+		public string GetFullVersionString()
 		{
 			return $"v{this.GetVersionString()}, cn:{this.CodeName}";
 		}

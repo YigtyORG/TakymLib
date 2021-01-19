@@ -101,8 +101,8 @@ namespace TakymLib
 		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
 		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
+		//[DebuggerHidden()]
+		//[StackTraceHidden()]
 		public static void EnsureWithinOpenRange(this IComparable? actual, object? min, object? max, string? argName)
 		{
 			if (actual is not null && (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0)) {
