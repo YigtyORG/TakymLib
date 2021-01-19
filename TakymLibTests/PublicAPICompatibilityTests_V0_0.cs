@@ -542,7 +542,7 @@ namespace TakymLibTests
 				path = PathStringPool.Get("0", "1", "2", "3");
 				path = PathStringPool.Get("0", "1", "2", "3", "4");
 				path = PathStringPool.Get("0", "1", "2", "3", "4", "5");
-				path = PathStringPool.Get(Array.Empty<string>());
+				path = PathStringPool.Get(new string[] { "x" });
 				PathStringPool.Clear();
 			}
 		}
