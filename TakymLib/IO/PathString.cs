@@ -601,6 +601,20 @@ namespace TakymLib.IO
 		}
 
 		/// <summary>
+		///  現在のパスのドライブ情報を取得します。
+		/// </summary>
+		/// <returns>
+		///  現在のパスが有効なドライブを指し示している場合は<see cref="System.IO.DriveInfo"/>オブジェクト、
+		///  それ以外の場合は<see langword="null"/>を返します。
+		/// </returns>
+		/// <exception cref="System.IO.IOException"/>
+		public DriveInfo? GetDriveInfo()
+		{
+			this.EnsureFileSystemInfo();
+			return _dinfo;
+		}
+
+		/// <summary>
 		///  現在のパスのディレクトリ情報を取得します。
 		/// </summary>
 		/// <returns>

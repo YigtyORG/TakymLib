@@ -7,19 +7,24 @@
 ****/
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Security;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib;
+using TakymLib.IO;
 
 namespace TakymLibTests
 {
 	[TestClass()]
-	public class PublicAPICompatibilityTests
+	public class PublicAPICompatibilityTests_V0_0
 	{
 		[TestMethod()]
 		public void ArgumentHelperTest()
@@ -204,6 +209,8 @@ namespace TakymLibTests
 			boolVal = disp.IsDisposed;
 			disp.Dispose();
 			valueTask = disp.DisposeAsync();
+			IDisposable disposable = disp;
+			IAsyncDisposable asyncDisposable = disp;
 		}
 
 		[TestMethod()]
@@ -351,7 +358,7 @@ namespace TakymLibTests
 			VersionInfo.PrintAllAssemblies();
 
 			var vi = VersionInfo.Library;
-			vi = new VersionInfo(typeof(PublicAPICompatibilityTests).Assembly);
+			vi = new VersionInfo(typeof(PublicAPICompatibilityTests_V0_0).Assembly);
 
 			Assembly asm;
 			string str;
@@ -369,6 +376,180 @@ namespace TakymLibTests
 
 			vi.Print();
 		}
+
+		[TestClass()]
+		public class IOTests
+		{
+			[TestMethod()]
+			public void FileSystemEntryEnumeratorTest()
+			{
+				// 存在が確認できれば良い。
+				FileSystemEntryEnumerator fsee = default;
+				Func<PathString> current = () => fsee.Current;
+				Action dispose = fsee.Dispose;
+				Func<ValueTask> disposeAsync = fsee.DisposeAsync;
+				Func<FileSystemEntryEnumerator> getAsyncEnumerator = () => fsee.GetAsyncEnumerator();
+				Func<CancellationToken, FileSystemEntryEnumerator> getAsyncEnumerator2 = fsee.GetAsyncEnumerator;
+				Func<FileSystemEntryEnumerator> getEnumerator = fsee.GetEnumerator;
+				Func<bool> moveNext = fsee.MoveNext;
+				Func<ValueTask<bool>> moveNextAsync = fsee.MoveNextAsync;
+				Action reset = fsee.Reset;
+
+				IEnumerable enumerable = fsee;
+				IEnumerator enumerator = fsee;
+				IEnumerable<PathString> enumerableT = fsee;
+				IEnumerator<PathString> enumeratorT = fsee;
+				IAsyncEnumerable<PathString> asyncEnumerable = fsee;
+				IAsyncEnumerator<PathString> asyncEnumerator = fsee;
+				IDisposable disposable = fsee;
+				IAsyncDisposable asyncDisposable = fsee;
+			}
+
+			[TestMethod()]
+			public void InvalidPathFormatExceptionTest()
+			{
+				InvalidPathFormatException ipfe;
+				string? str;
+
+				ipfe = new("path");
+				ipfe = new("path", new Exception());
+				ipfe = EmptyInvalidPathFormatException.Create();
+				str = ipfe.InvalidPath;
+			}
+
+			[TestMethod()]
+			public void PathStringTest()
+			{
+				PathString? pathStr;
+				bool boolVal;
+				string? str;
+				PathString[]? arrayOfPathStr;
+				FileSystemEntryEnumerator? entries;
+				DriveInfo? driveInfo;
+				DirectoryInfo? dinfo;
+				FileInfo? finfo;
+				FileSystemInfo? fsinfo;
+				Uri uri;
+				int num;
+				PathString path = PathStringPool.Get();
+				var sinfo = new SerializationInfo(typeof(PathString), new FormatterConverter());
+
+				pathStr        = path.BasePath;
+				boolVal        = path.IsRoot;
+				boolVal        = path.IsDrive;
+				boolVal        = path.IsDirectory;
+				boolVal        = path.IsFile;
+				boolVal        = path.Exists;
+				pathStr        = path.Combine();
+				pathStr        = path.Combine("aa");
+				pathStr        = path.Combine("aa", "bb");
+				pathStr        = path.Combine("aa", "bb", "cc");
+				pathStr        = path.Combine("aa", "bb", "cc", "dd");
+				pathStr        = path.Combine("aa", "bb", "cc", "dd", "ee");
+				pathStr        = path.Combine(Array.Empty<string>());
+				pathStr        = path.GetDirectoryName();
+				str            = path.GetFileName();
+				str            = path.GetFileNameWithoutExtension();
+				str            = path.GetExtension();
+				pathStr        = path.ChangeFileName("xyz");
+				pathStr        = path.ChangeExtension("0");
+				pathStr        = path.EnsureNotFound();
+				pathStr        = path.GetRootPath();
+				str            = path.GetRelativePath();
+				str            = path.GetRelativePath(path);
+				arrayOfPathStr = path.GetEntryArray();
+				entries        = path.GetEntries();
+				entries        = path.GetEntries("*");
+				entries        = path.GetEntries("*", SearchOption.TopDirectoryOnly);
+				entries        = path.GetEntries("*", new EnumerationOptions());
+				driveInfo      = path.GetDriveInfo();
+				dinfo          = path.GetDirectoryInfo();
+				finfo          = path.GetFileInfo();
+				fsinfo         = path.GetFileSystemInfo();
+				str            = path.GetOriginalString();
+				uri            = path.AsUri();
+				str            = path.ToString();
+				str            = path.ToString(string.Empty);
+				str            = path.ToString(new EmptyFormatProvider());
+				str            = path.ToString(string.Empty, new EmptyFormatProvider());
+				boolVal        = path.Equals(new object());
+				boolVal        = path.Equals(path);
+				boolVal        = path.Equals(string.Empty);
+				num            = path.CompareTo(new object());
+				num            = path.CompareTo(path);
+				num            = path.CompareTo(string.Empty);
+				num            = path.GetHashCode();
+				pathStr        = path + "123";
+				str            = path - path;
+				boolVal        = path == PathStringPool.Get();
+				boolVal        = path != PathStringPool.Get();
+				boolVal        = path <  PathStringPool.Get();
+				boolVal        = path <= PathStringPool.Get();
+				boolVal        = path >  PathStringPool.Get();
+				boolVal        = path >= PathStringPool.Get();
+				str            = path;
+				pathStr        = ((PathString)("./aaa/bbb/ccc"));
+
+				path.GetObjectData(sinfo, default);
+
+				ISerializable           serializable = path;
+				IFormattable            formattable  = path;
+				IEquatable<PathString>  equatableA   = path;
+				IEquatable<string>      equatableB   = path;
+				IComparable             comparable   = path;
+				IComparable<PathString> comparableA  = path;
+				IComparable<string>     comparableB  = path;
+			}
+
+			[Obsolete()]
+			[TestMethod()]
+			public void PathStringObsoleteTest()
+			{
+				PathString path;
+				path = new();
+				path = new("0");
+				path = new("0", "1");
+				path = new("0", "1", "2");
+				path = new("0", "1", "2", "3");
+				path = new("0", "1", "2", "3", "4");
+				path = new("0", "1", "2", "3", "4", "5");
+				path = new(Array.Empty<string>());
+			}
+
+			[TestMethod()]
+			public void PathStringFormatterTest()
+			{
+				object? obj;
+				string? str;
+				PathStringFormatter formatter;
+				formatter = new();
+				formatter = new(formatter);
+				formatter = new(new EmptyFormatProvider());
+				obj = formatter.GetFormat(typeof(object));
+				str = formatter.Format(string.Empty, new(), new EmptyFormatProvider());
+				IFormatProvider formatProvider = formatter;
+				ICustomFormatter customFormatter = formatter;
+			}
+
+			[TestMethod()]
+			public void PathStringPoolTest()
+			{
+				PathString path;
+				path = PathStringPool.Get();
+				path = PathStringPool.Get("0");
+				path = PathStringPool.Get("0", "1");
+				path = PathStringPool.Get("0", "1", "2");
+				path = PathStringPool.Get("0", "1", "2", "3");
+				path = PathStringPool.Get("0", "1", "2", "3", "4");
+				path = PathStringPool.Get("0", "1", "2", "3", "4", "5");
+				path = PathStringPool.Get(Array.Empty<string>());
+				PathStringPool.Clear();
+			}
+		}
+
+		//=================//
+		//---- CLASSES ----//
+		//=================//
 
 		private sealed class EmptyClass { }
 
@@ -453,6 +634,24 @@ namespace TakymLibTests
 				info.AddValue("obj", new object());
 				info.AddValue("str", string.Empty);
 				info.AddValue("num", 0.0D);
+			}
+		}
+
+		private sealed class EmptyInvalidPathFormatException : InvalidPathFormatException
+		{
+			internal EmptyInvalidPathFormatException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
+			internal static EmptyInvalidPathFormatException Create()
+			{
+				return new(new SerializationInfo(typeof(EmptyInvalidPathFormatException), new FormatterConverter()), default);
+			}
+		}
+
+		private sealed class EmptyFormatProvider : IFormatProvider
+		{
+			public object? GetFormat(Type? formatType)
+			{
+				return null;
 			}
 		}
 	}
