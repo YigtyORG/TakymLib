@@ -16,6 +16,10 @@
 		<Version>0.0.0.0</Version>
 		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
+	<PropertyGroup Condition="Exists('../TakymLib.StrongNameKey.snk')">
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>TakymLib.StrongNameKey.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
 	<ItemGroup>
 		<Content Include="../LICENSE.md" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
