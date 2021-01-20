@@ -513,7 +513,7 @@ namespace TakymLibTests
 				path = new("0", "1", "2", "3");
 				path = new("0", "1", "2", "3", "4");
 				path = new("0", "1", "2", "3", "4", "5");
-				path = new(Array.Empty<string>());
+				path = new(new string[] { "x" });
 			}
 
 			[TestMethod()]
@@ -639,11 +639,15 @@ namespace TakymLibTests
 
 		private sealed class EmptyInvalidPathFormatException : InvalidPathFormatException
 		{
-			internal EmptyInvalidPathFormatException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+			private EmptyInvalidPathFormatException() : base("path") { }
+			private EmptyInvalidPathFormatException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
 			internal static EmptyInvalidPathFormatException Create()
 			{
-				return new(new SerializationInfo(typeof(EmptyInvalidPathFormatException), new FormatterConverter()), default);
+				var sinfo = new SerializationInfo(typeof(EmptyInvalidPathFormatException), new FormatterConverter());
+				var eipfe = new EmptyInvalidPathFormatException();
+				eipfe.GetObjectData(sinfo, default);
+				return new(sinfo, default);
 			}
 		}
 
