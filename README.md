@@ -4,14 +4,14 @@ Copyright (C) 2020-2021 Takym.
 
 ![Takym](LOGO.png)
 
-[![Version](https://img.shields.io/badge/version-none-inactive)](https://github.com/Takym/TakymLib/releases)
-[![License](https://img.shields.io/github/license/Takym/TakymLib)](LICENSE.md)
-[![Debug](https://github.com/Takym/TakymLib/workflows/Debug/badge.svg)](https://github.com/Takym/TakymLib/actions?query=workflow%3ADebug)
-[![Release](https://github.com/Takym/TakymLib/workflows/Release/badge.svg)](https://github.com/Takym/TakymLib/actions?query=workflow%3ARelease)
+[![Version](https://img.shields.io/badge/version-none-inactive)](https://github.com/YigtyORG/TakymLib/releases)
+[![License](https://img.shields.io/github/license/YigtyORG/TakymLib)](LICENSE.md)
+[![Debug](https://github.com/YigtyORG/TakymLib/workflows/Debug/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ADebug)
+[![Release](https://github.com/YigtyORG/TakymLib/workflows/Release/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ARelease)
 
-[![GitHub Watchers](https://img.shields.io/github/watchers/Takym/TakymLib?style=social)](https://github.com/Takym/TakymLib/watchers)
-[![GitHub Stars](https://img.shields.io/github/stars/Takym/TakymLib?style=social)](https://github.com/Takym/TakymLib/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/Takym/TakymLib?style=social)](https://github.com/Takym/TakymLib/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/watchers)
+[![GitHub Stars](https://img.shields.io/github/stars/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/network/members)
 
 [日本語](#ja)
 [English](#en)
