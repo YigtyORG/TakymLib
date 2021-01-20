@@ -23,8 +23,9 @@ using TakymLib.IO;
 
 namespace TakymLibTests
 {
+	[Obsolete()]
 	[TestClass()]
-	public class PublicAPICompatibilityTests_V0_0
+	public class PublicAPICompatibilityTests_old_V0_0
 	{
 		[TestMethod()]
 		public void ArgumentHelperTest()
@@ -358,7 +359,7 @@ namespace TakymLibTests
 			VersionInfo.PrintAllAssemblies();
 
 			var vi = VersionInfo.Library;
-			vi = new VersionInfo(typeof(PublicAPICompatibilityTests_V0_0).Assembly);
+			vi = new VersionInfo(typeof(PublicAPICompatibilityTests_old_V0_0).Assembly);
 
 			Assembly asm;
 			string str;
