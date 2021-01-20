@@ -39,7 +39,8 @@ Any version does not release yet. Please wait patiently.
 |  0|v0.0.0.0|alpha00a0|0000/00/00|The first release.|             |
 
 ## Repositories
-- [GitHub](https://github.com/Takym/TakymLib) (Main)
+- [GitHub](https://github.com/YigtyORG/TakymLib) (Main)
+- [GitHub](https://github.com/Takym/TakymLib) (Fork)
 - [GitLab](https://gitlab.com/Takym/TakymLib) (Mirror)
 - [Gitee](https://gitee.com/Takym/TakymLib) (Mirror)
 - [Bitbucket](https://bitbucket.org/Takym/takymlib) (Mirror)
@@ -76,7 +77,8 @@ Yigty.ORG で利用される共通ライブラリ群です。
 |  0|v0.0.0.0  |alpha00a0   |0000/00/00|The first release.|              |
 
 ## 保管庫
-- [GitHub](https://github.com/Takym/TakymLib) (メイン)
+- [GitHub](https://github.com/YigtyORG/TakymLib) (メイン)
+- [GitHub](https://github.com/Takym/TakymLib) (フォーク)
 - [GitLab](https://gitlab.com/Takym/TakymLib) (ミラー)
 - [Gitee](https://gitee.com/Takym/TakymLib) (ミラー)
 - [Bitbucket](https://bitbucket.org/Takym/takymlib) (ミラー)
