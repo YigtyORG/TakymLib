@@ -23,6 +23,11 @@ namespace TakymLib
 		public static VersionInfo Library { get; } = new(typeof(VersionInfo).Assembly);
 
 		/// <summary>
+		///  現在のプロセスの既定のアセンブリのバージョン情報を取得します。
+		/// </summary>
+		public static VersionInfo Current { get; } = new(Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly());
+
+		/// <summary>
 		///  現在の<see cref="System.AppDomain"/>に読み込まれている全てのアセンブリのバージョン情報をコンソール画面に出力します。
 		/// </summary>
 		public static void PrintAllAssemblies()
@@ -72,6 +77,14 @@ namespace TakymLib
 		///  アセンブリの開発コード名を取得します。
 		/// </summary>
 		public string CodeName { get; }
+
+		/// <summary>
+		///  型'<see cref="TakymLib.VersionInfo"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <remarks>
+		///  現在実行中のアセンブリのバージョン情報を取得します。
+		/// </remarks>
+		public VersionInfo() : this(Assembly.GetCallingAssembly()) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.VersionInfo"/>'の新しいインスタンスを生成します。

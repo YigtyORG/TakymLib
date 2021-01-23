@@ -77,11 +77,10 @@ namespace TakymLib.CommandLine
 		/// <param name="usage">使用法を表す文字列です。</param>
 		public void WriteUsage(string usage)
 		{
-			if (_appName is null) {
-				_sb.AppendLine(string.Format(Resources.ManualBuilder_WriteUsage, usage));
-			} else {
-				_sb.AppendLine(string.Format(Resources.ManualBuilder_WriteUsage, $"{_appName} {usage}"));
-			}
+			_sb.AppendLine(string.Format(
+				Resources.ManualBuilder_WriteUsage,
+				_appName is null ? usage : $"{_appName} {usage}"
+			));
 		}
 
 		/// <summary>
@@ -176,6 +175,18 @@ namespace TakymLib.CommandLine
 				}
 			}
 #endif
+		}
+
+		/// <summary>
+		///  バージョン情報と使用法を書き込み、
+		///  コマンド行引数説明書の生成を開始します。
+		///  プログラム名も設定されます。
+		/// </summary>
+		/// <param name="usages">使用法を表す文字列です。複数設定できます。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public void BuildFull(params string[] usages)
+		{
+			this.BuildFull(VersionInfo.Current, usages);
 		}
 
 		/// <summary>
