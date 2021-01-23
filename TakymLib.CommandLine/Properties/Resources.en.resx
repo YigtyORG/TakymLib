@@ -129,4 +129,7 @@
   <data name="ManualBuilder_WriteVersion" xml:space="preserve">
     <value>The Command-Line Argument Manuals</value>
   </data>
+  <data name="ManualBuilder_WriteVersion_Authors" xml:space="preserve">
+    <value>The developers: {0}</value>
+  </data>
 </root>

@@ -129,4 +129,7 @@
   <data name="ManualBuilder_WriteVersion" xml:space="preserve">
     <value>コマンド行引数説明書</value>
   </data>
+  <data name="ManualBuilder_WriteVersion_Authors" xml:space="preserve">
+    <value>開発者：{0}</value>
+  </data>
 </root>

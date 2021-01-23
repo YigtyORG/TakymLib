@@ -65,6 +65,10 @@ namespace TakymLib.CommandLine
 			_sb.AppendLine(Resources.ManualBuilder_WriteVersion);
 			_sb.AppendLine(ver.Copyright);
 			_sb.AppendLine();
+			_sb.AppendLine(ver.Description);
+			_sb.AppendFormat(Resources.ManualBuilder_WriteVersion_Authors, ver.Authors);
+			_sb.AppendLine();
+			_sb.AppendLine();
 		}
 
 		/// <summary>

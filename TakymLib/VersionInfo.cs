@@ -49,9 +49,19 @@ namespace TakymLib
 		public string DisplayName { get; }
 
 		/// <summary>
+		///  アセンブリの作成者情報を取得します。
+		/// </summary>
+		public string Authors { get; }
+
+		/// <summary>
 		///  アセンブリの著作者情報を取得します。
 		/// </summary>
 		public string Copyright { get; }
+
+		/// <summary>
+		///  アセンブリの説明を取得します。
+		/// </summary>
+		public string Description { get; }
 
 		/// <summary>
 		///  アセンブリのバージョン情報を取得します。
@@ -73,8 +83,10 @@ namespace TakymLib
 			asm.EnsureNotNull(nameof(asm));
 			this.Assembly    = asm;
 			this.Name        = asm.GetName().Name ?? "Unknown";
-			this.DisplayName = asm.GetCustomAttribute<AssemblyProductAttribute>  ()?.Product   ?? Resources.VersionInfo_DisplayName;
-			this.Copyright   = asm.GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright ?? Resources.VersionInfo_Copyright;
+			this.DisplayName = asm.GetCustomAttribute<AssemblyProductAttribute>    ()?.Product     ?? Resources.VersionInfo_DisplayName;
+			this.Authors     = asm.GetCustomAttribute<AssemblyCompanyAttribute>    ()?.Company     ?? Resources.VersionInfo_Authors;
+			this.Copyright   = asm.GetCustomAttribute<AssemblyCopyrightAttribute>  ()?.Copyright   ?? Resources.VersionInfo_Copyright;
+			this.Description = asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? Resources.VersionInfo_Description;
 			this.Version     = asm.GetName().Version;
 			this.CodeName    = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";
 		}

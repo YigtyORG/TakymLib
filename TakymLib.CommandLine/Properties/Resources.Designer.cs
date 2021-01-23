@@ -95,5 +95,14 @@ namespace TakymLib.CommandLine.Properties {
                 return ResourceManager.GetString("ManualBuilder_WriteVersion", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ManualBuilder_WriteVersion_Authors {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ManualBuilder_WriteVersion_Authors {
+            get {
+                return ResourceManager.GetString("ManualBuilder_WriteVersion_Authors", resourceCulture);
+            }
+        }
     }
 }

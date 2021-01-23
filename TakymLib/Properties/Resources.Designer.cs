@@ -151,11 +151,29 @@ namespace TakymLib.Properties {
         }
         
         /// <summary>
+        ///   VersionInfo_Authors に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VersionInfo_Authors {
+            get {
+                return ResourceManager.GetString("VersionInfo_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   VersionInfo_Copyright に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string VersionInfo_Copyright {
             get {
                 return ResourceManager.GetString("VersionInfo_Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   VersionInfo_Description に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VersionInfo_Description {
+            get {
+                return ResourceManager.GetString("VersionInfo_Description", resourceCulture);
             }
         }
         

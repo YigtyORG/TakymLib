@@ -129,4 +129,7 @@
   <data name="ManualBuilder_WriteVersion" xml:space="preserve">
     <value>ManualBuilder_WriteVersion</value>
   </data>
+  <data name="ManualBuilder_WriteVersion_Authors" xml:space="preserve">
+    <value>ManualBuilder_WriteVersion_Authors {0}</value>
+  </data>
 </root>
