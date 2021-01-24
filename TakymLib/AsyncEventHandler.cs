@@ -57,20 +57,14 @@ namespace TakymLib
 		/// <param name="sender">イベントの発生源です。</param>
 		/// <param name="e">空のイベントデータを格納しているオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.MemberAccessException"/>
-		public static async ValueTask Dispatch(this AsyncEventHandler? handler, object? sender, EventArgs e)
+		public static ValueTask Dispatch(this AsyncEventHandler? handler, object? sender, EventArgs e)
 		{
-			if (handler is null) return;
-			var handlers = handler.GetInvocationList();
-			var tasks    = new ValueTask[handlers.Length];
-			for (int i = 0; i < handlers.Length; ++i) {
-				tasks[i] = ((AsyncEventHandler)(handlers[i]))(sender, e);
-			}
-			for (int i = 0; i < tasks.Length; ++i) {
-				var task = tasks[i];
-				if (!task.IsCompleted) {
-					await task; // 1回のみ実行可
-				}
+			if (handler is null) {
+				return default;
+			} else {
+				return DispatchCore(handler, sender, e);
 			}
 		}
 
@@ -85,21 +79,15 @@ namespace TakymLib
 		/// <param name="sender">イベントの発生源です。</param>
 		/// <param name="e">イベントデータを格納しているオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.MemberAccessException"/>
-		public static async ValueTask Dispatch<TEventArgs>(this AsyncEventHandler<TEventArgs>? handler, object? sender, TEventArgs e)
+		public static ValueTask Dispatch<TEventArgs>(this AsyncEventHandler<TEventArgs>? handler, object? sender, TEventArgs e)
 			where TEventArgs: EventArgs
 		{
-			if (handler is null) return;
-			var handlers = handler.GetInvocationList();
-			var tasks    = new ValueTask[handlers.Length];
-			for (int i = 0; i < handlers.Length; ++i) {
-				tasks[i] = ((AsyncEventHandler<TEventArgs>)(handlers[i]))(sender, e);
-			}
-			for (int i = 0; i < tasks.Length; ++i) {
-				var task = tasks[i];
-				if (!task.IsCompleted) {
-					await task; // 1回のみ実行可
-				}
+			if (handler is null) {
+				return default;
+			} else {
+				return DispatchCore(handler, sender, e);
 			}
 		}
 
@@ -115,15 +103,102 @@ namespace TakymLib
 		/// <param name="sender">イベントの発生源です。</param>
 		/// <param name="e">イベントデータを格納しているオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.MemberAccessException"/>
-		public static async ValueTask Dispatch<TSender, TEventArgs>(this AsyncEventHandler<TSender, TEventArgs>? handler, TSender? sender, TEventArgs e)
+		public static ValueTask Dispatch<TSender, TEventArgs>(this AsyncEventHandler<TSender, TEventArgs>? handler, TSender? sender, TEventArgs e)
 			where TEventArgs: EventArgs
 		{
-			if (handler is null) return;
+			if (handler is null) {
+				return default;
+			} else {
+				return DispatchCore(handler, sender, e);
+			}
+		}
+
+		/// <summary>
+		///  指定されたイベントを発火させます。
+		/// </summary>
+		/// <remarks>
+		///  実行順序は保証されません。
+		/// </remarks>
+		/// <typeparam name="TDelegate">デリゲートの種類です。</typeparam>
+		/// <param name="handler">実行するイベントハンドラです。<see langword="null"/>の場合は実行されません。</param>
+		/// <param name="sender">イベントの発生源です。</param>
+		/// <param name="e">空のイベントデータを格納しているオブジェクトです。</param>
+		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="System.MemberAccessException"/>
+		[Obsolete()]
+		public static ValueTask Dispatch<TDelegate>(this TDelegate handler, object? sender, EventArgs e)
+			where TDelegate: Delegate
+		{
+			if (handler is null) {
+				return default;
+			} else {
+				return DispatchCore(handler, sender, e);
+			}
+		}
+
+		/// <summary>
+		///  指定されたイベントを発火させます。
+		/// </summary>
+		/// <remarks>
+		///  実行順序は保証されません。
+		/// </remarks>
+		/// <typeparam name="TDelegate">デリゲートの種類です。</typeparam>
+		/// <typeparam name="TEventArgs">イベントデータの種類です。</typeparam>
+		/// <param name="handler">実行するイベントハンドラです。<see langword="null"/>の場合は実行されません。</param>
+		/// <param name="sender">イベントの発生源です。</param>
+		/// <param name="e">イベントデータを格納しているオブジェクトです。</param>
+		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="System.MemberAccessException"/>
+		[Obsolete()]
+		public static ValueTask Dispatch<TDelegate, TEventArgs>(this TDelegate handler, object? sender, TEventArgs e)
+			where TDelegate : Delegate
+			where TEventArgs: EventArgs
+		{
+			if (handler is null) {
+				return default;
+			} else {
+				return DispatchCore(handler, sender, e);
+			}
+		}
+
+		/// <summary>
+		///  指定されたイベントを発火させます。
+		/// </summary>
+		/// <remarks>
+		///  実行順序は保証されません。
+		/// </remarks>
+		/// <typeparam name="TDelegate">デリゲートの種類です。</typeparam>
+		/// <typeparam name="TSender">発生源の種類です。</typeparam>
+		/// <typeparam name="TEventArgs">イベントデータの種類です。</typeparam>
+		/// <param name="handler">実行するイベントハンドラです。<see langword="null"/>の場合は実行されません。</param>
+		/// <param name="sender">イベントの発生源です。</param>
+		/// <param name="e">イベントデータを格納しているオブジェクトです。</param>
+		/// <returns>この処理の非同期操作です。</returns>
+		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="System.MemberAccessException"/>
+		[Obsolete()]
+		public static ValueTask Dispatch<TDelegate, TSender, TEventArgs>(this TDelegate handler, TSender? sender, TEventArgs e)
+			where TDelegate : Delegate
+			where TEventArgs: EventArgs
+		{
+			if (handler is null) {
+				return default;
+			} else {
+				return DispatchCore(handler, sender, e);
+			}
+		}
+
+		private static async ValueTask DispatchCore<TSender, TEventArgs>(Delegate handler, TSender? sender, TEventArgs e)
+			where TEventArgs : EventArgs
+		{
 			var handlers = handler.GetInvocationList();
 			var tasks    = new ValueTask[handlers.Length];
 			for (int i = 0; i < handlers.Length; ++i) {
-				tasks[i] = ((AsyncEventHandler<TSender, TEventArgs>)(handlers[i]))(sender, e);
+				tasks[i] = WrapHandler<TSender, TEventArgs>(handlers[i])(sender, e);
 			}
 			for (int i = 0; i < tasks.Length; ++i) {
 				var task = tasks[i];
@@ -131,6 +206,25 @@ namespace TakymLib
 					await task; // 1回のみ実行可
 				}
 			}
+		}
+
+		private static AsyncEventHandler<TSender, TEventArgs> WrapHandler<TSender, TEventArgs>(Delegate handler)
+			where TEventArgs : EventArgs
+		{
+			return handler switch {
+				AsyncEventHandler<TSender, TEventArgs> h => h,
+				AsyncEventHandler<TEventArgs>          h => (sender, e) =>   h(sender, e),
+				AsyncEventHandler                      h => (sender, e) =>   h(sender, e),
+				Func<object,  EventArgs,  ValueTask>   h => (sender, e) =>   h(sender, e),
+				Func<object,  TEventArgs, ValueTask>   h => (sender, e) =>   h(sender, e),
+				Func<TSender, TEventArgs, ValueTask>   h => (sender, e) =>   h(sender, e),
+				EventHandler<TEventArgs>               h => (sender, e) => { h(sender, e); return default; },
+				EventHandler                           h => (sender, e) => { h(sender, e); return default; },
+				Action<object,  EventArgs>             h => (sender, e) => { h(sender, e); return default; },
+				Action<object,  TEventArgs>            h => (sender, e) => { h(sender, e); return default; },
+				Action<TSender, TEventArgs>            h => (sender, e) => { h(sender, e); return default; },
+				_ => throw new ArgumentException(Resources.AsyncEventHandlerExtensions_WrapHandler, nameof(handler))
+			};
 		}
 #pragma warning restore CA2012 // ValueTask を正しく使用する必要があります
 	}
