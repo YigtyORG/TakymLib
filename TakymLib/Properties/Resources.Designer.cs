@@ -61,6 +61,15 @@ namespace TakymLib.Properties {
         }
         
         /// <summary>
+        ///   AsyncEventHandlerExtensions_WrapHandler に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AsyncEventHandlerExtensions_WrapHandler {
+            get {
+                return ResourceManager.GetString("AsyncEventHandlerExtensions_WrapHandler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ConsoleUtil_Pause に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ConsoleUtil_Pause {
