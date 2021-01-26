@@ -18,7 +18,7 @@ Copyright (C) 2020-2021 Takym.
 
 
 
-# <a id="en">English</a>
+# <a id="en" href="#en">English</a>
 
 ## Summary
 The common libraries used by Yigty.ORG.
@@ -57,7 +57,7 @@ This libraries are distributed under the [MIT License](LICENSE.md).
 
 
 
-# <a id="ja">日本語</a>
+# <a id="ja" href="#ja">日本語</a>
 
 ## 概要
 Yigty.ORG で利用される共通ライブラリ群です。
