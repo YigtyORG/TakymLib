@@ -92,7 +92,7 @@ namespace TakymLib.IO
 		/// <remarks>
 		///  <see cref="TakymLib.IO.PathStringPool.Get()"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
-		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString() : this(Environment.CurrentDirectory) { }
 
 		/// <summary>
@@ -117,7 +117,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2) : this(Path.Combine(path1, path2)) { }
 
 		/// <summary>
@@ -146,7 +146,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2, string path3) : this(Path.Combine(path1, path2, path3)) { }
 
 		/// <summary>
@@ -179,7 +179,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2, string path3, string path4) : this(Path.Combine(path1, path2, path3, path4)) { }
 
 		/// <summary>
@@ -200,7 +200,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(params string[] paths) : this(Path.Combine(paths)) { }
 
 		/// <summary>
@@ -220,7 +220,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。", DiagnosticId = "TakymLib_PathString_ctor")]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path)
 		{
 			path.EnsureNotNull(nameof(path));

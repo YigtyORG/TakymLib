@@ -6,6 +6,11 @@
  * distributed under the MIT License.
 ****/
 
+#pragma warning disable CS0219 // 変数は割り当てられていますが、その値は使用されていません
+#pragma warning disable CA1041 // ObsoleteAttribute メッセージを指定します
+#pragma warning disable IDE0007 // 暗黙的な型の使用
+#pragma warning disable IDE0039 // ローカル関数を使用します
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

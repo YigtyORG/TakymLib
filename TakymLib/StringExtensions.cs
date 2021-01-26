@@ -125,7 +125,7 @@ namespace TakymLib
 		/// </remarks>
 		/// <param name="s">1行に収める必要のある文字列です。</param>
 		/// <returns>改行やタブが削除され、1行で表現された文字列です。</returns>
-		[Obsolete("Use instead: " + nameof(TakymLib) + "." + nameof(StringExtensions) + "." + nameof(RemoveControlChars))]
+		[Obsolete("代わりに RemoveControlChars を利用してください。", DiagnosticId = "TakymLib_FitToLine")]
 		public static string FitToLine(this string s)
 		{
 			return s.Replace("\r", "[CR]").Replace("\n", "[LF]").Replace("\t", "[TB]").Replace("　", "[SP]");

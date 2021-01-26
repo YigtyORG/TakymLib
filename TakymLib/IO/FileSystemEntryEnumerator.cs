@@ -121,7 +121,7 @@ namespace TakymLib.IO
 
 		IAsyncEnumerator<PathString> IAsyncEnumerable<PathString>.GetAsyncEnumerator(CancellationToken cancellationToken)
 		{
-			return this.GetAsyncEnumerator();
+			return this.GetAsyncEnumerator(cancellationToken);
 		}
 	}
 }
