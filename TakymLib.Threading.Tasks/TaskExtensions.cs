@@ -40,5 +40,29 @@ namespace TakymLib.Threading.Tasks
 			task.EnsureNotNull(nameof(task));
 			return new(task);
 		}
+
+		/// <summary>
+		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトとして利用できる様にラップします。
+		/// </summary>
+		/// <param name="task">ラップするタスクです。</param>
+		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトへ変換可能な構造体です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static ValueTaskWrapper WrapAwaitable(this ValueTask task)
+		{
+			task.EnsureNotNull(nameof(task));
+			return new(task);
+		}
+
+		/// <summary>
+		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトとして利用できる様にラップします。
+		/// </summary>
+		/// <param name="task">ラップするタスクです。</param>
+		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトへ変換可能な構造体です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static ValueTaskWrapper<TResult> WrapAwaitable<TResult>(this ValueTask<TResult> task)
+		{
+			task.EnsureNotNull(nameof(task));
+			return new(task);
+		}
 	}
 }
