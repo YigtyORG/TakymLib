@@ -15,6 +15,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 {
 	/// <summary>
 	///  <see cref="System.Threading.Tasks.ValueTask{TResult}"/>を<see cref="TakymLib.Threading.Tasks.IAsyncMethodResult{TResult}"/>として扱える様にします。
+	///  このクラスは読み取り専用構造体です。
 	/// </summary>
 	public readonly struct ValueTaskWrapper<TResult> : IAsyncMethodResult<TResult>
 	{

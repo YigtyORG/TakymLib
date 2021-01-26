@@ -10,6 +10,7 @@ namespace TakymLib.Threading.Tasks.Internals
 {
 	/// <summary>
 	///  戻り値の無いタスクの為の単位型です。
+	///  このクラスは読み取り専用構造体です。
 	/// </summary>
 	internal readonly struct VoidResult { }
 }

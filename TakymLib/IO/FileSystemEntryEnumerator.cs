@@ -16,6 +16,7 @@ namespace TakymLib.IO
 {
 	/// <summary>
 	///  ファイルシステム内に保持される項目を列挙します。
+	///  このクラスは読み取り専用構造体です。
 	/// </summary>
 	public readonly struct FileSystemEntryEnumerator : IEnumerable<PathString>, IEnumerator<PathString>, IAsyncEnumerable<PathString>, IAsyncEnumerator<PathString>
 	{

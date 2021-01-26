@@ -13,6 +13,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 {
 	/// <summary>
 	///  <see cref="System.Runtime.CompilerServices.TaskAwaiter{TResult}"/>を<see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>として扱える様にします。
+	///  このクラスは読み取り専用構造体です。
 	/// </summary>
 	public readonly struct TaskAwaiterWrapper<TResult> : IAwaiter<TResult>
 	{

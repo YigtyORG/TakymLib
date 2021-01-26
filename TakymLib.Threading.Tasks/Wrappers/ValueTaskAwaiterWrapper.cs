@@ -15,6 +15,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 {
 	/// <summary>
 	///  <see cref="System.Runtime.CompilerServices.ValueTaskAwaiter"/>を<see cref="TakymLib.Threading.Tasks.IAwaiter"/>として扱える様にします。
+	///  このクラスは読み取り専用構造体です。
 	/// </summary>
 	public readonly struct ValueTaskAwaiterWrapper : IAwaiter
 	{
