@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Distribu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Logging", "TakymLib.Logging\TakymLib.Logging.csproj", "{6C45CD2C-C192-4E27-AABB-EB3B7B9B91FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Security", "TakymLib.Security\TakymLib.Security.csproj", "{843CFF65-A0B3-4B9C-BC0E-331581349D44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Security", "TakymLib.Security\TakymLib.Security.csproj", "{843CFF65-A0B3-4B9C-BC0E-331581349D44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{843CFF65-A0B3-4B9C-BC0E-331581349D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{843CFF65-A0B3-4B9C-BC0E-331581349D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843CFF65-A0B3-4B9C-BC0E-331581349D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C528FA17-C546-414C-8535-701A6199E462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C528FA17-C546-414C-8535-701A6199E462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C528FA17-C546-414C-8535-701A6199E462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C528FA17-C546-414C-8535-701A6199E462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,6 +27,7 @@ The common libraries used by Yigty.ORG.
 * **[TakymLib.Logging](/TakymLib.Logging)** - the common logging library.
 * **[TakymLib.Security](/TakymLib.Security)** - the common secutiy library.
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - the common distributed computing library.
+* **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - The common asynchronous programming library.
 
 ## Get Started
 (draft...)
@@ -65,6 +66,7 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib.Logging](/TakymLib.Logging)** - 共通ログ出力ライブラリです。
 * **[TakymLib.Security](/TakymLib.Security)** - 共通安全保障ライブラリです。
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - 共通分散コンピューティングライブラリです。
+* **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - 共通非同期プログラミングライブラリです。
 
 ## 使い方
 (書きかけ...)
