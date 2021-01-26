@@ -22,12 +22,17 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		/// <summary>
 		///  <see cref="System.Runtime.CompilerServices.TaskAwaiter.IsCompleted"/>の値を取得します。
 		/// </summary>
-		public bool IsCompleted => _awaiter.IsCompleted;
+		public bool IsCompleted
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _awaiter.IsCompleted;
+		}
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.TaskAwaiterWrapper"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="awaiter">ラップする待機オブジェクトです。</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public TaskAwaiterWrapper(TaskAwaiter awaiter)
 		{
 			_awaiter = awaiter;

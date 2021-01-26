@@ -10,8 +10,6 @@ using System;
 using System.Runtime.CompilerServices;
 using static System.Runtime.CompilerServices.ConfiguredTaskAwaitable;
 
-// TODO: このクラスは読み取り専用構造体です。
-
 namespace TakymLib.Threading.Tasks.Wrappers
 {
 	/// <summary>
@@ -26,6 +24,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.ConfiguredTaskAwaitableWrapper"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="awaitable">ラップする待機可能なオブジェクトです。</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ConfiguredTaskAwaitableWrapper(ConfiguredTaskAwaitable awaitable)
 		{
 			_awaitable = awaitable;
@@ -58,12 +57,17 @@ namespace TakymLib.Threading.Tasks.Wrappers
 			/// <summary>
 			///  <see cref="System.Runtime.CompilerServices.ConfiguredTaskAwaitable.ConfiguredTaskAwaiter.IsCompleted"/>の値を取得します。
 			/// </summary>
-			public bool IsCompleted => _awaiter.IsCompleted;
+			public bool IsCompleted
+			{
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				get => _awaiter.IsCompleted;
+			}
 
 			/// <summary>
 			///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.ConfiguredTaskAwaitableWrapper.ConfiguredTaskAwaiterWrapper"/>'の新しいインスタンスを生成します。
 			/// </summary>
 			/// <param name="awaiter">ラップする待機オブジェクトです。</param>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public ConfiguredTaskAwaiterWrapper(ConfiguredTaskAwaiter awaiter)
 			{
 				_awaiter = awaiter;

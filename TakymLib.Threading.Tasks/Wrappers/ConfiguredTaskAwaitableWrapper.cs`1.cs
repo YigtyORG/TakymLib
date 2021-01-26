@@ -24,6 +24,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.ConfiguredTaskAwaitableWrapper{TResult}"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="awaitable">ラップする待機可能なオブジェクトです。</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ConfiguredTaskAwaitableWrapper(ConfiguredTaskAwaitable<TResult> awaitable)
 		{
 			_awaitable = awaitable;
@@ -58,12 +59,17 @@ namespace TakymLib.Threading.Tasks.Wrappers
 			/// <summary>
 			///  <see cref="System.Runtime.CompilerServices.ConfiguredTaskAwaitable{TResult}.ConfiguredTaskAwaiter.IsCompleted"/>の値を取得します。
 			/// </summary>
-			public bool IsCompleted => _awaiter.IsCompleted;
+			public bool IsCompleted
+			{
+				[MethodImpl(MethodImplOptions.AggressiveInlining)]
+				get => _awaiter.IsCompleted;
+			}
 
 			/// <summary>
 			///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.ConfiguredTaskAwaitableWrapper{TResult}.ConfiguredTaskAwaiterWrapper"/>'の新しいインスタンスを生成します。
 			/// </summary>
 			/// <param name="awaiter">ラップする待機オブジェクトです。</param>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public ConfiguredTaskAwaiterWrapper(ConfiguredTaskAwaitable<TResult>.ConfiguredTaskAwaiter awaiter)
 			{
 				_awaiter = awaiter;

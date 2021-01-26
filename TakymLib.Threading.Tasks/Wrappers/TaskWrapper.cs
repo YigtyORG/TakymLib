@@ -24,47 +24,80 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.AsyncState"/>の値を取得します。
 		/// </summary>
-		public object? AsyncState => _task.AsyncState;
+		public object? AsyncState
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.AsyncState;
+		}
 
 		/// <summary>
 		///  現在の<see cref="System.Threading.Tasks.Task"/>から<see cref="System.IAsyncResult.AsyncState"/>の値を取得します。
 		/// </summary>
-		public WaitHandle AsyncWaitHandle => ((IAsyncResult)(_task)).AsyncWaitHandle;
+		public WaitHandle AsyncWaitHandle
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ((IAsyncResult)(_task)).AsyncWaitHandle;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.Exception"/>の値を取得します。
 		/// </summary>
-		public Exception? Exception => _task.Exception;
+		public Exception? Exception
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.Exception;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.IsCompleted"/>の値を取得します。
 		/// </summary>
-		public bool IsCompleted => _task.IsCompleted;
+		public bool IsCompleted
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsCompleted;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.IsCompletedSuccessfully"/>の値を取得します。
 		/// </summary>
-		public bool IsCompletedSuccessfully => _task.IsCompletedSuccessfully;
+		public bool IsCompletedSuccessfully
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsCompletedSuccessfully;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.IsFaulted"/>の値を取得します。
 		/// </summary>
-		public bool IsFailed => _task.IsFaulted;
+		public bool IsFailed
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsFaulted;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.IsCanceled"/>の値を取得します。
 		/// </summary>
-		public bool IsCancelled => _task.IsCanceled;
+		public bool IsCancelled
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsCanceled;
+		}
 
 		/// <summary>
 		///  現在の<see cref="System.Threading.Tasks.Task"/>から<see cref="System.IAsyncResult.CompletedSynchronously"/>の値を取得します。
 		/// </summary>
-		public bool CompletedSynchronously => ((IAsyncResult)(_task)).CompletedSynchronously;
+		public bool CompletedSynchronously
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => ((IAsyncResult)(_task)).CompletedSynchronously;
+		}
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.TaskWrapper"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="task">ラップするタスクです。</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public TaskWrapper(Task task)
 		{
 			task.EnsureNotNull(nameof(task));

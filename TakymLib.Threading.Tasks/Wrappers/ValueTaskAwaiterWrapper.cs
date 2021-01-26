@@ -9,8 +9,6 @@
 using System;
 using System.Runtime.CompilerServices;
 
-// TODO: [MethodImpl(MethodImplOptions.AggressiveInlining)]
-
 namespace TakymLib.Threading.Tasks.Wrappers
 {
 	/// <summary>

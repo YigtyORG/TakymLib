@@ -25,50 +25,83 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
-		public object? AsyncState => throw new NotSupportedException();
+		public object? AsyncState
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => throw new NotSupportedException();
+		}
 
 		/// <summary>
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
-		public WaitHandle AsyncWaitHandle => throw new NotSupportedException();
+		public WaitHandle AsyncWaitHandle
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => throw new NotSupportedException();
+		}
 
 		/// <summary>
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
-		public Exception? Exception => throw new NotSupportedException();
+		public Exception? Exception
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => throw new NotSupportedException();
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.ValueTask{TResult}.IsCompleted"/>の値を取得します。
 		/// </summary>
-		public bool IsCompleted => _task.IsCompleted;
+		public bool IsCompleted
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsCompleted;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.ValueTask{TResult}.IsCompletedSuccessfully"/>の値を取得します。
 		/// </summary>
-		public bool IsCompletedSuccessfully => _task.IsCompletedSuccessfully;
+		public bool IsCompletedSuccessfully
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsCompletedSuccessfully;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.ValueTask{TResult}.IsFaulted"/>の値を取得します。
 		/// </summary>
-		public bool IsFailed => _task.IsFaulted;
+		public bool IsFailed
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsFaulted;
+		}
 
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.ValueTask{TResult}.IsCanceled"/>の値を取得します。
 		/// </summary>
-		public bool IsCancelled => _task.IsCanceled;
+		public bool IsCancelled
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _task.IsCanceled;
+		}
 
 		/// <summary>
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
-		public bool CompletedSynchronously => throw new NotSupportedException();
+		public bool CompletedSynchronously
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => throw new NotSupportedException();
+		}
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Threading.Tasks.Wrappers.ValueTaskWrapper{TResult}"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="task">ラップするタスクです。</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ValueTaskWrapper(ValueTask<TResult> task)
 		{
 			task.EnsureNotNull(nameof(task));
