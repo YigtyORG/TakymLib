@@ -20,12 +20,17 @@ namespace TakymLib.Threading.Tasks
 		/// <summary>
 		///  操作が正常に完了した場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsCompletedSuccessfully => this.Exception is null;
+		public bool IsCompletedSuccessfully => this.IsCompleted && this.Exception is null;
 
 		/// <summary>
 		///  操作の実行に失敗した場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsFailed => this.IsCompleted && !this.IsCompletedSuccessfully;
+		public bool IsFailed => this.IsCompleted && this.Exception is not null;
+
+		/// <summary>
+		///  操作が中止された場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
+		/// </summary>
+		public bool IsCancelled => this.IsCompleted && this.Exception is OperationCanceledException;
 
 		/// <summary>
 		///  失敗の原因となった例外を取得します。
