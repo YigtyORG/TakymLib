@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -81,10 +82,12 @@ namespace TakymLib.CommandLine
 							if (File.Exists(argData)) {
 								async IAsyncEnumerable<string> LoadFile(string fname)
 								{
-									using (var fs = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read))
-									using (var sr = new StreamReader(fs, true)) {
-										while (await sr.ReadLineAsync() is string line) {
-											yield return line;
+									var fs = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read);
+									await using (fs.ConfigureAwait(false)) {
+										using (var sr = new StreamReader(fs, Encoding.UTF8, true, -1, true)) {
+											while (await sr.ReadLineAsync() is string line) {
+												yield return line;
+											}
 										}
 									}
 								}
@@ -110,26 +113,33 @@ namespace TakymLib.CommandLine
 		{
 			await this.OnPreParse(pr.Command);
 			var tasks = new List<ValueTask>();
-			tasks.Add(this.OnParse(null, null, pr.Values.ToArray()));
+			AddTask(tasks, this.OnParse(null, null, pr.Values.ToArray()));
 			int count0 = pr.Options.Count;
 			for (int i = 0; i < count0; ++i) {
 				var opt = pr.Options[i];
-				tasks.Add(this.OnParse(null, opt.Name, opt.Values.ToArray()));
+				AddTask(tasks, this.OnParse(null, opt.Name, opt.Values.ToArray()));
 			}
 			int count1 = pr.Switches.Count;
 			for (int i = 0; i < count1; ++i) {
 				var    swt    = pr.Switches[i];
 				string name_s = swt.Name;
-				tasks.Add(this.OnParse(name_s, null, swt.Values.ToArray()));
+				AddTask(tasks, this.OnParse(name_s, null, swt.Values.ToArray()));
 				int count2 = swt.Options.Count;
 				for (int j = 0; j < count2; ++j) {
 					var opt = swt.Options[j];
-					tasks.Add(this.OnParse(name_s, opt.Name, opt.Values.ToArray()));
+					AddTask(tasks, this.OnParse(name_s, opt.Name, opt.Values.ToArray()));
 				}
 			}
 			int count3 = tasks.Count;
 			for (int i = 0; i < count3; ++i) {
-				await tasks[i].ConfigureAwait(false);
+				await tasks[i].ConfigureAwait(false); // 1回のみ実行可
+			}
+		}
+
+		private static void AddTask(List<ValueTask> tasks, in ValueTask task)
+		{
+			if (!task.IsCompleted) {
+				tasks.Add(task);
 			}
 		}
 
