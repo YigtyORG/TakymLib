@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Security", "TakymL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Framework", "TakymLib.Framework\TakymLib.Framework.csproj", "{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Core.Framework", "TakymLib.Core.Framework\TakymLib.Core.Framework.csproj", "{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,7 +24,7 @@ Copyright (C) 2020-2021 Takym.
 The common libraries used by Yigty.ORG.
 * **[TakymLib](/TakymLib)** - the common library.
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - the common command-line arguments parser library.
-* **[TakymLib.Framework](/TakymLib.Framework)** - the common framework library.
+* **[TakymLib.Core.Framework](/TakymLib.Core.Framework)** - the common core framework library.
 * **[TakymLib.Logging](/TakymLib.Logging)** - the common logging library.
 * **[TakymLib.Security](/TakymLib.Security)** - the common secutiy library.
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - the common distributed computing library.
@@ -64,7 +64,7 @@ This libraries are distributed under the [MIT License](LICENSE.md).
 Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib](/TakymLib)** - 共通ライブラリです。
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - 共通コマンド行引数解析ライブラリです。
-* **[TakymLib.Framework](/TakymLib.Framework)** - 共通枠組みライブラリです。
+* **[TakymLib.Core.Framework](/TakymLib.Core.Framework)** - 共通枠組みライブラリです。
 * **[TakymLib.Logging](/TakymLib.Logging)** - 共通ログ出力ライブラリです。
 * **[TakymLib.Security](/TakymLib.Security)** - 共通安全保障ライブラリです。
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - 共通分散コンピューティングライブラリです。

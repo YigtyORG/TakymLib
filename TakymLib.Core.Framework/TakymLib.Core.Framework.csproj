@@ -7,14 +7,14 @@
 **-->
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>TakymLib.Framework</AssemblyName>
-		<RootNamespace>TakymLib.Framework</RootNamespace>
+		<AssemblyName>TakymLib.Core.Framework</AssemblyName>
+		<RootNamespace>TakymLib.Core.Framework</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 	<Import Project="../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib.Framework</Product>
-		<Description>The common framework library.</Description>
+		<Description>The common core framework library.</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
