@@ -89,6 +89,9 @@ namespace TakymLib.Logging
 		/// <param name="dir">ログファイルの保存先のディレクトリです。</param>
 		public static void PrintAndLog(Exception e, PathString dir)
 		{
+			if (!dir.IsDirectory) {
+				Directory.CreateDirectory(dir);
+			}
 			var log = Create(e).Save(dir, null);
 			SaveERBC(dir);
 			Console.ForegroundColor = ConsoleColor.Red;
