@@ -192,8 +192,8 @@ namespace TakymLib.CommandLine
 		/// <returns>この処理の非同期操作です。</returns>
 		protected sealed override async ValueTask OnParse(string? switchName, string? optionName, string[] values)
 		{
-			switchName = switchName ?? string.Empty;
-			optionName = optionName ?? string.Empty;
+			switchName ??= string.Empty;
+			optionName ??= string.Empty;
 			if (_types.ContainsKey(switchName)) {
 				if (this.DoConvertAsync) {
 					await Task.Run(() => _types[switchName].SetValue(optionName, values));
@@ -261,9 +261,9 @@ namespace TakymLib.CommandLine
 					var o = props[i].GetCustomAttribute<OptionAttribute>();
 					if (o is not null) {
 						var prop   = props[i];
-						var action = new Action<string[]>(args => {
-							prop.SetValue(_inst, this.ConvertToObject(args, prop.PropertyType));
-						});
+						var action = new Action<string[]>(args =>
+							prop.SetValue(_inst, this.ConvertToObject(args, prop.PropertyType))
+						);
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
 							_opts.Add(o.ShortName, action);
@@ -279,9 +279,9 @@ namespace TakymLib.CommandLine
 					var o = fields[i].GetCustomAttribute<OptionAttribute>();
 					if (o is not null) {
 						var field  = fields[i];
-						var action = new Action<string[]>(args => {
-							field.SetValue(_inst, this.ConvertToObject(args, field.FieldType));
-						});
+						var action = new Action<string[]>(args =>
+							field.SetValue(_inst, this.ConvertToObject(args, field.FieldType))
+						);
 						_opts.Add("-" + o.LongName, action);
 						if (o.ShortName is not null) {
 							_opts.Add(o.ShortName, action);
@@ -309,7 +309,8 @@ namespace TakymLib.CommandLine
 				} else if (target == typeof(char)) {
 					return (args.Length > 0 && args[0].Length > 0) ? args[0][0] : '\0';
 				} else if (target == typeof(bool)) {
-					return args.Length == 0 ? true : args[0].TryToBoolean(out bool result) ? result : false;
+					//return args.Length == 0 ? true : args[0].TryToBoolean(out bool result) ? result : false;
+					return args.Length == 0 || (args[0].TryToBoolean(out bool result) && result);
 				} else if (target == typeof(byte)) {
 					return args.Length == 0 ? default : byte.TryParse(args[0], out byte result) ? result : default;
 				} else if (target == typeof(sbyte)) {
@@ -377,7 +378,8 @@ namespace TakymLib.CommandLine
 				} else if (target == typeof(bool[])) {
 					bool[] result = new bool[args.Length];
 					for (int i = 0; i < args.Length; ++i) {
-						result[i] = args[0].TryToBoolean(out bool r) ? r : false;
+						//result[i] = args[0].TryToBoolean(out bool r) ? r : false;
+						result[i] = args[0].TryToBoolean(out bool r) && r;
 					}
 					return result;
 				} else if (target == typeof(byte[])) {

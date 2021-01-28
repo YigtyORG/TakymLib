@@ -39,8 +39,11 @@ namespace TakymLib.CommandLine
 		/// </summary>
 		public void Parse()
 		{
-			var pr = ParseCore(new ArrayAsyncEnumerator(_args), true).ConfigureAwait(false).GetAwaiter().GetResult();
-			this.ParseCore(pr).ConfigureAwait(false).GetAwaiter().GetResult();
+			var pr   = ParseCore(new ArrayAsyncEnumerator(_args), true).ConfigureAwait(false).GetAwaiter().GetResult();
+			var task = this.ParseCore(pr);
+			if (!task.IsCompleted) {
+				task.ConfigureAwait(false).GetAwaiter().GetResult(); // 1回のみ実行可能
+			}
 		}
 
 		/// <summary>
