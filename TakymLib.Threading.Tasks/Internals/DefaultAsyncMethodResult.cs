@@ -7,6 +7,7 @@
 ****/
 
 using System;
+using System.Runtime.ExceptionServices;
 using System.Threading;
 
 namespace TakymLib.Threading.Tasks.Internals
@@ -45,7 +46,7 @@ namespace TakymLib.Threading.Tasks.Internals
 				Thread.Yield();
 			}
 			if (this.Exception is not null) {
-				throw this.Exception;
+				ExceptionDispatchInfo.Throw(this.Exception);
 			}
 			return _result;
 		}
