@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Security", "TakymL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Framework", "TakymLib.Framework\TakymLib.Framework.csproj", "{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{C528FA17-C546-414C-8535-701A6199E462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C528FA17-C546-414C-8535-701A6199E462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C528FA17-C546-414C-8535-701A6199E462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,9 +79,9 @@ Global
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = iv
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":[]}
 		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
+		RESX_Rules = {"EnabledRules":[]}
+		RESX_ShowErrorsInErrorList = False
+		RESX_NeutralResourcesLanguage = iv
 	EndGlobalSection
 EndGlobal
