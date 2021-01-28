@@ -33,7 +33,7 @@ namespace TakymLib.Security
 		}
 
 		private readonly Thread                        _thread;
-		private readonly CancellationTokenSource       _cts;
+		private readonly CancellationTokenSource       _cts_sub;
 		private readonly CancellationTokenSource       _cts_main;
 		private readonly CancellationTokenRegistration _ctr_main;
 		private readonly int                           _interval;
@@ -48,7 +48,7 @@ namespace TakymLib.Security
 		{
 			_thread              = new Thread(this.BackgroundThread);
 			_thread.IsBackground = true;
-			_cts                 = new CancellationTokenSource();
+			_cts_sub             = new CancellationTokenSource();
 			_cts_main            = new CancellationTokenSource();
 			_ctr_main            = _cts_main.Token.Register(this.ThrowSecurityException, true);
 			_interval            = interval;
@@ -62,7 +62,7 @@ namespace TakymLib.Security
 
 		private void BackgroundThread()
 		{
-			var token = _cts.Token;
+			var token = _cts_sub.Token;
 			try {
 				Span<byte> buf = stackalloc byte[8];
 				while (!token.IsCancellationRequested) {
@@ -102,7 +102,7 @@ namespace TakymLib.Security
 		public void StopImmediately()
 		{
 			this.EnsureNotDisposed();
-			_cts.Cancel(true);
+			_cts_sub.Cancel(true);
 		}
 
 		/// <summary>
@@ -117,7 +117,7 @@ namespace TakymLib.Security
 		{
 			if (!this.IsDisposed) {
 				if (disposing) {
-					_cts     .Dispose();
+					_cts_sub .Dispose();
 					_ctr_main.Dispose();
 					_cts_main.Dispose();
 					_rng     .Dispose();
@@ -134,10 +134,10 @@ namespace TakymLib.Security
 		/// <remarks>この処理の非同期操作です。</remarks>
 		protected override async ValueTask DisposeAsyncCore()
 		{
-			if (_cts is IAsyncDisposable asyncDisposable0) {
+			if (_cts_sub is IAsyncDisposable asyncDisposable0) {
 				await asyncDisposable0.ConfigureAwait(false).DisposeAsync();
 			} else {
-				_cts.Dispose();
+				_cts_sub.Dispose();
 			}
 			await _ctr_main.ConfigureAwait(false).DisposeAsync();
 			if (_cts_main is IAsyncDisposable asyncDisposable1) {
