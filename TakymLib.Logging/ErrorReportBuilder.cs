@@ -25,6 +25,7 @@ namespace TakymLib.Logging
 	{
 		private static readonly DefaultErrorDetailProvider _default_detailProvider = new();
 		private static readonly HResultDetailProvider      _hresult_detailProvider = new();
+		private static readonly PathString                 _default_log_dir        = PathStringPool.Get(AppContext.BaseDirectory, "Logs");
 
 		/// <summary>
 		///  前回の<see cref="TakymLib.Logging.ErrorReportBuilder.Create(Exception, ICustomErrorDetailProvider[])"/>
@@ -70,6 +71,33 @@ namespace TakymLib.Logging
 		{
 			// ERBC = ErrorReportBuilder Creation
 			LastCreationError?.Save(dir, "ERBC");
+		}
+
+		/// <summary>
+		///  指定された例外をコンソール画面に出力しログファイルに保存します。
+		/// </summary>
+		/// <param name="e">対象の例外オブジェクトです。</param>
+		public static void PrintAndLog(Exception e)
+		{
+			PrintAndLog(e, _default_log_dir);
+		}
+
+		/// <summary>
+		///  指定された例外をコンソール画面に出力し、指定されたディレクトリにログファイルに保存します。
+		/// </summary>
+		/// <param name="e">対象の例外オブジェクトです。</param>
+		/// <param name="dir">ログファイルの保存先のディレクトリです。</param>
+		public static void PrintAndLog(Exception e, PathString dir)
+		{
+			var log = Create(e).Save(dir, null);
+			SaveERBC(dir);
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.Error.WriteLine();
+			Console.Error.WriteLine(e.Message);
+			Console.ResetColor();
+			Console.Error.WriteLine();
+			Console.Error.WriteLine($"The path to log file: {log}");
+			Console.Error.WriteLine();
 		}
 
 		private string? _text;
