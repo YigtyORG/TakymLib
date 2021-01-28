@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Logging", "TakymLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Security", "TakymLib.Security\TakymLib.Security.csproj", "{843CFF65-A0B3-4B9C-BC0E-331581349D44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +73,9 @@ Global
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_NeutralResourcesLanguage = iv
+		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":[]}
 		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
 	EndGlobalSection
 EndGlobal
