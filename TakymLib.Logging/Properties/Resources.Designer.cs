@@ -61,6 +61,42 @@ namespace TakymLib.Logging.Properties {
         }
         
         /// <summary>
+        ///   ERB_PrintAndLog_AggregateException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ERB_PrintAndLog_AggregateException {
+            get {
+                return ResourceManager.GetString("ERB_PrintAndLog_AggregateException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ERB_PrintAndLog_Failed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ERB_PrintAndLog_Failed {
+            get {
+                return ResourceManager.GetString("ERB_PrintAndLog_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ERB_PrintAndLog_Failed_Reason {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ERB_PrintAndLog_Failed_Reason {
+            get {
+                return ResourceManager.GetString("ERB_PrintAndLog_Failed_Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ERB_PrintAndLog_PathToFile {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ERB_PrintAndLog_PathToFile {
+            get {
+                return ResourceManager.GetString("ERB_PrintAndLog_PathToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   S に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Option {

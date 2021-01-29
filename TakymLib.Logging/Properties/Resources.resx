@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ERB_PrintAndLog_AggregateException" xml:space="preserve">
+    <value>ERB_PrintAndLog_AggregateException</value>
+  </data>
+  <data name="ERB_PrintAndLog_Failed" xml:space="preserve">
+    <value>ERB_PrintAndLog_Failed</value>
+  </data>
+  <data name="ERB_PrintAndLog_Failed_Reason" xml:space="preserve">
+    <value>ERB_PrintAndLog_Failed_Reason {0}</value>
+  </data>
+  <data name="ERB_PrintAndLog_PathToFile" xml:space="preserve">
+    <value>ERB_PrintAndLog_PathToFile {0}</value>
+  </data>
   <data name="Option" xml:space="preserve">
     <value>S</value>
   </data>

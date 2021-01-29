@@ -8,7 +8,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using TakymLib.IO;
@@ -87,20 +86,32 @@ namespace TakymLib.Logging
 		/// </summary>
 		/// <param name="e">対象の例外オブジェクトです。</param>
 		/// <param name="dir">ログファイルの保存先のディレクトリです。</param>
+		/// <exception cref="System.AggregateException" />
 		public static void PrintAndLog(Exception e, PathString dir)
 		{
-			if (!dir.IsDirectory) {
-				Directory.CreateDirectory(dir);
+			try {
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Error.WriteLine();
+				Console.Error.WriteLine(e.ToString());
+				Console.ResetColor();
+				if (dir.IsFile) {
+					Console.Error.WriteLine();
+					Console.Error.WriteLine(Resources.ERB_PrintAndLog_PathToFile, Resources.ERB_PrintAndLog_Failed);
+					Console.Error.WriteLine(Resources.ERB_PrintAndLog_Failed_Reason, dir);
+					Console.Error.WriteLine();
+				} else {
+					if (!dir.IsDirectory) {
+						Directory.CreateDirectory(dir);
+					}
+					var log = Create(e).Save(dir, null);
+					SaveERBC(dir);
+					Console.Error.WriteLine();
+					Console.Error.WriteLine(Resources.ERB_PrintAndLog_PathToFile, log);
+					Console.Error.WriteLine();
+				}
+			} catch (Exception e2) {
+				throw new AggregateException(Resources.ERB_PrintAndLog_AggregateException, e2, e);
 			}
-			var log = Create(e).Save(dir, null);
-			SaveERBC(dir);
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.Error.WriteLine();
-			Console.Error.WriteLine(e.Message);
-			Console.ResetColor();
-			Console.Error.WriteLine();
-			Console.Error.WriteLine($"The path to log file: {log}");
-			Console.Error.WriteLine();
 		}
 
 		private string? _text;
