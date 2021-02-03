@@ -21,8 +21,8 @@ namespace TakymLibTests.TakymLib
 			var obj = new DisposableBaseMock();
 			using (obj) { }
 			Assert.IsNotNull(obj);
-			Assert.IsTrue(obj.IsDisposing);
-			Assert.IsTrue(obj.IsDisposed);
+			Assert.IsFalse(obj.IsDisposing);
+			Assert.IsTrue (obj.IsDisposed);
 		}
 
 		[TestMethod()]
@@ -31,8 +31,8 @@ namespace TakymLibTests.TakymLib
 			var obj = new DisposableBaseMock();
 			DisposeAsyncTestCore(obj);
 			Assert.IsNotNull(obj);
-			Assert.IsTrue(obj.IsDisposing);
-			Assert.IsTrue(obj.IsDisposed);
+			Assert.IsFalse(obj.IsDisposing);
+			Assert.IsTrue (obj.IsDisposed);
 		}
 
 		private static async void DisposeAsyncTestCore(DisposableBase disp)
