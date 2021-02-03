@@ -32,10 +32,7 @@ namespace TakymLib
 		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		protected DisposableBase()
-		{
-			this.IsDisposed = false;
-		}
+		protected DisposableBase() { /* do nothing */ }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の現在のインスタンスを破棄します。
@@ -44,6 +41,7 @@ namespace TakymLib
 		{
 			this.IsDisposing = true;
 			this.Dispose(false);
+			this.IsDisposing = false;
 		}
 
 		/// <summary>
@@ -54,6 +52,7 @@ namespace TakymLib
 			this.IsDisposing = true;
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
+			this.IsDisposing = false;
 		}
 
 #pragma warning disable CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
@@ -67,6 +66,7 @@ namespace TakymLib
 			await this.DisposeAsyncCore();
 			this.Dispose(false);
 			GC.SuppressFinalize(this);
+			this.IsDisposing = false;
 		}
 #pragma warning restore CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
 
