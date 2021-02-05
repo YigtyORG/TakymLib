@@ -32,6 +32,23 @@ namespace TakymLibTests.TakymLib
 		}
 
 		[TestMethod()]
+		public void EnsureNotNullTest2()
+		{
+			try {
+				Function();
+			} catch (ArgumentNullException e) {
+				Assert.AreEqual("nullObj", e.ParamName);
+				return;
+			}
+			Assert.Fail();
+
+			static void Function(object? nullObj = null)
+			{
+				nullObj.EnsureNotNull();
+			}
+		}
+
+		[TestMethod()]
 		public void EnsureWithinClosedRangeTest()
 		{
 			IComparable? nullobj = null;
