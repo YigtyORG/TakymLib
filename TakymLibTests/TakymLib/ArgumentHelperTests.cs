@@ -31,6 +31,25 @@ namespace TakymLibTests.TakymLib
 			Assert.ThrowsException<ArgumentNullException>(() => nullstr.EnsureNotNull(nameof(nullstr)));
 		}
 
+#if false
+		[TestMethod()]
+		public void EnsureNotNullTest2()
+		{
+			try {
+				Function();
+			} catch (ArgumentNullException e) {
+				Assert.AreEqual("nullObj", e.ParamName);
+				return;
+			}
+			Assert.Fail();
+
+			static void Function(object? nullObj = null)
+			{
+				nullObj.EnsureNotNull();
+			}
+		}
+#endif
+
 		[TestMethod()]
 		public void EnsureWithinClosedRangeTest()
 		{
