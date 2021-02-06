@@ -25,6 +25,7 @@
 		<Exec Command="restore.cmd" />
 	</Target>
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(IsLinux)">
+		<Exec Command="chmod -v 777 restore.sh" />
 		<Exec Command="./restore.sh" />
 	</Target>
 </Project>
