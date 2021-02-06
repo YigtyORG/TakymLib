@@ -1,4 +1,4 @@
-# TakymLib 設計思想 > 基本概念
+# TakymLib 基本概念
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
 

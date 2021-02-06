@@ -5,3 +5,5 @@ Copyright (C) 2020-2021 Takym.
 - [APIブラウザ](./api/index.md)
 - 設計思想
 	- [基本概念](./architecture/concepts.md)
+- 貢献
+	- [コーディング規則](./contrib/coding-rule.md)
