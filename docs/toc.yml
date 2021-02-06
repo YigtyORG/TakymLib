@@ -3,3 +3,5 @@
   homepage: api/index.md
 - name: 設計思想
   href: architecture/
+- name: 貢献
+  href: contrib/
