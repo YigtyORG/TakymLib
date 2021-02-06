@@ -53,7 +53,7 @@ namespace SomeNamespace
 }
 ```
 * ISomeInterface.cs
-```
+```csharp
 namespace SomeNamespace
 {
 	public interface ISomeInterface
@@ -68,14 +68,14 @@ namespace SomeNamespace
 }
 ```
 * SomeDelegate.cs
-```
+```csharp
 namespace SomeNamespace
 {
 	public delegate void Action(object arg);
 }
 ```
 * SomeEnum.cs
-```
+```csharp
 namespace SomeNamespace
 {
 	public enum SomeEnum
@@ -99,7 +99,7 @@ namespace SomeNamespace
 }
 ```
 * SomeEnum.cs (with values)
-```
+```csharp
 namespace SomeNamespace
 {
 	public enum SomeEnum
