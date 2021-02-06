@@ -44,7 +44,7 @@
 		"fileMetadataFiles": [],
 		"template": [
 			"statictoc",
-			"packages/memberpage/2.56.4/content",
+			"packages/memberpage/2.56.6/content",
 			"template"
 		],
 		"postProcessors": [],
