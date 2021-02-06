@@ -54,6 +54,9 @@ Any version does not release yet. Please wait patiently.
 ### Pull Requests
 ### Documentation/Translation
 
+<!-- ## Acknowledgments
+Special thanks to all [core collaborators and contributors](./CONTRIBUTORS.md) for this project. -->
+
 ## Terms of Use
 This libraries are distributed under the [MIT License](LICENSE.md).
 
@@ -94,6 +97,9 @@ Yigty.ORG で利用される共通ライブラリ群です。
 ### 問題
 ### プル・リクエスト
 ### 文書/翻訳
+
+<!-- ## 謝辞
+この場を借りてお礼を申し上げます。全ての[協力者さんと貢献者さん](./CONTRIBUTORS.md)に感謝致します。 -->
 
 ## 利用規約
 このライブラリ群は[MITライセンス](LICENSE.md)に基づいて配布されています。
