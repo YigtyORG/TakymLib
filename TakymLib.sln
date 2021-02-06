@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Core.Framework", "TakymLib.Core.Framework\TakymLib.Core.Framework.csproj", "{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib.Core", "TakymLib.Core\TakymLib.Core.csproj", "{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Core", "TakymLib.Core\TakymLib.Core.csproj", "{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1F5DA7AD-422E-4F54-832F-F46137F4CB54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docs", "docs\docs.csproj", "{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,17 +81,22 @@ Global
 		{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582} = {1F5DA7AD-422E-4F54-832F-F46137F4CB54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = iv
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":[]}
 		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
+		RESX_Rules = {"EnabledRules":[]}
+		RESX_ShowErrorsInErrorList = False
+		RESX_NeutralResourcesLanguage = iv
 	EndGlobalSection
 EndGlobal
