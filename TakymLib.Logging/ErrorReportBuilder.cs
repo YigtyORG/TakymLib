@@ -76,9 +76,11 @@ namespace TakymLib.Logging
 		///  指定された例外をコンソール画面に出力しログファイルに保存します。
 		/// </summary>
 		/// <param name="e">対象の例外オブジェクトです。</param>
-		public static void PrintAndLog(Exception e)
+		/// <returns>自動生成された保存先のファイルパスです。失敗した場合は<see langword="null"/>を返します。</returns>
+		/// <exception cref="System.AggregateException" />
+		public static PathString? PrintAndLog(Exception e)
 		{
-			PrintAndLog(e, _default_log_dir);
+			return PrintAndLog(e, _default_log_dir);
 		}
 
 		/// <summary>
@@ -86,8 +88,9 @@ namespace TakymLib.Logging
 		/// </summary>
 		/// <param name="e">対象の例外オブジェクトです。</param>
 		/// <param name="dir">ログファイルの保存先のディレクトリです。</param>
+		/// <returns>自動生成された保存先のファイルパスです。失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.AggregateException" />
-		public static void PrintAndLog(Exception e, PathString dir)
+		public static PathString? PrintAndLog(Exception e, PathString dir)
 		{
 			try {
 				Console.ForegroundColor = ConsoleColor.Red;
@@ -99,6 +102,7 @@ namespace TakymLib.Logging
 					Console.Error.WriteLine(Resources.ERB_PrintAndLog_PathToFile, Resources.ERB_PrintAndLog_Failed);
 					Console.Error.WriteLine(Resources.ERB_PrintAndLog_Failed_Reason, dir);
 					Console.Error.WriteLine();
+					return null;
 				} else {
 					if (!dir.IsDirectory) {
 						Directory.CreateDirectory(dir);
@@ -108,6 +112,7 @@ namespace TakymLib.Logging
 					Console.Error.WriteLine();
 					Console.Error.WriteLine(Resources.ERB_PrintAndLog_PathToFile, log);
 					Console.Error.WriteLine();
+					return log;
 				}
 			} catch (Exception e2) {
 				throw new AggregateException(Resources.ERB_PrintAndLog_AggregateException, e2, e);
