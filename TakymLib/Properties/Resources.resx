@@ -138,6 +138,15 @@
   <data name="InvalidPathFormatException" xml:space="preserve">
     <value>InvalidPathFormatException {0}</value>
   </data>
+  <data name="NameString_Constructor_ArgumentException" xml:space="preserve">
+    <value>NameString_Constructor_ArgumentException</value>
+  </data>
+  <data name="NameString_Decode_ArgumentException" xml:space="preserve">
+    <value>NameString_Decode_ArgumentException {0}</value>
+  </data>
+  <data name="NameString_Encode_ArgumentException" xml:space="preserve">
+    <value>NameString_Encode_ArgumentException {0} {1}</value>
+  </data>
   <data name="PathString_EnsureFileSystemInfo_IOException" xml:space="preserve">
     <value>PathString_EnsureFileSystemInfo_IOException {0}</value>
   </data>

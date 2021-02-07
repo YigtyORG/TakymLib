@@ -138,6 +138,15 @@
   <data name="InvalidPathFormatException" xml:space="preserve">
     <value>指定された文字列「{0}」は無効なパス文字列です。</value>
   </data>
+  <data name="NameString_Constructor_ArgumentException" xml:space="preserve">
+    <value>利用できない文字が含まれています。</value>
+  </data>
+  <data name="NameString_Decode_ArgumentException" xml:space="preserve">
+    <value>指定された符号無し8ビット整数「{0}」(0x{0:X02})を逆符号化する事はできません。</value>
+  </data>
+  <data name="NameString_Encode_ArgumentException" xml:space="preserve">
+    <value>指定された文字「{0}」(U+{1:X04})を符号化する事はできません。</value>
+  </data>
   <data name="PathString_EnsureFileSystemInfo_IOException" xml:space="preserve">
     <value>ファイルシステム情報の読み込みに失敗しました。パス：「{0}」</value>
   </data>

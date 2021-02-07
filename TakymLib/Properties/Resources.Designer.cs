@@ -124,6 +124,33 @@ namespace TakymLib.Properties {
         }
         
         /// <summary>
+        ///   NameString_Constructor_ArgumentException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameString_Constructor_ArgumentException {
+            get {
+                return ResourceManager.GetString("NameString_Constructor_ArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   NameString_Decode_ArgumentException {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameString_Decode_ArgumentException {
+            get {
+                return ResourceManager.GetString("NameString_Decode_ArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   NameString_Encode_ArgumentException {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string NameString_Encode_ArgumentException {
+            get {
+                return ResourceManager.GetString("NameString_Encode_ArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   PathString_EnsureFileSystemInfo_IOException {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PathString_EnsureFileSystemInfo_IOException {

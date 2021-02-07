@@ -252,8 +252,11 @@ namespace TakymLib.IO
 		/// </summary>
 		/// <param name="info">直列化されたデータを含むオブジェクトです。</param>
 		/// <param name="context">ストリームの転送先または転送元に関する文脈情報です。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.Runtime.Serialization.SerializationException"/>
 		public void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
+			info.EnsureNotNull(nameof(info));
 			info.AddValue("_", _org_path);
 		}
 
@@ -801,7 +804,7 @@ namespace TakymLib.IO
 			} else if (obj is string text) {
 				return this.CompareTo(text);
 			} else {
-				return _path.CompareTo(null);
+				return _path.CompareTo(obj);
 			}
 		}
 

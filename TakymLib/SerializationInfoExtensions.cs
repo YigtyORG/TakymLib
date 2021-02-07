@@ -34,14 +34,14 @@ namespace TakymLib
 		///  取得した値を型<typeparamref name="T"/>に変換する事ができません。
 		/// </exception>
 		/// <exception cref="System.Runtime.Serialization.SerializationException" />
-		public static T GetValue<T>(this SerializationInfo info, string name)
+		public static T? GetValue<T>(this SerializationInfo info, string name)
 		{
 			info.EnsureNotNull(nameof(info));
 			name.EnsureNotNull(nameof(name));
 			try {
 				object? result = info.GetValue(name, typeof(T));
 				if (result is null) {
-					return default!;
+					return default;
 				} else {
 					return ((T)(result));
 				}
