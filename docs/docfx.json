@@ -7,12 +7,7 @@
 					"src": "../"
 				}
 			],
-			"dest": "api",
-			"disableGitFeatures": false,
-			"disableDefaultFilter": false,
-			"properties": {
-				"TargetFrameworks": "net5.0"
-			}
+			"dest": "api"
 		}
 	],
 	"build": {
@@ -36,7 +31,7 @@
 				"exclude": [ "**/bin/**", "**/obj/**", "**.meta" ]
 			}
 		],
-		"xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
+		"xref": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
 		"dest": "_site",
 		"globalMetadataFiles": [],
 		"fileMetadataFiles": [],
@@ -47,9 +42,6 @@
 		],
 		"postProcessors": [],
 		"markdownEngineName": "markdig",
-		"noLangKeyword": false,
-		"keepFileLink": false,
-		"cleanupCacheHistory": false,
-		"disableGitFeatures": false
+		"noLangKeyword": false
 	}
 }

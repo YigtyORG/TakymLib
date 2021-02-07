@@ -250,9 +250,9 @@ namespace TakymLibTests
 		[TestMethod()]
 		public void SerializationInfoExtensionsTest()
 		{
-			object objValue;
-			string strValue;
-			double numValue;
+			object? objValue;
+			string? strValue;
+			double  numValue;
 
 			var sinfo = new SerializationInfo(typeof(EmptySerializable), new FormatterConverter());
 			var empty = new EmptySerializable();

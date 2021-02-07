@@ -804,7 +804,7 @@ namespace TakymLib.IO
 			} else if (obj is string text) {
 				return this.CompareTo(text);
 			} else {
-				return _path.CompareTo(obj);
+				return _path.CompareTo(null);
 			}
 		}
 

@@ -284,7 +284,7 @@ namespace SomeNamespace
 				return mode.Value switch {
 					0 => "Hello, World!!",
 					1 => "goodbye",
-					_ => string.Empty;
+					_ => string.Empty
 				}
 			} else {
 				return string.Empty;
