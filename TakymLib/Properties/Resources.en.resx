@@ -160,15 +160,15 @@
     <value>The specified string "{0}" cannot convert to boolean value.</value>
   </data>
   <data name="VersionInfo_Authors" xml:space="preserve">
-    <value>Unknown developer</value>
+    <value>Unknown developers</value>
   </data>
   <data name="VersionInfo_Copyright" xml:space="preserve">
     <value>Unknown copyright</value>
   </data>
   <data name="VersionInfo_Description" xml:space="preserve">
-    <value>No description.</value>
+    <value>No description was provided.</value>
   </data>
   <data name="VersionInfo_DisplayName" xml:space="preserve">
-    <value>Unknown product name</value>
+    <value>Untitled product</value>
   </data>
 </root>
