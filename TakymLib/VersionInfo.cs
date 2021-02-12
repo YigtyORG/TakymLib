@@ -7,6 +7,7 @@
 ****/
 
 using System;
+using System.Linq;
 using System.Reflection;
 using TakymLib.Properties;
 
@@ -17,6 +18,9 @@ namespace TakymLib
 	/// </summary>
 	public class VersionInfo
 	{
+		private static readonly char[]             _separator     = new[] { ',', ';', '\u3001', '\uFF0C', '\uFF1B', '\uFF64' };
+		private const           StringSplitOptions _split_options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+
 		/// <summary>
 		///  このライブラリ(<see cref="TakymLib"/>)のバージョン情報を取得します。
 		/// </summary>
@@ -74,9 +78,19 @@ namespace TakymLib
 		public Version? Version { get; }
 
 		/// <summary>
+		///  アセンブリの改版名を取得します。
+		/// </summary>
+		public string? Edition { get; }
+
+		/// <summary>
 		///  アセンブリの開発コード名を取得します。
 		/// </summary>
 		public string CodeName { get; }
+
+		/// <summary>
+		///  アセンブリのビルド構成を取得します。
+		/// </summary>
+		public string? Configuration { get; }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.VersionInfo"/>'の新しいインスタンスを生成します。
@@ -94,14 +108,61 @@ namespace TakymLib
 		public VersionInfo(Assembly asm)
 		{
 			asm.EnsureNotNull(nameof(asm));
-			this.Assembly    = asm;
-			this.Name        = asm.GetName().Name ?? "Unknown";
-			this.DisplayName = asm.GetCustomAttribute<AssemblyProductAttribute>    ()?.Product     ?? Resources.VersionInfo_DisplayName;
-			this.Authors     = asm.GetCustomAttribute<AssemblyCompanyAttribute>    ()?.Company     ?? Resources.VersionInfo_Authors;
-			this.Copyright   = asm.GetCustomAttribute<AssemblyCopyrightAttribute>  ()?.Copyright   ?? Resources.VersionInfo_Copyright;
-			this.Description = asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? Resources.VersionInfo_Description;
-			this.Version     = asm.GetName().Version;
-			this.CodeName    = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";
+			this.Assembly      = asm;
+			this.Name          = asm.GetName().Name ?? "Unknown";
+			this.DisplayName   = asm.GetCustomAttribute<AssemblyProductAttribute>    ()?.Product     ?? Resources.VersionInfo_DisplayName;
+			this.Authors       = asm.GetCustomAttribute<AssemblyCompanyAttribute>    ()?.Company     ?? Resources.VersionInfo_Authors;
+			this.Copyright     = asm.GetCustomAttribute<AssemblyCopyrightAttribute>  ()?.Copyright   ?? Resources.VersionInfo_Copyright;
+			this.Description   = asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? Resources.VersionInfo_Description;
+			this.Version       = asm.GetName().Version;
+			this.Edition       = asm.GetCustomAttribute<AssemblyEditionAttribute>             ()?.Edition;
+			this.CodeName      = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";
+			this.Configuration = asm.GetCustomAttribute<AssemblyConfigurationAttribute>       ()?.Configuration;
+		}
+
+		/// <summary>
+		///  指定されたバージョン情報が現在のバージョン情報に対し互換性を持つかどうか判定します。
+		/// </summary>
+		/// <param name="other">比較対象のバージョン情報です。</param>
+		/// <returns>互換性を持つ場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public bool HasCompatibleWith(VersionInfo other)
+		{
+			return this.HasForwardCompatibleWith(other) && this.HasBackwardCompatibleWith(other);
+		}
+
+		/// <summary>
+		///  指定されたバージョン情報が現在のバージョン情報に対し前方互換性を持つかどうか判定します。
+		/// </summary>
+		/// <param name="other">比較対象のバージョン情報です。</param>
+		/// <returns>前方互換性を持つ場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public virtual bool HasForwardCompatibleWith(VersionInfo other)
+		{
+			other.EnsureNotNull(nameof(other));
+			var thisName  = this.Assembly?.GetName();
+			var otherName = this.Assembly?.GetName();
+			return  thisName?.Name        == otherName?.Name
+				&&  thisName?.CultureName == otherName?.CultureName
+				&& (thisName?.GetPublicKey()?.SequenceEqual(otherName?.GetPublicKey() ?? Array.Empty<byte>()) ?? false)
+				&&  this     .Version     <= other     .Version;
+		}
+
+		/// <summary>
+		///  指定されたバージョン情報が現在のバージョン情報に対し後方互換性を持つかどうか判定します。
+		/// </summary>
+		/// <param name="other">比較対象のバージョン情報です。</param>
+		/// <returns>後方互換性を持つ場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public virtual bool HasBackwardCompatibleWith(VersionInfo other)
+		{
+			other.EnsureNotNull(nameof(other));
+			var thisName  = this.Assembly?.GetName();
+			var otherName = this.Assembly?.GetName();
+			return  thisName?.Name        == otherName?.Name
+				&&  thisName?.CultureName == otherName?.CultureName
+				&& (thisName?.GetPublicKey()?.SequenceEqual(otherName?.GetPublicKey() ?? Array.Empty<byte>()) ?? false)
+				&&  this     .Version     >= other     .Version;
 		}
 
 		/// <summary>
@@ -110,7 +171,11 @@ namespace TakymLib
 		/// <returns>題名を表す文字列です。</returns>
 		public string GetCaption()
 		{
-			return $"{this.DisplayName} [{this.GetFullVersionString()}]";
+			if (string.IsNullOrEmpty(this.Edition)) {
+				return $"{this.DisplayName} [{this.GetFullVersionString()}]";
+			} else {
+				return $"{this.DisplayName} - {this.Edition} [{this.GetFullVersionString()}]";
+			}
 		}
 
 		/// <summary>
@@ -129,6 +194,18 @@ namespace TakymLib
 		public string GetVersionString()
 		{
 			return this.Version?.ToString(4) ?? "?.?.?.?";
+		}
+
+		/// <summary>
+		///  アセンブリの作成者の一覧を含む配列を取得します。
+		/// </summary>
+		/// <remarks>
+		///  配列は呼び出し毎に作成されます。
+		/// </remarks>
+		/// <returns>作成者の一覧を含む文字列配列です。</returns>
+		public string[] GetAuthorArray()
+		{
+			return this.Authors.Split(_separator, _split_options);
 		}
 	}
 }
