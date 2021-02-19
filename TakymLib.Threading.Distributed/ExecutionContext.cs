@@ -82,14 +82,7 @@ namespace TakymLib.Threading.Distributed
 			return (await this.ReceiveObjectWithSender()).obj;
 		}
 
-		/// <summary>
-		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。
-		///  この関数内で例外を発生させてはいけません。
-		/// </summary>
-		/// <param name="disposing">
-		///  マネージドオブジェクトとアンマネージオブジェクト両方を破棄する場合は<see langword="true"/>、
-		///  アンマネージオブジェクトのみを破棄する場合は<see langword="false"/>を設定します。
-		/// </param>
+		/// <inheritdoc/>
 		protected override void Dispose(bool disposing)
 		{
 			if (!this.IsDisposed) {
