@@ -53,7 +53,7 @@ namespace TakymLib.IO
 		/// </returns>
 		public async ValueTask<bool> MoveNextAsync()
 		{
-			if (_entries is IAsyncEnumerator<PathString> asyncEnumerator) {
+			if (_entries is IAsyncEnumerator<string> asyncEnumerator) {
 				return await asyncEnumerator.MoveNextAsync();
 			} else {
 				return _entries.MoveNext();
