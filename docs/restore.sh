@@ -1,4 +1,4 @@
 #!/bin/bash
-echo begin: restore.cmd
+echo begin: restore.sh
 dotnet restore --packages=./packages
-echo end: restore.cmd
+echo end: restore.sh
