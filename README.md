@@ -8,6 +8,7 @@ Copyright (C) 2020-2021 Takym.
 [![License](https://img.shields.io/github/license/YigtyORG/TakymLib)](LICENSE.md)
 [![Debug](https://github.com/YigtyORG/TakymLib/workflows/Debug/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ADebug)
 [![Release](https://github.com/YigtyORG/TakymLib/workflows/Release/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ARelease)
+[![CodeQL](https://github.com/YigtyORG/TakymLib/workflows/CodeQL/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ACodeQL)
 
 [![GitHub Watchers](https://img.shields.io/github/watchers/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/watchers)
 [![GitHub Stars](https://img.shields.io/github/stars/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/stargazers)
