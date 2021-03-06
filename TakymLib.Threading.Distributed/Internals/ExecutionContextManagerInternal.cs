@@ -71,23 +71,24 @@ namespace TakymLib.Threading.Distributed.Internals
 
 		protected override void Dispose(bool disposing)
 		{
-			if (!this.IsDisposed) {
-				if (disposing) {
-					try {
-						_rwlock.EnterWriteLock();
-						foreach (var item in _dict.Values) {
-							item.Dispose();
-						}
-					} finally {
-						if (_rwlock.IsWriteLockHeld) {
-							_rwlock.ExitWriteLock();
-						}
-					}
-					_rwlock.Dispose();
-				}
-				_dict.Clear();
-				base.Dispose(disposing);
+			if (this.IsDisposed) {
+				return;
 			}
+			if (disposing) {
+				try {
+					_rwlock.EnterWriteLock();
+					foreach (var item in _dict.Values) {
+						item.Dispose();
+					}
+				} finally {
+					if (_rwlock.IsWriteLockHeld) {
+						_rwlock.ExitWriteLock();
+					}
+				}
+				_rwlock.Dispose();
+			}
+			_dict.Clear();
+			base.Dispose(disposing);
 		}
 
 		protected override async ValueTask DisposeAsyncCore()

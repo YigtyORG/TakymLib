@@ -135,12 +135,13 @@ namespace TakymLib.Core.Framework
 		/// <inheritdoc/>
 		protected override void Dispose(bool disposing)
 		{
-			if (!this.IsDisposed) {
-				if (disposing) {
-					_mv?.Dispose();
-				}
-				base.Dispose(disposing);
+			if (this.IsDisposed) {
+				return;
 			}
+			if (disposing) {
+				_mv?.Dispose();
+			}
+			base.Dispose(disposing);
 		}
 
 		/// <inheritdoc/>

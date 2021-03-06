@@ -34,13 +34,14 @@ public class SomeClass : DisposableBase
 
 	protected override void Dispose(bool disposing)
 	{
-		if (!this.IsDisposed) {
-			if (disposing) {
-				// TODO: ここでマネージドリソースを破棄します。
-			}
-			// TODO: ここでアンマネージリソースを破棄します。
-			base.Dispose(disposing);
+		if (this.IsDisposed) {
+			return;
 		}
+		if (disposing) {
+			// TODO: ここでマネージドリソースを破棄します。
+		}
+		// TODO: ここでアンマネージリソースを破棄します。
+		base.Dispose(disposing);
 	}
 
 	protected override async ValueTask DisposeAsyncCore()

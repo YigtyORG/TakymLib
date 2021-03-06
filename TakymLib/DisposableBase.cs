@@ -88,20 +88,21 @@ namespace TakymLib
 		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
-			if (!this.IsDisposed) {
-				if (this.Disposables is not null and var disposables) {
-					if (disposing) {
-						int count = disposables.Count;
-						for (int i = 0; i < count; ++i) {
-							if (disposables[i] is IDisposable disposable) {
-								disposable.Dispose();
-							}
+			if (this.IsDisposed) {
+				return;
+			}
+			if (this.Disposables is not null and var disposables) {
+				if (disposing) {
+					int count = disposables.Count;
+					for (int i = 0; i < count; ++i) {
+						if (disposables[i] is IDisposable disposable) {
+							disposable.Dispose();
 						}
 					}
-					disposables.Clear();
 				}
-				this.IsDisposed = true;
+				disposables.Clear();
 			}
+			this.IsDisposed = true;
 		}
 
 		/// <summary>

@@ -85,12 +85,13 @@ namespace TakymLib.Threading.Distributed
 		/// <inheritdoc/>
 		protected override void Dispose(bool disposing)
 		{
-			if (!this.IsDisposed) {
-				lock (_objs) {
-					_objs.Clear();
-				}
-				this.Dispose(disposing);
+			if (this.IsDisposed) {
+				return;
 			}
+			lock (_objs) {
+				_objs.Clear();
+			}
+			this.Dispose(disposing);
 		}
 	}
 }

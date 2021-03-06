@@ -108,16 +108,17 @@ namespace TakymLib.Security
 		/// <inheritdoc/>
 		protected override void Dispose(bool disposing)
 		{
-			if (!this.IsDisposed) {
-				if (disposing) {
-					_cts_sub .Dispose();
-					_ctr_main.Dispose();
-					_cts_main.Dispose();
-					_rng     .Dispose();
-					_thread.ExecutionContext?.Dispose();
-				}
-				base.Dispose(disposing);
+			if (this.IsDisposed) {
+				return;
 			}
+			if (disposing) {
+				_cts_sub .Dispose();
+				_ctr_main.Dispose();
+				_cts_main.Dispose();
+				_rng     .Dispose();
+				_thread.ExecutionContext?.Dispose();
+			}
+			base.Dispose(disposing);
 		}
 
 		/// <inheritdoc/>

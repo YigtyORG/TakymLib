@@ -162,12 +162,13 @@ namespace TakymLib.Logging
 		/// <inheritdoc/>
 		protected override void Dispose(bool disposing)
 		{
-			if (!this.IsDisposed) {
-				if (disposing) {
-					_tw.Dispose();
-				}
-				base.Dispose(disposing);
+			if (this.IsDisposed) {
+				return;
 			}
+			if (disposing) {
+				_tw.Dispose();
+			}
+			base.Dispose(disposing);
 		}
 
 		/// <inheritdoc/>
