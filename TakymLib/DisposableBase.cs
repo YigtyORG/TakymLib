@@ -7,6 +7,7 @@
 ****/
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using TakymLib.Properties;
@@ -30,6 +31,11 @@ namespace TakymLib
 		public bool IsDisposed { get; private set; }
 
 		/// <summary>
+		///  上書きされた場合、破棄可能なオブジェクトを取得します。
+		/// </summary>
+		protected virtual IList<object>? Disposables => null;
+
+		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		protected DisposableBase() { /* do nothing */ }
@@ -45,7 +51,7 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。
+		///  現在のオブジェクトを破棄します。
 		/// </summary>
 		public void Dispose()
 		{
@@ -57,7 +63,7 @@ namespace TakymLib
 
 #pragma warning disable CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
 		/// <summary>
-		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
+		///  現在のオブジェクトを非同期的に破棄します。
 		/// </summary>
 		/// <returns>この処理の非同期操作です。</returns>
 		public async ValueTask DisposeAsync()
@@ -72,25 +78,54 @@ namespace TakymLib
 
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。
-		///  この関数内で例外を発生させてはいけません。
 		/// </summary>
+		/// <remarks>
+		///  この関数内では例外を発生させてはいけません。
+		/// </remarks>
 		/// <param name="disposing">
-		///  マネージドオブジェクトとアンマネージオブジェクト両方を破棄する場合は<see langword="true"/>、
-		///  アンマネージオブジェクトのみを破棄する場合は<see langword="false"/>を設定します。
+		///  マネージドリソースとアンマネージリソース両方を破棄する場合は<see langword="true"/>、
+		///  アンマネージリソースのみを破棄する場合は<see langword="false"/>を設定します。
 		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
-			this.IsDisposed = true;
+			if (!this.IsDisposed) {
+				if (this.Disposables is not null and var disposables) {
+					if (disposing) {
+						int count = disposables.Count;
+						for (int i = 0; i < count; ++i) {
+							if (disposables[i] is IDisposable disposable) {
+								disposable.Dispose();
+							}
+						}
+					}
+					disposables.Clear();
+				}
+				this.IsDisposed = true;
+			}
 		}
 
 		/// <summary>
-		///  現在のオブジェクトインスタンスと利用しているリソースを非同期で破棄します。
-		///  この関数内で例外を発生させてはいけません。
+		///  現在のオブジェクトインスタンスと利用しているマネージドリソースを非同期的に破棄します。
 		/// </summary>
+		/// <remarks>
+		///  この関数内では例外を発生させてはいけません。
+		/// </remarks>
 		/// <returns>この処理の非同期操作です。</returns>
-		protected virtual ValueTask DisposeAsyncCore()
+		protected virtual async ValueTask DisposeAsyncCore()
 		{
-			return default;
+			if (this.Disposables is not null and var disposables) {
+				int count = disposables.Count;
+				for (int i = 0; i < count; ++i) {
+					switch (disposables[i]) {
+					case IAsyncDisposable o:
+						await o.ConfigureAwait(false).DisposeAsync();
+						break;
+					case IDisposable o:
+						o.Dispose();
+						break;
+					}
+				}
+			}
 		}
 
 		/// <summary>
