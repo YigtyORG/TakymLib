@@ -44,7 +44,7 @@ namespace TakymLib.Text
 		public static CustomEastAsianWidth DownloadDefinitionFrom(string url)
 		{
 			using (var wc = new WebClient()) {
-				return DownloadDefinitionFrom(new Uri(url));
+				return DownloadDefinitionFrom(new Uri(url), wc);
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace TakymLib.Text
 		public static CustomEastAsianWidth DownloadDefinitionFrom(Uri url)
 		{
 			using (var wc = new WebClient()) {
-				return DownloadDefinitionFrom(url);
+				return DownloadDefinitionFrom(url, wc);
 			}
 		}
 
