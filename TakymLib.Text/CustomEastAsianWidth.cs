@@ -21,7 +21,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  範囲で表された東アジアの文字幅の列挙値の読み取り専用リストを取得します。
 		/// </summary>
-		protected IReadOnlyList<(char Start, char End, EastAsianWidthType Type)> Ranges { get; }
+		public IReadOnlyList<(char Start, char End, EastAsianWidthType Type)> Ranges { get; }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.CustomEastAsianWidth"/>'の新しいインスタンスを生成します。
