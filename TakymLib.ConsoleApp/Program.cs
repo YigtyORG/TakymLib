@@ -30,10 +30,13 @@ namespace TakymLib.ConsoleApp
 				if (range.Type == EastAsianWidthType.Invalid) {
 					continue;
 				}
+				if (range.Start > ushort.MaxValue || range.End > ushort.MaxValue) {
+					continue;
+				}
 				if (range.Start == range.End) {
-					sb.AppendFormat("0x{0:X04}", range.Start);
+					sb.AppendFormat("\'\\u{0:X04}\'", range.Start);
 				} else {
-					sb.AppendFormat(">= 0x{0:X04} and <= 0x{1:X04}", range.Start, range.End);
+					sb.AppendFormat(">= \'\\u{0:X04}\' and <= \'\\u{1:X04}\'", range.Start, range.End);
 				}
 				sb.Append(" => ");
 				sb.Append(nameof(EastAsianWidthType));

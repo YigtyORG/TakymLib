@@ -8,6 +8,7 @@
 
 using System;
 using System.Globalization;
+using TakymLib.Text.Internals;
 using TakymLib.Text.Properties;
 
 namespace TakymLib.Text
@@ -22,9 +23,20 @@ namespace TakymLib.Text
 	public abstract partial class EastAsianWidth
 	{
 		/// <summary>
+		///  バージョン13に準拠した実装を取得します。
+		/// </summary>
+		/// <remarks>
+		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
+		/// </remarks>
+		public static EastAsianWidth V13 { get; } = EAW13_0_0.Instance;
+
+		/// <summary>
 		///  既定の実装を取得します。
 		/// </summary>
-		public static EastAsianWidth Default { get; } = DownloadLatestDefinition();
+		/// <remarks>
+		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
+		/// </remarks>
+		public static EastAsianWidth Default { get; } = V13;
 
 		/// <summary>
 		///  上書きされた場合、指定された文字の文字幅を判定します。

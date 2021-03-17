@@ -35,6 +35,11 @@ Copyright (C) 2020-2021 Takym.
 	* リポジトリ：<https://github.com/dotnet/docfx>
 	* 利用規約：[MITライセンス](https://github.com/dotnet/docfx/blob/dev/LICENSE)
 
+## 東アジアの文字幅 (East Asian Width)
+* <https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>
+* 著作権表記：© 2020 Unicode®, Inc.
+* 利用規約：<http://www.unicode.org/terms_of_use.html>
+
 
 
 
