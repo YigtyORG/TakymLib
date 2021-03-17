@@ -215,14 +215,14 @@ namespace TakymLib
 				AsyncEventHandler<TSender, TEventArgs> h => h,
 				AsyncEventHandler<TEventArgs>          h => (sender, e) =>   h(sender, e),
 				AsyncEventHandler                      h => (sender, e) =>   h(sender, e),
-				Func<object,  EventArgs,  ValueTask>   h => (sender, e) =>   h(sender, e),
-				Func<object,  TEventArgs, ValueTask>   h => (sender, e) =>   h(sender, e),
-				Func<TSender, TEventArgs, ValueTask>   h => (sender, e) =>   h(sender, e),
+				Func<object?,  EventArgs,  ValueTask>  h => (sender, e) =>   h(sender, e),
+				Func<object?,  TEventArgs, ValueTask>  h => (sender, e) =>   h(sender, e),
+				Func<TSender?, TEventArgs, ValueTask>  h => (sender, e) =>   h(sender, e),
 				EventHandler<TEventArgs>               h => (sender, e) => { h(sender, e); return default; },
 				EventHandler                           h => (sender, e) => { h(sender, e); return default; },
-				Action<object,  EventArgs>             h => (sender, e) => { h(sender, e); return default; },
-				Action<object,  TEventArgs>            h => (sender, e) => { h(sender, e); return default; },
-				Action<TSender, TEventArgs>            h => (sender, e) => { h(sender, e); return default; },
+				Action<object?,  EventArgs>            h => (sender, e) => { h(sender, e); return default; },
+				Action<object?,  TEventArgs>           h => (sender, e) => { h(sender, e); return default; },
+				Action<TSender?, TEventArgs>           h => (sender, e) => { h(sender, e); return default; },
 				_ => throw new ArgumentException(Resources.AsyncEventHandlerExtensions_WrapHandler, nameof(handler))
 			};
 		}
