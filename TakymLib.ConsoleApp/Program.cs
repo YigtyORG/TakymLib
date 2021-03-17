@@ -8,16 +8,18 @@
 
 using System;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.Text;
 
-namespace TakymLibTests.TakymLib.Text
+namespace TakymLib.ConsoleApp
 {
-	[TestClass()]
-	public class EastAsianWidthTests
+	internal static class Program
 	{
-		[TestMethod()]
-		public void DownloadLatestDefinitionAndConvert()
+		private static void Run()
+		{
+			DownloadLatestDefinitionAndConvert();
+		}
+
+		private static void DownloadLatestDefinitionAndConvert()
 		{
 			var sb     = new StringBuilder();
 			var ranges = EastAsianWidth.DownloadLatestDefinition().Ranges;
@@ -41,7 +43,22 @@ namespace TakymLibTests.TakymLib.Text
 				sb.Append(range.Type);
 				sb.Append(',');
 			}
-			Assert.Fail(sb.ToString());
+			Console.WriteLine(sb.ToString());
+		}
+
+		[STAThread()]
+		private static int Main(string[] args)
+		{
+			try {
+				Run();
+				return 0;
+			} catch (Exception e) {
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.Error.WriteLine();
+				Console.Error.WriteLine(e.ToString());
+				Console.ResetColor();
+				return e.HResult;
+			}
 		}
 	}
 }
