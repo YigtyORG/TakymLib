@@ -30,6 +30,7 @@
 		<ProjectReference Include="../TakymLib.Core.Framework/TakymLib.Core.Framework.csproj" />
 		<ProjectReference Include="../TakymLib.Logging/TakymLib.Logging.csproj" />
 		<ProjectReference Include="../TakymLib.Security/TakymLib.Security.csproj" />
+		<ProjectReference Include="../TakymLib.Text/TakymLib.Text.csproj" />
 		<ProjectReference Include="../TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj" />
 		<ProjectReference Include="../TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj" />
 		<EmbeddedResource Update="Properties/Resources.resx">

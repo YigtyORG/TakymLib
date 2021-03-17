@@ -7,14 +7,14 @@
 **-->
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<AssemblyName>TakymLib.Logging</AssemblyName>
-		<RootNamespace>TakymLib.Logging</RootNamespace>
+		<AssemblyName>TakymLib.Text</AssemblyName>
+		<RootNamespace>TakymLib.Text</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 	<Import Project="../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
-		<Product>TakymLib.Logging</Product>
-		<Description>The common logging library.</Description>
+		<Product>TakymLib</Product>
+		<Description>The common text library.</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
