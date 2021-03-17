@@ -16,22 +16,20 @@ namespace TakymLib.Text
 	/// </summary>
 	public class CustomEastAsianWidth : EastAsianWidth
 	{
-		// TODO: C#コード生成処理
-
 		/// <summary>
 		///  範囲で表された東アジアの文字幅の列挙値の読み取り専用リストを取得します。
 		/// </summary>
-		public IReadOnlyList<(char Start, char End, EastAsianWidthType Type)> Ranges { get; }
+		public IReadOnlyList<(int Start, int End, EastAsianWidthType Type)> Ranges { get; }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.CustomEastAsianWidth"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="ranges">範囲で表された東アジアの文字幅の列挙値の配列です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
-		public CustomEastAsianWidth(params (char Start, char End, EastAsianWidthType Type)[] ranges)
+		public CustomEastAsianWidth(params (int Start, int End, EastAsianWidthType Type)[] ranges)
 		{
 			ranges.EnsureNotNull(nameof(ranges));
-			this.Ranges = new ReadOnlyCollection<(char Start, char End, EastAsianWidthType Type)>(ranges);
+			this.Ranges = new ReadOnlyCollection<(int Start, int End, EastAsianWidthType Type)>(ranges);
 		}
 
 		/// <summary>
@@ -39,7 +37,7 @@ namespace TakymLib.Text
 		/// </summary>
 		/// <param name="ranges">範囲で表された東アジアの文字幅の列挙値の読み取り専用リストです。</param>
 		/// <exception cref="System.ArgumentNullException"/>
-		public CustomEastAsianWidth(IReadOnlyList<(char Start, char End, EastAsianWidthType Type)> ranges)
+		public CustomEastAsianWidth(IReadOnlyList<(int Start, int End, EastAsianWidthType Type)> ranges)
 		{
 			ranges.EnsureNotNull(nameof(ranges));
 			this.Ranges = ranges;

@@ -120,7 +120,7 @@ namespace TakymLib.Text
 		public static CustomEastAsianWidth Parse(TextReader tr)
 		{
 			tr.EnsureNotNull(nameof(tr));
-			var ranges = new List<(char Start, char End, EastAsianWidthType Type)>();
+			var ranges = new List<(int Start, int End, EastAsianWidthType Type)>();
 			while (tr.ReadLine() is not null and string line) {
 				ranges.Add(ParseLine(line));
 			}
@@ -133,7 +133,7 @@ namespace TakymLib.Text
 		/// </summary>
 		/// <param name="line">解析する一行の文字列です。</param>
 		/// <returns>範囲で表された東アジアの文字幅の列挙値です。</returns>
-		public static (char Start, char End, EastAsianWidthType Type) ParseLine(string? line)
+		public static (int Start, int End, EastAsianWidthType Type) ParseLine(string? line)
 		{
 			if (string.IsNullOrEmpty(line)) {
 				return default;
@@ -210,9 +210,9 @@ namespace TakymLib.Text
 			}
 end:
 			if ((flags & 1) == 1) {
-				return (((char)(start)), ((char)(start)), type);
+				return (start, end, type);
 			} else {
-				return (((char)(start)), ((char)(end)), type);
+				return (start, start, type);
 			}
 		}
 #pragma warning restore TakymLib_EAWInvalid // 型またはメンバーが旧型式です

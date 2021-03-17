@@ -24,7 +24,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  既定の実装を取得します。
 		/// </summary>
-		public static EastAsianWidth Default { get; } = DownloadLatestDefinition(); // TODO: 内部クラスに置き換え
+		public static EastAsianWidth Default { get; } = DownloadLatestDefinition();
 
 		/// <summary>
 		///  上書きされた場合、指定された文字の文字幅を判定します。

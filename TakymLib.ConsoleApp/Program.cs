@@ -19,6 +19,7 @@ namespace TakymLib.ConsoleApp
 			DownloadLatestDefinitionAndConvert();
 		}
 
+#pragma warning disable TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 		private static void DownloadLatestDefinitionAndConvert()
 		{
 			var sb     = new StringBuilder();
@@ -26,25 +27,23 @@ namespace TakymLib.ConsoleApp
 			int count  = ranges.Count;
 			for (int i = 0; i < count; ++i) {
 				var range = ranges[i];
+				if (range.Type == EastAsianWidthType.Invalid) {
+					continue;
+				}
 				if (range.Start == range.End) {
-					sb.Append("\'\\u");
-					sb.AppendFormat("{0:X04}", ((ushort)(range.Start)));
-					sb.Append('\'');
+					sb.AppendFormat("0x{0:X04}", range.Start);
 				} else {
-					sb.Append(">= \'\\u");
-					sb.AppendFormat("{0:X04}", ((ushort)(range.Start)));
-					sb.Append("\' and <= \'\\u");
-					sb.AppendFormat("{0:X04}", ((ushort)(range.End)));
-					sb.Append('\'');
+					sb.AppendFormat(">= 0x{0:X04} and <= 0x{1:X04}", range.Start, range.End);
 				}
 				sb.Append(" => ");
 				sb.Append(nameof(EastAsianWidthType));
 				sb.Append('.');
 				sb.Append(range.Type);
-				sb.Append(',');
+				sb.AppendLine(",");
 			}
 			Console.WriteLine(sb.ToString());
 		}
+#pragma warning restore TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 
 		[STAThread()]
 		private static int Main(string[] args)
