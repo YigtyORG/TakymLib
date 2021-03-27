@@ -23,6 +23,7 @@ Copyright (C) 2020-2021 Takym.
 
 ## Summary
 The common libraries used by Yigty.ORG.
+Compatible with **.NET 5**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Framework 4.8**.
 * **[TakymLib](/TakymLib)** - the common library.
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - the common command-line arguments parser library.
 * **[TakymLib.Core](/TakymLib.Core)** - the common core library.
@@ -32,6 +33,10 @@ The common libraries used by Yigty.ORG.
 * **[TakymLib.Text](/TakymLib.Text)** - the common text library.
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - the common distributed computing library.
 * **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - The common asynchronous programming library.
+
+## Recommended Environment
+* Runtime: **.NET 5** or later
+* Language: **C# 9.0** or later
 
 ## Get Started
 (draft...)
@@ -69,6 +74,7 @@ This libraries are distributed under the [MIT License](LICENSE.md).
 
 ## 概要
 Yigty.ORG で利用される共通ライブラリ群です。
+**.NET 5**、**.NET Core 3.1**、**.NET Standard 2.1**、**.NET Framework 4.8** に対応しています。
 * **[TakymLib](/TakymLib)** - 共通ライブラリです。
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - 共通コマンド行引数解析ライブラリです。
 * **[TakymLib.Core](/TakymLib.Core)** - 共通中枢ライブラリです。
@@ -78,6 +84,10 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib.Text](/TakymLib.Text)** - 共通文字列ライブラリです。
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - 共通分散コンピューティングライブラリです。
 * **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - 共通非同期プログラミングライブラリです。
+
+## 推奨環境
+* ランタイム：**.NET 5**以降
+* 言語：**C# 9.0**以降
 
 ## 使い方
 (書きかけ...)

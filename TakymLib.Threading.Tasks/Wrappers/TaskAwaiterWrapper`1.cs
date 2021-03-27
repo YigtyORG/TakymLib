@@ -67,5 +67,12 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		{
 			_awaiter.UnsafeOnCompleted(continuation);
 		}
+
+#if !NETCOREAPP3_1_OR_GREATER
+		void IAwaiter.GetResult()
+		{
+			this.GetResult();
+		}
+#endif
 	}
 }

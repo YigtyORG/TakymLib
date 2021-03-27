@@ -61,7 +61,9 @@ namespace TakymLib
 			this.IsDisposing = false;
 		}
 
+#if NET5_0_OR_GREATER
 #pragma warning disable CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
+#endif
 		/// <summary>
 		///  現在のオブジェクトを非同期的に破棄します。
 		/// </summary>
@@ -74,7 +76,9 @@ namespace TakymLib
 			GC.SuppressFinalize(this);
 			this.IsDisposing = false;
 		}
+#if NET5_0_OR_GREATER
 #pragma warning restore CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
+#endif
 
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。
@@ -169,10 +173,4 @@ namespace TakymLib
 			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
 		}
 	}
-}
-
-namespace System.Diagnostics
-{
-	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Struct, Inherited = false)]
-	internal sealed class StackTraceHiddenAttribute : Attribute { }
 }

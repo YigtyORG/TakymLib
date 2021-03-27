@@ -126,7 +126,11 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.MemberAccessException"/>
-		[Obsolete("代わりに AsyncEventHandler を利用してください。", DiagnosticId = "TakymLib_Dispatch")]
+		[Obsolete("代わりに AsyncEventHandler を利用してください。"
+#if NET5_0_OR_GREATER
+			, DiagnosticId = "TakymLib_Dispatch"
+#endif
+		)]
 		public static ValueTask Dispatch<TDelegate>(this TDelegate handler, object? sender, EventArgs e)
 			where TDelegate: Delegate
 		{
@@ -151,7 +155,11 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.MemberAccessException"/>
-		[Obsolete("代わりに AsyncEventHandler を利用してください。", DiagnosticId = "TakymLib_Dispatch")]
+		[Obsolete("代わりに AsyncEventHandler を利用してください。"
+#if NET5_0_OR_GREATER
+			, DiagnosticId = "TakymLib_Dispatch"
+#endif
+		)]
 		public static ValueTask Dispatch<TDelegate, TEventArgs>(this TDelegate handler, object? sender, TEventArgs e)
 			where TDelegate : Delegate
 			where TEventArgs: EventArgs
@@ -178,7 +186,11 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.MemberAccessException"/>
-		[Obsolete("代わりに AsyncEventHandler を利用してください。", DiagnosticId = "TakymLib_Dispatch")]
+		[Obsolete("代わりに AsyncEventHandler を利用してください。"
+#if NET5_0_OR_GREATER
+			, DiagnosticId = "TakymLib_Dispatch"
+#endif
+		)]
 		public static ValueTask Dispatch<TDelegate, TSender, TEventArgs>(this TDelegate handler, TSender? sender, TEventArgs e)
 			where TDelegate : Delegate
 			where TEventArgs: EventArgs
@@ -190,7 +202,9 @@ namespace TakymLib
 			}
 		}
 
+#if NET5_0_OR_GREATER
 #pragma warning disable CA2012 // ValueTask を正しく使用する必要があります
+#endif
 		private static async ValueTask DispatchCore<TSender, TEventArgs>(Delegate handler, TSender? sender, TEventArgs e)
 			where TEventArgs : EventArgs
 		{
@@ -206,7 +220,9 @@ namespace TakymLib
 				}
 			}
 		}
+#if NET5_0_OR_GREATER
 #pragma warning restore CA2012 // ValueTask を正しく使用する必要があります
+#endif
 
 		private static AsyncEventHandler<TSender, TEventArgs> WrapHandler<TSender, TEventArgs>(Delegate handler)
 			where TEventArgs : EventArgs

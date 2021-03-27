@@ -64,13 +64,25 @@ namespace TakymLib.Security
 		{
 			var token = _cts_sub.Token;
 			try {
+#if NET48
+				byte[] buf = new byte[8];
+#else
 				Span<byte> buf = stackalloc byte[8];
+#endif
 				while (!token.IsCancellationRequested) {
 					lock (this) {
 						_rng.GetNonZeroBytes(buf);
-						_value = BitConverter.ToInt64(buf);
+						_value = BitConverter.ToInt64(buf
+#if NET48
+							, 0
+#endif
+						);
 						_rng.GetNonZeroBytes(buf);
-						_mask = BitConverter.ToInt64(buf);
+						_mask = BitConverter.ToInt64(buf
+#if NET48
+							, 0
+#endif
+						);
 						_masked_and = _value & _mask;
 						_masked_ior = _value | _mask;
 						_masked_xor = _value ^ _mask;
@@ -129,7 +141,11 @@ namespace TakymLib.Security
 			} else {
 				_cts_sub.Dispose();
 			}
+#if NET48
+			_ctr_main.Dispose();
+#else
 			await _ctr_main.ConfigureAwait(false).DisposeAsync();
+#endif
 			if (_cts_main is IAsyncDisposable asyncDisposable1) {
 				await asyncDisposable1.ConfigureAwait(false).DisposeAsync();
 			} else {

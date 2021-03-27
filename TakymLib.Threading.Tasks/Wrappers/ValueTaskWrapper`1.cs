@@ -140,5 +140,17 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		{
 			return this.ConfigureAwait(continueOnCapturedContext);
 		}
+
+#if !NETCOREAPP3_1_OR_GREATER
+		IAwaiter IAwaitable.GetAwaiter()
+		{
+			return this.GetAwaiter();
+		}
+
+		IAwaitable IAsyncMethodResult.ConfigureAwait(bool continueOnCapturedContext)
+		{
+			return this.ConfigureAwait(continueOnCapturedContext);
+		}
+#endif
 	}
 }

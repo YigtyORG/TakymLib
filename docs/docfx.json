@@ -4,15 +4,8 @@
 			"src": [
 				{
 					"files": [
-						"TakymLib/TakymLib.csproj",
-						"TakymLib.CommandLine/TakymLib.CommandLine.csproj",
-						"TakymLib.Core/TakymLib.Core.csproj",
-						"TakymLib.Core.Framework/TakymLib.Core.Framework.csproj",
-						"TakymLib.Logging/TakymLib.Logging.csproj",
-						"TakymLib.Security/TakymLib.Security.csproj",
-						"TakymLib.Text/TakymLib.Text.csproj",
-						"TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj",
-						"TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj"
+						"**/bin/Debug/net5.0/TakymLib.dll",
+						"**/bin/Debug/net5.0/TakymLib.*.dll"
 					],
 					"src": "../"
 				}

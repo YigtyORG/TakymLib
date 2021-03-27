@@ -13,9 +13,12 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
-using System.Text.Json;
 using System.Xml;
 using TakymLib.IO;
+
+#if NETCOREAPP3_1_OR_GREATER
+using System.Text.Json;
+#endif
 
 namespace TakymLib.Logging
 {
@@ -46,11 +49,13 @@ namespace TakymLib.Logging
 			case ApplicationException:
 				sb.AppendLine(" - This is an application exception.");
 				break;
+#if NETCOREAPP3_1_OR_GREATER
 			case JsonException je:
 				sb.AppendLine($" - The target path is: \"{je.Path}\"");
 				sb.AppendLine($" - The line number is: {je.LineNumber}");
 				sb.AppendLine($" - The byte position in line: {je.BytePositionInLine}");
 				break;
+#endif
 			case NotImplementedException:
 				sb.AppendLine(" - The process was not implemented.");
 				break;

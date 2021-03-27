@@ -19,7 +19,6 @@ namespace TakymLib.ConsoleApp
 			DownloadLatestDefinitionAndConvert();
 		}
 
-#pragma warning disable TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 		private static void DownloadLatestDefinitionAndConvert()
 		{
 			var sb     = new StringBuilder();
@@ -46,7 +45,6 @@ namespace TakymLib.ConsoleApp
 			}
 			Console.WriteLine(sb.ToString());
 		}
-#pragma warning restore TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 
 		[STAThread()]
 		private static int Main(string[] args)

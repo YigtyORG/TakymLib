@@ -43,7 +43,6 @@ namespace TakymLib.Text
 			this.Ranges = ranges;
 		}
 
-#pragma warning disable TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 		/// <summary>
 		///  指定された文字の文字幅を判定します。
 		/// </summary>
@@ -60,6 +59,5 @@ namespace TakymLib.Text
 			}
 			return EastAsianWidthType.Invalid;
 		}
-#pragma warning restore TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 	}
 }

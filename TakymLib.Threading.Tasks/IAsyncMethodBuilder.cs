@@ -15,6 +15,7 @@ namespace TakymLib.Threading.Tasks
 	/// </summary>
 	public interface IAsyncMethodBuilder : ICustomAsyncMethodBuilder<IAsyncMethodResult>
 	{
+#if NETCOREAPP3_1_OR_GREATER
 		/// <summary>
 		///  既定の実装を取得します。
 		/// </summary>
@@ -23,6 +24,7 @@ namespace TakymLib.Threading.Tasks
 		{
 			return new DefaultAsyncMethodBuilder<VoidResult>();
 		}
+#endif
 	}
 
 	/// <summary>
@@ -31,6 +33,7 @@ namespace TakymLib.Threading.Tasks
 	/// <typeparam name="TResult">戻り値の種類です。</typeparam>
 	public interface IAsyncMethodBuilder<TResult> : IAsyncMethodBuilder, ICustomAsyncMethodBuilder<IAsyncMethodResult<TResult>, TResult>
 	{
+#if NETCOREAPP3_1_OR_GREATER
 		/// <summary>
 		///  既定の実装を取得します。
 		/// </summary>
@@ -39,12 +42,14 @@ namespace TakymLib.Threading.Tasks
 		{
 			return new DefaultAsyncMethodBuilder<TResult>();
 		}
+#endif
 
 		/// <summary>
 		///  <see cref="TakymLib.Threading.Tasks.IAsyncMethodResult{TResult}"/>を取得します。
 		/// </summary>
 		public new IAsyncMethodResult<TResult> Task { get; }
-
+		
+#if NETCOREAPP3_1_OR_GREATER
 		IAsyncMethodResult          ICustomAsyncMethodBuilder<IAsyncMethodResult>         .Task => this.Task;
 		IAsyncMethodResult<TResult> ICustomAsyncMethodBuilder<IAsyncMethodResult<TResult>>.Task => this.Task;
 
@@ -52,5 +57,6 @@ namespace TakymLib.Threading.Tasks
 		{
 			this.SetResult(default);
 		}
+#endif
 	}
 }

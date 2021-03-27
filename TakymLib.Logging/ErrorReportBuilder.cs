@@ -221,7 +221,7 @@ namespace TakymLib.Logging
 		protected virtual string Build()
 		{
 			var sb = new StringBuilder();
-			this.BuildHeader(sb, this.DateTime, Environment.ProcessId);
+			this.BuildHeader(sb, this.DateTime, VersionInfo.GetCurrentProcessId());
 			this.BuildBody(sb, this.Exception);
 			sb.AppendLine();
 			return sb.ToString();

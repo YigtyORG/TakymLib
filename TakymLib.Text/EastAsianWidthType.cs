@@ -20,9 +20,9 @@ namespace TakymLib.Text
 		///  無効な文字幅を表します。
 		/// </summary>
 		/// <remarks>
-		///  この値を直接利用しないでください。
+		///  内部で利用する値です。
+		///  この値を直接返却しないでください。
 		/// </remarks>
-		[Obsolete("この値を直接利用しないでください。", DiagnosticId = "TakymLib_EAWInvalid")]
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		Invalid,
 

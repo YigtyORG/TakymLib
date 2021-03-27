@@ -85,8 +85,12 @@ namespace TakymLib.CommandLine
 							if (File.Exists(argData)) {
 								async IAsyncEnumerable<string> LoadFile(string fname)
 								{
+#if NET48
+									using (var fs = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read)) {
+#else
 									var fs = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read);
 									await using (fs.ConfigureAwait(false)) {
+#endif
 										using (var sr = new StreamReader(fs, Encoding.UTF8, true, -1, true)) {
 											while (await sr.ReadLineAsync() is string line) {
 												yield return line;

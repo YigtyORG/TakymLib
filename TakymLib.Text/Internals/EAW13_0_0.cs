@@ -17,7 +17,6 @@ namespace TakymLib.Text.Internals
 
 		private EAW13_0_0() { }
 
-#pragma warning disable TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 		public override EastAsianWidthType GetCharType(char c)
 		{
 			return c switch {
@@ -1776,6 +1775,5 @@ namespace TakymLib.Text.Internals
 				_ => EastAsianWidthType.Invalid
 			};
 		}
-#pragma warning restore TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 	}
 }

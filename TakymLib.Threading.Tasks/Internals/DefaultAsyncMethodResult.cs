@@ -46,7 +46,11 @@ namespace TakymLib.Threading.Tasks.Internals
 				Thread.Yield();
 			}
 			if (this.Exception is not null) {
+#if NET48
+				ExceptionDispatchInfo.Capture(this.Exception).Throw();
+#else
 				ExceptionDispatchInfo.Throw(this.Exception);
+#endif
 			}
 			return _result;
 		}
@@ -96,5 +100,26 @@ namespace TakymLib.Threading.Tasks.Internals
 
 			private EmptyWaitHandle() { }
 		}
+
+#if !NETCOREAPP3_1_OR_GREATER
+		public bool IsCompletedSuccessfully => this.IsCompleted && this.Exception is null;
+		public bool IsFailed                => this.IsCompleted && this.Exception is not null;
+		public bool IsCancelled             => this.IsCompleted && this.Exception is OperationCanceledException;
+
+		IAwaiter IAwaitable.GetAwaiter()
+		{
+			return this.GetAwaiter();
+		}
+
+		void IAwaiter.GetResult()
+		{
+			this.GetResult();
+		}
+
+		IAwaitable IAsyncMethodResult.ConfigureAwait(bool continueOnCapturedContext)
+		{
+			return this.ConfigureAwait(continueOnCapturedContext);
+		}
+#endif
 	}
 }

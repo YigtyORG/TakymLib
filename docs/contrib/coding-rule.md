@@ -2,6 +2,8 @@
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
 
+[こちら](https://github.com/YigtyORG/TakymLib/blob/master/.editorconfig)も参照してください。
+
 <a id="class"></a>
 ## Classes/Structs/Interfaces/Delegates/Enums (クラス/構造体/インターフェース/デリゲート/列挙体)
 * SomeClass.cs

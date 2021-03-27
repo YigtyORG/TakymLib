@@ -64,5 +64,20 @@ namespace TakymLib.Threading.Tasks.Internals
 			_will_complete_sync = false;
 			awaiter.UnsafeOnCompleted(stateMachine.MoveNext);
 		}
+
+#if !NETCOREAPP3_1_OR_GREATER
+		IAsyncMethodResult          ICustomAsyncMethodBuilder<IAsyncMethodResult>         .Task => this.Task;
+		IAsyncMethodResult<TResult> ICustomAsyncMethodBuilder<IAsyncMethodResult<TResult>>.Task => this.Task;
+
+		void ICustomAsyncMethodBuilder<IAsyncMethodResult>.SetResult()
+		{
+			this.SetResult(default);
+		}
+
+		void ICustomAsyncMethodBuilder<IAsyncMethodResult<TResult>>.SetResult()
+		{
+			this.SetResult(default);
+		}
+#endif
 	}
 }

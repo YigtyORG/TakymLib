@@ -45,12 +45,7 @@ namespace TakymLib.Logging
 			_tw = tw;
 		}
 
-		/// <summary>
-		///  処理の開始をログに出力します。
-		/// </summary>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
+		/// <inheritdoc/>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public virtual void Begin(
 			[CallerMemberName()] string memberName = "",
@@ -61,14 +56,7 @@ namespace TakymLib.Logging
 			_tw.WriteLine($"[{DateTime.Now:yyyy/MM/dd HH:mm:ss.fffffff}] begin {memberName} `{filePath}({lineNumber})`");
 		}
 
-		/// <summary>
-		///  処理の開始をログに出力します。
-		/// </summary>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <inheritdoc/>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public virtual void Begin(
 			                                      object? message,
@@ -81,15 +69,7 @@ namespace TakymLib.Logging
 			_tw.WriteLine($"[{DateTime.Now:yyyy/MM/dd HH:mm:ss.fffffff}] begin {memberName}; {messageExpression} `{filePath}({lineNumber})`");
 		}
 
-		/// <summary>
-		///  処理の開始をログに出力します。
-		/// </summary>
-		/// <typeparam name="T">メッセージの種類です。</typeparam>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <inheritdoc/>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public virtual void Begin<T>(
 			                                      T?      message,
@@ -102,12 +82,7 @@ namespace TakymLib.Logging
 			_tw.WriteLine($"[{DateTime.Now:yyyy/MM/dd HH:mm:ss.fffffff}] begin {memberName}; {messageExpression} `{filePath}({lineNumber})`");
 		}
 
-		/// <summary>
-		///  処理の終了をログに出力します。
-		/// </summary>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
+		/// <inheritdoc/>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public virtual void End(
 			[CallerMemberName()] string memberName = "",
@@ -118,14 +93,7 @@ namespace TakymLib.Logging
 			_tw.WriteLine($"[{DateTime.Now:yyyy/MM/dd HH:mm:ss.fffffff}] end {memberName} `{filePath}({lineNumber})`");
 		}
 
-		/// <summary>
-		///  処理の終了をログに出力します。
-		/// </summary>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <inheritdoc/>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public virtual void End(
 			                                      object? message,
@@ -138,15 +106,7 @@ namespace TakymLib.Logging
 			_tw.WriteLine($"[{DateTime.Now:yyyy/MM/dd HH:mm:ss.fffffff}] end {memberName}; {messageExpression} `{filePath}({lineNumber})`");
 		}
 
-		/// <summary>
-		///  処理の終了をログに出力します。
-		/// </summary>
-		/// <typeparam name="T">メッセージの種類です。</typeparam>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <inheritdoc/>
 		/// <exception cref="System.ObjectDisposedException"/>
 		public virtual void End<T>(
 			                                      T?      message,
@@ -174,7 +134,11 @@ namespace TakymLib.Logging
 		/// <inheritdoc/>
 		protected override async ValueTask DisposeAsyncCore()
 		{
+#if NET48
+			_tw.Dispose();
+#else
 			await _tw.ConfigureAwait(false).DisposeAsync();
+#endif
 			await base.DisposeAsyncCore();
 		}
 	}

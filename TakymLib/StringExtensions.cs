@@ -125,7 +125,11 @@ namespace TakymLib
 		/// </remarks>
 		/// <param name="s">1行に収める必要のある文字列です。</param>
 		/// <returns>改行やタブが削除され、1行で表現された文字列です。</returns>
-		[Obsolete("代わりに RemoveControlChars を利用してください。", DiagnosticId = "TakymLib_FitToLine")]
+		[Obsolete("代わりに RemoveControlChars を利用してください。"
+#if NET5_0_OR_GREATER
+			, DiagnosticId = "TakymLib_FitToLine"
+#endif
+		)]
 		public static string FitToLine(this string s)
 		{
 			return s.Replace("\r", "[CR]").Replace("\n", "[LF]").Replace("\t", "[TB]").Replace("　", "[SP]");
@@ -171,7 +175,11 @@ namespace TakymLib
 			if (s.Length == 0) {
 				return s;
 			} else {
+#if NET48
+				return new(s.ToCharArray().RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName));
+#else
 				return new(s.AsSpan().RemoveControlChars(mode, removeSpace, tabIsSpace, useAltName));
+#endif
 			}
 		}
 
@@ -439,7 +447,7 @@ namespace TakymLib
 						break;
 					}
 				}
-				return sb.ToString();
+				return sb.ToString().AsSpan();
 			}
 		}
 	}

@@ -123,7 +123,11 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+#if NET5_0_OR_GREATER
 #pragma warning disable TakymLib_PathString_ctor // 型またはメンバーが旧型式です
+#else
+#pragma warning disable CS0618 // 型またはメンバーが旧型式です
+#endif
 		public static PathString Get(string path)
 		{
 			path.EnsureNotNull(nameof(path));
@@ -136,7 +140,11 @@ namespace TakymLib.IO
 			}
 			return result;
 		}
+#if NET5_0_OR_GREATER
 #pragma warning restore TakymLib_PathString_ctor // 型またはメンバーが旧型式です
+#else
+#pragma warning restore CS0618 // 型またはメンバーが旧型式です
+#endif
 
 		/// <summary>
 		///  キャッシュされた全てのパス文字列を削除します。

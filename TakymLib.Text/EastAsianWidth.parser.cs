@@ -127,7 +127,6 @@ namespace TakymLib.Text
 			return new(ranges.AsReadOnly());
 		}
 
-#pragma warning disable TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 		/// <summary>
 		///  指定された行を解析し、範囲で表された東アジアの文字幅の列挙値へ変換します。
 		/// </summary>
@@ -140,7 +139,7 @@ namespace TakymLib.Text
 			}
 			int start = 0, end = 0, flags = 0;
 			var type = EastAsianWidthType.Invalid;
-			for (int i = 0; i < line.Length; ++i) {
+			for (int i = 0; i < line!.Length; ++i) {
 				char ch = line[i];
 				if (ch == ' ' || ch == '\t') {
 					continue;
@@ -215,6 +214,5 @@ end:
 				return (start, start, type);
 			}
 		}
-#pragma warning restore TakymLib_EAWInvalid // 型またはメンバーが旧型式です
 	}
 }

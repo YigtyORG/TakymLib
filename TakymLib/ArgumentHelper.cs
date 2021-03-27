@@ -6,268 +6,6 @@
  * distributed under the MIT License.
 ****/
 
-#if true
-
-using System;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using TakymLib.Properties;
-
-namespace TakymLib
-{
-	/// <summary>
-	///  引数に関する例外の発生を行います。
-	///  このクラスは静的クラスです。
-	/// </summary>
-	public static class ArgumentHelper
-	{
-		/// <summary>
-		///  引数から渡されたオブジェクトが<see langword="null"/>である場合に例外を発生させます。
-		/// </summary>
-		/// <param name="obj">検証するオブジェクトです。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureNotNull([NotNull()] this object? obj, string? argName)
-		{
-			if (obj is null) {
-				throw new ArgumentNullException(argName);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが<see langword="null"/>である場合に例外を発生させます。
-		/// </summary>
-		/// <typeparam name="T">検証するオブジェクトの種類です。</typeparam>
-		/// <param name="obj">検証するオブジェクトです。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureNotNull<T>([NotNull()] this T? obj, string? argName)
-		{
-			if (obj is null) {
-				throw new ArgumentNullException(argName);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが指定された範囲(閉区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
-		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureWithinClosedRange(this IComparable? actual, object? min, object? max, string? argName)
-		{
-			if (actual is not null && (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0)) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinClosedRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが指定された範囲(閉区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <typeparam name="T">検証するオブジェクトの種類です。</typeparam>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
-		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureWithinClosedRange<T>(this IComparable<T>? actual, T? min, T? max, string? argName)
-		{
-			if (actual is not null && (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0)) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinClosedRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが指定された範囲(開区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
-		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureWithinOpenRange(this IComparable? actual, object? min, object? max, string? argName)
-		{
-			if (actual is not null && (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0)) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinOpenRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが指定された範囲(開区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <typeparam name="T">検証するオブジェクトの種類です。</typeparam>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
-		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureWithinOpenRange<T>(this IComparable<T>? actual, T? min, T? max, string? argName)
-		{
-			if (actual is not null && (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0)) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinOpenRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが<see langword="null"/>である場合または指定された範囲(閉区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
-		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureNotNullWithinClosedRange([NotNull()] this IComparable? actual, object? min, object? max, string? argName)
-		{
-			if (actual is null) {
-				throw new ArgumentNullException(argName);
-			}
-			if (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinClosedRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが<see langword="null"/>である場合または指定された範囲(閉区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <typeparam name="T">検証するオブジェクトの種類です。</typeparam>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
-		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureNotNullWithinClosedRange<T>([NotNull()] this IComparable<T>? actual, T? min, T? max, string? argName)
-		{
-			if (actual is null) {
-				throw new ArgumentNullException(argName);
-			}
-			if (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinClosedRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが<see langword="null"/>である場合または指定された範囲(開区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
-		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureNotNullWithinOpenRange([NotNull()] this IComparable? actual, object? min, object? max, string? argName)
-		{
-			if (actual is null) {
-				throw new ArgumentNullException(argName);
-			}
-			if (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinClosedRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  引数から渡されたオブジェクトが<see langword="null"/>である場合または指定された範囲(開区間)を超える場合に例外を発生させます。
-		/// </summary>
-		/// <typeparam name="T">検証するオブジェクトの種類です。</typeparam>
-		/// <param name="actual">検証するオブジェクトです。</param>
-		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
-		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		public static void EnsureNotNullWithinOpenRange<T>([NotNull()] this IComparable<T>? actual, T? min, T? max, string? argName)
-		{
-			if (actual is null) {
-				throw new ArgumentNullException(argName);
-			}
-			if (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0) {
-				throw new ArgumentOutOfRangeException(
-					argName,
-					actual,
-					string.Format(Resources.ErrorHelper_EnsureWithinClosedRange, min, max)
-				);
-			}
-		}
-
-		/// <summary>
-		///  <see cref="TakymLib.ArgumentHelper.EnsureNotNull(object?, string?)"/>を呼び出します。
-		/// </summary>
-		/// <remarks>
-		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
-		/// </remarks>
-		/// <param name="obj">検証するオブジェクトです。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。</param>
-		/// <exception cref="System.ArgumentNullException" />
-		public static void ThrowIfNull([NotNull()] this object? obj, string? argName)
-		{
-			obj.LogThrowIfNull(argName);
-			obj.EnsureNotNull(argName);
-		}
-
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		[Conditional("DEBUG")]
-		private static void LogThrowIfNull([NotNull()] this object? obj, string? argName)
-		{
-			Debug.WriteLineIf(obj is     null, $"{argName} == null");
-			Debug.Assert     (obj is not null, $"{argName} is null.");
-		}
-	}
-}
-
-#else
-
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -286,11 +24,12 @@ namespace TakymLib
 		///  引数から渡されたオブジェクトが<see langword="null"/>である場合に例外を発生させます。
 		/// </summary>
 		/// <param name="obj">検証するオブジェクトです。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureNotNull([NotNull()] this object? obj, [CallerArgumentExpression("obj")] string? argName = null)
+		public static void EnsureNotNull([NotNull()] this object? obj,
+			[CallerArgumentExpression("obj")] string? argName)
 		{
 			if (obj is null) {
 				throw new ArgumentNullException(argName);
@@ -302,11 +41,12 @@ namespace TakymLib
 		/// </summary>
 		/// <typeparam name="T">検証するオブジェクトの種類です。</typeparam>
 		/// <param name="obj">検証するオブジェクトです。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureNotNull<T>([NotNull()] this T? obj, [CallerArgumentExpression("obj")] string? argName = null)
+		public static void EnsureNotNull<T>([NotNull()] this T? obj,
+			[CallerArgumentExpression("obj")] string? argName)
 		{
 			if (obj is null) {
 				throw new ArgumentNullException(argName);
@@ -319,11 +59,12 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
 		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureWithinClosedRange(this IComparable? actual, object? min, object? max, [CallerArgumentExpression("actual")] string? argName = null)
+		public static void EnsureWithinClosedRange(this IComparable? actual, object? min, object? max,
+			[CallerArgumentExpression("actual")] string? argName)
 		{
 			if (actual is not null && (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0)) {
 				throw new ArgumentOutOfRangeException(
@@ -341,13 +82,14 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
 		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureWithinClosedRange<T>(this IComparable<T>? actual, T? min, T? max, [CallerArgumentExpression("actual")] string? argName = null)
+		public static void EnsureWithinClosedRange<T>(this IComparable<T>? actual, T? min, T? max,
+			[CallerArgumentExpression("actual")] string? argName)
 		{
-			if (actual is not null && (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0)) {
+			if (actual is not null && (actual.CompareTo(min!) < 0 || actual.CompareTo(max!) > 0)) {
 				throw new ArgumentOutOfRangeException(
 					argName,
 					actual,
@@ -362,11 +104,12 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
 		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureWithinOpenRange(this IComparable? actual, object? min, object? max, [CallerArgumentExpression("actual")] string? argName = null)
+		public static void EnsureWithinOpenRange(this IComparable? actual, object? min, object? max,
+			[CallerArgumentExpression("actual")] string? argName)
 		{
 			if (actual is not null && (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0)) {
 				throw new ArgumentOutOfRangeException(
@@ -384,13 +127,14 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
 		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		public static void EnsureWithinOpenRange<T>(this IComparable<T>? actual, T? min, T? max, [CallerArgumentExpression("actual")] string? argName = null)
+		public static void EnsureWithinOpenRange<T>(this IComparable<T>? actual, T? min, T? max,
+			[CallerArgumentExpression("actual")] string? argName)
 		{
-			if (actual is not null && (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0)) {
+			if (actual is not null && (actual.CompareTo(min!) <= 0 || actual.CompareTo(max!) >= 0)) {
 				throw new ArgumentOutOfRangeException(
 					argName,
 					actual,
@@ -405,13 +149,13 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
 		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinClosedRange([NotNull()] this IComparable? actual, object? min, object? max,
-			[CallerArgumentExpression("actual")] string? argName = null)
+			[CallerArgumentExpression("actual")] string? argName)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -432,18 +176,18 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値も範囲に含まれます。</param>
 		/// <param name="max">最大値です。この値も範囲に含まれます。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinClosedRange<T>([NotNull()] this IComparable<T>? actual, T? min, T? max,
-			[CallerArgumentExpression("actual")] string? argName = null)
+			[CallerArgumentExpression("actual")] string? argName)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
 			}
-			if (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0) {
+			if (actual.CompareTo(min!) < 0 || actual.CompareTo(max!) > 0) {
 				throw new ArgumentOutOfRangeException(
 					argName,
 					actual,
@@ -458,13 +202,13 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
 		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinOpenRange([NotNull()] this IComparable? actual, object? min, object? max,
-			[CallerArgumentExpression("actual")] string? argName = null)
+			[CallerArgumentExpression("actual")] string? argName)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -485,18 +229,18 @@ namespace TakymLib
 		/// <param name="actual">検証するオブジェクトです。</param>
 		/// <param name="min">最小値です。この値は範囲に含まれません。</param>
 		/// <param name="max">最大値です。この値は範囲に含まれません。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinOpenRange<T>([NotNull()] this IComparable<T>? actual, T? min, T? max,
-			[CallerArgumentExpression("actual")] string? argName = null)
+			[CallerArgumentExpression("actual")] string? argName)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
 			}
-			if (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0) {
+			if (actual.CompareTo(min!) <= 0 || actual.CompareTo(max!) >= 0) {
 				throw new ArgumentOutOfRangeException(
 					argName,
 					actual,
@@ -512,9 +256,10 @@ namespace TakymLib
 		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
 		/// </remarks>
 		/// <param name="obj">検証するオブジェクトです。</param>
-		/// <param name="argName">検証するオブジェクトの引数名です。<see langword="C# X.0"/>以上では省略可能です。</param>
+		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
-		public static void ThrowIfNull([NotNull()] this object? obj, [CallerArgumentExpression("obj")] string? argName = null)
+		public static void ThrowIfNull([NotNull()] this object? obj,
+			[CallerArgumentExpression("obj")] string? argName)
 		{
 			obj.LogThrowIfNull(argName);
 			obj.EnsureNotNull(argName);
@@ -522,13 +267,10 @@ namespace TakymLib
 
 		[DebuggerHidden()]
 		[StackTraceHidden()]
-		[Conditional("DEBUG")]
-		private static void LogThrowIfNull([NotNull()] this object? obj, string? argName)
+		private static void LogThrowIfNull(this object? obj, string? argName)
 		{
 			Debug.WriteLineIf(obj is     null, $"{argName} == null");
 			Debug.Assert     (obj is not null, $"{argName} is null.");
 		}
 	}
 }
-
-#endif
