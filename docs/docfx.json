@@ -3,7 +3,17 @@
 		{
 			"src": [
 				{
-					"files": [ "**/*.csproj" ],
+					"files": [
+						"TakymLib/TakymLib.csproj",
+						"TakymLib.CommandLine/TakymLib.CommandLine.csproj",
+						"TakymLib.Core/TakymLib.Core.csproj",
+						"TakymLib.Core.Framework/TakymLib.Core.Framework.csproj",
+						"TakymLib.Logging/TakymLib.Logging.csproj",
+						"TakymLib.Security/TakymLib.Security.csproj",
+						"TakymLib.Text/TakymLib.Text.csproj",
+						"TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj",
+						"TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj"
+					],
 					"src": "../"
 				}
 			],
@@ -37,7 +47,7 @@
 		"fileMetadataFiles": [],
 		"template": [
 			"statictoc",
-			"packages/memberpage/2.56.6/content",
+			"packages/memberpage/2.56.7/content",
 			"template"
 		],
 		"postProcessors": [],
