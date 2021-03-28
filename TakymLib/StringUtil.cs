@@ -17,7 +17,7 @@ namespace TakymLib
 	public static class StringUtil
 	{
 		private const           string _chars = "!#$0aAbBcCdDeEfF%&'gGhH1234()-=IiJjKkLlMmNnOoPp^~@[{]}5678qrstuv;+QRSTUV9WXYZwxyz,._";
-		private static readonly Random _rnd   = new Random();
+		private static readonly Random _rnd   = new();
 
 		/// <summary>
 		///  英数字と記号をランダムに並べた8～64文字の文字列を生成します。

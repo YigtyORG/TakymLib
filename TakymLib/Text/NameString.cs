@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TakymLib.Properties;
 
-namespace TakymLib
+namespace TakymLib.Text
 {
 	/// <summary>
 	///  識別子として利用できる名前を表します。
@@ -74,7 +74,7 @@ namespace TakymLib
 #endif
 
 		/// <summary>
-		///  型'<see cref="TakymLib.NameString"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="s">保持する文字列です。</param>
 		/// <exception cref="System.ArgumentException"/>
@@ -92,7 +92,7 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  型'<see cref="TakymLib.NameString"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="chars">保持する文字列です。</param>
 		/// <exception cref="System.ArgumentException"/>
@@ -110,7 +110,7 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  型'<see cref="TakymLib.NameString"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="chars">保持する文字列です。</param>
 		/// <exception cref="System.ArgumentException"/>
@@ -125,16 +125,16 @@ namespace TakymLib
 				throw new ArgumentException(Resources.NameString_Constructor_ArgumentException, nameof(chars), e);
 			}
 		}
-		
+
 		/// <summary>
-		///  型'<see cref="TakymLib.NameString"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="chars">保持する文字列です。</param>
 		/// <exception cref="System.ArgumentException"/>
 		public NameString(ReadOnlyMemory<char> chars) : this(chars.Span) { }
 
 		/// <summary>
-		///  型'<see cref="TakymLib.NameString"/>'の新しいインスタンスを生成します。
+		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="chars">保持する文字列です。</param>
 		/// <exception cref="System.ArgumentNullException"/>
@@ -204,7 +204,7 @@ namespace TakymLib
 		///  指定された名前文字列を結合し、新しい名前文字列を生成します。
 		/// </summary>
 		/// <remarks>
-		///  この関数は<see cref="TakymLib.NameString.Concat(NameString)"/>の別名です。
+		///  この関数は<see cref="TakymLib.Text.NameString.Concat(NameString)"/>の別名です。
 		/// </remarks>
 		/// <param name="ns">結合する名前文字列です。</param>
 		/// <returns>現在の名前文字列に<paramref name="ns"/>が連結された名前文字列です。</returns>
