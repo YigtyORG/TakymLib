@@ -19,6 +19,7 @@ jobs:
       run: dotnet restore TakymLib.sln
     - name: Build
       run: dotnet build --configuration Debug --no-restore
+    # Test
     - name: Test (.NET 5.0)
       run: dotnet test -c Debug --no-build --verbosity normal -f net5.0
     - name: Test (.NET Core 3.1)
@@ -39,6 +40,7 @@ jobs:
       run: dotnet restore TakymLib.sln
     - name: Build
       run: dotnet build --configuration Debug --no-restore
+    # Test
     - name: Test (.NET 5.0)
       run: dotnet test -c Debug --no-build --verbosity normal -f net5.0
     - name: Test (.NET Core 3.1)
