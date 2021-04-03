@@ -19,8 +19,14 @@ jobs:
       run: dotnet restore TakymLib.sln
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+    - name: Test (.NET 5.0)
+      run: dotnet test -c Debug --no-build --verbosity normal -f net5.0
+    - name: Test (.NET Core 3.1)
+      run: dotnet test -c Debug --no-build --verbosity normal -f netcoreapp3.1
+    - name: Test (.NET Standard 2.1)
+      run: dotnet test -c Debug --no-build --verbosity normal -f netstandard2.1
+    - name: Test (.NET Framework 4.8)
+      run: dotnet test -c Debug --no-build --verbosity normal -f net48
   Ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -33,5 +39,11 @@ jobs:
       run: dotnet restore TakymLib.sln
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+    - name: Test (.NET 5.0)
+      run: dotnet test -c Debug --no-build --verbosity normal -f net5.0
+    - name: Test (.NET Core 3.1)
+      run: dotnet test -c Debug --no-build --verbosity normal -f netcoreapp3.1
+    - name: Test (.NET Standard 2.1)
+      run: dotnet test -c Debug --no-build --verbosity normal -f netstandard2.1
+    - name: Test (.NET Framework 4.8)
+      run: dotnet test -c Debug --no-build --verbosity normal -f net48
