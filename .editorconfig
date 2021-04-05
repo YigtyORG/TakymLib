@@ -1,8 +1,8 @@
 # 上位ディレクトリから .editorconfig 設定を継承する場合は、以下の行を削除します
 root = true
 
-# C# ファイル
-[*.cs]
+# 全てのファイル
+[*]
 
 #### コア EditorConfig オプション ####
 
@@ -13,7 +13,13 @@ tab_width = 4
 
 # 改行設定
 end_of_line = crlf
-insert_final_newline = false
+insert_final_newline = true
+
+# 文字コード
+charset = utf-8
+
+# C# ファイル
+[*.cs]
 
 #### .NET コーディング規則 ####
 
