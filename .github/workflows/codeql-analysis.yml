@@ -54,22 +54,10 @@ jobs:
         dotnet-version: 5.0.201
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
-    - name: Build .NET 5 (Debug)
-      run: dotnet build -c Debug --no-restore -f net5.0
-    - name: Build .NET Core 3.1 (Debug)
-      run: dotnet build -c Debug --no-restore -f netcoreapp3.1
-    - name: Build .NET Standard 2.1 (Debug)
-      run: dotnet build -c Debug --no-restore -f netstandard2.1
-    - name: Build .NET Framework 4.8 (Debug)
-      run: dotnet build -c Debug --no-restore -f net48
-    - name: Build .NET 5 (Release)
-      run: dotnet build -c Release --no-restore -f net5.0
-    - name: Build .NET Core 3.1 (Release)
-      run: dotnet build -c Release --no-restore -f netcoreapp3.1
-    - name: Build .NET Standard 2.1 (Release)
-      run: dotnet build -c Release --no-restore -f netstandard2.1
-    - name: Build .NET Framework 4.8 (Release)
-      run: dotnet build -c Release --no-restore -f net48
+    - name: Build (Debug)
+      run: dotnet build -c Debug --no-restore
+    - name: Build (Release)
+      run: dotnet build -c Release --no-restore
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)

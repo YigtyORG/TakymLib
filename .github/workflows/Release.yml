@@ -18,23 +18,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
     # Build
-    - name: Build (.NET 5.0)
-      run: dotnet build -c Release --no-restore -f net5.0
-    - name: Build (.NET Core 3.1)
-      run: dotnet build -c Release --no-restore -f netcoreapp3.1
-    - name: Build (.NET Standard 2.1)
-      run: dotnet build -c Release --no-restore -f netstandard2.1
-    - name: Build (.NET Framework 4.8)
-      run: dotnet build -c Release --no-restore -f net48
+    - name: Build
+      run: dotnet build -c Release --no-restore
     # Test
-    - name: Test (.NET 5.0)
-      run: dotnet test -c Release --no-build --verbosity normal -f net5.0
-    - name: Test (.NET Core 3.1)
-      run: dotnet test -c Release --no-build --verbosity normal -f netcoreapp3.1
-    - name: Test (.NET Standard 2.1)
-      run: dotnet test -c Release --no-build --verbosity normal -f netstandard2.1
-    - name: Test (.NET Framework 4.8)
-      run: dotnet test -c Release --no-build --verbosity normal -f net48
+    - name: Test
+      run: dotnet test -c Release --no-build --verbosity normal
   Ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -46,20 +34,8 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
     # Build
-    - name: Build (.NET 5.0)
-      run: dotnet build -c Release --no-restore -f net5.0
-    - name: Build (.NET Core 3.1)
-      run: dotnet build -c Release --no-restore -f netcoreapp3.1
-    - name: Build (.NET Standard 2.1)
-      run: dotnet build -c Release --no-restore -f netstandard2.1
-    - name: Build (.NET Framework 4.8)
-      run: dotnet build -c Release --no-restore -f net48
+    - name: Build
+      run: dotnet build -c Release --no-restore
     # Test
-    - name: Test (.NET 5.0)
-      run: dotnet test -c Release --no-build --verbosity normal -f net5.0
-    - name: Test (.NET Core 3.1)
-      run: dotnet test -c Release --no-build --verbosity normal -f netcoreapp3.1
-    - name: Test (.NET Standard 2.1)
-      run: dotnet test -c Release --no-build --verbosity normal -f netstandard2.1
-    - name: Test (.NET Framework 4.8)
-      run: dotnet test -c Release --no-build --verbosity normal -f net48
+    - name: Test
+      run: dotnet test -c Release --no-build --verbosity normal
