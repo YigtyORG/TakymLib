@@ -37,19 +37,23 @@ namespace TakymLib.Threading.Distributed.Internals
 		private ExecutionContext GetExecutionContext(Thread thread)
 		{
 			try {
-				_rwlock.EnterReadLock();
-				int id = thread.ManagedThreadId;
-				if (_dict.ContainsKey(id)) {
-					var result = _dict[id];
-					if (result.IsDisposing || result.IsDisposed) {
-						result = new ExecutionContext();
+retry:
+				if (_rwlock.TryEnterReadLock(Timeout.Infinite)) {
+					int id = thread.ManagedThreadId;
+					if (_dict.ContainsKey(id)) {
+						var result = _dict[id];
+						if (result.IsDisposing || result.IsDisposed) {
+							result = new ExecutionContext();
+							AddContext(id, result);
+						}
+						return result;
+					} else {
+						var result = new ExecutionContext();
 						AddContext(id, result);
+						return result;
 					}
-					return result;
 				} else {
-					var result = new ExecutionContext();
-					AddContext(id, result);
-					return result;
+					goto retry;
 				}
 			} finally {
 				if (_rwlock.IsReadLockHeld) {
@@ -59,8 +63,12 @@ namespace TakymLib.Threading.Distributed.Internals
 			void AddContext(int id, ExecutionContext context)
 			{
 				try {
-					_rwlock.EnterWriteLock();
-					_dict.Add(id, context);
+retry:
+					if (_rwlock.TryEnterWriteLock(Timeout.Infinite)) {
+						_dict.Add(id, context);
+					} else {
+						goto retry;
+					}
 				} finally {
 					if (_rwlock.IsWriteLockHeld) {
 						_rwlock.ExitWriteLock();
@@ -76,9 +84,13 @@ namespace TakymLib.Threading.Distributed.Internals
 			}
 			if (disposing) {
 				try {
-					_rwlock.EnterWriteLock();
-					foreach (var item in _dict.Values) {
-						item.Dispose();
+retry:
+					if (_rwlock.TryEnterWriteLock(Timeout.Infinite)) {
+						foreach (var item in _dict.Values) {
+							item.Dispose();
+						}
+					} else {
+						goto retry;
 					}
 				} finally {
 					if (_rwlock.IsWriteLockHeld) {
@@ -97,9 +109,13 @@ namespace TakymLib.Threading.Distributed.Internals
 				return;
 			}
 			try {
-				_rwlock.EnterWriteLock();
-				foreach (var item in _dict.Values) {
-					await item.ConfigureAwait(true).DisposeAsync();
+retry:
+				if (_rwlock.TryEnterWriteLock(Timeout.Infinite)) {
+					foreach (var item in _dict.Values) {
+						await item.ConfigureAwait(true).DisposeAsync();
+					}
+				} else {
+					goto retry;
 				}
 			} finally {
 				if (_rwlock.IsWriteLockHeld) {
