@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -134,6 +134,9 @@ namespace TakymLib.Logging
 		/// <inheritdoc/>
 		protected override async ValueTask DisposeAsyncCore()
 		{
+			if (this.IsDisposed) {
+				return;
+			}
 #if NET48
 			_tw.Dispose();
 #else

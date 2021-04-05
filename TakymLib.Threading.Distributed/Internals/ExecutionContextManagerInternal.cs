@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -93,6 +93,9 @@ namespace TakymLib.Threading.Distributed.Internals
 
 		protected override async ValueTask DisposeAsyncCore()
 		{
+			if (this.IsDisposed) {
+				return;
+			}
 			try {
 				_rwlock.EnterWriteLock();
 				foreach (var item in _dict.Values) {

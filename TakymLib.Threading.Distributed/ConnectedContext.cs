@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -102,6 +102,9 @@ namespace TakymLib.Threading.Distributed
 		/// <inheritdoc/>
 		protected override async ValueTask DisposeAsyncCore()
 		{
+			if (this.IsDisposed) {
+				return;
+			}
 			if (!_leave_open) {
 				await this.Server.ConfigureAwait(false).DisposeAsync();
 				await this.Client.ConfigureAwait(false).DisposeAsync();

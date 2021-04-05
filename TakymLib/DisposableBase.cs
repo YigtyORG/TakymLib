@@ -127,6 +127,9 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		protected virtual async ValueTask DisposeAsyncCore()
 		{
+			if (this.IsDisposed) {
+				return;
+			}
 			if (this.Disposables is not null and var disposables) {
 				int count = disposables.Count;
 				for (int i = 0; i < count; ++i) {
