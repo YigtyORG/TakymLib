@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -131,13 +131,14 @@ namespace TakymLib
 		public VersionInfo(Assembly asm)
 		{
 			asm.EnsureNotNull(nameof(asm));
+			var asmname        = asm.GetName();
 			this.Assembly      = asm;
-			this.Name          = asm.GetName().Name ?? "Unknown";
+			this.Name          = asmname.Name ?? "Unknown";
 			this.DisplayName   = asm.GetCustomAttribute<AssemblyProductAttribute>    ()?.Product     ?? Resources.VersionInfo_DisplayName;
 			this.Authors       = asm.GetCustomAttribute<AssemblyCompanyAttribute>    ()?.Company     ?? Resources.VersionInfo_Authors;
 			this.Copyright     = asm.GetCustomAttribute<AssemblyCopyrightAttribute>  ()?.Copyright   ?? Resources.VersionInfo_Copyright;
 			this.Description   = asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? Resources.VersionInfo_Description;
-			this.Version       = asm.GetName().Version;
+			this.Version       = asmname.Version;
 			this.Edition       = asm.GetCustomAttribute<AssemblyEditionAttribute>             ()?.Edition;
 			this.CodeName      = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";
 			this.Configuration = asm.GetCustomAttribute<AssemblyConfigurationAttribute>       ()?.Configuration;
