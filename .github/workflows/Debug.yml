@@ -35,7 +35,7 @@ jobs:
       run: dotnet restore TakymLib.sln
     # Build
     - name: Build
-      run: dotnet build -c Debug --no-restore -f
+      run: dotnet build -c Debug --no-restore
     # Test
     - name: Test
       run: dotnet test -c Debug --no-build --verbosity normal
