@@ -17,8 +17,15 @@ jobs:
         dotnet-version: 5.0.201
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
-    - name: Build
-      run: dotnet build --configuration Debug --no-restore
+    # Build
+    - name: Build (.NET 5.0)
+      run: dotnet build -c Debug --no-restore -f net5.0
+    - name: Build (.NET Core 3.1)
+      run: dotnet build -c Debug --no-restore -f netcoreapp3.1
+    - name: Build (.NET Standard 2.1)
+      run: dotnet build -c Debug --no-restore -f netstandard2.1
+    - name: Build (.NET Framework 4.8)
+      run: dotnet build -c Debug --no-restore -f net48
     # Test
     - name: Test (.NET 5.0)
       run: dotnet test -c Debug --no-build --verbosity normal -f net5.0
@@ -38,8 +45,15 @@ jobs:
         dotnet-version: 5.0.201
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
-    - name: Build
-      run: dotnet build --configuration Debug --no-restore
+    # Build
+    - name: Build (.NET 5.0)
+      run: dotnet build -c Debug --no-restore -f net5.0
+    - name: Build (.NET Core 3.1)
+      run: dotnet build -c Debug --no-restore -f netcoreapp3.1
+    - name: Build (.NET Standard 2.1)
+      run: dotnet build -c Debug --no-restore -f netstandard2.1
+    - name: Build (.NET Framework 4.8)
+      run: dotnet build -c Debug --no-restore -f net48
     # Test
     - name: Test (.NET 5.0)
       run: dotnet test -c Debug --no-build --verbosity normal -f net5.0
