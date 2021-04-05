@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -45,6 +45,9 @@ namespace TakymLib
 		/// </summary>
 		~DisposableBase()
 		{
+			if (this.IsDisposing) {
+				return;
+			}
 			this.IsDisposing = true;
 			this.Dispose(false);
 			this.IsDisposing = false;
@@ -55,6 +58,9 @@ namespace TakymLib
 		/// </summary>
 		public void Dispose()
 		{
+			if (this.IsDisposing) {
+				return;
+			}
 			this.IsDisposing = true;
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
@@ -70,6 +76,9 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		public async ValueTask DisposeAsync()
 		{
+			if (this.IsDisposing) {
+				return;
+			}
 			this.IsDisposing = true;
 			await this.DisposeAsyncCore();
 			this.Dispose(false);
