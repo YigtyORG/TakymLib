@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -41,6 +41,9 @@ namespace TakymLib.Threading.Distributed
 		/// <summary>
 		///  型'<see cref="TakymLib.Threading.Distributed.ExecutionContextManager"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <remarks>
+		///  破棄処理時に<see cref="System.Threading.SynchronizationLockException"/>が発生する可能性があります。
+		/// </remarks>
 		/// <returns>有効な<see cref="TakymLib.Threading.Distributed.ExecutionContextManager"/>オブジェクトです。</returns>
 		public static ExecutionContextManager Create()
 		{
