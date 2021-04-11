@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using TakymLib.IO;
 using TakymLib.Logging.Globalization;
@@ -90,6 +91,7 @@ namespace TakymLib.Logging
 		/// <param name="dir">ログファイルの保存先のディレクトリです。</param>
 		/// <returns>自動生成された保存先のファイルパスです。失敗した場合は<see langword="null"/>を返します。</returns>
 		/// <exception cref="System.AggregateException" />
+		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static PathString? PrintAndLog(Exception e, PathString dir)
 		{
 			try {
@@ -107,7 +109,9 @@ namespace TakymLib.Logging
 					if (!dir.IsDirectory) {
 						Directory.CreateDirectory(dir);
 					}
+					_hresult_detailProvider.ClearCache();
 					var log = Create(e).Save(dir, null);
+					_hresult_detailProvider.ClearCache();
 					SaveERBC(dir);
 					Console.Error.WriteLine();
 					Console.Error.WriteLine(Resources.ERB_PrintAndLog_PathToFile, log);
