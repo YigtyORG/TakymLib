@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -15,6 +15,9 @@ using System.Security;
 using System.Text;
 using System.Xml;
 using TakymLib.IO;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Linq;
 
 #if NETCOREAPP3_1_OR_GREATER
 using System.Text.Json;
@@ -29,18 +32,14 @@ namespace TakymLib.Logging
 	/// <remarks>
 	///  情報は英語で出力されます。
 	/// </remarks>
-	public sealed class DefaultErrorDetailProvider : ICustomErrorDetailProvider
+	public sealed class DefaultErrorDetailProvider : IMoreExceptionsProvider
 	{
 		/// <summary>
 		///  型'<see cref="TakymLib.Logging.DefaultErrorDetailProvider"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		public DefaultErrorDetailProvider() { }
 
-		/// <summary>
-		///  追加情報を可読な翻訳済みの文字列へ変換します。
-		/// </summary>
-		/// <param name="exception">変換するデータを保持している例外オブジェクトです。</param>
-		/// <returns>翻訳済みの文字列です。</returns>
+		/// <inheritdoc/>
 		public string GetLocalizedDetail(Exception exception)
 		{
 			var sb = new StringBuilder();
@@ -60,7 +59,8 @@ namespace TakymLib.Logging
 				sb.AppendLine(" - The process was not implemented.");
 				break;
 			case SystemException se:
-				sb.AppendLine(" - This is a system exception."); switch (se) {
+				sb.AppendLine(" - This is a system exception.");
+				switch (se) {
 				case ArgumentException ae:
 					sb.AppendLine($" - The parameter name is: \"{ae.ParamName}\".");
 					switch (ae) {
@@ -109,6 +109,15 @@ namespace TakymLib.Logging
 					sb.AppendLine($" - Is the wait handle closed? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsClosed}");
 					sb.AppendLine($" - Is the wait handle invalid? {oce.CancellationToken.WaitHandle?.SafeWaitHandle?.IsInvalid}");
 					break;
+				case ReflectionTypeLoadException rtle:
+					var types = rtle.Types;
+					for (int i = 0; i < types.Length; ++i) {
+						sb.AppendLine($" - The type[{i}]: {types[i]?.AssemblyQualifiedName}");
+					}
+					break;
+				case TypeLoadException tle:
+					sb.AppendLine($" - The type name: {tle.TypeName}");
+					break;
 				case SecurityException see:
 					sb.AppendLine(" - There is a problem about security.");
 					sb.AppendLine($" - The permission type         : {see.PermissionType?.AssemblyQualifiedName}");
@@ -132,6 +141,19 @@ namespace TakymLib.Logging
 				break;
 			}
 			return sb.ToString();
+		}
+
+		/// <inheritdoc/>
+		public IEnumerable<Exception> GetMoreExceptions(Exception exception)
+		{
+			switch (exception) {
+			case AggregateException ae:
+				return ae.InnerExceptions;
+			case ReflectionTypeLoadException rtle:
+				return rtle.LoaderExceptions.Where(x => x is not null)!;
+			default:
+				return Enumerable.Empty<Exception>();
+			}
 		}
 	}
 }

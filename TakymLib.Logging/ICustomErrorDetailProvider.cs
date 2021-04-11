@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -20,6 +20,6 @@ namespace TakymLib.Logging
 		/// </summary>
 		/// <param name="exception">変換するデータを保持している例外オブジェクトです。</param>
 		/// <returns>翻訳済みの文字列です。</returns>
-		string GetLocalizedDetail(Exception exception);
+		public string GetLocalizedDetail(Exception exception);
 	}
 }

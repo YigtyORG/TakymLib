@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -285,19 +285,21 @@ namespace TakymLib.Logging
 				}
 			}
 			sb.AppendLine("--------");
+			var exs = new List<Exception>();
 			foreach (var provider in this.DetailProviders) {
 				sb.AppendLine(provider.GetLocalizedDetail(ex));
+				if (provider is IMoreExceptionsProvider provider2) {
+					exs.AddRange(provider2.GetMoreExceptions(ex));
+				}
 			}
 			sb.AppendLine("--------");
 			sb.AppendLine(ex.ToString());
-			if (ex is AggregateException aggregateException) {
-				var exs = aggregateException.InnerExceptions;
-				for (int i = 0; i < exs.Count; ++i) {
-					sb.AppendLine($"++++++++ {i,10} >>>");
-					this.BuildBody(sb, exs[i], 0);
-					sb.AppendLine($"++++++++ {i,10} <<<");
-					sb.AppendLine();
-				}
+			int count = exs.Count;
+			for (int i = 0; i < count; ++i) {
+				sb.AppendLine($"++++++++ {i,10} >>>");
+				this.BuildBody(sb, exs[i], 0);
+				sb.AppendLine($"++++++++ {i,10} <<<");
+				sb.AppendLine();
 			}
 			if (index != 0) {
 				sb.AppendLine($"======== {index,10} <<<");
