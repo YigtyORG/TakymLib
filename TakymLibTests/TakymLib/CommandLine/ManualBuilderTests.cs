@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -26,7 +26,10 @@ namespace TakymLibTests.TakymLib.CommandLine
 			conv.AddType<SwitchC>();
 			var help = new ManualBuilder(conv);
 			help.Build();
-			Assert.AreEqual(Resources.CL_ManualBuilder_Result, help.ToString());
+			Assert.AreEqual(
+				Resources.CL_ManualBuilder_Result.Replace("\r\n", "\n").Replace("\n\r", "\n").Replace('\r', '\n'),
+				help.ToString()                  .Replace("\r\n", "\n").Replace("\n\r", "\n").Replace('\r', '\n')
+			);
 		}
 
 		[TestMethod()]
