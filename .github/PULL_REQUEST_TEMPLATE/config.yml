@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: How to Contribute
+    url: https://github.com/YigtyORG/Ywando/blob/master/CONTRIBUTING.md
+    about: Please check this page before you submit a PR.
+  - name: 貢献方法
+    url: https://github.com/YigtyORG/Ywando/blob/master/CONTRIBUTING.md
+    about: PR を作成する前に確認してください。
