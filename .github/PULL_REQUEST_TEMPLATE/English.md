@@ -1,9 +1,3 @@
----
-name: Pull Request Template (English)
-about: Create a pull request to help us improve.
-title: 'PR: [please summarize your pull request shortly]'
----
-
 ## What did you added, changed, fixed, or deleted?
 **Please describe specifically.**
 

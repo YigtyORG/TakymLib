@@ -1,33 +1,28 @@
----
-title: 'PR: [please summarize your pull request shortly  PRの内容を要約してください]'
----
-
-## What did you added, changed, fixed, or deleted?  何を追加、変更、修正、または削除しましたか？
+<!--
+日本語テンプレートを利用する場合はアドレスに「?template=Japanese.md」を追加してください。
+-->
+## What did you added, changed, fixed, or deleted?
 **Please describe specifically.**
-**詳しく説明してください。**
 
-## How is it works? How can I use?  どの様に動きますか？使い方を説明してください。
+## How is it works? How can I use?
 
-## Does this make a breaking change?  破壊的変更を行いましたか？
+## Does this make a breaking change?
 **This section may be changed by the administrator.**
-**この項目は管理者によって変更される可能性があります。**
-* [ ] Yes  はい
-* [ ] No   いいえ
+* [ ] Yes
+* [ ] No
 
 ## Which issue is this related to an issue?
 **Write an issue number here.**
-**Issue 番号を記入してください。**
-**(Optional)****(任意)**
+**(Optional)**
 * Close #n / Fix #n / Resolve #n
 * This PR is not related to any issue.
-* どの Issue とも関連しません。
 
-## Tasks  TODOリスト
+## Tasks
 * [ ]
 * [ ]
 * [ ]
 
-## Your Environment  環境情報
+## Your Environment
 * **OS:** Windows, Linux, ...
 * **Configuration:** Debug, Release
 * **Platform:** Any CPU
