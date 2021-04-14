@@ -27,7 +27,7 @@ title: 'Bug: [不具合について簡潔に説明してください]'
 * [ ]
 
 ## 環境情報
-* **OS:** Windows, Linux, ...
+* **OS：** Windows, Linux, ...
 * **ビルド構成：** Debug, Release
 * **プラットフォーム：** Any CPU
 * **ランタイム：** .NET 5.0
