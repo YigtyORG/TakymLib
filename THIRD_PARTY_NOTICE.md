@@ -5,3 +5,7 @@ Copyright (C) 2020-2021 Takym.
 This file is a placeholder for a third party notice.
 
 * Microsoft.NET.Sdk
+* Microsoft.NET.Test.Sdk
+* MSTest.TestAdapter
+* MSTest.TestFramework
+* coverlet.collector
