@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ windows-latest ]
+        os: [ windows-latest, ubuntu-latest ]
         config: [ Debug, Release ]
     steps:
     - uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
       with:
         dotnet-version: 5.0.201
     - name: Restore dependencies
-      run: dotnet restore TakymLib.sln
+      run: dotnet restore Ywando.sln
     # Build
     - name: Build
       run: dotnet build -c ${{ matrix.config }} --no-restore
