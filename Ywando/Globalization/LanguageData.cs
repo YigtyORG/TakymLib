@@ -62,18 +62,25 @@ namespace Ywando.Globalization
 			set
 			{
 				this.EnsureNotDisposed();
-				lock (_cache_lock) {
-					if (value) {
+				if (value) {
+					lock (_cache_lock) {
 						if (_cache is null) {
 							_cache = new();
 						}
-					} else {
+					}
+				} else {
+					lock (_cache_lock) {
 						_cache?.Clear();
 						_cache = null;
 					}
 				}
 			}
 		}
+
+		/// <summary>
+		///  親言語のカルチャ名を取得します。
+		/// </summary>
+		protected virtual string ParentLanguage => this.CultureInfo.Parent.Name;
 
 		/// <summary>
 		///  型'<see cref="Ywando.Globalization.LanguageData"/>'の新しいインスタンスを生成します。
@@ -123,7 +130,7 @@ namespace Ywando.Globalization
 				return result;
 			} else {
 				LanguageData? ld;
-				string name = this.CultureInfo.Parent.Name;
+				string name = this.ParentLanguage;
 				lock (_langs) {
 					_langs.TryGetValue(name, out ld);
 				}
@@ -161,7 +168,10 @@ namespace Ywando.Globalization
 				return;
 			}
 
-			this.EnableCache = false;
+			lock (_cache_lock) {
+				_cache?.Clear();
+				_cache = null;
+			}
 
 			string name = this.CultureInfo.Name;
 			lock (_langs) {
@@ -177,7 +187,10 @@ namespace Ywando.Globalization
 		{
 			internal static readonly DefaultLanguageData Instance = new();
 
-			private DefaultLanguageData() : base(CultureInfo.GetCultureInfo(string.Empty)) { }
+			private DefaultLanguageData() : base(CultureInfo.GetCultureInfo(string.Empty))
+			{
+				this.EnableCache = true;
+			}
 
 			protected override bool TryGetLocalizedTextCore(string key, [NotNullWhen(true)] out string? result, params object[] args)
 			{

@@ -12,6 +12,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<ProjectReference Include="../Ywando/Ywando.csproj"/>
+		<ProjectReference Include="../Ywando/Ywando.csproj" />
 	</ItemGroup>
 </Project>
