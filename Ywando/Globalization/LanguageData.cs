@@ -11,7 +11,10 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Ywando.Properties;
 
 namespace Ywando.Globalization
@@ -22,6 +25,13 @@ namespace Ywando.Globalization
 	/// </summary>
 	public abstract class LanguageData : DisposableBase
 	{
+		#region 静的
+
+		/// <summary>
+		///  既定の言語情報ファイルを格納しているディレクトリへのパスを取得します。
+		/// </summary>
+		public static readonly string DefaultLanguageDataPath = Path.Combine(AppContext.BaseDirectory, nameof(Globalization), "Translations");
+
 		private static readonly Dictionary<string, LanguageData> _langs;
 
 		/// <summary>
@@ -32,6 +42,61 @@ namespace Ywando.Globalization
 			_langs = new();
 			_      = DefaultLanguageData.Instance;
 		}
+
+		/// <summary>
+		///  現在のカルチャの言語情報を取得します。
+		/// </summary>
+		/// <returns>言語情報を表すオブジェクトを含む非同期操作を返します。</returns>
+		/// <exception cref="System.IO.IOException"/>
+		public static ValueTask<LanguageData> GetAsync()
+		{
+			return GetAsync(CultureInfo.CurrentCulture);
+		}
+
+		/// <summary>
+		///  言語情報を取得します。
+		/// </summary>
+		/// <param name="cultureInfo">取得する言語情報のカルチャです。</param>
+		/// <returns>言語情報を表すオブジェクトを含む非同期操作を返します。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.IO.IOException"/>
+		public static async ValueTask<LanguageData> GetAsync(CultureInfo cultureInfo)
+		{
+			cultureInfo.EnsureNotNull(nameof(cultureInfo));
+
+			LanguageData? ld;
+			string name = cultureInfo.Name;
+			lock (_langs) {
+				_langs.TryGetValue(name, out ld);
+			}
+			if (ld is null) {
+				ld = await JsonLanguageData.LoadFromDirectoryAsync(DefaultLanguageDataPath, cultureInfo);
+				if (ld is null) {
+					return DefaultLanguageData.Instance;
+				}
+				if (!string.IsNullOrEmpty(ld.ParentLanguage)) {
+					await GetAsync(CultureInfo.GetCultureInfo(ld.ParentLanguage));
+				}
+				return ld;
+			} else {
+				return ld;
+			}
+		}
+
+		/// <summary>
+		///  メモリ上に読み込まれている全ての言語情報を取得します。
+		/// </summary>
+		/// <returns>言語情報の配列です。</returns>
+		public static LanguageData[] GetLoadedLanguages()
+		{
+			lock (_langs) {
+				return _langs.Values.ToArray();
+			}
+		}
+
+		#endregion
+
+		#region 動的
 
 		private          ConcurrentDictionary<string, string>? _cache;
 		private readonly object                                _cache_lock;
@@ -135,10 +200,10 @@ namespace Ywando.Globalization
 				lock (_langs) {
 					_langs.TryGetValue(name, out ld);
 				}
-				if (ld is not null) {
-					return ld.GetLocalizedText(key, args);
-				} else {
+				if (ld is null) {
 					return MakeDefaultText(key, args);
+				} else {
+					return ld.GetLocalizedText(key, args);
 				}
 			}
 		}
@@ -187,6 +252,10 @@ namespace Ywando.Globalization
 			base.Dispose(disposing);
 		}
 
+		#endregion
+
+		#region 子クラス
+
 		private sealed class DefaultLanguageData : LanguageData
 		{
 			internal static readonly DefaultLanguageData Instance = new();
@@ -209,5 +278,7 @@ namespace Ywando.Globalization
 				}
 			}
 		}
+
+		#endregion
 	}
 }
