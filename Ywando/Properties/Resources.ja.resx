@@ -120,4 +120,13 @@
   <data name="DefaultLanguageData_Dispose_InvalidOperationException" xml:space="preserve">
     <value>既定の言語情報は破棄できません。</value>
   </data>
+  <data name="JsonLanguageData_InvalidDataException" xml:space="preserve">
+    <value>指定されたJSONデータは有効な言語情報ではありません。</value>
+  </data>
+  <data name="JsonLanguageData_LoadFileAsync_IOException" xml:space="preserve">
+    <value>JSON形式の言語情報ファイル「{0}」の読み込みに失敗しました。言語コード：{1}</value>
+  </data>
+  <data name="JsonLanguageData_LoadFromDirectoryAsync_IOException" xml:space="preserve">
+    <value>ディレクトリ「{0}」からのJSON形式の言語情報ファイルの読み込みに失敗しました。言語コード：{1}</value>
+  </data>
 </root>

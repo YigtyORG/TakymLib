@@ -53,7 +53,7 @@ namespace Ywando.Globalization.Tests
 
 		private sealed class LanguageDataMock3 : LanguageData
 		{
-			protected override string ParentLanguage => "en";
+			public override string ParentLanguage => "en";
 
 			internal LanguageDataMock3() : base(CultureInfo.GetCultureInfo("zh"))
 			{

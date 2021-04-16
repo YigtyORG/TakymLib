@@ -42,6 +42,11 @@ namespace Ywando.Globalization
 		public CultureInfo CultureInfo { get; }
 
 		/// <summary>
+		///  親言語のカルチャ名を取得します。
+		/// </summary>
+		public virtual string ParentLanguage => this.CultureInfo.Parent.Name;
+
+		/// <summary>
 		///  文字列のキャッシュを行うかどうかを表す値を取得または設定します。
 		/// </summary>
 		/// <remarks>
@@ -78,11 +83,6 @@ namespace Ywando.Globalization
 		}
 
 		/// <summary>
-		///  親言語のカルチャ名を取得します。
-		/// </summary>
-		protected virtual string ParentLanguage => this.CultureInfo.Parent.Name;
-
-		/// <summary>
 		///  型'<see cref="Ywando.Globalization.LanguageData"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="cultureInfo">新しい言語情報のカルチャです。</param>
@@ -109,6 +109,7 @@ namespace Ywando.Globalization
 		/// <returns>翻訳済みの文字列を返します。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.FormatException"/>
 		public string GetLocalizedText(string key, params object[] args)
 		{
 			this.EnsureNotDisposed();
@@ -149,6 +150,9 @@ namespace Ywando.Globalization
 		/// <param name="result">翻訳済みの文字列を返します。</param>
 		/// <param name="args">書式設定オブジェクトの配列です。</param>
 		/// <returns>文字列が存在する場合は<see langword="true"/>、存在しない場合は<see langword="false"/>を返します。</returns>
+		/// <exception cref="System.FormatException">
+		///  翻訳済みの文字列の書式が誤っている場合に発生させる事ができます。
+		/// </exception>
 		protected abstract bool TryGetLocalizedTextCore(string key, [NotNullWhen(true)] out string? result, params object[] args);
 
 		private static string MakeDefaultText(string key, params object[] args)

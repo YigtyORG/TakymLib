@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
 		HeaderComments.txt = HeaderComments.txt
 	EndProjectSection
 EndProject
@@ -22,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		THIRD_PARTY_NOTICE.md = THIRD_PARTY_NOTICE.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ywando", "Ywando\Ywando.csproj", "{01785871-48F2-4088-8E1E-E6A1F75C6DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ywando", "Ywando\Ywando.csproj", "{01785871-48F2-4088-8E1E-E6A1F75C6DB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YwandoTests", "YwandoTests\YwandoTests.csproj", "{3D9315B4-E682-4700-B6CD-6C4672D12E88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YwandoTests", "YwandoTests\YwandoTests.csproj", "{3D9315B4-E682-4700-B6CD-6C4672D12E88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05911107-7B6F-4764-B344-0FF541A32B48}"
 EndProject
@@ -51,9 +52,9 @@ Global
 		{3D9315B4-E682-4700-B6CD-6C4672D12E88} = {05911107-7B6F-4764-B344-0FF541A32B48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = iv
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":[]}
 		SolutionGuid = {F9C476CB-CD0C-4A9F-B552-5FB14F8A6698}
+		RESX_Rules = {"EnabledRules":[]}
+		RESX_ShowErrorsInErrorList = False
+		RESX_NeutralResourcesLanguage = iv
 	EndGlobalSection
 EndGlobal

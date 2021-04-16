@@ -68,5 +68,32 @@ namespace Ywando.Properties {
                 return ResourceManager.GetString("DefaultLanguageData_Dispose_InvalidOperationException", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   JsonLanguageData_InvalidDataException に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string JsonLanguageData_InvalidDataException {
+            get {
+                return ResourceManager.GetString("JsonLanguageData_InvalidDataException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   JsonLanguageData_LoadFileAsync_IOException {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string JsonLanguageData_LoadFileAsync_IOException {
+            get {
+                return ResourceManager.GetString("JsonLanguageData_LoadFileAsync_IOException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   JsonLanguageData_LoadFromDirectoryAsync_IOException {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string JsonLanguageData_LoadFromDirectoryAsync_IOException {
+            get {
+                return ResourceManager.GetString("JsonLanguageData_LoadFromDirectoryAsync_IOException", resourceCulture);
+            }
+        }
     }
 }

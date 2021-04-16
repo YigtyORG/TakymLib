@@ -120,4 +120,13 @@
   <data name="DefaultLanguageData_Dispose_InvalidOperationException" xml:space="preserve">
     <value>DefaultLanguageData_Dispose_InvalidOperationException</value>
   </data>
+  <data name="JsonLanguageData_InvalidDataException" xml:space="preserve">
+    <value>JsonLanguageData_InvalidDataException</value>
+  </data>
+  <data name="JsonLanguageData_LoadFileAsync_IOException" xml:space="preserve">
+    <value>JsonLanguageData_LoadFileAsync_IOException {0} {1}</value>
+  </data>
+  <data name="JsonLanguageData_LoadFromDirectoryAsync_IOException" xml:space="preserve">
+    <value>JsonLanguageData_LoadFromDirectoryAsync_IOException {0} {1}</value>
+  </data>
 </root>
