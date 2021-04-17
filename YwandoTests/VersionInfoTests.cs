@@ -17,7 +17,7 @@ namespace Ywando.Tests
 	public class VersionInfoTests
 	{
 		[TestMethod()]
-		public void VersionInfoTest()
+		public void VersionInfoTest1()
 		{
 			string[] authors = new VersionInfo(new AssemblyMock("A, B, C, 1 2 3,, , xyz , 000-000 ")).Authors;
 			Assert.AreEqual(6, authors.Length);
@@ -39,6 +39,16 @@ namespace Ywando.Tests
 
 			authors = new VersionInfo(new AssemblyMock(string.Empty)).Authors;
 			Assert.AreEqual(0, authors.Length);
+		}
+
+		[TestMethod()]
+		public void VersionInfoTest2()
+		{
+			var vinfo = new VersionInfo(new YwandoMetadata() { Name = "111 222 333" });
+			Assert.AreEqual("111 222 333", vinfo.Name);
+			Assert.AreEqual("111 222 333", vinfo.DisplayName);
+			Assert.IsTrue(vinfo.Name == vinfo.DisplayName);
+			Assert.AreEqual(vinfo.Configuration, "Release");
 		}
 
 		[TestMethod()]
