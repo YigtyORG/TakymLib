@@ -83,6 +83,24 @@ namespace Ywando
 		/// <summary>
 		///  型'<see cref="Ywando.VersionInfo"/>'の新しいインスタンスを生成します。
 		/// </summary>
+		/// <param name="metadata">バージョン情報の読み取り元のメタ情報です。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public VersionInfo(YwandoMetadata metadata)
+		{
+			metadata.EnsureNotNull(nameof(metadata));
+			this.Name          = metadata.Name;
+			this.DisplayName   = metadata.Name;
+			this.Authors       = metadata.Authors ?? Array.Empty<string>();
+			this.Description   = metadata.Description;
+			this.Copyright     = metadata.Copyright;
+			this.Version       = metadata.Version;
+			this.CodeName      = metadata.CodeName;
+			this.Configuration = ConfigurationNames.Release;
+		}
+
+		/// <summary>
+		///  型'<see cref="Ywando.VersionInfo"/>'の新しいインスタンスを生成します。
+		/// </summary>
 		protected VersionInfo()
 		{
 			this.Authors = Array.Empty<string>();
