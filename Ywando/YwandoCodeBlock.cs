@@ -207,6 +207,7 @@ namespace Ywando
 		}
 
 		// TODO: 文書コメント
+		// TODO: Find系関数を実装
 
 		public void RemoveRange(int index, int count)
 		{
