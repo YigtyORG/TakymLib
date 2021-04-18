@@ -30,7 +30,7 @@ namespace Ywando.Globalization
 		/// <summary>
 		///  既定の言語情報ファイルを格納しているディレクトリへのパスを取得します。
 		/// </summary>
-		public static readonly string DefaultLanguageDataPath = Path.Combine(AppContext.BaseDirectory, nameof(Globalization), "Translations");
+		public static readonly string DefaultLanguageDataPath = Path.Combine(AppContext.BaseDirectory, nameof(Resources), "Translations");
 
 		private static readonly Dictionary<string, LanguageData> _langs;
 
