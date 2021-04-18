@@ -7,6 +7,7 @@
 ****/
 
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace Ywando
 {
@@ -16,5 +17,21 @@ namespace Ywando
 	[DataContract(IsReference = true)]
 	public abstract class YwandoInstruction
 	{
+		/// <summary>
+		///  上書きされた場合は、この命令を実行します。
+		/// </summary>
+		/// <param name="context">実行文脈情報です。</param>
+		public abstract void Invoke(ExecutionContext context);
+
+		/// <summary>
+		///  上書きされた場合は、この命令を非同期的に実行します。
+		/// </summary>
+		/// <param name="context">実行文脈情報です。</param>
+		/// <returns>この処理の非同期操作です。</returns>
+		public virtual ValueTask InvokeAsync(ExecutionContext context)
+		{
+			this.Invoke(context);
+			return default;
+		}
 	}
 }
