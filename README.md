@@ -34,6 +34,9 @@ Compatible with **.NET 5**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Fra
 * **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - The common asynchronous programming library.
 
 ## Recommended Environment
+* Operating Systems
+	* **Windows 10 20H2** or later
+	* **Ubuntu 20.04** or later (not tested yet)
 * Runtime: **.NET 5** or later
 * Language: **C# 9.0** or later
 
@@ -47,6 +50,8 @@ Any version does not release yet. Please wait patiently.
 |--:|:------:|:--------|:--------:|:-----------------|:------------|
 |  0|v0.0.0.0|alpha00a0|0000/00/00|The first release.|             |
 
+Please see [here](./CHANGELOG.md) for more information.
+
 ## Repositories
 - [GitHub](https://github.com/YigtyORG/TakymLib) (Main)
 - [GitHub](https://github.com/Takym/TakymLib) (Fork)
@@ -55,18 +60,17 @@ Any version does not release yet. Please wait patiently.
 - [Bitbucket](https://bitbucket.org/Takym/takymlib) (Mirror)
 
 ## How to Contribute
-(draft...)
-### Issues
-### Pull Requests
-### Documentation/Translation
+Please see [here](./CONTRIBUTING.md).
 
 ## Acknowledgments
 * The list of third party libraries is [here](./docs/third-party.md) (Japanese).
-<!-- * Special thanks to all [core collaborators and contributors](./CONTRIBUTORS.md) for this project. -->
+* Special thanks to all [core collaborators and contributors](./CONTRIBUTORS.md) for this project.
 
 ## Terms of Use
 This libraries are distributed under the [MIT License](LICENSE.md).
 
+
+----------------------------------------------------------------
 
 
 # <a id="ja" href="#ja">日本語</a>
@@ -85,6 +89,9 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - 共通非同期プログラミングライブラリです。
 
 ## 推奨環境
+* OS
+	* **Windows 10 20H2**以降
+	* **Ubuntu 20.04**以降(まだ動作確認していません)
 * ランタイム：**.NET 5**以降
 * 言語：**C# 9.0**以降
 
@@ -98,6 +105,8 @@ Yigty.ORG で利用される共通ライブラリ群です。
 |--:|:--------:|:-----------|:--------:|:-------------------|:-------------|
 |  0|v0.0.0.0  |alpha00a0   |0000/00/00|最初のリリースです。|              |
 
+詳細は[こちら](./CHANGELOG.md)をご覧ください。
+
 ## 保管庫
 - [GitHub](https://github.com/YigtyORG/TakymLib) (メイン)
 - [GitHub](https://github.com/Takym/TakymLib) (フォーク)
@@ -106,14 +115,11 @@ Yigty.ORG で利用される共通ライブラリ群です。
 - [Bitbucket](https://bitbucket.org/Takym/takymlib) (ミラー)
 
 ## 貢献方法
-(書きかけ...)
-### 問題
-### プル・リクエスト
-### 文書/翻訳
+[こちら](./CONTRIBUTING.md)をご覧ください。
 
 ## 謝辞
 * 利用している外部ライブラリの一覧は[こちら](./docs/third-party.md)にあります。
-<!-- * この場を借りてお礼を申し上げます。全ての[協力者さんと貢献者さん](./CONTRIBUTORS.md)に感謝致します。-->
+* この場を借りてお礼を申し上げます。全ての[協力者さんと貢献者さん](./CONTRIBUTORS.md)に感謝致します。
 
 ## 利用規約
 このライブラリ群は[MITライセンス](LICENSE.md)に基づいて配布されています。
