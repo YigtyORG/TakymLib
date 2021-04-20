@@ -28,6 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        config: [ Debug, Release ]
         language: [ 'csharp' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
         # Learn more:
@@ -54,10 +55,8 @@ jobs:
         dotnet-version: 5.0.201
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
-    - name: Build (Debug)
-      run: dotnet build -c Debug --no-restore
-    - name: Build (Release)
-      run: dotnet build -c Release --no-restore
+    - name: Build
+      run: dotnet build -c ${{ matrix.config }} --no-restore
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
