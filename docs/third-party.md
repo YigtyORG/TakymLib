@@ -48,7 +48,7 @@ Copyright (C) 2020-2021 Takym.
 
 ## 東アジアの文字幅 (East Asian Width)
 * <https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>
-* 著作権表記：© 2020 Unicode®, Inc.
+* 著作権表記：&copy; 2020 Unicode&reg;, Inc.
 * 利用規約：<http://www.unicode.org/terms_of_use.html>
 
 
