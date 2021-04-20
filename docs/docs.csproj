@@ -9,7 +9,6 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<IsWindows>$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))</IsWindows>
-		<IsLinux>$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))</IsLinux>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="docfx.console" Version="2.56.7">
@@ -24,7 +23,7 @@
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(IsWindows)">
 		<Exec Command="restore.cmd" />
 	</Target>
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(IsLinux)">
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="!$(IsWindows)">
 		<Exec Command="chmod -v 777 restore.sh" />
 		<Exec Command="./restore.sh" />
 	</Target>
