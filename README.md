@@ -6,9 +6,9 @@ Copyright (C) 2020-2021 Takym.
 
 [![Version](https://img.shields.io/badge/version-none-inactive)](https://github.com/YigtyORG/TakymLib/releases)
 [![License](https://img.shields.io/github/license/YigtyORG/TakymLib)](LICENSE.md)
-[![BuildTest](https://github.com/YigtyORG/TakymLib/workflows/BuildTest/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ABuildTest)
-[![CodeQL](https://github.com/YigtyORG/TakymLib/workflows/CodeQL/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ACodeQL)
-[![NuGet](https://github.com/YigtyORG/TakymLib/workflows/NuGet/badge.svg)](https://github.com/YigtyORG/TakymLib/actions?query=workflow%3ANuGet)
+[![BuildTest](https://github.com/YigtyORG/TakymLib/workflows/BuildTest/badge.svg)](https://github.com/YigtyORG/TakymLib/actions/workflows/BuildTest.yml)
+[![CodeQL](https://github.com/YigtyORG/TakymLib/workflows/CodeQL/badge.svg)](https://github.com/YigtyORG/TakymLib/actions/workflows/CodeQL.yml)
+[![NuGet](https://github.com/YigtyORG/TakymLib/workflows/NuGet/badge.svg)](https://github.com/YigtyORG/TakymLib/actions/workflows/NuGet.yml)
 
 [![GitHub Watchers](https://img.shields.io/github/watchers/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/watchers)
 [![GitHub Stars](https://img.shields.io/github/stars/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/stargazers)
