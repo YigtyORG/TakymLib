@@ -111,8 +111,10 @@ namespace TakymLib.Logging
 					break;
 				case ReflectionTypeLoadException rtle:
 					var types = rtle.Types;
-					for (int i = 0; i < types.Length; ++i) {
-						sb.AppendLine($" - The type[{i}]: {types[i]?.AssemblyQualifiedName}");
+					if (types is not null) {
+						for (int i = 0; i < types.Length; ++i) {
+							sb.AppendLine($" - The type[{i}]: {types[i]?.AssemblyQualifiedName}");
+						}
 					}
 					break;
 				case TypeLoadException tle:
