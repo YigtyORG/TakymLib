@@ -22,7 +22,7 @@ Copyright (C) 2020-2021 Takym.
 
 ## Summary
 The common libraries used by Yigty.ORG.
-Compatible with **.NET 5**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Framework 4.8**.
+Compatible with **.NET 5.0**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Framework 4.8**.
 * **[TakymLib](/TakymLib)** - the common library.
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - the common command-line arguments parser library.
 * **[TakymLib.Core](/TakymLib.Core)** - the common core library.
@@ -37,7 +37,7 @@ Compatible with **.NET 5**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Fra
 * Operating Systems
 	* **Windows 10 20H2** or later
 	* **Ubuntu 20.04** or later (not tested yet)
-* Runtime: **.NET 5** or later
+* Runtime: **.NET 5.0** or later
 * Language: **C# 9.0** or later
 
 ## Get Started
@@ -77,7 +77,7 @@ This libraries are distributed under the [MIT License](LICENSE.md).
 
 ## 概要
 Yigty.ORG で利用される共通ライブラリ群です。
-**.NET 5**、**.NET Core 3.1**、**.NET Standard 2.1**、**.NET Framework 4.8** に対応しています。
+**.NET 5.0**、**.NET Core 3.1**、**.NET Standard 2.1**、**.NET Framework 4.8** に対応しています。
 * **[TakymLib](/TakymLib)** - 共通ライブラリです。
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - 共通コマンド行引数解析ライブラリです。
 * **[TakymLib.Core](/TakymLib.Core)** - 共通中枢ライブラリです。
@@ -92,7 +92,7 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * OS
 	* **Windows 10 20H2**以降
 	* **Ubuntu 20.04**以降(まだ動作確認していません)
-* ランタイム：**.NET 5**以降
+* ランタイム：**.NET 5.0**以降
 * 言語：**C# 9.0**以降
 
 ## 使い方
