@@ -1,4 +1,4 @@
-﻿<!--*
+<!--*
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -33,14 +33,5 @@
 		<ProjectReference Include="../TakymLib.Text/TakymLib.Text.csproj" />
 		<ProjectReference Include="../TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj" />
 		<ProjectReference Include="../TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj" />
-		<EmbeddedResource Update="Properties/Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<Compile Update="Properties/Resources.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
 	</ItemGroup>
 </Project>

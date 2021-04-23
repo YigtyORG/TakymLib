@@ -1,4 +1,4 @@
-﻿# TakymLib 利用ライブラリ
+# TakymLib 利用ライブラリ
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
 

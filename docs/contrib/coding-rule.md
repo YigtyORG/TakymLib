@@ -1,4 +1,4 @@
-﻿# TakymLib コーディング規則
+# TakymLib コーディング規則
 Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
 Copyright (C) 2020-2021 Takym.
 
