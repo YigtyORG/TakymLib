@@ -1,4 +1,4 @@
-﻿<!--*
+<!--*
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -15,6 +15,7 @@
 	<PropertyGroup>
 		<Product>TakymLib.Threading.Tasks</Product>
 		<Description>The common asynchronous programming library.</Description>
+		<PackageTags>$(PackageTags), Asynchronous</PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />

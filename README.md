@@ -29,7 +29,7 @@ Compatible with **.NET 5.0**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET F
 * **[TakymLib.Core](/TakymLib.Core)** - the common core library.
 * **[TakymLib.Core.Framework](/TakymLib.Core.Framework)** - the common core framework library.
 * **[TakymLib.Logging](/TakymLib.Logging)** - the common logging library.
-* **[TakymLib.Security](/TakymLib.Security)** - the common secutiy library.
+* **[TakymLib.Security](/TakymLib.Security)** - the common security library.
 * **[TakymLib.Text](/TakymLib.Text)** - the common text library.
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - the common distributed computing library.
 * **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - The common asynchronous programming library.

@@ -8,6 +8,13 @@
  * distributed under the MIT License.
 **-->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup Label="URLs">
+		<RepositoryUrl>https://github.com/YigtyORG/TakymLib/</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/YigtyORG/TakymLib/</PackageProjectUrl>
+		<ReadmeUrl>https://github.com/YigtyORG/TakymLib/blob/master/README.md</ReadmeUrl>
+		<ChangeLogUrl>https://github.com/YigtyORG/TakymLib/blob/master/CHANGELOG.md</ChangeLogUrl>
+		<ReleasesUrl>https://github.com/YigtyORG/TakymLib/releases</ReleasesUrl>
+	</PropertyGroup>
 	<Import Project="CommonProjectSettings.targets" />
 	<PropertyGroup>
 		<TargetFramework><!-- TargetFramework の再設定 --></TargetFramework>
@@ -19,6 +26,7 @@
 		<Copyright>Copyright (C) 2020-2021 Yigty.ORG; all rights reserved. Copyright (C) 2020-2021 Takym.</Copyright>
 		<VersionPrefix>0.0.0.0</VersionPrefix>
 		<InformationalVersion>alpha00a0</InformationalVersion>
+		<PackageTags>Library, Common, Core, Framework</PackageTags>
 	</PropertyGroup>
 	<PropertyGroup Condition="Exists('$(SolutionDir)/TakymLib.StrongNameKey.snk')">
 		<SignAssembly>true</SignAssembly>

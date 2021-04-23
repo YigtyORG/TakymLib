@@ -25,6 +25,14 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(ChangeLogUrl)'!='' And '$(ReleasesUrl)' != ''">
+		<PackageReleaseNotes>See $(ChangeLogUrl) or $(ReleasesUrl) for latest release notes.</PackageReleaseNotes>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(ReadmeUrl)'!=''">
+		<PackageReadmeUrl>$(ReadmeUrl)</PackageReadmeUrl>
+		<PackageReleaseNotes Condition="'$(PackageReleaseNotes)'==''">Please read $(ReadmeUrl).</PackageReleaseNotes>
+		<PackageReleaseNotes Condition="'$(PackageReleaseNotes)'!=''">See $(ReadmeUrl) for latest readme. $(PackageReleaseNotes)</PackageReleaseNotes>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 		<Optimize>false</Optimize>
