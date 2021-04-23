@@ -108,8 +108,13 @@ namespace TakymLib
 				if (disposing) {
 					int count = disposables.Count;
 					for (int i = 0; i < count; ++i) {
-						if (disposables[i] is IDisposable disposable) {
-							disposable.Dispose();
+						switch (disposables[i]) {
+						case IAsyncDisposable o:
+							o.ConfigureAwait(false).DisposeAsync().GetAwaiter().GetResult();
+							break;
+						case IDisposable o:
+							o.Dispose();
+							break;
 						}
 					}
 				}
