@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace TakymLib.Threading.Distributed.Internals
 {
-	internal sealed class ExecutionContextManagerInternal : ExecutionContextManager
+	internal class ExecutionContextManagerInternal : ExecutionContextManager
 	{
 		private readonly ReaderWriterLockSlim              _rwlock;
 		private readonly Dictionary<int, ExecutionContext> _dict;
@@ -24,12 +24,12 @@ namespace TakymLib.Threading.Distributed.Internals
 			_dict   = new Dictionary<int, ExecutionContext>();
 		}
 
-		protected override ExecutionContext GetClientContextCore()
+		protected sealed override ExecutionContext GetClientContextCore()
 		{
 			return this.GetExecutionContext(Thread.CurrentThread);
 		}
 
-		protected override ExecutionContext GetServerContextCore(Thread thread)
+		protected sealed override ExecutionContext GetServerContextCore(Thread thread)
 		{
 			return this.GetExecutionContext(thread);
 		}

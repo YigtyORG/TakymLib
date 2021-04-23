@@ -86,8 +86,8 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib.Logging](/TakymLib.Logging)** - 共通ログ出力ライブラリです。
 * **[TakymLib.Security](/TakymLib.Security)** - 共通安全保障ライブラリです。
 * **[TakymLib.Text](/TakymLib.Text)** - 共通文字列ライブラリです。
-* **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - 共通分散コンピューティングライブラリです。
-* **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - 共通非同期プログラミングライブラリです。
+* **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - 共通分散コンピューティング(分散処理)ライブラリです。
+* **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - 共通非同期プログラミング(非同期処理)ライブラリです。
 
 ## 推奨環境
 * OS

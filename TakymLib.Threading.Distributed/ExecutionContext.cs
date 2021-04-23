@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -6,8 +6,7 @@
  * distributed under the MIT License.
 ****/
 
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace TakymLib.Threading.Distributed
@@ -17,7 +16,24 @@ namespace TakymLib.Threading.Distributed
 	/// </summary>
 	public class ExecutionContext : DisposableBase
 	{
-		private readonly Queue<(ExecutionContext?, object)> _objs;
+		private readonly ConcurrentQueue<(ExecutionContext?, object?)> _objs;
+
+		/// <summary>
+		///  <see cref="TakymLib.Threading.Distributed.ExecutionContext.SendObject(ExecutionContext?, object?)"/>
+		///  を非同期的に実行するかどうかを示す論理値を取得または設定します。
+		/// </summary>
+		/// <remarks>
+		///  既定値は<see langword="false"/>です。
+		/// </remarks>
+		/// <value>
+		///  非同期的に実行する必要がある場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		/// </value>
+		/// <returns>
+		///  非同期的に実行する様に設定されている場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を返します。
+		/// </returns>
+		public bool RunSendObjectAsync { get; set; }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Threading.Distributed.ExecutionContext"/>'の新しいインスタンスを生成します。
@@ -31,28 +47,29 @@ namespace TakymLib.Threading.Distributed
 		///  オブジェクトを別スレッドへ送信します。
 		/// </summary>
 		/// <param name="sender">オブジェクトの送信を行うスレッドの実行文脈です。</param>
-		/// <param name="obj">送信するオブジェクトです。</param>
+		/// <param name="value">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
-		public ConfiguredTaskAwaitable SendObject(ExecutionContext? sender, object obj)
+		public async ValueTask SendObject(ExecutionContext? sender, object? value)
 		{
 			this.EnsureNotDisposed();
-			return Task.Run(() => {
-				lock (_objs) {
-					_objs.Enqueue((sender, obj));
-				}
-			}).ConfigureAwait(false);
+			var item = (sender, value);
+			if (this.RunSendObjectAsync) {
+				await Task.Run(() => _objs.Enqueue(item));
+			} else {
+				_objs.Enqueue(item);
+			}
 		}
 
 		/// <summary>
 		///  オブジェクトを別スレッドへ送信します。
 		/// </summary>
-		/// <param name="obj">送信するオブジェクトです。</param>
+		/// <param name="value">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
-		public async ValueTask SendObject(object obj)
+		public ValueTask SendObject(object? value)
 		{
-			await this.SendObject(null, obj);
+			return this.SendObject(null, value);
 		}
 
 		/// <summary>
@@ -61,15 +78,14 @@ namespace TakymLib.Threading.Distributed
 		/// </summary>
 		/// <returns>送信元情報と受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
-		public ConfiguredTaskAwaitable<(ExecutionContext? sender, object obj)> ReceiveObjectWithSender()
+		public async ValueTask<(ExecutionContext? Sender, object? Value)> ReceiveObjectWithSender()
 		{
 			this.EnsureNotDisposed();
-			return Task.Run(() => {
-				while (_objs.Count == 0) ;
-				lock (_objs) {
-					return _objs.Dequeue();
-				}
-			}).ConfigureAwait(false);
+			(ExecutionContext?, object?) result;
+			while (_objs.TryDequeue(out result)) {
+				await Task.Yield();
+			}
+			return result;
 		}
 
 		/// <summary>
@@ -77,9 +93,9 @@ namespace TakymLib.Threading.Distributed
 		/// </summary>
 		/// <returns>受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
-		public async ValueTask<object> ReceiveObject()
+		public async ValueTask<object?> ReceiveObject()
 		{
-			return (await this.ReceiveObjectWithSender()).obj;
+			return (await this.ReceiveObjectWithSender()).Value;
 		}
 
 		/// <inheritdoc/>
@@ -88,9 +104,9 @@ namespace TakymLib.Threading.Distributed
 			if (this.IsDisposed) {
 				return;
 			}
-			lock (_objs) {
-				_objs.Clear();
-			}
+#if !NET48
+			_objs.Clear();
+#endif
 			this.Dispose(disposing);
 		}
 	}

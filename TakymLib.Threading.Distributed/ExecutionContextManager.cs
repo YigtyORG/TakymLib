@@ -17,25 +17,16 @@ namespace TakymLib.Threading.Distributed
 	/// </summary>
 	public abstract class ExecutionContextManager : DisposableBase
 	{
-		private readonly static object                   _manager_lock = new();
-		private          static ExecutionContextManager? _manager;
-
 		/// <summary>
 		///  既定の<see cref="TakymLib.Threading.Distributed.ExecutionContextManager"/>オブジェクトを取得します。
 		/// </summary>
 		/// <remarks>
-		///  このインスタンスを破棄(<see cref="System.IDisposable.Dispose"/>の呼び出し)しないでください。
-		///  アプリケーション終了時のみ破棄できます。
+		///  このインスタンスは破棄(<see cref="System.IDisposable.Dispose"/>の呼び出し)できません。
 		/// </remarks>
 		/// <returns>有効な<see cref="TakymLib.Threading.Distributed.ExecutionContextManager"/>オブジェクトです。</returns>
 		public static ExecutionContextManager GetDefault()
 		{
-			lock (_manager_lock) {
-				if (_manager is null || _manager.IsDisposing || _manager.IsDisposed) {
-					_manager = Create();
-				}
-				return _manager;
-			}
+			return DefaultExecutionContextManager._inst;
 		}
 
 		/// <summary>
