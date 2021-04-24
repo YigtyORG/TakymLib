@@ -9,9 +9,6 @@ on:
 jobs:
   NuGet:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        user: [ "YigtyORG", "Takym" ]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -30,6 +27,6 @@ jobs:
     - name: Pack
       run: dotnet pack -c Release --no-build --include-symbols --version-suffix ${{ github.sha }}
     - name: Add Source
-      run: nuget sources Add -Source https://nuget.pkg.github.com/${{ matrix.user }}/index.json -Name "github" -UserName ${{ matrix.user }} -Password ${{ secrets.GITHUB_TOKEN }}
+      run: nuget sources Add -Source https://nuget.pkg.github.com/YigtyORG/index.json -Name "github" -UserName YigtyORG -Password ${{ secrets.GITHUB_TOKEN }}
     - name: Publish
-      run: nuget push "**/bin/Release/*.nupkg" -Source "github" -SkipDuplicate
+      run: nuget push "**/bin/Release/*-*.nupkg" -Source "github" -SkipDuplicate
