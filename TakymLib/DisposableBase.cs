@@ -33,7 +33,7 @@ namespace TakymLib
 		/// <summary>
 		///  上書きされた場合、破棄可能なオブジェクトを取得します。
 		/// </summary>
-		protected virtual IList<object>? Disposables => null;
+		protected virtual IList<object?>? Disposables => null;
 
 		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
