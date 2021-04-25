@@ -29,7 +29,7 @@ namespace TakymLib.Logging
 		///  既定値は<see langword="false"/>です。
 		/// </param>
 		/// <returns>生成されたログファイルの名前を表す文字列です。</returns>
-		public static string Create(DateTime dt, Process? proc, string? tag = null, bool useLongName = false)
+		public static string Create(DateTime dt, Process? proc, string? tag = null, bool useLongName = true)
 		{
 			string dtstring;
 			if (useLongName) {
@@ -76,7 +76,7 @@ namespace TakymLib.Logging
 		///  既定値は<see langword="false"/>です。
 		/// </param>
 		/// <returns>生成されたログファイルのパス文字列です。</returns>
-		public static PathString CreatePath(DateTime dt, Process proc, string? tag = null, bool useLongName = false)
+		public static PathString CreatePath(DateTime dt, Process proc, string? tag = null, bool useLongName = true)
 		{
 			return PathStringPool.Get(Create(dt, proc, tag, useLongName));
 		}
@@ -94,7 +94,7 @@ namespace TakymLib.Logging
 		///  既定値は<see langword="false"/>です。
 		/// </param>
 		/// <returns>生成されたログファイルのパス文字列です。</returns>
-		public static PathString CreatePath(PathString dir, DateTime dt, Process proc, string? tag = null, bool useLongName = false)
+		public static PathString CreatePath(PathString dir, DateTime dt, Process proc, string? tag = null, bool useLongName = true)
 		{
 			dir.EnsureNotNull(nameof(dir));
 			return dir.Combine(Create(dt, proc, tag, useLongName));

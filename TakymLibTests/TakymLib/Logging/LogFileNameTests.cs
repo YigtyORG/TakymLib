@@ -20,7 +20,7 @@ namespace TakymLibTests.TakymLib.Logging
 		{
 			Assert.AreEqual(
 				"000101010000000000000.[0].log",
-				LogFileName.Create(new DateTime(0), null)
+				LogFileName.Create(new DateTime(0), null, null, false)
 			);
 			Assert.AreEqual(
 				"0001-01-01_00-00-00+0000000.[0].log",
