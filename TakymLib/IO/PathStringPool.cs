@@ -7,7 +7,7 @@
 ****/
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.IO;
 
 namespace TakymLib.IO
@@ -17,7 +17,7 @@ namespace TakymLib.IO
 	/// </summary>
 	public static class PathStringPool
 	{
-		private static readonly Dictionary<string, PathString> _cache;
+		private static readonly ConcurrentDictionary<string, PathString> _cache;
 
 		static PathStringPool()
 		{
@@ -47,6 +47,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		/// <exception cref="System.OverflowException"/>
 		public static PathString Get(string path1, string path2)
 		{
 			return Get(Path.Combine(path1, path2));
@@ -67,6 +68,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		/// <exception cref="System.OverflowException"/>
 		public static PathString Get(string path1, string path2, string path3)
 		{
 			return Get(Path.Combine(path1, path2, path3));
@@ -88,6 +90,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		/// <exception cref="System.OverflowException"/>
 		public static PathString Get(string path1, string path2, string path3, string path4)
 		{
 			return Get(Path.Combine(path1, path2, path3, path4));
@@ -106,6 +109,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		/// <exception cref="System.OverflowException"/>
 		public static PathString Get(params string[] paths)
 		{
 			return Get(Path.Combine(paths));
@@ -123,6 +127,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
+		/// <exception cref="System.OverflowException"/>
 #if NET5_0_OR_GREATER
 #pragma warning disable TakymLib_PathString_ctor // 型またはメンバーが旧型式です
 #else
@@ -131,14 +136,7 @@ namespace TakymLib.IO
 		public static PathString Get(string path)
 		{
 			path.EnsureNotNull(nameof(path));
-			PathString? result;
-			lock (_cache) {
-				if (!_cache.TryGetValue(path, out result)) {
-					result = new(path);
-					_cache.Add(path, result);
-				}
-			}
-			return result;
+			return _cache.GetOrAdd(path, path => new(path));
 		}
 #if NET5_0_OR_GREATER
 #pragma warning restore TakymLib_PathString_ctor // 型またはメンバーが旧型式です
