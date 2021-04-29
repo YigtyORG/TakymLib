@@ -536,7 +536,6 @@ namespace TakymLib.IO
 		///  <see langword=".NET Framework 4.8"/>上で実行した場合は正常に動作しない可能性があります。
 		/// </remarks>
 		/// <returns>現在のパスへの相対パスを表す文字列です。</returns>
-		/// <exception cref="System.PlatformNotSupportedException" />
 		public string? GetRelativePath()
 		{
 			return this.GetRelativePath(PathStringPool.Get());
