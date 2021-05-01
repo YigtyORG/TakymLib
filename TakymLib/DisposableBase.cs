@@ -9,6 +9,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using TakymLib.Properties;
 
@@ -20,15 +22,19 @@ namespace TakymLib
 	/// </summary>
 	public abstract class DisposableBase : IDisposable, IAsyncDisposable
 	{
+		private volatile int _state;
+		private const    int _state_disposing = 0b01;
+		private const    int _state_disposed  = 0b10;
+
 		/// <summary>
 		///  このオブジェクトの破棄処理を実行している場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsDisposing { get; private set; }
+		public bool IsDisposing => (_state & _state_disposing) == _state_disposing;
 
 		/// <summary>
 		///  このオブジェクトが破棄されている場合は<see langword="true"/>、有効な場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsDisposed { get; private set; }
+		public bool IsDisposed => (_state & _state_disposed) == _state_disposed;
 
 		/// <summary>
 		///  上書きされた場合、破棄可能なオブジェクトを取得します。
@@ -45,12 +51,13 @@ namespace TakymLib
 		/// </summary>
 		~DisposableBase()
 		{
-			if (this.IsDisposing) {
-				return;
+			if (this.EnterDisposeLock()) {
+				try {
+					this.Dispose(false);
+				} finally {
+					this.LeaveDisposeLock();
+				}
 			}
-			this.IsDisposing = true;
-			this.Dispose(false);
-			this.IsDisposing = false;
 		}
 
 		/// <summary>
@@ -58,13 +65,14 @@ namespace TakymLib
 		/// </summary>
 		public void Dispose()
 		{
-			if (this.IsDisposing) {
-				return;
+			if (this.EnterDisposeLock()) {
+				try {
+					this.Dispose(true);
+					GC.SuppressFinalize(this);
+				} finally {
+					this.LeaveDisposeLock();
+				}
 			}
-			this.IsDisposing = true;
-			this.Dispose(true);
-			GC.SuppressFinalize(this);
-			this.IsDisposing = false;
 		}
 
 #if NET5_0_OR_GREATER
@@ -76,14 +84,15 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		public async ValueTask DisposeAsync()
 		{
-			if (this.IsDisposing) {
-				return;
+			if (this.EnterDisposeLock()) {
+				try {
+					await this.DisposeAsyncCore();
+					this.Dispose(false);
+					GC.SuppressFinalize(this);
+				} finally {
+					this.LeaveDisposeLock();
+				}
 			}
-			this.IsDisposing = true;
-			await this.DisposeAsyncCore();
-			this.Dispose(false);
-			GC.SuppressFinalize(this);
-			this.IsDisposing = false;
 		}
 #if NET5_0_OR_GREATER
 #pragma warning restore CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
@@ -120,7 +129,7 @@ namespace TakymLib
 				}
 				disposables.Clear();
 			}
-			this.IsDisposed = true;
+			this.SetDisposed();
 		}
 
 		/// <summary>
@@ -188,6 +197,37 @@ namespace TakymLib
 			Debug.WriteLineIf( this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
 			Debug.Assert     (!this.IsDisposing, $"{this.GetType().Name} is disposing.");
 			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private bool EnterDisposeLock()
+		{
+			int stateValue;
+			do {
+				stateValue = _state;
+				if ((stateValue & _state_disposing) == _state_disposing) {
+					return false;
+				}
+			} while (Interlocked.CompareExchange(ref _state, stateValue | _state_disposing, stateValue) != stateValue);
+			return true;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void LeaveDisposeLock()
+		{
+			int stateValue;
+			do {
+				stateValue = _state;
+			} while (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposing, stateValue) != stateValue);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void SetDisposed()
+		{
+			int stateValue;
+			do {
+				stateValue = _state;
+			} while (Interlocked.CompareExchange(ref _state, stateValue | _state_disposed, stateValue) != stateValue);
 		}
 	}
 }
