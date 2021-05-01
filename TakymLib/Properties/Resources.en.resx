@@ -126,6 +126,9 @@
   <data name="ConsoleUtil_ReadPassword" xml:space="preserve">
     <value>Type a password here:</value>
   </data>
+  <data name="DisposableBase_LeaveRunLock_InvalidOperationException" xml:space="preserve">
+    <value>The EnterRunLock should be called before calling the LeaveRunLock.</value>
+  </data>
   <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
     <value>Cannot operate an object during disposing.</value>
   </data>

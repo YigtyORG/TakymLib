@@ -22,9 +22,10 @@ namespace TakymLib
 	/// </summary>
 	public abstract class DisposableBase : IDisposable, IAsyncDisposable
 	{
-		private volatile int _state;
-		private const    int _state_disposing = 0b01;
-		private const    int _state_disposed  = 0b10;
+		private volatile uint _run_locks;
+		private volatile int  _state;
+		private const    int  _state_disposing = 0b01;
+		private const    int  _state_disposed  = 0b10;
 
 		/// <summary>
 		///  このオブジェクトの破棄処理を実行している場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
@@ -44,7 +45,11 @@ namespace TakymLib
 		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		protected DisposableBase() { /* do nothing */ }
+		protected DisposableBase()
+		{
+			_run_locks = 0;
+			_state     = 0;
+		}
 
 		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の現在のインスタンスを破棄します。
@@ -162,7 +167,7 @@ namespace TakymLib
 		/// <summary>
 		///  現在のインスタンスが破棄されている場合に例外を発生させます。
 		/// </summary>
-		/// <exception cref="System.ObjectDisposedException" />
+		/// <exception cref="System.ObjectDisposedException"/>
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		protected void EnsureNotDisposed()
@@ -181,7 +186,7 @@ namespace TakymLib
 		/// <remarks>
 		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
 		/// </remarks>
-		/// <exception cref="System.ObjectDisposedException" />
+		/// <exception cref="System.ObjectDisposedException"/>
 		protected void ThrowIfDisposed()
 		{
 			this.LogThrowIfDisposed();
@@ -199,35 +204,140 @@ namespace TakymLib
 			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		/// <summary>
+		///  処理の実行を開始した事を通知し、排他制御を登録します。
+		/// </summary>
+		/// <exception cref="System.ObjectDisposedException" />
+		protected void EnterRunLock()
+		{
+			this.EnsureNotDisposed();
+			Interlocked.Increment(ref _run_locks);
+
+			try {
+				this.EnsureNotDisposed();
+			} catch (ObjectDisposedException) {
+				this.LeaveRunLock();
+				throw;
+			}
+		}
+
+		/// <summary>
+		///  処理の実行を終了した事を通知し、排他制御を解除します。
+		/// </summary>
+		/// <exception cref="System.InvalidOperationException"/>
+		protected void LeaveRunLock()
+		{
+			uint locks;
+			while (true) {
+				locks = _run_locks;
+				if (locks == 0) {
+					throw new InvalidOperationException(Resources.DisposableBase_LeaveRunLock_InvalidOperationException);
+				}
+				if (Interlocked.CompareExchange(ref _run_locks, locks - 1, locks) == locks) {
+					return;
+				}
+				Thread.Yield();
+			}
+		}
+
+		/// <summary>
+		///  指定された処理を安全に実行します。
+		/// </summary>
+		/// <param name="action">実行する処理を指定します。</param>
+		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
+		protected void RunSafely(Action action)
+		{
+			this.EnterRunLock();
+			try {
+				action();
+			} finally {
+				this.LeaveRunLock();
+			}
+		}
+
+		/// <summary>
+		///  指定された処理を安全に実行します。
+		/// </summary>
+		/// <typeparam name="TState">引数の型を指定します。</typeparam>
+		/// <typeparam name="TResult">戻り値の型を指定します。</typeparam>
+		/// <param name="action">実行する処理を指定します。</param>
+		/// <param name="state">処理に渡す引数を指定します。</param>
+		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
+		protected TResult RunSafely<TState, TResult>(Func<TState, TResult> action, TState state)
+		{
+			this.EnterRunLock();
+			try {
+				return action(state);
+			} finally {
+				this.LeaveRunLock();
+			}
+		}
+
+		/// <summary>
+		///  指定された処理を安全に実行します。
+		/// </summary>
+		/// <typeparam name="TState">引数の型を指定します。</typeparam>
+		/// <typeparam name="TResult">戻り値の型を指定します。</typeparam>
+		/// <param name="action">実行する処理を指定します。</param>
+		/// <param name="state">処理に渡す引数を指定します。</param>
+		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
+		protected TResult RunSafely<TState, TResult>(Func<DisposableBase, TState, TResult> action, TState state)
+		{
+			this.EnterRunLock();
+			try {
+				return action(this, state);
+			} finally {
+				this.LeaveRunLock();
+			}
+		}
+
 		private bool EnterDisposeLock()
 		{
 			int stateValue;
-			do {
+			while (true) {
 				stateValue = _state;
 				if ((stateValue & _state_disposing) == _state_disposing) {
 					return false;
 				}
-			} while (Interlocked.CompareExchange(ref _state, stateValue | _state_disposing, stateValue) != stateValue);
-			return true;
+				if (Interlocked.CompareExchange(ref _state, stateValue | _state_disposing, stateValue) == stateValue) {
+					while (_run_locks != 0) {
+						Thread.Yield();
+					}
+					return true;
+				}
+				Thread.Yield();
+			}
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void LeaveDisposeLock()
 		{
 			int stateValue;
-			do {
+			while (true) {
 				stateValue = _state;
-			} while (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposing, stateValue) != stateValue);
+				if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposing, stateValue) == stateValue) {
+					return;
+				}
+				Thread.Yield();
+			}
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void SetDisposed()
 		{
 			int stateValue;
-			do {
+			while (true) {
 				stateValue = _state;
-			} while (Interlocked.CompareExchange(ref _state, stateValue | _state_disposed, stateValue) != stateValue);
+				if (Interlocked.CompareExchange(ref _state, stateValue | _state_disposed, stateValue) == stateValue) {
+					return;
+				}
+				Thread.Yield();
+			}
 		}
 	}
 }

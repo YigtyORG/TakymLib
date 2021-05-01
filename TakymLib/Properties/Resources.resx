@@ -126,6 +126,9 @@
   <data name="ConsoleUtil_ReadPassword" xml:space="preserve">
     <value>ConsoleUtil_ReadPassword</value>
   </data>
+  <data name="DisposableBase_LeaveRunLock_InvalidOperationException" xml:space="preserve">
+    <value>DisposableBase_LeaveRunLock_InvalidOperationException</value>
+  </data>
   <data name="DisposableBase_ObjectDisposedException_IsDisposing" xml:space="preserve">
     <value>DisposableBase_ObjectDisposedException_IsDisposing</value>
   </data>
