@@ -210,7 +210,7 @@ namespace TakymLib
 		/// <exception cref="System.ObjectDisposedException" />
 		protected void EnterRunLock()
 		{
-			this.EnsureNotDisposed();
+			//this.EnsureNotDisposed();
 			Interlocked.Increment(ref _run_locks);
 
 			try {
