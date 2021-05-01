@@ -49,8 +49,12 @@ namespace TakymLib.Threading.Distributed
 		{
 			get
 			{
-				this.EnsureNotDisposed();
-				return this.GetClientContextCore();
+				this.EnterRunLock();
+				try {
+					return this.GetClientContextCore();
+				} finally {
+					this.LeaveRunLock();
+				}
 			}
 		}
 
@@ -70,8 +74,12 @@ namespace TakymLib.Threading.Distributed
 		public ExecutionContext GetServerContext(Thread thread)
 		{
 			thread.EnsureNotNull(nameof(thread));
-			this.EnsureNotDisposed();
-			return this.GetServerContextCore(thread);
+			this.EnterRunLock();
+			try {
+				return this.GetServerContextCore(thread);
+			} finally {
+				this.LeaveRunLock();
+			}
 		}
 
 		/// <summary>
@@ -91,12 +99,16 @@ namespace TakymLib.Threading.Distributed
 		public ConnectedContext Connect(Thread thread)
 		{
 			thread.EnsureNotNull(nameof(thread));
-			this.EnsureNotDisposed();
-			return new ConnectedContext(
-				this.GetServerContextCore(thread),
-				this.GetClientContextCore(),
-				true
-			);
+			this.EnterRunLock();
+			try {
+				return new ConnectedContext(
+					this.GetServerContextCore(thread),
+					this.GetClientContextCore(),
+					true
+				);
+			} finally {
+				this.LeaveRunLock();
+			}
 		}
 	}
 }

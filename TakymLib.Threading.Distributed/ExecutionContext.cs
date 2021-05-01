@@ -50,14 +50,19 @@ namespace TakymLib.Threading.Distributed
 		/// <param name="value">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public async ValueTask SendObject(ExecutionContext? sender, object? value)
 		{
-			this.EnsureNotDisposed();
-			var item = (sender, value);
-			if (this.RunSendObjectAsync) {
-				await Task.Run(() => _objs.Enqueue(item));
-			} else {
-				_objs.Enqueue(item);
+			this.EnterRunLock();
+			try {
+				var item = (sender, value);
+				if (this.RunSendObjectAsync) {
+					await Task.Run(() => _objs.Enqueue(item));
+				} else {
+					_objs.Enqueue(item);
+				}
+			} finally {
+				this.LeaveRunLock();
 			}
 		}
 
@@ -67,6 +72,7 @@ namespace TakymLib.Threading.Distributed
 		/// <param name="value">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public ValueTask SendObject(object? value)
 		{
 			return this.SendObject(null, value);
@@ -78,14 +84,19 @@ namespace TakymLib.Threading.Distributed
 		/// </summary>
 		/// <returns>送信元情報と受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public async ValueTask<(ExecutionContext? Sender, object? Value)> ReceiveObjectWithSender()
 		{
-			this.EnsureNotDisposed();
-			(ExecutionContext?, object?) result;
-			while (_objs.TryDequeue(out result)) {
-				await Task.Yield();
+			this.EnterRunLock();
+			try {
+				(ExecutionContext?, object?) result;
+				while (_objs.TryDequeue(out result)) {
+					await Task.Yield();
+				}
+				return result;
+			} finally {
+				this.LeaveRunLock();
 			}
-			return result;
 		}
 
 		/// <summary>

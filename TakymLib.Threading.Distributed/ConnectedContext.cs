@@ -51,10 +51,15 @@ namespace TakymLib.Threading.Distributed
 		/// <param name="obj">送信するオブジェクトです。</param>
 		/// <returns>この処理の非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public ValueTask SendObject(object obj)
 		{
-			this.EnsureNotDisposed();
-			return this.Server.SendObject(this.Client, obj);
+			this.EnterRunLock();
+			try {
+				return this.Server.SendObject(this.Client, obj);
+			} finally {
+				this.LeaveRunLock();
+			}
 		}
 
 		/// <summary>
@@ -63,15 +68,20 @@ namespace TakymLib.Threading.Distributed
 		/// </summary>
 		/// <returns>受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public async ValueTask<object?> ReceiveObject()
 		{
-			this.EnsureNotDisposed();
-			while (true) {
-				var data = await this.Client.ReceiveObjectWithSender();
-				if (data.Sender == this.Server) {
-					return data.Value;
+			this.EnterRunLock();
+			try {
+				while (true) {
+					var data = await this.Client.ReceiveObjectWithSender();
+					if (data.Sender == this.Server) {
+						return data.Value;
+					}
+					await Task.Yield();
 				}
-				await Task.Yield();
+			} finally {
+				this.LeaveRunLock();
 			}
 		}
 
@@ -81,6 +91,7 @@ namespace TakymLib.Threading.Distributed
 		/// <param name="obj">送信するオブジェクトです。</param>
 		/// <returns>受信したオブジェクトを含む非同期操作です。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public async ValueTask<object?> SendAndReceive(object obj)
 		{
 			await this.SendObject(obj);

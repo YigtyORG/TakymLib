@@ -8,6 +8,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TakymLib.Threading.Distributed.Properties;
 
@@ -22,20 +23,22 @@ namespace TakymLib.Threading.Distributed.Internals
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing) {
-				throw new InvalidOperationException(Resources.DefaultExecutionContextManager_Dispose_InvalidOperationException);
+				ThrowInvalidOperationException();
 			}
 		}
 
 		protected override ValueTask DisposeAsyncCore()
 		{
-			throw new InvalidOperationException(Resources.DefaultExecutionContextManager_Dispose_InvalidOperationException);
+			ThrowInvalidOperationException();
+			return default;
 		}
 
+		[DoesNotReturn()]
 		[DebuggerHidden()]
 		// [StackTraceHidden()]
 		private static void ThrowInvalidOperationException()
 		{
-
+			throw new InvalidOperationException(Resources.DefaultExecutionContextManager_Dispose_InvalidOperationException);
 		}
 	}
 }

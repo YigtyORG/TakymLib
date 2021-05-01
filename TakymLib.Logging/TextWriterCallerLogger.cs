@@ -18,8 +18,8 @@ namespace TakymLib.Logging
 	/// </summary>
 	public class TextWriterCallerLogger : DisposableBase, ICallerLogger
 	{
-		private static          TextWriterCallerLogger? _stdout;
-		private        readonly TextWriter              _tw;
+		private static   TextWriterCallerLogger? _stdout;
+		private readonly TextWriter              _tw;
 
 		/// <summary>
 		///  標準出力ストリームに出力を行うロガーを取得します。

@@ -110,11 +110,11 @@ namespace TakymLib.Security
 		///  直ちにメモリ検証スレッドを停止させます。
 		/// </summary>
 		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		/// <exception cref="System.AggregateException"/>
 		public void StopImmediately()
 		{
-			this.EnsureNotDisposed();
-			_cts_sub.Cancel(true);
+			this.RunSafely(s => s.Cancel(true), _cts_sub);
 		}
 
 		/// <inheritdoc/>

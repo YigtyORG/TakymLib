@@ -57,14 +57,20 @@ namespace TakymLib.Core.Framework
 		/// <summary>
 		///  CUIアプリケーションを開始します。
 		/// </summary>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public void Start()
 		{
-			this.EnsureNotDisposed();
-			if (_started || _stopped) {
-				throw new InvalidOperationException(Resources.CuiTool_Start_InvalidOperationException);
+			this.EnterRunLock();
+			try {
+				if (_started || _stopped) {
+					throw new InvalidOperationException(Resources.CuiTool_Start_InvalidOperationException);
+				}
+				_started = true;
+				this.StartCore();
+			} finally {
+				this.LeaveRunLock();
 			}
-			_started = true;
-			this.StartCore();
 		}
 
 		/// <summary>
@@ -97,17 +103,23 @@ namespace TakymLib.Core.Framework
 		/// <summary>
 		///  CUIアプリケーションを終了します。
 		/// </summary>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
 		public void Stop()
 		{
-			this.EnsureNotDisposed();
-			if (!_started) {
-				throw new InvalidOperationException(Resources.CuiTool_Stop_InvalidOperationException);
-			}
-			if (!_stopped) {
-				_stopped = true;
-				_started = false;
-				this.StopCore();
-				_mv?.StopImmediately();
+			this.EnterRunLock();
+			try {
+				if (!_started) {
+					throw new InvalidOperationException(Resources.CuiTool_Stop_InvalidOperationException);
+				}
+				if (!_stopped) {
+					_stopped = true;
+					_started = false;
+					this.StopCore();
+					_mv?.StopImmediately();
+				}
+			} finally {
+				this.LeaveRunLock();
 			}
 		}
 
@@ -120,6 +132,7 @@ namespace TakymLib.Core.Framework
 		///  CUIアプリケーションを実行します。
 		///  例外は標準エラーストリームに出力しログファイルに保存します。
 		/// </summary>
+		/// <exception cref="System.AggregateException"/>
 		public int Run()
 		{
 			try {
