@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LOGO.png = LOGO.png
 		README.md = README.md
 		TakymLib.ProjectSettings.targets = TakymLib.ProjectSettings.targets
+		THIRD_PARTY_NOTICE.md = THIRD_PARTY_NOTICE.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"
@@ -121,9 +122,9 @@ Global
 		{48593078-12FE-45B4-9C1F-B16E2446D0B0} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
-		RESX_Rules = {"EnabledRules":[]}
-		RESX_ShowErrorsInErrorList = False
 		RESX_NeutralResourcesLanguage = iv
+		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":[]}
+		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
 	EndGlobalSection
 EndGlobal
