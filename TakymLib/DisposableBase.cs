@@ -210,8 +210,13 @@ namespace TakymLib
 		/// <exception cref="System.ObjectDisposedException" />
 		protected void EnterRunLock()
 		{
-			//this.EnsureNotDisposed();
+#if NET5_0_OR_GREATER
 			Interlocked.Increment(ref _run_locks);
+#else
+			lock (this) {
+				++_run_locks;
+			}
+#endif
 
 			try {
 				this.EnsureNotDisposed();
@@ -227,6 +232,7 @@ namespace TakymLib
 		/// <exception cref="System.InvalidOperationException"/>
 		protected void LeaveRunLock()
 		{
+#if NET5_0_OR_GREATER
 			uint locks;
 			while (true) {
 				locks = _run_locks;
@@ -238,6 +244,11 @@ namespace TakymLib
 				}
 				Thread.Yield();
 			}
+#else
+			lock (this) {
+				--_run_locks;
+			}
+#endif
 		}
 
 		/// <summary>
