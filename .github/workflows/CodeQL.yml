@@ -21,18 +21,6 @@ jobs:
         language: [ 'csharp' ]
 
     steps:
-
-    #####################################################################
-    # This step resolves #6.                                           ##
-    # Reference: https://github.com/github/codeql-action/issues/245    ##
-    - name: Configure page file                                        ##
-      uses: al-cheb/configure-pagefile-action@v1.2                     ##
-      with:                                                            ##
-        minimum-size: 2GB                                              ##
-        maximum-size: 8GB                                              ##
-        disk-root: "D:"                                                ##
-    #####################################################################
-
     - name: Checkout repository
       uses: actions/checkout@v2
 
