@@ -20,6 +20,7 @@ namespace TakymLib.Aspect
 	/// </summary>
 	/// <typeparam name="TResult">戻り値の種類です。</typeparam>
 	[StructLayout(LayoutKind.Auto)]
+	[AsyncMethodBuilder(typeof(AsyncLoggableTaskMethodBuilder<>))]
 	public readonly struct LoggableTask<TResult> : IAwaitable<TResult>
 	{
 		private static ICallerLogger? _logger;

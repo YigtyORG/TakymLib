@@ -19,6 +19,7 @@ namespace TakymLib.Aspect
 	///  非同期関数の処理を分断し、ログ出力可能にします。
 	/// </summary>
 	[StructLayout(LayoutKind.Auto)]
+	[AsyncMethodBuilder(typeof(AsyncLoggableTaskMethodBuilder))]
 	public readonly struct LoggableTask : IAwaitable
 	{
 		private static ICallerLogger? _logger;
