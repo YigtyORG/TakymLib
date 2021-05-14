@@ -25,6 +25,7 @@ Copyright (C) 2020-2021 Takym.
 The common libraries used by Yigty.ORG.
 Compatible with **.NET 5.0**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Framework 4.8**.
 * **[TakymLib](/TakymLib)** - the common library.
+* **[TakymLib.Aspect](/TakymLib.Aspect)** - the common aspect-oriented programming library.
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - the common command-line arguments parser library.
 * **[TakymLib.Core](/TakymLib.Core)** - the common core library.
 * **[TakymLib.Core.Framework](/TakymLib.Core.Framework)** - the common core framework library.
@@ -32,7 +33,8 @@ Compatible with **.NET 5.0**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET F
 * **[TakymLib.Security](/TakymLib.Security)** - the common security library.
 * **[TakymLib.Text](/TakymLib.Text)** - the common text library.
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - the common distributed computing library.
-* **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - The common asynchronous programming library.
+* **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - the common asynchronous programming library.
+* **[TakymLib.ConsoleApp](/TakymLib.ConsoleApp)** - the test console application for validation. The compatibility of this is not preserved.
 
 ## Recommended Environment
 * Operating Systems
@@ -80,6 +82,7 @@ This libraries are distributed under the [MIT License](LICENSE.md).
 Yigty.ORG で利用される共通ライブラリ群です。
 **.NET 5.0**、**.NET Core 3.1**、**.NET Standard 2.1**、**.NET Framework 4.8** に対応しています。
 * **[TakymLib](/TakymLib)** - 共通ライブラリです。
+* **[TakymLib.Aspect](/TakymLib.Aspect)** - 共通アスペクト指向(分断指向)プログラミングライブラリです。
 * **[TakymLib.CommandLine](/TakymLib.CommandLine)** - 共通コマンド行引数解析ライブラリです。
 * **[TakymLib.Core](/TakymLib.Core)** - 共通中枢ライブラリです。
 * **[TakymLib.Core.Framework](/TakymLib.Core.Framework)** - 共通中枢枠組みライブラリです。
@@ -88,6 +91,7 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib.Text](/TakymLib.Text)** - 共通文字列ライブラリです。
 * **[TakymLib.Threading.Distributed](/TakymLib.Threading.Distributed)** - 共通分散コンピューティング(分散処理)ライブラリです。
 * **[TakymLib.Threading.Tasks](/TakymLib.Threading.Tasks)** - 共通非同期プログラミング(非同期処理)ライブラリです。
+* **[TakymLib.ConsoleApp](/TakymLib.ConsoleApp)** - 検証用の実験的コンソールアプリケーションです。互換性は保たれません。
 
 ## 推奨環境
 * OS

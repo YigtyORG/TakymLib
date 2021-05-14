@@ -14,10 +14,11 @@
 	<Import Project="../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib</Product>
-		<Description>The test console application.</Description>
+		<Description>The test console application for validation. The compatibility of this is not preserved.</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
+		<ProjectReference Include="../TakymLib.Aspect/TakymLib.Aspect.csproj" />
 		<ProjectReference Include="../TakymLib.CommandLine/TakymLib.CommandLine.csproj" />
 		<ProjectReference Include="../TakymLib.Core/TakymLib.Core.csproj" />
 		<ProjectReference Include="../TakymLib.Core.Framework/TakymLib.Core.Framework.csproj" />
