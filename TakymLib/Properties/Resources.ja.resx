@@ -174,4 +174,7 @@
   <data name="VersionInfo_DisplayName" xml:space="preserve">
     <value>無題の製品</value>
   </data>
+  <data name="VersionInfo_Edition_Debug" xml:space="preserve">
+    <value>デバッグ版</value>
+  </data>
 </root>

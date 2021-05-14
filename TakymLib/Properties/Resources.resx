@@ -174,4 +174,7 @@
   <data name="VersionInfo_DisplayName" xml:space="preserve">
     <value>VersionInfo_DisplayName</value>
   </data>
+  <data name="VersionInfo_Edition_Debug" xml:space="preserve">
+    <value>VersionInfo_Edition_Debug</value>
+  </data>
 </root>

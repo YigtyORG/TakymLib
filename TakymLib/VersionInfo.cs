@@ -24,6 +24,9 @@ namespace TakymLib
 	/// </summary>
 	public class VersionInfo
 	{
+		private const string UNKNOWN_NAME     = "Unknown";
+		private const string UNKNOWN_CODENAME = "unknown";
+
 		private static readonly char[] _separator = new[] { ',', ';', '\u3001', '\uFF0C', '\uFF1B', '\uFF64' };
 
 #if !NET5_0_OR_GREATER
@@ -68,7 +71,7 @@ namespace TakymLib
 		/// <summary>
 		///  コンストラクタに渡されたアセンブリ情報を取得します。
 		/// </summary>
-		public Assembly Assembly { get; }
+		public Assembly? Assembly { get; protected init; }
 
 		/// <summary>
 		///  アセンブリの内部名を取得します。
@@ -98,12 +101,12 @@ namespace TakymLib
 		/// <summary>
 		///  アセンブリのバージョン情報を取得します。
 		/// </summary>
-		public Version? Version { get; }
+		public Version? Version { get; protected init; }
 
 		/// <summary>
 		///  アセンブリの改版名を取得します。
 		/// </summary>
-		public string? Edition { get; }
+		public string? Edition { get; protected init; }
 
 		/// <summary>
 		///  アセンブリの開発コード名を取得します。
@@ -113,7 +116,10 @@ namespace TakymLib
 		/// <summary>
 		///  アセンブリのビルド構成を取得します。
 		/// </summary>
-		public string? Configuration { get; }
+		/// <remarks>
+		///  一般的なビルド構成は<see cref="TakymLib.VersionInfo.Configuration"/>を参照してください。
+		/// </remarks>
+		public string? Configuration { get; protected init; }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.VersionInfo"/>'の新しいインスタンスを生成します。
@@ -133,15 +139,43 @@ namespace TakymLib
 			asm.EnsureNotNull(nameof(asm));
 			var asmname        = asm.GetName();
 			this.Assembly      = asm;
-			this.Name          = asmname.Name ?? "Unknown";
+			this.Name          = asmname.Name ?? UNKNOWN_NAME;
 			this.DisplayName   = asm.GetCustomAttribute<AssemblyProductAttribute>    ()?.Product     ?? Resources.VersionInfo_DisplayName;
 			this.Authors       = asm.GetCustomAttribute<AssemblyCompanyAttribute>    ()?.Company     ?? Resources.VersionInfo_Authors;
 			this.Copyright     = asm.GetCustomAttribute<AssemblyCopyrightAttribute>  ()?.Copyright   ?? Resources.VersionInfo_Copyright;
 			this.Description   = asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? Resources.VersionInfo_Description;
 			this.Version       = asmname.Version;
 			this.Edition       = asm.GetCustomAttribute<AssemblyEditionAttribute>             ()?.Edition;
-			this.CodeName      = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "unknown";
+			this.CodeName      = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? UNKNOWN_CODENAME;
 			this.Configuration = asm.GetCustomAttribute<AssemblyConfigurationAttribute>       ()?.Configuration;
+
+			if (this.Configuration == ConfigurationNames.Debug) {
+				string den = this.GetDebugEditionName();
+				if (string.IsNullOrEmpty(this.Edition)) {
+					this.Edition = den;
+				} else {
+					this.Edition += "(" + den + ")";
+				}
+			}
+		}
+
+		/// <summary>
+		///  型'<see cref="TakymLib.VersionInfo"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="name">アセンブリの内部名を指定します。</param>
+		/// <param name="displayName">アセンブリの表示名を指定します。</param>
+		/// <param name="authors">アセンブリの作成者情報を指定します。</param>
+		/// <param name="copyright">アセンブリの著作権情報を指定します。</param>
+		/// <param name="description">アセンブリの説明を指定します。</param>
+		/// <param name="codeName">アセンブリの開発コード名を指定します。</param>
+		protected VersionInfo(string? name, string? displayName, string? authors, string? copyright, string? description, string? codeName)
+		{
+			this.Name        = name        ?? UNKNOWN_NAME;
+			this.DisplayName = displayName ?? Resources.VersionInfo_DisplayName;
+			this.Authors     = authors     ?? Resources.VersionInfo_Authors;
+			this.Copyright   = copyright   ?? Resources.VersionInfo_Copyright;
+			this.Description = description ?? Resources.VersionInfo_Description;
+			this.CodeName    = codeName    ?? UNKNOWN_CODENAME;
 		}
 
 		/// <summary>
@@ -208,7 +242,14 @@ namespace TakymLib
 		/// <returns>バージョン情報を表す文字列です。</returns>
 		public string GetFullVersionString()
 		{
-			return $"v{this.GetVersionString()}, cn:{this.CodeName}";
+			string  v  = this.GetFullVersionString();
+			string  cn = this.CodeName;
+			string? bc = this.Configuration;
+			if (bc is null || bc == ConfigurationNames.Debug || bc == ConfigurationNames.Release) {
+				return $"v{v}, cn:{cn}";
+			} else {
+				return $"v{v}, cn:{cn}, bc:{bc}";
+			}
 		}
 
 		/// <summary>
@@ -242,6 +283,15 @@ namespace TakymLib
 			}
 			return result.ToArray();
 #endif
+		}
+
+		/// <summary>
+		///  デバッグ版の改版名を取得します。
+		/// </summary>
+		/// <returns>デバッグ版の改版名を表す文字列です。</returns>
+		protected virtual string GetDebugEditionName()
+		{
+			return Resources.VersionInfo_Edition_Debug;
 		}
 	}
 }

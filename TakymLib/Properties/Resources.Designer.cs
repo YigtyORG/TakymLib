@@ -230,5 +230,14 @@ namespace TakymLib.Properties {
                 return ResourceManager.GetString("VersionInfo_DisplayName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   VersionInfo_Edition_Debug に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VersionInfo_Edition_Debug {
+            get {
+                return ResourceManager.GetString("VersionInfo_Edition_Debug", resourceCulture);
+            }
+        }
     }
 }
