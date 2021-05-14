@@ -71,7 +71,13 @@ namespace TakymLib
 		/// <summary>
 		///  コンストラクタに渡されたアセンブリ情報を取得します。
 		/// </summary>
-		public Assembly? Assembly { get; protected init; }
+		public Assembly? Assembly
+		{
+			get;
+#if NET5_0_OR_GREATER
+			protected init;
+#endif
+		}
 
 		/// <summary>
 		///  アセンブリの内部名を取得します。
@@ -101,12 +107,24 @@ namespace TakymLib
 		/// <summary>
 		///  アセンブリのバージョン情報を取得します。
 		/// </summary>
-		public Version? Version { get; protected init; }
+		public Version? Version
+		{
+			get;
+#if NET5_0_OR_GREATER
+			protected init;
+#endif
+		}
 
 		/// <summary>
 		///  アセンブリの改版名を取得します。
 		/// </summary>
-		public string? Edition { get; protected init; }
+		public string? Edition
+		{
+			get;
+#if NET5_0_OR_GREATER
+			protected init;
+#endif
+		}
 
 		/// <summary>
 		///  アセンブリの開発コード名を取得します。
@@ -119,7 +137,13 @@ namespace TakymLib
 		/// <remarks>
 		///  一般的なビルド構成は<see cref="TakymLib.VersionInfo.Configuration"/>を参照してください。
 		/// </remarks>
-		public string? Configuration { get; protected init; }
+		public string? Configuration
+		{
+			get;
+#if NET5_0_OR_GREATER
+			protected init;
+#endif
+		}
 
 		/// <summary>
 		///  型'<see cref="TakymLib.VersionInfo"/>'の新しいインスタンスを生成します。

@@ -65,6 +65,15 @@ namespace TakymLib.Aspect
 			LoggableTask<TResult>.Logger?.End(_member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);
 		}
 
+#if !NETCOREAPP3_1_OR_GREATER
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public void SetResult()
+		{
+			this.SetResult(default);
+		}
+#endif
+
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)

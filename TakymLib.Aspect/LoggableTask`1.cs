@@ -83,5 +83,12 @@ namespace TakymLib.Aspect
 		{
 			return _task.WrapAwaitable().ConfigureAwait(false).GetAwaiter();
 		}
+
+#if !NETCOREAPP3_1_OR_GREATER
+		IAwaiter IAwaitable.GetAwaiter()
+		{
+			return ((IAwaitable<TResult>)(this)).GetAwaiter();
+		}
+#endif
 	}
 }
