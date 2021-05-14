@@ -29,13 +29,13 @@ namespace TakymLibTests.TakymLib
 		public void DisposeAsyncTest()
 		{
 			var obj = new DisposableBaseMock();
-			DisposeAsyncTestCore(obj);
+			DisposeAsyncTestCore(obj).ConfigureAwait(false).GetAwaiter().GetResult();
 			Assert.IsNotNull(obj);
 			Assert.IsFalse(obj.IsDisposing);
 			Assert.IsTrue (obj.IsDisposed);
 		}
 
-		private static async void DisposeAsyncTestCore(DisposableBase disp)
+		private static async Task DisposeAsyncTestCore(DisposableBase disp)
 		{
 			await using (disp.ConfigureAwait(false)) { }
 		}
