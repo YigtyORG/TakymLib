@@ -16,7 +16,7 @@ namespace TakymLib.Threading.Tasks
 	/// </summary>
 	/// <typeparam name="TTask">非同期関数の種類です。</typeparam>
 	public interface ICustomAsyncMethodBuilder<out TTask>
-		where TTask: IAsyncMethodResult
+		where TTask: IAwaitable
 	{
 		/// <summary>
 		///  <typeparamref name="TTask"/>を取得します。
@@ -81,7 +81,7 @@ namespace TakymLib.Threading.Tasks
 	/// <typeparam name="TTask">非同期関数の種類です。</typeparam>
 	/// <typeparam name="TResult">戻り値の種類です。</typeparam>
 	public interface ICustomAsyncMethodBuilder<out TTask, in TResult> : ICustomAsyncMethodBuilder<TTask>
-		where TTask: IAsyncMethodResult<TResult>
+		where TTask: IAwaitable<TResult>
 	{
 		/// <summary>
 		///  戻り値を設定します。
