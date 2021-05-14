@@ -127,7 +127,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  <see cref="System.Threading.Tasks.Task.ConfigureAwait(bool)"/>を呼び出します。
 		/// </summary>
 		/// <param name="continueOnCapturedContext">
-		///  継続を捕獲された元に実行文脈で実行する場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>です。
+		///  継続を捕獲された元の実行文脈で実行する場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を指定します。
 		/// </param>
 		/// <returns><see cref="TakymLib.Threading.Tasks.Wrappers.ConfiguredTaskAwaitableWrapper"/>オブジェクトです。</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

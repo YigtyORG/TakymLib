@@ -16,4 +16,8 @@
 		<Product>TakymLib</Product>
 		<Description>The common aspect-oriented programming library.</Description>
 	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="../TakymLib.Logging/TakymLib.Logging.csproj" />
+		<ProjectReference Include="../TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj" />
+	</ItemGroup>
 </Project>
