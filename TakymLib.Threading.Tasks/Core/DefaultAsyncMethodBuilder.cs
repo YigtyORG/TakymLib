@@ -83,7 +83,7 @@ namespace TakymLib.Threading.Tasks.Core
 		///  <see cref="TakymLib.Threading.Tasks.Core.DefaultAsyncMethodBuilder"/>を作成します。
 		/// </summary>
 		/// <returns><see cref="TakymLib.Threading.Tasks.Core.DefaultAsyncMethodBuilder"/>を返します。</returns>
-		public DefaultAsyncMethodBuilder Create()
+		public static DefaultAsyncMethodBuilder Create()
 		{
 			var result = new DefaultAsyncMethodBuilder();
 			result._will_complete_sync = true;

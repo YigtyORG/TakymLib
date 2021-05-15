@@ -50,7 +50,7 @@ namespace TakymLib.Threading.Tasks.Core
 		}
 
 		/// <inheritdoc/>
-		public void SetResult(TResult result)
+		public void SetResult(TResult? result)
 		{
 			if (_task is not null) {
 				_task.SetResult(result, _will_complete_sync);
@@ -88,10 +88,10 @@ namespace TakymLib.Threading.Tasks.Core
 		}
 
 		/// <summary>
-		///  <see cref="TakymLib.Threading.Tasks.Core.DefaultAsyncMethodBuilder"/>を作成します。
+		///  <see cref="TakymLib.Threading.Tasks.Core.DefaultAsyncMethodBuilder{TResult}"/>を作成します。
 		/// </summary>
-		/// <returns><see cref="TakymLib.Threading.Tasks.Core.DefaultAsyncMethodBuilder"/>を返します。</returns>
-		public DefaultAsyncMethodBuilder<TResult> Create()
+		/// <returns><see cref="TakymLib.Threading.Tasks.Core.DefaultAsyncMethodBuilder{TResult}"/>を返します。</returns>
+		public static DefaultAsyncMethodBuilder<TResult> Create()
 		{
 			var result = new DefaultAsyncMethodBuilder<TResult>();
 			result._will_complete_sync = true;
