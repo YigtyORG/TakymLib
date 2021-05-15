@@ -7,8 +7,9 @@
 ****/
 
 using System;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using TakymLib.Aspect.Internals;
 using TakymLib.Threading.Tasks;
 
 namespace TakymLib.Aspect
@@ -16,12 +17,11 @@ namespace TakymLib.Aspect
 	/// <summary>
 	///  <see cref="TakymLib.Aspect.LoggableTask"/>を利用した非同期関数を生成します。
 	/// </summary>
+	[StructLayout(LayoutKind.Auto)]
 	public struct AsyncLoggableTaskMethodBuilder : IAsyncMethodBuilder<LoggableTask>
 	{
-		private AsyncValueTaskMethodBuilder _builder;
-		private string?                     _member_name;
-		private string?                     _file_path;
-		private int                         _line_number;
+		private AsyncValueTaskMethodBuilder        _builder;
+		private AsyncLoggableTaskMethodBuilderCore _core;
 
 		/// <summary>
 		///  <see cref="TakymLib.Aspect.LoggableTask"/>を取得します。
@@ -32,14 +32,7 @@ namespace TakymLib.Aspect
 		public void Start<TStateMachine>(ref TStateMachine stateMachine)
 			where TStateMachine: IAsyncStateMachine
 		{
-			var frame = new StackFrame(1);
-			var minfo = frame.GetMethod();
-			_member_name = minfo?.Name;
-			_file_path   = frame.GetFileName() ?? minfo?.DeclaringType?.AssemblyQualifiedName;
-			_line_number = frame.GetFileLineNumber();
-
-			LoggableTask.Logger?.Begin(_member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);
-
+			_core.Start();
 			_builder.Start(ref stateMachine);
 		}
 
@@ -55,7 +48,7 @@ namespace TakymLib.Aspect
 		public void SetException(Exception e)
 		{
 			_builder.SetException(e);
-			LoggableTask.Logger?.End(e, _member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);
+			_core.Stop();
 		}
 
 		/// <inheritdoc/>
@@ -63,7 +56,7 @@ namespace TakymLib.Aspect
 		public void SetResult()
 		{
 			_builder.SetResult();
-			LoggableTask.Logger?.End(_member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);
+			_core.Stop();
 		}
 
 		/// <inheritdoc/>
@@ -88,10 +81,11 @@ namespace TakymLib.Aspect
 		///  <see cref="TakymLib.Aspect.AsyncLoggableTaskMethodBuilder"/>を作成します。
 		/// </summary>
 		/// <returns><see cref="TakymLib.Aspect.AsyncLoggableTaskMethodBuilder"/>を返します。</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static AsyncLoggableTaskMethodBuilder Create()
 		{
 			var result = new AsyncLoggableTaskMethodBuilder();
-			result._line_number = -1;
+			result._core.Init();
 			return result;
 		}
 	}

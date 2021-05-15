@@ -23,27 +23,6 @@ namespace TakymLib.Aspect
 	[AsyncMethodBuilder(typeof(AsyncLoggableTaskMethodBuilder<>))]
 	public readonly struct LoggableTask<TResult> : IAwaitable<TResult>
 	{
-		private static ICallerLogger? _logger;
-
-		/// <summary>
-		///  ログの出力先を取得または設定します。
-		/// </summary>
-		/// <remarks>
-		///  <see langword="null"/>が設定されている場合は<see cref="TakymLib.Aspect.LoggableTask.Logger"/>の値を使用します。
-		/// </remarks>
-		public static ICallerLogger? Logger
-		{
-			get => _logger ?? LoggableTask.Logger;
-			set
-			{
-				var logger = _logger;
-				while (Interlocked.CompareExchange(ref _logger, value, logger) != logger) {
-					Thread.Yield();
-					logger = _logger;
-				}
-			}
-		}
-
 		private readonly ValueTask<TResult> _task;
 		private readonly bool               _continue_on_captured_context;
 
