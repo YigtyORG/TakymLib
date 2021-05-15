@@ -16,7 +16,7 @@ namespace TakymLib.Aspect
 	/// <summary>
 	///  <see cref="TakymLib.Aspect.LoggableTask{TResult}"/>を利用した非同期関数を生成します。
 	/// </summary>
-	public struct AsyncLoggableTaskMethodBuilder<TResult> : ICustomAsyncMethodBuilder<LoggableTask<TResult>, TResult>
+	public struct AsyncLoggableTaskMethodBuilder<TResult> : IAsyncMethodBuilder<LoggableTask<TResult>, TResult>
 	{
 		private AsyncValueTaskMethodBuilder<TResult> _builder;
 		private string?                              _member_name;

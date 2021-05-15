@@ -7,6 +7,7 @@
 ****/
 
 using System;
+using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading;
 
@@ -14,18 +15,19 @@ namespace TakymLib.Threading.Tasks.Internals
 {
 	internal sealed class DefaultAsyncMethodResult<TResult> : IAsyncMethodResult<TResult>, IAwaiter<TResult>
 	{
+		private Exception? _exception;
 		private TResult?   _result;
 		private Action     _continuation;
 		public  object?    AsyncState             { get; internal set; }
 		public  WaitHandle AsyncWaitHandle        { get; }
-		public  Exception? Exception              { get; private set; }
+		public  Exception? Exception              => _exception;
 		public  bool       CompletedSynchronously { get; private set; }
 		public  bool       IsCompleted            { get; private set; }
 
 		internal DefaultAsyncMethodResult()
 		{
 			_continuation        = () => { };
-			this.AsyncWaitHandle = EmptyWaitHandle.Instance;
+			this.AsyncWaitHandle = new DefaultWaitHandle();
 		}
 
 		public IAwaiter<TResult> GetAwaiter()
@@ -35,52 +37,56 @@ namespace TakymLib.Threading.Tasks.Internals
 
 		public TResult? GetResult()
 		{
-			bool wait;
-			lock (this) {
-				wait = !this.IsCompleted;
-			}
-			while (wait) {
-				lock (this) {
-					wait = !this.IsCompleted;
-				}
+			while (!this.IsCompleted) {
 				Thread.Yield();
 			}
-			if (this.Exception is not null) {
-#if NET48
-				ExceptionDispatchInfo.Capture(this.Exception).Throw();
-#else
-				ExceptionDispatchInfo.Throw(this.Exception);
-#endif
+			var exception = this.Exception;
+			if (exception is not null) {
+				ExceptionDispatchInfo.Capture(exception).Throw();
 			}
 			return _result;
 		}
 
 		internal void SetException(Exception e, bool completedSynchronously)
 		{
-			e.EnsureNotNull(nameof(e));
-			lock (this) {
-				this.Exception              = e;
-				this.CompletedSynchronously = completedSynchronously;
-				this.IsCompleted            = true;
+			Exception? e1, e2;
+			LoadException();
+			while (Interlocked.CompareExchange(ref _exception, e2, e1) != e1) {
+				Thread.Yield();
+				LoadException();
+			}
+			this.CompleteCore(completedSynchronously);
+
+			void LoadException()
+			{
+				e1 = _exception;
+				e2 = e1 switch {
+					null                  => e,
+					AggregateException ae => new AggregateException(ae.InnerExceptions.Append(e)),
+					_                     => new AggregateException(e1, e)
+				};
 			}
 		}
 
 		internal void SetResult(TResult? result, bool completedSynchronously)
 		{
-			Action c;
-			lock (this) {
-				_result                     = result;
-				this.CompletedSynchronously = completedSynchronously;
-				this.IsCompleted            = true;
-				c = _continuation;
-			}
-			c();
+			_result = result;
+			this.CompleteCore(completedSynchronously);
+		}
+
+		private void CompleteCore(bool completedSynchronously)
+		{
+			this.CompletedSynchronously = completedSynchronously;
+			this.IsCompleted            = true;
+			_continuation();
 		}
 
 		public void OnCompleted(Action continuation)
 		{
-			lock (this) {
-				_continuation += continuation;
+			var c1 = _continuation;
+			while (Interlocked.CompareExchange(ref _continuation, c1 + continuation, c1) != c1) {
+				Thread.Yield();
+				c1 = _continuation;
 			}
 		}
 
@@ -91,15 +97,10 @@ namespace TakymLib.Threading.Tasks.Internals
 
 		public IAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext)
 		{
-			return new DefaultAsyncMethodResult<TResult>();
+			return this;
 		}
 
-		private sealed class EmptyWaitHandle : WaitHandle
-		{
-			internal static readonly EmptyWaitHandle Instance = new();
-
-			private EmptyWaitHandle() { }
-		}
+		private sealed class DefaultWaitHandle : WaitHandle { }
 
 #if !NETCOREAPP3_1_OR_GREATER
 		public bool IsCompletedSuccessfully => this.IsCompleted && this.Exception is null;

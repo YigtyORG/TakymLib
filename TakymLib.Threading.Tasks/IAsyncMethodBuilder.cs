@@ -6,54 +6,91 @@
  * distributed under the MIT License.
 ****/
 
-using TakymLib.Threading.Tasks.Internals;
+using System;
+using System.Runtime.CompilerServices;
 
 namespace TakymLib.Threading.Tasks
 {
 	/// <summary>
-	///  非同期関数を生成する機能を提供します。
+	///  独自の非同期関数を生成する機能を提供します。
 	/// </summary>
-	public interface IAsyncMethodBuilder : ICustomAsyncMethodBuilder<IAsyncMethodResult>
+	/// <typeparam name="TTask">非同期関数の種類です。</typeparam>
+	public interface IAsyncMethodBuilder<out TTask>
+		where TTask: IAwaitable
 	{
-#if NETCOREAPP3_1_OR_GREATER
 		/// <summary>
-		///  既定の実装を取得します。
+		///  <typeparamref name="TTask"/>を取得します。
 		/// </summary>
-		/// <returns><see cref="TakymLib.Threading.Tasks.IAsyncMethodBuilder"/>オブジェクトです。</returns>
-		public static IAsyncMethodBuilder Create()
-		{
-			return new DefaultAsyncMethodBuilder<VoidResult>();
-		}
-#endif
+		public TTask Task { get; }
+
+		/// <summary>
+		///  非同期関数を開始します。
+		/// </summary>
+		/// <typeparam name="TStateMachine">状態機械の種類です。</typeparam>
+		/// <param name="stateMachine">非同期関数の状態機械です。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public void Start<TStateMachine>(ref TStateMachine stateMachine)
+			where TStateMachine: IAsyncStateMachine;
+
+		/// <summary>
+		///  状態機械を設定します。
+		/// </summary>
+		/// <param name="stateMachine">非同期関数の状態機械です。</param>
+		public void SetStateMachine(IAsyncStateMachine? stateMachine);
+
+		/// <summary>
+		///  例外を設定します。
+		/// </summary>
+		/// <param name="e">例外オブジェクトです。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public void SetException(Exception e);
+
+		/// <summary>
+		///  戻り値を空値に設定します。
+		/// </summary>
+		public void SetResult();
+
+		/// <summary>
+		///  待機可能なオブジェクトの完了後に継続します。
+		/// </summary>
+		/// <typeparam name="TAwaiter">待機可能なオブジェクトの種類です。</typeparam>
+		/// <typeparam name="TStateMachine">状態機械の種類です。</typeparam>
+		/// <param name="awaiter">待機可能なオブジェクトです。</param>
+		/// <param name="stateMachine">非同期関数の状態機械です。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
+			where TAwaiter     : INotifyCompletion
+			where TStateMachine: IAsyncStateMachine;
+
+		/// <summary>
+		///  待機可能なオブジェクトの完了後に継続します。
+		/// </summary>
+		/// <typeparam name="TAwaiter">待機可能なオブジェクトの種類です。</typeparam>
+		/// <typeparam name="TStateMachine">状態機械の種類です。</typeparam>
+		/// <param name="awaiter">待機可能なオブジェクトです。</param>
+		/// <param name="stateMachine">非同期関数の状態機械です。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
+			where TAwaiter     : ICriticalNotifyCompletion
+			where TStateMachine: IAsyncStateMachine;
 	}
 
 	/// <summary>
-	///  非同期関数を生成する機能を提供します。
+	///  独自の非同期関数を生成する機能を提供します。
 	/// </summary>
+	/// <typeparam name="TTask">非同期関数の種類です。</typeparam>
 	/// <typeparam name="TResult">戻り値の種類です。</typeparam>
-	public interface IAsyncMethodBuilder<TResult> : IAsyncMethodBuilder, ICustomAsyncMethodBuilder<IAsyncMethodResult<TResult>, TResult>
+	public interface IAsyncMethodBuilder<out TTask, in TResult> : IAsyncMethodBuilder<TTask>
+		where TTask: IAwaitable<TResult>
 	{
-#if NETCOREAPP3_1_OR_GREATER
 		/// <summary>
-		///  既定の実装を取得します。
+		///  戻り値を設定します。
 		/// </summary>
-		/// <returns><see cref="TakymLib.Threading.Tasks.IAsyncMethodBuilder"/>オブジェクトです。</returns>
-		public new static IAsyncMethodBuilder<TResult> Create()
-		{
-			return new DefaultAsyncMethodBuilder<TResult>();
-		}
-#endif
+		/// <param name="result">呼び出し元に返す値です。</param>
+		public void SetResult(TResult? result);
 
-		/// <summary>
-		///  <see cref="TakymLib.Threading.Tasks.IAsyncMethodResult{TResult}"/>を取得します。
-		/// </summary>
-		public new IAsyncMethodResult<TResult> Task { get; }
-		
 #if NETCOREAPP3_1_OR_GREATER
-		IAsyncMethodResult          ICustomAsyncMethodBuilder<IAsyncMethodResult>         .Task => this.Task;
-		IAsyncMethodResult<TResult> ICustomAsyncMethodBuilder<IAsyncMethodResult<TResult>>.Task => this.Task;
-
-		void ICustomAsyncMethodBuilder<IAsyncMethodResult>.SetResult()
+		void IAsyncMethodBuilder<TTask>.SetResult()
 		{
 			this.SetResult(default);
 		}

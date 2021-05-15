@@ -8,13 +8,14 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using TakymLib.Threading.Tasks.Core;
 
 namespace TakymLib.Threading.Tasks
 {
 	/// <summary>
 	///  非同期関数の戻り値を表します。
 	/// </summary>
-	[AsyncMethodBuilder(typeof(IAsyncMethodBuilder))]
+	[AsyncMethodBuilder(typeof(DefaultAsyncMethodBuilder))]
 	public interface IAsyncMethodResult : IAwaitable, IAsyncResult
 	{
 		/// <summary>
@@ -71,7 +72,7 @@ namespace TakymLib.Threading.Tasks
 	///  非同期関数の戻り値を表します。
 	/// </summary>
 	/// <typeparam name="TResult">戻り値の種類です。</typeparam>
-	[AsyncMethodBuilder(typeof(IAsyncMethodBuilder<>))]
+	[AsyncMethodBuilder(typeof(DefaultAsyncMethodBuilder<>))]
 	public interface IAsyncMethodResult<out TResult> : IAsyncMethodResult, IAwaitable<TResult>
 	{
 		/// <summary>
