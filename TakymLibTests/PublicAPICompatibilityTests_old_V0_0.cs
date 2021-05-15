@@ -6,6 +6,11 @@
  * distributed under the MIT License.
 ****/
 
+////////////////////////////////////////////
+// !注意!                                 //
+// このファイルは現在は使われていません。 //
+////////////////////////////////////////////
+
 #pragma warning disable CS0219 // 変数は割り当てられていますが、その値は使用されていません
 #pragma warning disable CA1041 // ObsoleteAttribute メッセージを指定します
 #pragma warning disable IDE0007 // 暗黙的な型の使用
@@ -366,7 +371,7 @@ namespace TakymLibTests
 			var vi = VersionInfo.Library;
 			vi = new VersionInfo(typeof(PublicAPICompatibilityTests_old_V0_0).Assembly);
 
-			Assembly asm;
+			Assembly? asm;
 			string str;
 			Version? ver;
 
