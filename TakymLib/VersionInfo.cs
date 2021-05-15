@@ -266,7 +266,7 @@ namespace TakymLib
 		/// <returns>バージョン情報を表す文字列です。</returns>
 		public string GetFullVersionString()
 		{
-			string  v  = this.GetFullVersionString();
+			string  v  = this.GetVersionString();
 			string  cn = this.CodeName;
 			string? bc = this.Configuration;
 			if (bc is null || bc == ConfigurationNames.Debug || bc == ConfigurationNames.Release) {
