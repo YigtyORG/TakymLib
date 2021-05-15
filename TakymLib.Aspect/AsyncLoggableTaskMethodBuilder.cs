@@ -33,8 +33,9 @@ namespace TakymLib.Aspect
 			where TStateMachine: IAsyncStateMachine
 		{
 			var frame = new StackFrame(1);
-			_member_name = frame.GetMethod()?.Name;
-			_file_path   = frame.GetFileName();
+			var minfo = frame.GetMethod();
+			_member_name = minfo?.Name;
+			_file_path   = frame.GetFileName() ?? minfo?.DeclaringType?.AssemblyQualifiedName;
 			_line_number = frame.GetFileLineNumber();
 
 			LoggableTask.Logger?.Begin(_member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);

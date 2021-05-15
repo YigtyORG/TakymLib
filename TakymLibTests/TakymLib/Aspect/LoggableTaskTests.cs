@@ -22,10 +22,10 @@ namespace TakymLibTests.TakymLib.Aspect
 		public void VoidTest()
 		{
 			TestCore(VoidTestCore, s => {
-				Assert.IsTrue(s.Contains(nameof(VoidTestCore)));
-				Assert.IsTrue(s.Contains("begin"));
-				Assert.IsTrue(s.Contains("end"));
-				Assert.IsTrue(s.Contains("LoggableTaskTests.cs"));
+				Assert.That.Contains(s, nameof(VoidTestCore));
+				Assert.That.Contains(s, nameof(LoggableTaskTests));
+				Assert.That.Contains(s, "begin");
+				Assert.That.Contains(s, "end");
 			}).ConfigureAwait(false).GetAwaiter().GetResult();
 
 			static async LoggableTask VoidTestCore()
@@ -38,10 +38,10 @@ namespace TakymLibTests.TakymLib.Aspect
 		public void IntTest()
 		{
 			TestCore(IntTestCore, s => {
-				Assert.IsTrue(s.Contains(nameof(IntTestCore)));
-				Assert.IsTrue(s.Contains("begin"));
-				Assert.IsTrue(s.Contains("end"));
-				Assert.IsTrue(s.Contains("LoggableTaskTests.cs"));
+				Assert.That.Contains(s, nameof(IntTestCore));
+				Assert.That.Contains(s, nameof(LoggableTaskTests));
+				Assert.That.Contains(s, "begin");
+				Assert.That.Contains(s, "end");
 			}, 0, 1, 2, 3, 4, 5).ConfigureAwait(false).GetAwaiter().GetResult();
 
 			static async LoggableTask<int> IntTestCore(int n)
@@ -55,10 +55,10 @@ namespace TakymLibTests.TakymLib.Aspect
 		public void StringTest()
 		{
 			TestCore(StringTestCore, s => {
-				Assert.IsTrue(s.Contains(nameof(StringTestCore)));
-				Assert.IsTrue(s.Contains("begin"));
-				Assert.IsTrue(s.Contains("end"));
-				Assert.IsTrue(s.Contains("LoggableTaskTests.cs"));
+				Assert.That.Contains(s, nameof(StringTestCore));
+				Assert.That.Contains(s, nameof(LoggableTaskTests));
+				Assert.That.Contains(s, "begin");
+				Assert.That.Contains(s, "end");
 			}, "hello", "WORLD", "hoge", "TEST", "1234").ConfigureAwait(false).GetAwaiter().GetResult();
 
 			static async LoggableTask<string> StringTestCore(string s)
