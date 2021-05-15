@@ -82,7 +82,7 @@ namespace TakymLibTests.TakymLib.Aspect
 		{
 			using (var sw     = new StringWriter())
 			using (var logger = new TextWriterCallerLogger(sw)) {
-				LoggableTask<T>.Logger = logger;
+				LoggableTask.Logger = logger;
 				for (int i = 0; i < args.Length; ++i) {
 					var arg = args[i];
 					Assert.AreEqual(arg, await tester(arg));
