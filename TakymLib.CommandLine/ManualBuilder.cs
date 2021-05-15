@@ -59,7 +59,7 @@ namespace TakymLib.CommandLine
 		public void WriteVersion(VersionInfo ver)
 		{
 			ver.EnsureNotNull(nameof(ver));
-			_appName = ver.Assembly.GetName().Name;
+			_appName = ver.Name;
 			_sb.Append(ver.GetCaption());
 			_sb.Append(" - ");
 			_sb.AppendLine(Resources.ManualBuilder_WriteVersion);
@@ -121,7 +121,6 @@ namespace TakymLib.CommandLine
 					_sb.AppendLine();
 				}
 			}
-#if true
 			void WriteOption(MemberInfo mi, IHelpProvider? provider)
 			{
 				var o = mi.GetCustomAttribute<OptionAttribute>();
@@ -131,8 +130,7 @@ namespace TakymLib.CommandLine
 						_sb.Append("    ");
 						pos = 4;
 					} else {
-						_sb.Append("  -");
-						_sb.Append(o.ShortName);
+						_sb.Append("  -").Append(o.ShortName);
 						pos = 3 + o.ShortName.Length;
 					}
 					if (pos < 12) {
@@ -140,8 +138,7 @@ namespace TakymLib.CommandLine
 					} else {
 						_sb.Append("  ");
 					}
-					_sb.Append("--");
-					_sb.Append(o.LongName);
+					_sb.Append("--").Append(o.LongName);
 					if (provider is not null) {
 						pos = o.LongName.Length;
 						if (pos < 24) {
@@ -154,27 +151,6 @@ namespace TakymLib.CommandLine
 					_sb.AppendLine();
 				}
 			}
-#else
-			void WriteOption(MemberInfo mi, IHelpProvider? provider)
-			{
-				var o = mi.GetCustomAttribute<OptionAttribute>();
-				if (o is not null) {
-					if (o.ShortName is null) {
-						_sb.Append("    ");
-					} else {
-						_sb.Append("  -");
-						_sb.Append(o.ShortName);
-					}
-					_sb.Append("\t--");
-					_sb.Append(o.LongName);
-					if (provider is not null) {
-						_sb.Append("\t\t");
-						provider.WriteHelp(_sb, o.LongName);
-					}
-					_sb.AppendLine();
-				}
-			}
-#endif
 		}
 
 		/// <summary>
