@@ -116,17 +116,6 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  アセンブリの改版名を取得します。
-		/// </summary>
-		public string? Edition
-		{
-			get;
-#if NET5_0_OR_GREATER
-			protected init;
-#endif
-		}
-
-		/// <summary>
 		///  アセンブリの開発コード名を取得します。
 		/// </summary>
 		public string CodeName { get; }
@@ -138,6 +127,17 @@ namespace TakymLib
 		///  一般的なビルド構成は<see cref="TakymLib.VersionInfo.Configuration"/>を参照してください。
 		/// </remarks>
 		public string? Configuration
+		{
+			get;
+#if NET5_0_OR_GREATER
+			protected init;
+#endif
+		}
+
+		/// <summary>
+		///  アセンブリの改版名を取得します。
+		/// </summary>
+		public string? Edition
 		{
 			get;
 #if NET5_0_OR_GREATER
@@ -169,18 +169,9 @@ namespace TakymLib
 			this.Copyright     = asm.GetCustomAttribute<AssemblyCopyrightAttribute>  ()?.Copyright   ?? Resources.VersionInfo_Copyright;
 			this.Description   = asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? Resources.VersionInfo_Description;
 			this.Version       = asmname.Version;
-			this.Edition       = asm.GetCustomAttribute<AssemblyEditionAttribute>             ()?.Edition;
 			this.CodeName      = asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? UNKNOWN_CODENAME;
 			this.Configuration = asm.GetCustomAttribute<AssemblyConfigurationAttribute>       ()?.Configuration;
-
-			if (this.Configuration == ConfigurationNames.Debug) {
-				string den = this.GetDebugEditionName();
-				if (string.IsNullOrEmpty(this.Edition)) {
-					this.Edition = den;
-				} else {
-					this.Edition += "(" + den + ")";
-				}
-			}
+			this.Edition       = this.CreateDebugEditionName(asm.GetCustomAttribute<AssemblyEditionAttribute>()?.Edition);
 		}
 
 		/// <summary>
@@ -316,6 +307,27 @@ namespace TakymLib
 		protected virtual string GetDebugEditionName()
 		{
 			return Resources.VersionInfo_Edition_Debug;
+		}
+
+		/// <summary>
+		///  デバッグ版の改版名を作成します。
+		/// </summary>
+		/// <remarks>
+		///  <see cref="TakymLib.VersionInfo.Configuration"/>が<see cref="TakymLib.ConfigurationNames.Debug"/>である時にのみ作成されます。
+		/// </remarks>
+		/// <param name="edition">元の改版名を指定します。</param>
+		/// <returns>新たに作成されたデバッグ版の改版名を表す文字列です。</returns>
+		protected string? CreateDebugEditionName(string? edition)
+		{
+			if (this.Configuration == ConfigurationNames.Debug) {
+				string den = this.GetDebugEditionName();
+				if (string.IsNullOrEmpty(edition)) {
+					return den;
+				} else {
+					return "(" + den + ")";
+				}
+			}
+			return edition;
 		}
 	}
 }

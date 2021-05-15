@@ -134,6 +134,7 @@ namespace TakymLibTests.TakymLib
 			{
 				this.Version       = new(1, 2, 3, 4);
 				this.Configuration = config;
+				this.Edition       = this.CreateDebugEditionName(null);
 			}
 
 			internal new string GetDebugEditionName()
