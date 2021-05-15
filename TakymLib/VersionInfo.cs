@@ -260,7 +260,7 @@ namespace TakymLib
 			string  v  = this.GetVersionString();
 			string  cn = this.CodeName;
 			string? bc = this.Configuration;
-			if (bc is null || bc == ConfigurationNames.Debug || bc == ConfigurationNames.Release) {
+			if (string.IsNullOrEmpty(bc) || bc == ConfigurationNames.Debug || bc == ConfigurationNames.Release) {
 				return $"v{v}, cn:{cn}";
 			} else {
 				return $"v{v}, cn:{cn}, bc:{bc}";

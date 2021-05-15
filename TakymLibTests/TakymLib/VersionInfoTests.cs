@@ -67,7 +67,12 @@ namespace TakymLibTests.TakymLib
 			Assert.AreEqual("TestApp [v1.2.3.4, cn:hoge, bc:Custom]", dvi.GetCaption());
 
 			var nvi = NullVersionInfoMock.Instance;
-			Assert.AreEqual(" [v?.?.?.?, cn:Unknown]", nvi.GetCaption());
+			Assert.AreEqual(" [v?.?.?.?, cn:]", nvi.GetCaption());
+
+			LanguageUtils.SetCulture("iv-IV");
+
+			var evi = EmptyVersionInfoMock.Instance;
+			Assert.AreEqual("VersionInfo_DisplayName [v?.?.?.?, cn:unknown]", evi.GetCaption());
 		}
 
 		private sealed class AssemblyMock : Assembly
@@ -143,11 +148,18 @@ namespace TakymLibTests.TakymLib
 			}
 		}
 
+		private sealed class EmptyVersionInfoMock : VersionInfo
+		{
+			internal static readonly EmptyVersionInfoMock Instance = new();
+
+			private EmptyVersionInfoMock() : base(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty) { }
+		}
+
 		private sealed class NullVersionInfoMock : VersionInfo
 		{
 			internal static readonly NullVersionInfoMock Instance = new();
 
-			private NullVersionInfoMock() : base(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty) { }
+			private NullVersionInfoMock() : base(null, null, null, null, null, null) { }
 		}
 	}
 }
