@@ -45,3 +45,9 @@ jobs:
       uses: github/codeql-action/analyze@v1
       with:
         ram: 8192
+
+    - name: Save Log Files
+      uses: actions/upload-artifact@v2
+      with:
+        name: log-files
+        path: "*.log"
