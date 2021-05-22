@@ -35,6 +35,10 @@ Copyright (C) 2020-2021 Takym.
 	* 著作権表記：Copyright (c) 2018 Toni Solarin-Sodara
 	* リポジトリ：<https://github.com/coverlet-coverage/coverlet>
 	* 利用規約：[MITライセンス](https://github.com/coverlet-coverage/coverlet/blob/master/LICENSE)
+* [BenchmarkDotNet]
+	* 著作権表記：Copyright (c) 2013–2021 .NET Foundation and contributors
+	* リポジトリ：<https://github.com/dotnet/BenchmarkDotNet>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/BenchmarkDotNet/blob/master/LICENSE.md)
 
 ## [docs] で利用しているライブラリの一覧
 * [docfx.console]
@@ -62,5 +66,6 @@ Copyright (C) 2020-2021 Takym.
 [MSTest.TestAdapter]:                https://www.nuget.org/packages/MSTest.TestAdapter/
 [MSTest.TestFramework]:              https://www.nuget.org/packages/MSTest.TestFramework/
 [coverlet.collector]:                https://www.nuget.org/packages/coverlet.collector/
+[BenchmarkDotNet]:                   https://www.nuget.org/packages/BenchmarkDotNet/
 [docfx.console]:                     https://www.nuget.org/packages/docfx.console/
 [memberpage]:                        https://www.nuget.org/packages/memberpage/
