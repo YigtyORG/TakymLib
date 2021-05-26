@@ -11,7 +11,7 @@
 		<RootNamespace>TakymLib.ConsoleApp</RootNamespace>
 		<OutputType>Exe</OutputType>
 	</PropertyGroup>
-	<Import Project="../TakymLib.ProjectSettings.targets" />
+	<Import Project="../../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib</Product>
 		<Description>The test console application for validation. The compatibility of this is not preserved.</Description>
