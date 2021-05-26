@@ -2,20 +2,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BEC7DAB-8B87-4D82-8367-EEDE17A5C17C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1F5DA7AD-422E-4F54-832F-F46137F4CB54}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		.gitattributes = .gitattributes
-		.gitignore = .gitignore
 		CHANGELOG.md = CHANGELOG.md
-		CommonProjectSettings.targets = CommonProjectSettings.targets
 		CONTRIBUTING.md = CONTRIBUTING.md
 		CONTRIBUTORS.md = CONTRIBUTORS.md
 		HeaderComments.txt = HeaderComments.txt
 		LICENSE.md = LICENSE.md
 		LOGO.png = LOGO.png
 		README.md = README.md
-		TakymLib.ProjectSettings.targets = TakymLib.ProjectSettings.targets
 		THIRD_PARTY_NOTICE.md = THIRD_PARTY_NOTICE.md
 	EndProjectSection
 EndProject
@@ -34,33 +29,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "docs", "docs\docs.csproj", 
 		{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99} = {7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "tests\TakymLibTests.csproj", "{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib", "TakymLib\TakymLib.csproj", "{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.CommandLine", "TakymLib.CommandLine\TakymLib.CommandLine.csproj", "{1051F12A-B95B-4776-B632-58B452A66C62}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Distributed", "TakymLib.Threading.Distributed\TakymLib.Threading.Distributed.csproj", "{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Logging", "TakymLib.Logging\TakymLib.Logging.csproj", "{6C45CD2C-C192-4E27-AABB-EB3B7B9B91FC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Security", "TakymLib.Security\TakymLib.Security.csproj", "{843CFF65-A0B3-4B9C-BC0E-331581349D44}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Core.Framework", "TakymLib.Core.Framework\TakymLib.Core.Framework.csproj", "{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Core", "TakymLib.Core\TakymLib.Core.csproj", "{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1F5DA7AD-422E-4F54-832F-F46137F4CB54}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Text", "TakymLib.Text\TakymLib.Text.csproj", "{39E3048C-7D3A-46CE-9539-C90F986AC4FF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.ConsoleApp", "TakymLib.ConsoleApp\TakymLib.ConsoleApp.csproj", "{48593078-12FE-45B4-9C1F-B16E2446D0B0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Aspect", "TakymLib.Aspect\TakymLib.Aspect.csproj", "{F0932256-8799-4141-AECC-5FD9322E5919}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BEC7DAB-8B87-4D82-8367-EEDE17A5C17C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		CommonProjectSettings.targets = CommonProjectSettings.targets
+		TakymLib.ProjectSettings.targets = TakymLib.ProjectSettings.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow Actions", "Workflow Actions", "{5C606080-3918-4A07-A29C-A7DBFBD4082B}"
 	ProjectSection(SolutionItems) = preProject
@@ -68,6 +44,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow Actions", "Workflo
 		.github\workflows\CodeQL.yml = .github\workflows\CodeQL.yml
 		.github\workflows\NuGet.yml = .github\workflows\NuGet.yml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "tests\TakymLibTests.csproj", "{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib", "TakymLib\TakymLib.csproj", "{7AA4D4F9-4EC1-490E-BC8D-D7C920C6AA99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Aspect", "TakymLib.Aspect\TakymLib.Aspect.csproj", "{F0932256-8799-4141-AECC-5FD9322E5919}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.CommandLine", "TakymLib.CommandLine\TakymLib.CommandLine.csproj", "{1051F12A-B95B-4776-B632-58B452A66C62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.ConsoleApp", "TakymLib.ConsoleApp\TakymLib.ConsoleApp.csproj", "{48593078-12FE-45B4-9C1F-B16E2446D0B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Core", "TakymLib.Core\TakymLib.Core.csproj", "{ED5095BA-FDFA-4FF8-83AE-6572B549F2DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Core.Framework", "TakymLib.Core.Framework\TakymLib.Core.Framework.csproj", "{CCECB6DC-C19C-4DE6-9417-8F67C0B8613A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Logging", "TakymLib.Logging\TakymLib.Logging.csproj", "{6C45CD2C-C192-4E27-AABB-EB3B7B9B91FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Security", "TakymLib.Security\TakymLib.Security.csproj", "{843CFF65-A0B3-4B9C-BC0E-331581349D44}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Text", "TakymLib.Text\TakymLib.Text.csproj", "{39E3048C-7D3A-46CE-9539-C90F986AC4FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", "TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Distributed", "TakymLib.Threading.Distributed\TakymLib.Threading.Distributed.csproj", "{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
