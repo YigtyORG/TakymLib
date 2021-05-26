@@ -11,7 +11,7 @@
 		<RootNamespace>TakymLib.Security</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
-	<Import Project="../TakymLib.ProjectSettings.targets" />
+	<Import Project="../../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib.Security</Product>
 		<Description>The common security library.</Description>

@@ -11,7 +11,7 @@
 		<RootNamespace>TakymLib.Threading.Tasks</RootNamespace>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
-	<Import Project="../TakymLib.ProjectSettings.targets" />
+	<Import Project="../../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib.Threading.Tasks</Product>
 		<Description>The common asynchronous programming library.</Description>
