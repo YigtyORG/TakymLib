@@ -6,7 +6,7 @@
  * distributed under the MIT License.
 ****/
 
-#if NET5_0_OR_GREATER
+#if !NET5_0_OR_GREATER
 #pragma warning disable CS1591 // 公開されている型またはメンバーの XML コメントがありません
 
 namespace System.Runtime.CompilerServices
