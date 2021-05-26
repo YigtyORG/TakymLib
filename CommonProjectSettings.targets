@@ -43,7 +43,7 @@
 		<Prefer32Bit Condition="'$(OutputType)'=='Exe' Or '$(OutputType)'=='WinExe'">true</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DefineConstants>TRACE</DefineConstants>
+		<DefineConstants>RELEASE;TRACE</DefineConstants>
 		<Optimize>true</Optimize>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>

@@ -38,8 +38,8 @@
 		<PackageReference Include="System.Memory" Version="4.5.4" />
 		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<Content Include="../../*.md" Pack="true" PackagePath="/">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 			<Visible>false</Visible>
 		</Content>
 		<EmbeddedResource Update="Properties/Resources.resx">
@@ -57,14 +57,14 @@
 	</ItemGroup>
 	<ItemGroup Condition="!Exists('Resources/Logo.png')">
 		<Content Include="../../LOGO.png" Link="Resources/Logo.png" Pack="true" PackagePath="/">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
 	</ItemGroup>
 	<ItemGroup Condition="Exists('Resources/Logo.png')">
 		<Content Include="Resources/Logo.png" Pack="true" PackagePath="/LOGO.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
 	</ItemGroup>
 </Project>
