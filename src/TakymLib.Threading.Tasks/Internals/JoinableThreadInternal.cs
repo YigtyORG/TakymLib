@@ -9,21 +9,18 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TakymLib.Threading.Tasks.Internals
 {
 	internal sealed class JoinableThreadInternal : JoinableThread
 	{
 		private readonly ConcurrentQueue<Action> _queue;
-		private readonly CancellationTokenSource _cts;
 
 		public override Thread Thread { get; }
 
 		internal JoinableThreadInternal()
 		{
 			_queue = new();
-			_cts   = new();
 
 			this.Thread = new(this.RunLoop);
 			this.Thread.IsBackground = true;
@@ -32,7 +29,7 @@ namespace TakymLib.Threading.Tasks.Internals
 
 		private void RunLoop()
 		{
-			while (!_cts.IsCancellationRequested) {
+			while (!this.IsDisposed) {
 				if (_queue.TryDequeue(out var action)) {
 					action();
 				}
@@ -53,25 +50,7 @@ namespace TakymLib.Threading.Tasks.Internals
 #if !NET48
 			_queue.Clear();
 #endif
-			if (disposing) {
-				_cts.Cancel();
-				_cts.Dispose();
-			}
 			base.Dispose(disposing);
-		}
-
-		protected override async ValueTask DisposeAsyncCore()
-		{
-			if (this.IsDisposed) {
-				return;
-			}
-			_cts.Cancel();
-			if (_cts is IAsyncDisposable asyncDisposable) {
-				await asyncDisposable.ConfigureAwait(false).DisposeAsync();
-			} else {
-				_cts.Dispose();
-			}
-			await base.DisposeAsyncCore();
 		}
 	}
 }
