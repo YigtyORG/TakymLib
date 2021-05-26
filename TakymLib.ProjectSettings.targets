@@ -37,7 +37,7 @@
 	<ItemGroup>
 		<PackageReference Include="System.Memory" Version="4.5.4" />
 		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-		<Content Include="../LICENSE.md" Pack="true" PackagePath="/">
+		<Content Include="../../*.md" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 			<Visible>false</Visible>
@@ -56,7 +56,7 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup Condition="!Exists('Resources/Logo.png')">
-		<Content Include="../LOGO.png" Link="Resources/Logo.png" Pack="true" PackagePath="/">
+		<Content Include="../../LOGO.png" Link="Resources/Logo.png" Pack="true" PackagePath="/">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 		</Content>
