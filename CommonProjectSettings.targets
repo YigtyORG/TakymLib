@@ -24,6 +24,8 @@
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+		<AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>true</AppendRuntimeIdentifierToOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(ChangeLogUrl)'!='' And '$(ReleasesUrl)' != ''">
 		<PackageReleaseNotes>See $(ChangeLogUrl) or $(ReleasesUrl) for latest release notes.</PackageReleaseNotes>

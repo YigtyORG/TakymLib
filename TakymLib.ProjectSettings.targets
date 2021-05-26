@@ -19,8 +19,8 @@
 	<PropertyGroup>
 		<TargetFramework><!-- TargetFramework の再設定 --></TargetFramework>
 		<TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1;net48</TargetFrameworks>
-		<OutputPath>$(SolutionDir)/bin/$(ProjectName)/$(Configuration)/$(TargetFramework)</OutputPath>
-		<IntermediateOutputPath>$(SolutionDir)/obj/$(ProjectName)/$(Configuration)/$(TargetFramework)</IntermediateOutputPath>
+		<OutputPath>$(SolutionDir)/bin/$(AssemblyName)/$(Configuration)</OutputPath>
+		<IntermediateOutputPath>$(SolutionDir)/obj/$(AssemblyName)/$(Configuration)</IntermediateOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Label="Version">
 		<Product>TakymLib</Product>
