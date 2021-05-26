@@ -10,6 +10,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using TakymLib.Threading.Tasks.Core;
 using TakymLib.Threading.Tasks.Internals;
 
 namespace TakymLib.Threading.Tasks
@@ -27,6 +28,15 @@ namespace TakymLib.Threading.Tasks
 		public static JoinableThread Create()
 		{
 			return new JoinableThreadInternal();
+		}
+
+		/// <summary>
+		///  現在のスレッドから新しい結合可能なスレッドを生成します。
+		/// </summary>
+		/// <returns><see cref="TakymLib.Threading.Tasks.Core.DefaultJoinableThread"/>オブジェクトです。</returns>
+		public static DefaultJoinableThread CreateFromCurrentThread()
+		{
+			return new();
 		}
 
 		/// <summary>
