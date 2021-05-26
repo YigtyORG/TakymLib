@@ -27,13 +27,15 @@ namespace TakymLib.Aspect.Internals
 
 		internal void Start()
 		{
-			var frame = new StackFrame(2);
-			var minfo = frame.GetMethod();
-			_member_name = minfo?.Name;
-			_file_path   = frame.GetFileName() ?? minfo?.DeclaringType?.AssemblyQualifiedName;
-			_line_number = _file_path is null ? -1 : frame.GetFileLineNumber();
+			if (LoggableTask.Logger is not null and var logger) {
+				var frame = new StackFrame(2);
+				var minfo = frame.GetMethod();
+				_member_name = minfo?.Name;
+				_file_path   = frame.GetFileName() ?? minfo?.DeclaringType?.AssemblyQualifiedName;
+				_line_number = _file_path is null ? -1 : frame.GetFileLineNumber();
 
-			LoggableTask.Logger?.Begin(_member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);
+				logger.Begin(_member_name ?? string.Empty, _file_path ?? string.Empty, _line_number);
+			}
 		}
 
 		internal void Stop()
