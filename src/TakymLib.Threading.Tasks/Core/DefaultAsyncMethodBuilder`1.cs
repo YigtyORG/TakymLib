@@ -14,7 +14,7 @@ using TakymLib.Threading.Tasks.Internals;
 namespace TakymLib.Threading.Tasks.Core
 {
 	/// <summary>
-	///  既定の<see cref="TakymLib.Threading.Tasks.IAsyncMethodBuilder{TTask, TResult}"/>を提供します。
+	///  既定の<see cref="TakymLib.Threading.Tasks.IAsyncMethodBuilder{TTask, TResult}"/>の実装を提供します。
 	/// </summary>
 	[StructLayout(LayoutKind.Auto)]
 	public struct DefaultAsyncMethodBuilder<TResult> : IAsyncMethodBuilder<IAsyncMethodResult<TResult>, TResult>

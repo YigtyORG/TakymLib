@@ -89,13 +89,13 @@ namespace TakymLib
 		/// <returns>この処理の非同期操作です。</returns>
 		public async ValueTask DisposeAsync()
 		{
-			if (this.EnterDisposeLock()) {
+			if (await this.EnterDisposeLockAsync()) {
 				try {
 					await this.DisposeAsyncCore();
 					this.Dispose(false);
 					GC.SuppressFinalize(this);
 				} finally {
-					this.LeaveDisposeLock();
+					await this.LeaveDisposeLockAsync();
 				}
 			}
 		}
@@ -246,8 +246,37 @@ namespace TakymLib
 			}
 #else
 			lock (this) {
+				if (_run_locks == 0) {
+					throw new InvalidOperationException(Resources.DisposableBase_LeaveRunLock_InvalidOperationException);
+				}
 				--_run_locks;
 			}
+#endif
+		}
+
+		/// <summary>
+		///  処理の実行を終了した事を通知し、排他制御を非同期的に解除します。
+		/// </summary>
+		/// <returns>
+		///  この処理の非同期操作です。
+		/// </returns>
+		/// <exception cref="System.InvalidOperationException"/>
+		protected async ValueTask LeaveRunLockAsync()
+		{
+#if NET5_0_OR_GREATER
+			uint locks;
+			while (true) {
+				locks = _run_locks;
+				if (locks == 0) {
+					throw new InvalidOperationException(Resources.DisposableBase_LeaveRunLock_InvalidOperationException);
+				}
+				if (Interlocked.CompareExchange(ref _run_locks, locks - 1, locks) == locks) {
+					return;
+				}
+				await Task.Yield();
+			}
+#else
+			this.LeaveRunLock();
 #endif
 		}
 
@@ -258,6 +287,7 @@ namespace TakymLib
 		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		/// <exception cref="System.InvalidOperationException"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected void RunSafely(Action action)
 		{
 			this.EnterRunLock();
@@ -277,6 +307,7 @@ namespace TakymLib
 		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		/// <exception cref="System.InvalidOperationException"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected void RunSafely<TState>(Action<TState> action, TState state)
 		{
 			this.EnterRunLock();
@@ -297,6 +328,7 @@ namespace TakymLib
 		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		/// <exception cref="System.InvalidOperationException"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected TResult RunSafely<TState, TResult>(Func<TState, TResult> action, TState state)
 		{
 			this.EnterRunLock();
@@ -317,6 +349,7 @@ namespace TakymLib
 		/// <returns><paramref name="action"/>の戻り値を返します。</returns>
 		/// <exception cref="System.ObjectDisposedException"/>
 		/// <exception cref="System.InvalidOperationException"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected TResult RunSafely<TState, TResult>(Func<DisposableBase, TState, TResult> action, TState state)
 		{
 			this.EnterRunLock();
@@ -327,6 +360,28 @@ namespace TakymLib
 			}
 		}
 
+		/// <summary>
+		///  指定された処理を安全かつ非同期的に実行します。
+		/// </summary>
+		/// <typeparam name="TState">引数の型を指定します。</typeparam>
+		/// <typeparam name="TResult">戻り値の型を指定します。</typeparam>
+		/// <param name="action">実行する処理を指定します。</param>
+		/// <param name="state">処理に渡す引数を指定します。</param>
+		/// <returns><paramref name="action"/>の戻り値を含む非同期操作を返します。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		protected async ValueTask<TResult> RunSafelyAsync<TState, TResult>(Func<DisposableBase, TState, ValueTask<TResult>> action, TState state)
+		{
+			this.EnterRunLock();
+			try {
+				return await action(this, state);
+			} finally {
+				await this.LeaveRunLockAsync();
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private bool EnterDisposeLock()
 		{
 			int stateValue;
@@ -345,6 +400,26 @@ namespace TakymLib
 			}
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private async ValueTask<bool> EnterDisposeLockAsync()
+		{
+			int stateValue;
+			while (true) {
+				stateValue = _state;
+				if ((stateValue & _state_disposing) == _state_disposing) {
+					return false;
+				}
+				if (Interlocked.CompareExchange(ref _state, stateValue | _state_disposing, stateValue) == stateValue) {
+					while (_run_locks != 0) {
+						await Task.Yield();
+					}
+					return true;
+				}
+				await Task.Yield();
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void LeaveDisposeLock()
 		{
 			int stateValue;
@@ -354,6 +429,19 @@ namespace TakymLib
 					return;
 				}
 				Thread.Yield();
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private async ValueTask LeaveDisposeLockAsync()
+		{
+			int stateValue;
+			while (true) {
+				stateValue = _state;
+				if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposing, stateValue) == stateValue) {
+					return;
+				}
+				await Task.Yield();
 			}
 		}
 
