@@ -27,6 +27,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<!-- ライブラリへの参照は下記のプロジェクトに追加する。 -->
-		<ProjectReference Include="../TakymLib.ConsoleApp/TakymLib.ConsoleApp.csproj" />
+		<ProjectReference Include="../src/TakymLib.ConsoleApp/TakymLib.ConsoleApp.csproj" />
 	</ItemGroup>
 </Project>

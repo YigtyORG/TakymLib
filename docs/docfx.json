@@ -7,7 +7,7 @@
 						"**/bin/Debug/net5.0/TakymLib.dll",
 						"**/bin/Debug/net5.0/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/d/net5.0"
@@ -19,7 +19,7 @@
 						"**/bin/Debug/netcoreapp3.1/TakymLib.dll",
 						"**/bin/Debug/netcoreapp3.1/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/d/netcoreapp3.1"
@@ -31,7 +31,7 @@
 						"**/bin/Debug/netstandard2.1/TakymLib.dll",
 						"**/bin/Debug/netstandard2.1/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/d/netstandard2.1"
@@ -43,7 +43,7 @@
 						"**/bin/Debug/net48/TakymLib.dll",
 						"**/bin/Debug/net48/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/d/net48"
@@ -55,7 +55,7 @@
 						"**/bin/Release/net5.0/TakymLib.dll",
 						"**/bin/Release/net5.0/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/r/net5.0"
@@ -67,7 +67,7 @@
 						"**/bin/Release/netcoreapp3.1/TakymLib.dll",
 						"**/bin/Release/netcoreapp3.1/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/r/netcoreapp3.1"
@@ -79,7 +79,7 @@
 						"**/bin/Release/netstandard2.1/TakymLib.dll",
 						"**/bin/Release/netstandard2.1/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/r/netstandard2.1"
@@ -91,7 +91,7 @@
 						"**/bin/Release/net48/TakymLib.dll",
 						"**/bin/Release/net48/TakymLib.*.dll"
 					],
-					"src": "../"
+					"src": "../src/"
 				}
 			],
 			"dest": "api/r/net48"
@@ -125,7 +125,7 @@
 		"fileMetadataFiles": [],
 		"template": [
 			"statictoc",
-			"packages/memberpage/2.56.7/content",
+			"packages/memberpage/2.57.2/content",
 			"template"
 		],
 		"postProcessors": [],

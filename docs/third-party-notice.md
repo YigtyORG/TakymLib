@@ -58,7 +58,7 @@ Copyright (C) 2020-2021 Takym.
 
 
 
-[TakymLibTests]:                     https://github.com/YigtyORG/TakymLib/tree/master/TakymLibTests/
+[TakymLibTests]:                     https://github.com/YigtyORG/TakymLib/tree/master/tests/
 [docs]:                              https://github.com/YigtyORG/TakymLib/tree/master/docs/
 [System.Memory]:                     https://www.nuget.org/packages/System.Memory/
 [System.Threading.Tasks.Extensions]: https://www.nuget.org/packages/System.Threading.Tasks.Extensions/
