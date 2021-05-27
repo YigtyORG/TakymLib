@@ -261,7 +261,10 @@ namespace TakymLib
 		///  この処理の非同期操作です。
 		/// </returns>
 		/// <exception cref="System.InvalidOperationException"/>
-		protected async ValueTask LeaveRunLockAsync()
+#if NET5_0_OR_GREATER
+		async
+#endif
+		protected ValueTask LeaveRunLockAsync()
 		{
 #if NET5_0_OR_GREATER
 			uint locks;
@@ -277,6 +280,7 @@ namespace TakymLib
 			}
 #else
 			this.LeaveRunLock();
+			return default;
 #endif
 		}
 
