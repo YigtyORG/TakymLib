@@ -27,4 +27,4 @@ jobs:
     - name: Add Source
       run: nuget sources Add -Source https://nuget.pkg.github.com/YigtyORG/index.json -Name "github" -UserName YigtyORG -Password ${{ secrets.GITHUB_TOKEN }}
     - name: Publish
-      run: nuget push "**/bin/Release/*-*.nupkg" -Source "github" -SkipDuplicate
+      run: nuget push "bin/TakymLib*/Release/TakymLib.*-*.nupkg" -Source "github" -SkipDuplicate
