@@ -28,7 +28,7 @@
 		<InformationalVersion>alpha00a0</InformationalVersion>
 		<PackageTags>Library, Common, Core, Framework</PackageTags>
 	</PropertyGroup>
-	<PropertyGroup Condition="Exists('$(SolutionDir)/TakymLib.StrongNameKey.snk')">
+	<PropertyGroup Label="Strong Name Key" Condition="Exists('$(SolutionDir)/TakymLib.StrongNameKey.snk')">
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>$(SolutionDir)/TakymLib.StrongNameKey.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
