@@ -26,6 +26,8 @@
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
 		<AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>true</AppendRuntimeIdentifierToOutputPath>
+		<OutputPath>$(SolutionDir)/bin/$(AssemblyName)/$(Configuration)</OutputPath>
+		<IntermediateOutputPath>$(SolutionDir)/obj/$(AssemblyName)/$(Configuration)</IntermediateOutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(ChangeLogUrl)'!='' And '$(ReleasesUrl)' != ''">
 		<PackageReleaseNotes>See $(ChangeLogUrl) or $(ReleasesUrl) for latest release notes.</PackageReleaseNotes>
