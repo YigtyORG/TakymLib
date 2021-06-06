@@ -1,0 +1,3 @@
+[submodule "lib/TakymLib"]
+	path = lib/TakymLib
+	url = https://github.com/YigtyORG/TakymLib.git
