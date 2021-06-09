@@ -6,7 +6,7 @@ on:
 
 jobs:
   NuGet:
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Setup .NET
