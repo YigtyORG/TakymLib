@@ -42,6 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow Actions", "Workflow Actions", "{5C606080-3918-4A07-A29C-A7DBFBD4082B}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Benchmark.yml = .github\workflows\Benchmark.yml
 		.github\workflows\BuildTest.yml = .github\workflows\BuildTest.yml
 		.github\workflows\CodeQL.yml = .github\workflows\CodeQL.yml
 		.github\workflows\NuGet.yml = .github\workflows\NuGet.yml
@@ -166,9 +167,9 @@ Global
 		{48593078-12FE-45B4-9C1F-B16E2446D0B0} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = iv
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":[]}
 		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
+		RESX_Rules = {"EnabledRules":[]}
+		RESX_ShowErrorsInErrorList = False
+		RESX_NeutralResourcesLanguage = iv
 	EndGlobalSection
 EndGlobal
