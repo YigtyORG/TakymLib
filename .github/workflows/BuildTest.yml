@@ -27,8 +27,3 @@ jobs:
     # Test
     - name: Test
       run: dotnet test -c ${{ matrix.bc }} --no-build --verbosity normal
-    - name: Save Benchmarks Results
-      uses: actions/upload-artifact@v2
-      with:
-        name: benchmarks-results
-        path: "**/BenchmarkDotNet.Artifacts/results/*"
