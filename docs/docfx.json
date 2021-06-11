@@ -3,8 +3,8 @@
 		{
 			"src": [
 				{
-					"files": "bin/TakymLib*/*/*/TakymLib*.dll",
-					"src": "../"
+					"files": "**/TakymLib*.csproj",
+					"src": "../src"
 				}
 			],
 			"dest": "api"
