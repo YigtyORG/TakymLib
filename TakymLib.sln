@@ -40,12 +40,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TakymLib.ProjectSettings.targets = TakymLib.ProjectSettings.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSCode", "VSCode", "{254E02A1-571C-4435-9DA6-14CB9C45E20D}"
+	ProjectSection(SolutionItems) = preProject
+		.vscode\settings.json = .vscode\settings.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Items", "GitHub Items", "{58A0F9FF-BCEE-41EC-BFEC-7B8A51AE0694}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\FUNDING.yml = .github\FUNDING.yml
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow Actions", "Workflow Actions", "{5C606080-3918-4A07-A29C-A7DBFBD4082B}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\Benchmark.yml = .github\workflows\Benchmark.yml
 		.github\workflows\BuildTest.yml = .github\workflows\BuildTest.yml
 		.github\workflows\CodeQL.yml = .github\workflows\CodeQL.yml
 		.github\workflows\NuGet.yml = .github\workflows\NuGet.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{3C2E98B2-1213-4EB6-AAD1-0999E02FE397}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug_report_en.md = .github\ISSUE_TEMPLATE\bug_report_en.md
+		.github\ISSUE_TEMPLATE\bug_report_ja.md = .github\ISSUE_TEMPLATE\bug_report_ja.md
+		.github\ISSUE_TEMPLATE\config.yml = .github\ISSUE_TEMPLATE\config.yml
+		.github\ISSUE_TEMPLATE\custom_en.md = .github\ISSUE_TEMPLATE\custom_en.md
+		.github\ISSUE_TEMPLATE\custom_ja.md = .github\ISSUE_TEMPLATE\custom_ja.md
+		.github\PULL_REQUEST_TEMPLATE\English.md = .github\PULL_REQUEST_TEMPLATE\English.md
+		.github\ISSUE_TEMPLATE\feature_request_en.md = .github\ISSUE_TEMPLATE\feature_request_en.md
+		.github\ISSUE_TEMPLATE\feature_request_ja.md = .github\ISSUE_TEMPLATE\feature_request_ja.md
+		.github\PULL_REQUEST_TEMPLATE\Japanese.md = .github\PULL_REQUEST_TEMPLATE\Japanese.md
+		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{95730C45-4C76-49B2-ADA4-8746958DE9BD}"
@@ -73,31 +98,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Tasks", "src\TakymLib.Threading.Tasks\TakymLib.Threading.Tasks.csproj", "{C528FA17-C546-414C-8535-701A6199E462}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLib.Threading.Distributed", "src\TakymLib.Threading.Distributed\TakymLib.Threading.Distributed.csproj", "{3FE22DD3-1572-40AD-A4C7-BE3804C2BFB1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VSCode", "VSCode", "{254E02A1-571C-4435-9DA6-14CB9C45E20D}"
-	ProjectSection(SolutionItems) = preProject
-		.vscode\settings.json = .vscode\settings.json
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Items", "GitHub Items", "{58A0F9FF-BCEE-41EC-BFEC-7B8A51AE0694}"
-	ProjectSection(SolutionItems) = preProject
-		.github\dependabot.yml = .github\dependabot.yml
-		.github\FUNDING.yml = .github\FUNDING.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{3C2E98B2-1213-4EB6-AAD1-0999E02FE397}"
-	ProjectSection(SolutionItems) = preProject
-		.github\ISSUE_TEMPLATE\bug_report_en.md = .github\ISSUE_TEMPLATE\bug_report_en.md
-		.github\ISSUE_TEMPLATE\bug_report_ja.md = .github\ISSUE_TEMPLATE\bug_report_ja.md
-		.github\ISSUE_TEMPLATE\config.yml = .github\ISSUE_TEMPLATE\config.yml
-		.github\ISSUE_TEMPLATE\custom_en.md = .github\ISSUE_TEMPLATE\custom_en.md
-		.github\ISSUE_TEMPLATE\custom_ja.md = .github\ISSUE_TEMPLATE\custom_ja.md
-		.github\PULL_REQUEST_TEMPLATE\English.md = .github\PULL_REQUEST_TEMPLATE\English.md
-		.github\ISSUE_TEMPLATE\feature_request_en.md = .github\ISSUE_TEMPLATE\feature_request_en.md
-		.github\ISSUE_TEMPLATE\feature_request_ja.md = .github\ISSUE_TEMPLATE\feature_request_ja.md
-		.github\PULL_REQUEST_TEMPLATE\Japanese.md = .github\PULL_REQUEST_TEMPLATE\Japanese.md
-		.github\PULL_REQUEST_TEMPLATE.md = .github\PULL_REQUEST_TEMPLATE.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
