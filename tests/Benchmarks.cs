@@ -14,7 +14,7 @@ using BenchmarkDotNet.Jobs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib;
 
-#if RELEASE
+#if BENCHMARK
 using BenchmarkDotNet.Running;
 #endif
 
@@ -22,7 +22,7 @@ namespace TakymLibTests
 {
 	[TestClass()]
 	[MemoryDiagnoser()]
-	[DisassemblyDiagnoser()]
+	[DisassemblyDiagnoser(5, true, true, true, true, true, true)]
 	public class Benchmarks
 	{
 		private static readonly IConfig _config = DefaultConfig.Instance.AddJob(new Job()

@@ -9,6 +9,7 @@
 **-->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
+		<Configurations>Debug;Release;Benchmark</Configurations>
 		<TargetFramework>net5.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
@@ -50,5 +51,12 @@
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 		<Prefer32Bit Condition="'$(OutputType)'=='Exe' Or '$(OutputType)'=='WinExe'">false</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Benchmark'">
+		<DefineConstants>BENCHMARK;TRACE</DefineConstants>
+		<Optimize>true</Optimize>
+		<DebugType>pdbonly</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 </Project>
