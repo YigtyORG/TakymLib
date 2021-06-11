@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		THIRD_PARTY_NOTICE.md = THIRD_PARTY_NOTICE.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "docs", "docs\docs.csproj", "{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakymLibDocumentation", "docs\TakymLibDocumentation.csproj", "{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C528FA17-C546-414C-8535-701A6199E462} = {C528FA17-C546-414C-8535-701A6199E462}
 		{1051F12A-B95B-4776-B632-58B452A66C62} = {1051F12A-B95B-4776-B632-58B452A66C62}
@@ -107,8 +107,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Benchmark|Any CPU.Build.0 = Release|Any CPU
 		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3955ECFC-1D7E-46FE-AADA-B3E9B680E582}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
 		{DC5B4AB6-67DB-4CA1-A7AF-44FCDB60E90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
