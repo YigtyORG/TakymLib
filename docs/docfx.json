@@ -3,98 +3,11 @@
 		{
 			"src": [
 				{
-					"files": [
-						"bin/TakymLib/Debug/net5.0/TakymLib.dll",
-						"bin/TakymLib.*/Debug/net5.0/TakymLib.*.dll"
-					],
+					"files": "bin/TakymLib*/*/*/TakymLib*.dll",
 					"src": "../"
 				}
 			],
-			"dest": "api/d/net5.0"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Debug/netcoreapp3.1/TakymLib.dll",
-						"bin/TakymLib.*/Debug/netcoreapp3.1/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/d/netcoreapp3.1"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Debug/netstandard2.1/TakymLib.dll",
-						"bin/TakymLib.*/Debug/netstandard2.1/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/d/netstandard2.1"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Debug/net48/TakymLib.dll",
-						"bin/TakymLib.*/Debug/net48/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/d/net48"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Release/net5.0/TakymLib.dll",
-						"bin/TakymLib.*/Release/net5.0/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/r/net5.0"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Release/netcoreapp3.1/TakymLib.dll",
-						"bin/TakymLib.*/Release/netcoreapp3.1/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/r/netcoreapp3.1"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Release/netstandard2.1/TakymLib.dll",
-						"bin/TakymLib.*/Release/netstandard2.1/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/r/netstandard2.1"
-		},
-		{
-			"src": [
-				{
-					"files": [
-						"bin/TakymLib/Release/net48/TakymLib.dll",
-						"bin/TakymLib.*/Release/net48/TakymLib.*.dll"
-					],
-					"src": "../"
-				}
-			],
-			"dest": "api/r/net48"
+			"dest": "api"
 		}
 	],
 	"build": {
