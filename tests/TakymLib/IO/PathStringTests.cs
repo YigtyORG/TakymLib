@@ -22,7 +22,7 @@ namespace TakymLibTests.TakymLib.IO
 		[TestMethod()]
 		public void ToStringTest()
 		{
-			if (OperatingSystem.IsWindows()) {
+			if (DoTest()) {
 
 				string formatted1 = PathStringPool.Get(Path).ToString(PathStringFormatterTests.Format);
 				Assert.AreEqual(Resources.PathStringToStringResult, formatted1);
@@ -33,6 +33,15 @@ namespace TakymLibTests.TakymLib.IO
 			} else {
 				Debug.WriteLine($"Skipped the {nameof(this.ToStringTest)} in {typeof(PathStringTests).AssemblyQualifiedName}");
 			}
+		}
+
+		internal static bool DoTest()
+		{
+#if NET5_0
+			return OperatingSystem.IsWindows();
+#else
+			return false;
+#endif
 		}
 	}
 }

@@ -115,13 +115,19 @@ namespace TakymLibTests.TakymLib
 
 			private sealed class CustomAttributeDataMock : CustomAttributeData
 			{
-				public override Type                                AttributeType        { get; }
+#if NETCOREAPP3_1_OR_GREATER
+				public override Type AttributeType { get; }
+#endif
+
 				public override ConstructorInfo                     Constructor          { get; }
 				public override IList<CustomAttributeTypedArgument> ConstructorArguments { get; }
 
 				internal CustomAttributeDataMock(string authors)
 				{
-					this.AttributeType        = typeof(AssemblyCompanyAttribute);
+#if NETCOREAPP3_1_OR_GREATER
+					this.AttributeType = typeof(AssemblyCompanyAttribute);
+#endif
+
 					this.Constructor          = this.AttributeType.GetConstructor(new[] { typeof(string) })!;
 					this.ConstructorArguments = new[] { new CustomAttributeTypedArgument(authors) };
 				}
