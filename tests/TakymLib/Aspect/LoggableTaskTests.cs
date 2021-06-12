@@ -22,7 +22,9 @@ namespace TakymLibTests.TakymLib.Aspect
 		public void VoidTest()
 		{
 			TestCore(VoidTestCore, s => {
+#if !NET48
 				Assert.That.Contains(s, nameof(VoidTestCore));
+#endif
 				Assert.That.Contains(s, nameof(LoggableTaskTests));
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
@@ -38,7 +40,9 @@ namespace TakymLibTests.TakymLib.Aspect
 		public void IntTest()
 		{
 			TestCore(IntTestCore, s => {
+#if !NET48
 				Assert.That.Contains(s, nameof(IntTestCore));
+#endif
 				Assert.That.Contains(s, nameof(LoggableTaskTests));
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
@@ -55,7 +59,9 @@ namespace TakymLibTests.TakymLib.Aspect
 		public void StringTest()
 		{
 			TestCore(StringTestCore, s => {
+#if !NET48
 				Assert.That.Contains(s, nameof(StringTestCore));
+#endif
 				Assert.That.Contains(s, nameof(LoggableTaskTests));
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");

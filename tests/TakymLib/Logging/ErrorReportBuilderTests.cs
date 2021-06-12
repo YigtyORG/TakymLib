@@ -47,6 +47,9 @@ namespace TakymLibTests.TakymLib.Logging
 		[TestMethod()]
 		public void SaveTest2()
 		{
+#if NET48
+			Console.WriteLine(nameof(SaveTest2) + " is only supported in .NET Standard 2.1, .NET Core 3.1, .NET 5.0, or greater.");
+#else
 			var dir = PathStringPool.Get("Temp/Logs");
 			Directory.CreateDirectory(dir);
 			using var cts  = new CancellationTokenSource();
@@ -85,6 +88,7 @@ namespace TakymLibTests.TakymLib.Logging
 				new OperationCanceledException(CancellationToken.None)
 			);
 			ErrorReportBuilder.Create(ex).Save(dir, "FULL");
+#endif
 		}
 
 		private static void SaveER(PathString dir, Exception ex)

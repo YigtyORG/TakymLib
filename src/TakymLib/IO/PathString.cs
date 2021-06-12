@@ -568,7 +568,7 @@ namespace TakymLib.IO
 			for (; j < tp.Length; ++j) {
 				rp.Append(tp[j]).Append(Path.DirectorySeparatorChar);
 			}
-			rp.Remove(rp.Length - 1, 1);
+			//rp.Remove(rp.Length - 1, 1);
 			return rp.ToString();
 #else
 			return Path.GetRelativePath(relativeTo._path, _path);

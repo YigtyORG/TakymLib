@@ -124,11 +124,13 @@ namespace TakymLibTests.TakymLib
 
 				internal CustomAttributeDataMock(string authors)
 				{
+					var type = typeof(AssemblyCompanyAttribute);
+
 #if NETCOREAPP3_1_OR_GREATER
-					this.AttributeType = typeof(AssemblyCompanyAttribute);
+					this.AttributeType = type;
 #endif
 
-					this.Constructor          = this.AttributeType.GetConstructor(new[] { typeof(string) })!;
+					this.Constructor          = type.GetConstructor(new[] { typeof(string) })!;
 					this.ConstructorArguments = new[] { new CustomAttributeTypedArgument(authors) };
 				}
 			}

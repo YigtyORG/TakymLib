@@ -7,7 +7,6 @@
 ****/
 
 using System;
-using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLibTests.Properties;
@@ -23,15 +22,12 @@ namespace TakymLibTests.TakymLib.IO
 		public void ToStringTest()
 		{
 			if (DoTest()) {
-
 				string formatted1 = PathStringPool.Get(Path).ToString(PathStringFormatterTests.Format);
 				Assert.AreEqual(Resources.PathStringToStringResult, formatted1);
-
 				string formatted2 = PathStringPool.Get(Path).ToString("");
 				Assert.AreEqual(Path, formatted2);
-
 			} else {
-				Debug.WriteLine($"Skipped the {nameof(this.ToStringTest)} in {typeof(PathStringTests).AssemblyQualifiedName}");
+				Console.WriteLine(nameof(ToStringTest) + " is only supported in .NET 5.0 on Windows.");
 			}
 		}
 
