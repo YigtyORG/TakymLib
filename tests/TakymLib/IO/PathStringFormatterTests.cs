@@ -6,7 +6,6 @@
  * distributed under the MIT License.
 ****/
 
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLibTests.Properties;
@@ -21,7 +20,7 @@ namespace TakymLibTests.TakymLib.IO
 		[TestMethod()]
 		public void FormatTest()
 		{
-			if (OperatingSystem.IsWindows()) {
+			if (PathStringTests.DoTest()) {
 				var path      = PathStringPool.Get(PathStringTests.Path);
 				var formatter = new PathStringFormatter();
 
