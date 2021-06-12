@@ -472,7 +472,7 @@ namespace TakymLibTests
 				entries        = path.GetEntries();
 				entries        = path.GetEntries("*");
 				entries        = path.GetEntries("*", SearchOption.TopDirectoryOnly);
-				entries        = path.GetEntries("*", new EnumerationOptions());
+				//entries      = path.GetEntries("*", new EnumerationOptions());
 				driveInfo      = path.GetDriveInfo();
 				dinfo          = path.GetDirectoryInfo();
 				finfo          = path.GetFileInfo();
