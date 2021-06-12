@@ -18,6 +18,8 @@ namespace TakymLibTests.TakymLib.Aspect
 	[TestClass()]
 	public class LoggableTaskTests
 	{
+		// ローカル関数は .NET Framework 4.8 では、関数名情報が消えてしまう為、正しく動かない。
+
 		[TestMethod()]
 		public void VoidTest()
 		{
@@ -27,11 +29,11 @@ namespace TakymLibTests.TakymLib.Aspect
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
 			}).ConfigureAwait(false).GetAwaiter().GetResult();
+		}
 
-			static async LoggableTask VoidTestCore()
-			{
-				await Task.CompletedTask;
-			}
+		private static async LoggableTask VoidTestCore()
+		{
+			await Task.CompletedTask;
 		}
 
 		[TestMethod()]
@@ -43,12 +45,12 @@ namespace TakymLibTests.TakymLib.Aspect
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
 			}, 0, 1, 2, 3, 4, 5).ConfigureAwait(false).GetAwaiter().GetResult();
+		}
 
-			static async LoggableTask<int> IntTestCore(int n)
-			{
-				await Task.CompletedTask;
-				return n;
-			}
+		private static async LoggableTask<int> IntTestCore(int n)
+		{
+			await Task.CompletedTask;
+			return n;
 		}
 
 		[TestMethod()]
@@ -60,12 +62,12 @@ namespace TakymLibTests.TakymLib.Aspect
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
 			}, "hello", "WORLD", "hoge", "TEST", "1234").ConfigureAwait(false).GetAwaiter().GetResult();
+		}
 
-			static async LoggableTask<string> StringTestCore(string s)
-			{
-				await Task.CompletedTask;
-				return s;
-			}
+		private static async LoggableTask<string> StringTestCore(string s)
+		{
+			await Task.CompletedTask;
+			return s;
 		}
 
 		private static async Task TestCore(Func<LoggableTask> tester, Action<string> validate)
