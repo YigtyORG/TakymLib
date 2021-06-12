@@ -18,56 +18,60 @@ namespace TakymLibTests.TakymLib.Aspect
 	[TestClass()]
 	public class LoggableTaskTests
 	{
-		// ローカル関数は .NET Framework 4.8 では、関数名情報が消えてしまう為、正しく動かない。
-
 		[TestMethod()]
 		public void VoidTest()
 		{
 			TestCore(VoidTestCore, s => {
+#if !NET48
 				Assert.That.Contains(s, nameof(VoidTestCore));
+#endif
 				Assert.That.Contains(s, nameof(LoggableTaskTests));
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
 			}).ConfigureAwait(false).GetAwaiter().GetResult();
-		}
 
-		private static async LoggableTask VoidTestCore()
-		{
-			await Task.CompletedTask;
+			static async LoggableTask VoidTestCore()
+			{
+				await Task.CompletedTask;
+			}
 		}
 
 		[TestMethod()]
 		public void IntTest()
 		{
 			TestCore(IntTestCore, s => {
+#if !NET48
 				Assert.That.Contains(s, nameof(IntTestCore));
+#endif
 				Assert.That.Contains(s, nameof(LoggableTaskTests));
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
 			}, 0, 1, 2, 3, 4, 5).ConfigureAwait(false).GetAwaiter().GetResult();
-		}
 
-		private static async LoggableTask<int> IntTestCore(int n)
-		{
-			await Task.CompletedTask;
-			return n;
+			static async LoggableTask<int> IntTestCore(int n)
+			{
+				await Task.CompletedTask;
+				return n;
+			}
 		}
 
 		[TestMethod()]
 		public void StringTest()
 		{
 			TestCore(StringTestCore, s => {
+#if !NET48
 				Assert.That.Contains(s, nameof(StringTestCore));
+#endif
 				Assert.That.Contains(s, nameof(LoggableTaskTests));
 				Assert.That.Contains(s, "begin");
 				Assert.That.Contains(s, "end");
 			}, "hello", "WORLD", "hoge", "TEST", "1234").ConfigureAwait(false).GetAwaiter().GetResult();
-		}
 
-		private static async LoggableTask<string> StringTestCore(string s)
-		{
-			await Task.CompletedTask;
-			return s;
+			static async LoggableTask<string> StringTestCore(string s)
+			{
+				await Task.CompletedTask;
+				return s;
+			}
 		}
 
 		private static async Task TestCore(Func<LoggableTask> tester, Action<string> validate)

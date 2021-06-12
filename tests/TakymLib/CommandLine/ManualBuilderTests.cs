@@ -12,6 +12,10 @@ using TakymLib;
 using TakymLib.CommandLine;
 using TakymLibTests.Properties;
 
+#if NET48
+using System;
+#endif
+
 namespace TakymLibTests.TakymLib.CommandLine
 {
 	[TestClass()]
@@ -35,22 +39,34 @@ namespace TakymLibTests.TakymLib.CommandLine
 		[TestMethod()]
 		public void ParseTestIV()
 		{
+#if NET48
+			Console.WriteLine(nameof(ParseTestIV) + " is only supported in .NET Standard 2.1, .NET Core 3.1, .NET 5.0, or greater.");
+#else
 			LanguageUtils.SetCulture("iv");
 			this.ParseTest();
+#endif
 		}
 
 		[TestMethod()]
 		public void ParseTestJA()
 		{
+#if NET48
+			Console.WriteLine(nameof(ParseTestJA) + " is only supported in .NET Standard 2.1, .NET Core 3.1, .NET 5.0, or greater.");
+#else
 			LanguageUtils.SetCulture("ja");
 			this.ParseTest();
+#endif
 		}
 
 		[TestMethod()]
 		public void ParseTestEN()
 		{
+#if NET48
+			Console.WriteLine(nameof(ParseTestEN) + " is only supported in .NET Standard 2.1, .NET Core 3.1, .NET 5.0, or greater.");
+#else
 			LanguageUtils.SetCulture("en");
 			this.ParseTest();
+#endif
 		}
 
 		[Switch("A")]

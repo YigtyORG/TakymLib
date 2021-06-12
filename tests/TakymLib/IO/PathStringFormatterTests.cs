@@ -6,6 +6,7 @@
  * distributed under the MIT License.
 ****/
 
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLibTests.Properties;
@@ -26,6 +27,8 @@ namespace TakymLibTests.TakymLib.IO
 
 				string formatted = formatter.Format(Format, path, null);
 				Assert.AreEqual(Resources.PathStringToStringResult, formatted);
+			} else {
+				Console.WriteLine(nameof(FormatTest) + " is only supported in .NET 5.0 on Windows.");
 			}
 		}
 	}
