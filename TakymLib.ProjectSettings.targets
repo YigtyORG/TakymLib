@@ -16,10 +16,6 @@
 		<ReleasesUrl>https://github.com/YigtyORG/TakymLib/releases</ReleasesUrl>
 	</PropertyGroup>
 	<Import Project="CommonProjectSettings.targets" />
-	<PropertyGroup>
-		<TargetFramework><!-- TargetFramework の再設定 --></TargetFramework>
-		<TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1;net48</TargetFrameworks>
-	</PropertyGroup>
 	<PropertyGroup Label="Version">
 		<Product>TakymLib</Product>
 		<Authors>Takym</Authors>
