@@ -57,22 +57,13 @@ namespace TakymLib.Threading.Tasks.Wrappers
 			get => _task.IsCompleted;
 		}
 		
-#if NET48
-		/// <inheritdoc/>
-#else
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.IsCompletedSuccessfully"/>の値を取得します。
 		/// </summary>
-#endif
 		public bool IsCompletedSuccessfully
 		{
-#if NET48
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get => _task.IsCompleted && !_task.IsFaulted;
-#else
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _task.IsCompletedSuccessfully;
-#endif
 		}
 
 		/// <summary>

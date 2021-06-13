@@ -47,9 +47,7 @@ namespace TakymLib.Threading.Tasks.Internals
 			if (this.IsDisposed) {
 				return;
 			}
-#if !NET48
 			_queue.Clear();
-#endif
 			base.Dispose(disposing);
 		}
 	}

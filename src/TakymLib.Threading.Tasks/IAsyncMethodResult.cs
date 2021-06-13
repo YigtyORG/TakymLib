@@ -21,34 +21,17 @@ namespace TakymLib.Threading.Tasks
 		/// <summary>
 		///  操作が正常に完了した場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsCompletedSuccessfully
-#if NETCOREAPP3_1_OR_GREATER
-			=> this.IsCompleted && this.Exception is null;
-#else
-			{ get; }
-#endif
+		public bool IsCompletedSuccessfully => this.IsCompleted && this.Exception is null;
 
 		/// <summary>
 		///  操作の実行に失敗した場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsFailed
-#if NETCOREAPP3_1_OR_GREATER
-			=> this.IsCompleted && this.Exception is not null;
-#else
-			{ get; }
-#endif
-
+		public bool IsFailed => this.IsCompleted && this.Exception is not null;
 
 		/// <summary>
 		///  操作が中止された場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
 		/// </summary>
-		public bool IsCancelled
-#if NETCOREAPP3_1_OR_GREATER
-			=> this.IsCompleted && this.Exception is OperationCanceledException;
-#else
-			{ get; }
-#endif
-
+		public bool IsCancelled => this.IsCompleted && this.Exception is OperationCanceledException;
 
 		/// <summary>
 		///  失敗の原因となった例外を取得します。
@@ -84,11 +67,9 @@ namespace TakymLib.Threading.Tasks
 		/// <returns>構成された待機可能なオブジェクトです。</returns>
 		public new IAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext);
 
-#if NETCOREAPP3_1_OR_GREATER
 		IAwaitable IAsyncMethodResult.ConfigureAwait(bool continueOnCapturedContext)
 		{
 			return this.ConfigureAwait(continueOnCapturedContext);
 		}
-#endif
 	}
 }

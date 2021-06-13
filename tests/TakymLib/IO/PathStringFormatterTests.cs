@@ -21,14 +21,14 @@ namespace TakymLibTests.TakymLib.IO
 		[TestMethod()]
 		public void FormatTest()
 		{
-			if (PathStringTests.DoTest()) {
+			if (OperatingSystem.IsWindows()) {
 				var path      = PathStringPool.Get(PathStringTests.Path);
 				var formatter = new PathStringFormatter();
 
 				string formatted = formatter.Format(Format, path, null);
 				Assert.AreEqual(Resources.PathStringToStringResult, formatted);
 			} else {
-				Console.WriteLine(nameof(FormatTest) + " is only supported in .NET 5.0 on Windows.");
+				Console.WriteLine(nameof(FormatTest) + " is only supported on Windows.");
 			}
 		}
 	}

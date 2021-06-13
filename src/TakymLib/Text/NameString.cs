@@ -53,25 +53,7 @@ namespace TakymLib.Text
 		/// <returns>指定された範囲の部分文字列です。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
-		public NameString this[Range range]
-#if NET48
-		{
-			get
-			{
-				if (_buf is null) {
-					return new(Array.Empty<byte>());
-				}
-				(int offset, int length) = range.GetOffsetAndLength(_buf.Length);
-				byte[] result = new byte[length];
-				for (int i = offset; i < _buf.Length; ++i) {
-					result[i - offset] = _buf[i];
-				}
-				return new(result);
-			}
-		}
-#else
-			=> new((_buf ?? Array.Empty<byte>())[range]);
-#endif
+		public NameString this[Range range] => new((_buf ?? Array.Empty<byte>())[range]);
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。

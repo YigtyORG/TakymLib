@@ -32,11 +32,9 @@ namespace TakymLib.Threading.Tasks
 		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトです。</returns>
 		public new IAwaiter<TResult> GetAwaiter();
 
-#if NETCOREAPP3_1_OR_GREATER
 		IAwaiter IAwaitable.GetAwaiter()
 		{
 			return this.GetAwaiter();
 		}
-#endif
 	}
 }

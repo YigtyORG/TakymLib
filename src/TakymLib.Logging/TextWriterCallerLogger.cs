@@ -137,11 +137,7 @@ namespace TakymLib.Logging
 			if (this.IsDisposed) {
 				return;
 			}
-#if NET48
-			_tw.Dispose();
-#else
 			await _tw.ConfigureAwait(false).DisposeAsync();
-#endif
 			await base.DisposeAsyncCore();
 		}
 	}

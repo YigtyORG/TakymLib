@@ -7,7 +7,7 @@
 **-->
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1;net48</TargetFrameworks>
+		<TargetFramework>net5.0</TargetFramework>
 		<IsWindows>$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))</IsWindows>
 	</PropertyGroup>
 	<ItemGroup>

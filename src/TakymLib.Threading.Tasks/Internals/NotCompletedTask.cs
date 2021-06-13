@@ -60,22 +60,5 @@ namespace TakymLib.Threading.Tasks.Internals
 				this.Dispose();
 			}
 		}
-
-#if !NETCOREAPP3_1_OR_GREATER
-		IAwaiter IAwaitable.GetAwaiter()
-		{
-			return this.GetAwaiter();
-		}
-
-		void IAwaiter.GetResult()
-		{
-			this.GetResult();
-		}
-
-		IAwaitable IAsyncMethodResult.ConfigureAwait(bool continueOnCapturedContext)
-		{
-			return this.ConfigureAwait(continueOnCapturedContext);
-		}
-#endif
 	}
 }

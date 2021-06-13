@@ -80,9 +80,7 @@ namespace TakymLib
 			}
 		}
 
-#if NET5_0_OR_GREATER
 #pragma warning disable CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
-#endif
 		/// <summary>
 		///  現在のオブジェクトを非同期的に破棄します。
 		/// </summary>
@@ -99,9 +97,7 @@ namespace TakymLib
 				}
 			}
 		}
-#if NET5_0_OR_GREATER
 #pragma warning restore CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
-#endif
 
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。
@@ -210,13 +206,7 @@ namespace TakymLib
 		/// <exception cref="System.ObjectDisposedException" />
 		protected void EnterRunLock()
 		{
-#if NET5_0_OR_GREATER
 			Interlocked.Increment(ref _run_locks);
-#else
-			lock (this) {
-				++_run_locks;
-			}
-#endif
 
 			try {
 				this.EnsureNotDisposed();
@@ -232,7 +222,6 @@ namespace TakymLib
 		/// <exception cref="System.InvalidOperationException"/>
 		protected void LeaveRunLock()
 		{
-#if NET5_0_OR_GREATER
 			uint locks;
 			while (true) {
 				locks = _run_locks;
@@ -244,14 +233,6 @@ namespace TakymLib
 				}
 				Thread.Yield();
 			}
-#else
-			lock (this) {
-				if (_run_locks == 0) {
-					throw new InvalidOperationException(Resources.DisposableBase_LeaveRunLock_InvalidOperationException);
-				}
-				--_run_locks;
-			}
-#endif
 		}
 
 		/// <summary>
@@ -261,12 +242,8 @@ namespace TakymLib
 		///  この処理の非同期操作です。
 		/// </returns>
 		/// <exception cref="System.InvalidOperationException"/>
-#if NET5_0_OR_GREATER
-		async
-#endif
-		protected ValueTask LeaveRunLockAsync()
+		protected async ValueTask LeaveRunLockAsync()
 		{
-#if NET5_0_OR_GREATER
 			uint locks;
 			while (true) {
 				locks = _run_locks;
@@ -278,10 +255,6 @@ namespace TakymLib
 				}
 				await Task.Yield();
 			}
-#else
-			this.LeaveRunLock();
-			return default;
-#endif
 		}
 
 		/// <summary>

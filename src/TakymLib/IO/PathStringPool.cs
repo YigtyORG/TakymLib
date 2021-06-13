@@ -128,34 +128,24 @@ namespace TakymLib.IO
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
 		/// <exception cref="System.OverflowException"/>
-#if NET5_0_OR_GREATER
 #pragma warning disable TakymLib_PathString_ctor // 型またはメンバーが旧型式です
-#else
-#pragma warning disable CS0618 // 型またはメンバーが旧型式です
-#endif
 		public static PathString Get(string path)
 		{
 			path.EnsureNotNull(nameof(path));
 			return _cache.GetOrAdd(path, path => new(path));
 		}
-#if NET5_0_OR_GREATER
 #pragma warning restore TakymLib_PathString_ctor // 型またはメンバーが旧型式です
-#else
-#pragma warning restore CS0618 // 型またはメンバーが旧型式です
-#endif
 
 		/// <summary>
 		///  キャッシュされた全てのパス文字列を削除します。
 		/// </summary>
 		public static void Clear()
 		{
-			lock (_cache) {
-				_cache.Clear();
-			}
+			_cache.Clear();
 
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
-			GC.Collect();
+			// GC.Collect();
+			// GC.WaitForPendingFinalizers();
+			// GC.Collect();
 		}
 	}
 }

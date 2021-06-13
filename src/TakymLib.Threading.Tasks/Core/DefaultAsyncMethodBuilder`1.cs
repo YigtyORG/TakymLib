@@ -57,14 +57,6 @@ namespace TakymLib.Threading.Tasks.Core
 			}
 		}
 
-#if !NETCOREAPP3_1_OR_GREATER
-		/// <inheritdoc/>
-		public void SetResult()
-		{
-			this.SetResult(default);
-		}
-#endif
-
 		/// <inheritdoc/>
 		public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
 			where TAwaiter : INotifyCompletion

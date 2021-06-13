@@ -105,9 +105,7 @@ namespace TakymLib.Threading.Tasks.Core
 			if (this.IsDisposed) {
 				return;
 			}
-#if !NET48
 			_queue.Clear();
-#endif
 			base.Dispose(disposing);
 		}
 	}

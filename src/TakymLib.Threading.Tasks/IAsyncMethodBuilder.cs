@@ -89,11 +89,9 @@ namespace TakymLib.Threading.Tasks
 		/// <param name="result">呼び出し元に返す値です。</param>
 		public void SetResult(TResult? result);
 
-#if NETCOREAPP3_1_OR_GREATER
 		void IAsyncMethodBuilder<TTask>.SetResult()
 		{
 			this.SetResult(default);
 		}
-#endif
 	}
 }
