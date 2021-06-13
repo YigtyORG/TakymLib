@@ -115,9 +115,7 @@ namespace TakymLib.Threading.Distributed
 			if (this.IsDisposed) {
 				return;
 			}
-#if !NET48
 			_objs.Clear();
-#endif
 			this.Dispose(disposing);
 		}
 	}

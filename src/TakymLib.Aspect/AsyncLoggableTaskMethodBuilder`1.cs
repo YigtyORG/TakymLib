@@ -59,15 +59,6 @@ namespace TakymLib.Aspect
 			_core.Stop();
 		}
 
-#if !NETCOREAPP3_1_OR_GREATER
-		/// <inheritdoc/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public void SetResult()
-		{
-			this.SetResult(default);
-		}
-#endif
-
 		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)

@@ -47,13 +47,6 @@ namespace TakymLib.Threading.Tasks.Wrappers
 			return this.GetAwaiter();
 		}
 
-#if !NETCOREAPP3_1_OR_GREATER
-		IAwaiter IAwaitable.GetAwaiter()
-		{
-			return this.GetAwaiter();
-		}
-#endif
-
 		/// <summary>
 		///  <see cref="System.Runtime.CompilerServices.ConfiguredValueTaskAwaitable{TResult}.ConfiguredValueTaskAwaiter"/>を
 		///  <see cref="TakymLib.Threading.Tasks.IAwaiter"/>として扱える様にします。
@@ -111,13 +104,6 @@ namespace TakymLib.Threading.Tasks.Wrappers
 			{
 				_awaiter.UnsafeOnCompleted(continuation);
 			}
-
-#if !NETCOREAPP3_1_OR_GREATER
-			void IAwaiter.GetResult()
-			{
-				this.GetResult();
-			}
-#endif
 		}
 	}
 }

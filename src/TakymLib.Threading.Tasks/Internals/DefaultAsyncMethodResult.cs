@@ -101,26 +101,5 @@ namespace TakymLib.Threading.Tasks.Internals
 		}
 
 		private sealed class DefaultWaitHandle : WaitHandle { }
-
-#if !NETCOREAPP3_1_OR_GREATER
-		public bool IsCompletedSuccessfully => this.IsCompleted && this.Exception is null;
-		public bool IsFailed                => this.IsCompleted && this.Exception is not null;
-		public bool IsCancelled             => this.IsCompleted && this.Exception is OperationCanceledException;
-
-		IAwaiter IAwaitable.GetAwaiter()
-		{
-			return this.GetAwaiter();
-		}
-
-		void IAwaiter.GetResult()
-		{
-			this.GetResult();
-		}
-
-		IAwaitable IAsyncMethodResult.ConfigureAwait(bool continueOnCapturedContext)
-		{
-			return this.ConfigureAwait(continueOnCapturedContext);
-		}
-#endif
 	}
 }

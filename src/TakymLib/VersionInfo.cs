@@ -9,13 +9,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using TakymLib.Properties;
-
-#if !NET5_0_OR_GREATER
-using System.Collections.Generic;
-using System.Diagnostics;
-#endif
 
 namespace TakymLib
 {
@@ -28,10 +22,6 @@ namespace TakymLib
 		private const string UNKNOWN_CODENAME = "unknown";
 
 		private static readonly char[] _separator = new[] { ',', ';', '\u3001', '\uFF0C', '\uFF1B', '\uFF64' };
-
-#if !NET5_0_OR_GREATER
-		private static readonly int _pid = Process.GetCurrentProcess().Id;
-#endif
 
 		/// <summary>
 		///  このライブラリ(<see cref="TakymLib"/>)のバージョン情報を取得します。
@@ -52,20 +42,6 @@ namespace TakymLib
 			for (int i = 0; i < asms.Length; ++i) {
 				new VersionInfo(asms[i]).Print();
 			}
-		}
-
-		/// <summary>
-		///  現在のプロセスの識別子を取得します。
-		/// </summary>
-		/// <returns>プロセスの識別子を表す整数値です。</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int GetCurrentProcessId()
-		{
-#if NET5_0_OR_GREATER
-			return Environment.ProcessId;
-#else
-			return _pid;
-#endif
 		}
 
 		/// <summary>
@@ -261,19 +237,7 @@ namespace TakymLib
 		/// <returns>作成者の一覧を含む文字列配列です。</returns>
 		public string[] GetAuthorArray()
 		{
-#if NET5_0_OR_GREATER
 			return this.Authors.Split(_separator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-#else
-			string[] authors = this.Authors.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
-			var      result  = new List<string>(authors.Length);
-			for (int i = 0; i < authors.Length; ++i) {
-				string s = authors[i].Trim();
-				if (!string.IsNullOrEmpty(s)) {
-					result.Add(s);
-				}
-			}
-			return result.ToArray();
-#endif
 		}
 
 		/// <summary>

@@ -38,11 +38,9 @@ namespace TakymLib.Threading.Tasks
 		/// <returns>操作の結果を表すオブジェクトです。</returns>
 		public new TResult? GetResult();
 
-#if NETCOREAPP3_1_OR_GREATER
 		void IAwaiter.GetResult()
 		{
 			this.GetResult();
 		}
-#endif
 	}
 }

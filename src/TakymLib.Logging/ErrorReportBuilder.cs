@@ -201,13 +201,7 @@ namespace TakymLib.Logging
 		/// <param name="stream">エラーレポートの保存先のストリームです。</param>
 		public void Save(Stream stream)
 		{
-			// TODO: Default Buffer Size
-#if NETCOREAPP3_1_OR_GREATER
-			const int BUFFER_SIZE = -1;
-#else
-			const int BUFFER_SIZE = 1024;
-#endif
-			using (var sw = new StreamWriter(stream, Encoding.UTF8, BUFFER_SIZE, true)) {
+			using (var sw = new StreamWriter(stream, Encoding.UTF8, -1, true)) {
 				this.Save(sw);
 			}
 		}
@@ -231,7 +225,7 @@ namespace TakymLib.Logging
 		protected virtual string Build()
 		{
 			var sb = new StringBuilder();
-			this.BuildHeader(sb, this.DateTime, VersionInfo.GetCurrentProcessId());
+			this.BuildHeader(sb, this.DateTime, Environment.ProcessId);
 			this.BuildBody(sb, this.Exception);
 			sb.AppendLine();
 			return sb.ToString();

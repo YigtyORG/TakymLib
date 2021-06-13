@@ -14,10 +14,6 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TakymLib.Properties;
 
-#if NET48
-using System.Text;
-#endif
-
 namespace TakymLib.IO
 {
 	/// <summary>
@@ -96,11 +92,7 @@ namespace TakymLib.IO
 		/// <remarks>
 		///  <see cref="TakymLib.IO.PathStringPool.Get()"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
-		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。"
-#if NET5_0_OR_GREATER
-			, DiagnosticId = "TakymLib_PathString_ctor"
-#endif
-		)]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString() : this(Environment.CurrentDirectory) { }
 
 		/// <summary>
@@ -125,11 +117,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。"
-#if NET5_0_OR_GREATER
-			, DiagnosticId = "TakymLib_PathString_ctor"
-#endif
-		)]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2) : this(Path.Combine(path1, path2)) { }
 
 		/// <summary>
@@ -158,11 +146,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。"
-#if NET5_0_OR_GREATER
-			, DiagnosticId = "TakymLib_PathString_ctor"
-#endif
-		)]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2, string path3) : this(Path.Combine(path1, path2, path3)) { }
 
 		/// <summary>
@@ -195,11 +179,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。"
-#if NET5_0_OR_GREATER
-			, DiagnosticId = "TakymLib_PathString_ctor"
-#endif
-		)]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path1, string path2, string path3, string path4) : this(Path.Combine(path1, path2, path3, path4)) { }
 
 		/// <summary>
@@ -220,11 +200,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。"
-#if NET5_0_OR_GREATER
-			, DiagnosticId = "TakymLib_PathString_ctor"
-#endif
-		)]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(params string[] paths) : this(Path.Combine(paths)) { }
 
 		/// <summary>
@@ -244,11 +220,7 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。"
-#if NET5_0_OR_GREATER
-			, DiagnosticId = "TakymLib_PathString_ctor"
-#endif
-		)]
+		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path)
 		{
 			path.EnsureNotNull(nameof(path));
@@ -270,18 +242,10 @@ namespace TakymLib.IO
 			}
 		}
 
-#if NET5_0_OR_GREATER
 #pragma warning disable TakymLib_PathString_ctor // 型またはメンバーが旧型式です
-#else
-#pragma warning disable CS0618 // 型またはメンバーが旧型式です
-#endif
 		private PathString(SerializationInfo info, StreamingContext context)
 			: this(info.GetString("_")!) { }
-#if NET5_0_OR_GREATER
 #pragma warning restore TakymLib_PathString_ctor // 型またはメンバーが旧型式です
-#else
-#pragma warning restore CS0618 // 型またはメンバーが旧型式です
-#endif
 
 		/// <summary>
 		///  現在のパス文字列を直列化します。
@@ -532,9 +496,6 @@ namespace TakymLib.IO
 		/// <summary>
 		///  現在の作業ディレクトリを基にした相対パスを取得します。
 		/// </summary>
-		/// <remarks>
-		///  <see langword=".NET Framework 4.8"/>上で実行した場合は正常に動作しない可能性があります。
-		/// </remarks>
 		/// <returns>現在のパスへの相対パスを表す文字列です。</returns>
 		public string? GetRelativePath()
 		{
@@ -544,9 +505,6 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定したパスを基にした相対パスを取得します。
 		/// </summary>
-		/// <remarks>
-		///  <see langword=".NET Framework 4.8"/>上で実行した場合は正常に動作しない可能性があります。
-		/// </remarks>
 		/// <param name="relativeTo">相対パスの基底となる絶対パスです。</param>
 		/// <returns>現在のパスへの相対パスを表す文字列です。</returns>
 		/// <exception cref="System.ArgumentNullException">
@@ -555,24 +513,7 @@ namespace TakymLib.IO
 		public string? GetRelativePath(PathString relativeTo)
 		{
 			relativeTo.EnsureNotNull(nameof(relativeTo));
-#if NET48
-			string[] tp =            _path.Split(Path.DirectorySeparatorChar);
-			string[] bp = relativeTo._path.Split(Path.DirectorySeparatorChar);
-			var rp = new StringBuilder();
-			int i = 0;
-			while (i < tp.Length && i < bp.Length && tp[i] == bp[i]) ++i;
-			int j = i;
-			for (; i < bp.Length; ++i) {
-				rp.Append("..").Append(Path.DirectorySeparatorChar);
-			}
-			for (; j < tp.Length; ++j) {
-				rp.Append(tp[j]).Append(Path.DirectorySeparatorChar);
-			}
-			//rp.Remove(rp.Length - 1, 1);
-			return rp.ToString();
-#else
 			return Path.GetRelativePath(relativeTo._path, _path);
-#endif
 		}
 
 		/// <summary>
@@ -636,7 +577,6 @@ namespace TakymLib.IO
 			}
 		}
 
-#if !NET48
 		/// <summary>
 		///  現在のディレクトリからディレクトリパスとファイルパスの列挙体を取得します。
 		/// </summary>
@@ -661,7 +601,6 @@ namespace TakymLib.IO
 				return null;
 			}
 		}
-#endif
 
 		/// <summary>
 		///  現在のパスのドライブ情報を取得します。

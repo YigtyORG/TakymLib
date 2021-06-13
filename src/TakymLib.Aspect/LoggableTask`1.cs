@@ -8,9 +8,7 @@
 
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
-using TakymLib.Logging;
 using TakymLib.Threading.Tasks;
 
 namespace TakymLib.Aspect
@@ -62,12 +60,5 @@ namespace TakymLib.Aspect
 		{
 			return _task.WrapAwaitable().ConfigureAwait(false).GetAwaiter();
 		}
-
-#if !NETCOREAPP3_1_OR_GREATER
-		IAwaiter IAwaitable.GetAwaiter()
-		{
-			return ((IAwaitable<TResult>)(this)).GetAwaiter();
-		}
-#endif
 	}
 }
