@@ -24,7 +24,7 @@ Copyright (C) 2020-2021 Takym.
 
 ## Summary
 The common libraries used by Yigty.ORG.
-Compatible with **.NET 5.0**, **.NET Core 3.1**, **.NET Standard 2.1**, **.NET Framework 4.8**.
+Compatible with **.NET 5.0**.
 * **[TakymLib](./src/TakymLib)** - the common library.
 * **[TakymLib.Aspect](./src/TakymLib.Aspect)** - the common aspect-oriented programming library.
 * **[TakymLib.CommandLine](./src/TakymLib.CommandLine)** - the common command-line arguments parser library.
@@ -81,7 +81,7 @@ This libraries are distributed under the [MIT License](LICENSE.md).
 
 ## 概要
 Yigty.ORG で利用される共通ライブラリ群です。
-**.NET 5.0**、**.NET Core 3.1**、**.NET Standard 2.1**、**.NET Framework 4.8** に対応しています。
+**.NET 5.0** に対応しています。
 * **[TakymLib](./src/TakymLib)** - 共通ライブラリです。
 * **[TakymLib.Aspect](./src/TakymLib.Aspect)** - 共通アスペクト指向(分断指向)プログラミングライブラリです。
 * **[TakymLib.CommandLine](./src/TakymLib.CommandLine)** - 共通コマンド行引数解析ライブラリです。
