@@ -20,6 +20,7 @@ jobs:
   analyze:
     name: Analyze
     runs-on: windows-latest
+    continue-on-error: true
 
     strategy:
       fail-fast: false
@@ -49,8 +50,8 @@ jobs:
     # Analyze
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-      with:
-        ram: 8192
+      #with:
+      #  ram: 8192
 
     - name: Save Log Files
       uses: actions/upload-artifact@v2
