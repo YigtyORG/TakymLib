@@ -14,7 +14,7 @@
 	<Import Project="../../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
 		<Product>TakymLib</Product>
-		<Description>The common graphical user interface library.</Description>
+		<Description>The common graphical user interface library. (Guifw)</Description>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
