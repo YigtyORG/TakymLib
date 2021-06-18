@@ -24,10 +24,11 @@ namespace TakymLib.Security
 		/// <summary>
 		///  メモリ検証スレッドを新たに開始します。
 		/// </summary>
+		/// <param name="interval">メモリ検証を行う間隔をミリ秒単位で指定します。既定値は1000ミリ秒です。</param>
 		/// <returns>メモリ検証スレッドを監視するオブジェクトです。</returns>
-		public static MemoryValidation Start()
+		public static MemoryValidation Start(int interval = 1000)
 		{
-			var mv = new MemoryValidation(1000);
+			var mv = new MemoryValidation(interval);
 			mv.StartCore();
 			return mv;
 		}

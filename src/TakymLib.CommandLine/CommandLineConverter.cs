@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -56,12 +57,44 @@ namespace TakymLib.CommandLine
 		/// <summary>
 		///  型'<see cref="TakymLib.CommandLine.CommandLineConverter"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="args">コマンド行引数です。</param>
+		/// <param name="args">コマンド行引数を指定します。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		public CommandLineConverter(string[] args) : base(args)
 		{
-			_types = new Dictionary<string, TypeEntry>();
-			_insts = new Dictionary<Type,   object>   ();
+			_types = new();
+			_insts = new();
+		}
+
+		/// <summary>
+		///  型'<see cref="TakymLib.CommandLine.CommandLineConverter"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="text">コマンド行を表す文字列を指定します。</param>
+		/// <param name="lexer">
+		///  コマンド行を引数へ分解する字句解析機能を持つオブジェクトを指定します。
+		///  この引数は省略できます。
+		/// </param>
+		/// <exception cref="System.ArgumentNullException"/>
+		protected CommandLineConverter(string text, CommandLineLexer? lexer = null)
+			: base(lexer, text)
+		{
+			_types = new();
+			_insts = new();
+		}
+
+		/// <summary>
+		///  型'<see cref="TakymLib.CommandLine.CommandLineConverter"/>'の新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="openReader">コマンド行を格納した<see cref="System.IO.TextReader"/>を生成する関数を指定します。</param>
+		/// <param name="lexer">
+		///  コマンド行を引数へ分解する字句解析機能を持つオブジェクトを指定します。
+		///  この引数は省略できます。
+		/// </param>
+		/// <exception cref="System.ArgumentNullException"/>
+		protected CommandLineConverter(Func<TextReader> openReader, CommandLineLexer? lexer = null)
+			: base(lexer, openReader)
+		{
+			_types = new();
+			_insts = new();
 		}
 
 		/// <summary>
