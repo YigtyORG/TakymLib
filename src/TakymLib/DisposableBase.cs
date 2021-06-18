@@ -341,6 +341,26 @@ namespace TakymLib
 		///  指定された処理を安全かつ非同期的に実行します。
 		/// </summary>
 		/// <typeparam name="TState">引数の型を指定します。</typeparam>
+		/// <param name="action">実行する処理を指定します。</param>
+		/// <param name="state">処理に渡す引数を指定します。</param>
+		/// <returns>この処理の非同期操作を返します。</returns>
+		/// <exception cref="System.ObjectDisposedException"/>
+		/// <exception cref="System.InvalidOperationException"/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		protected async ValueTask RunSafelyAsync<TState>(Func<TState, ValueTask> action, TState state)
+		{
+			this.EnterRunLock();
+			try {
+				await action(state);
+			} finally {
+				await this.LeaveRunLockAsync();
+			}
+		}
+
+		/// <summary>
+		///  指定された処理を安全かつ非同期的に実行します。
+		/// </summary>
+		/// <typeparam name="TState">引数の型を指定します。</typeparam>
 		/// <typeparam name="TResult">戻り値の型を指定します。</typeparam>
 		/// <param name="action">実行する処理を指定します。</param>
 		/// <param name="state">処理に渡す引数を指定します。</param>

@@ -17,6 +17,6 @@
 		<Description>The common graphical user interface library. (Guifw)</Description>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
+		<ProjectReference Include="../TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj" />
 	</ItemGroup>
 </Project>
