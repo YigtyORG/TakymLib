@@ -22,6 +22,7 @@
 		<ProjectReference Include="../TakymLib.CommandLine/TakymLib.CommandLine.csproj" />
 		<ProjectReference Include="../TakymLib.Core/TakymLib.Core.csproj" />
 		<ProjectReference Include="../TakymLib.Core.Framework/TakymLib.Core.Framework.csproj" />
+		<ProjectReference Include="../TakymLib.GUI/TakymLib.GUI.csproj" />
 		<ProjectReference Include="../TakymLib.Logging/TakymLib.Logging.csproj" />
 		<ProjectReference Include="../TakymLib.Security/TakymLib.Security.csproj" />
 		<ProjectReference Include="../TakymLib.Text/TakymLib.Text.csproj" />

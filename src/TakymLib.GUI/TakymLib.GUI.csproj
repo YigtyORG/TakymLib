@@ -1,0 +1,22 @@
+<!--*
+ * TakymLib
+ * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2021 Takym.
+ *
+ * distributed under the MIT License.
+**-->
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyName>TakymLib.GUI</AssemblyName>
+		<RootNamespace>TakymLib.GUI</RootNamespace>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+	<Import Project="../../TakymLib.ProjectSettings.targets" />
+	<PropertyGroup>
+		<Product>TakymLib</Product>
+		<Description>The common graphical user interface library.</Description>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
+	</ItemGroup>
+</Project>
