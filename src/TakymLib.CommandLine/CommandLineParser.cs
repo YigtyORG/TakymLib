@@ -21,7 +21,8 @@ namespace TakymLib.CommandLine
 	/// </summary>
 	public abstract class CommandLineParser
 	{
-		private readonly string[] _args;
+		private static readonly char[]   _separator = new[] { ':', '=' };
+		private        readonly string[] _args;
 
 		/// <summary>
 		///  型'<see cref="TakymLib.CommandLine.CommandLineParser"/>'の新しいインスタンスを生成します。
@@ -80,6 +81,25 @@ namespace TakymLib.CommandLine
 							break;
 						case '-':
 							result.AddOption(argData);
+							break;
+						case '+':
+							int i = argData.IndexOfAny(_separator);
+							if (i >= 0) {
+								int j = argData.IndexOfAny(_separator, i + 1);
+								if (j >= 0) {
+									result.AddSwitch(argData.Substring(0, i));
+									++i;
+									result.AddOption(argData.Substring(i, j - i));
+									++j;
+									result.AddOption(argData.Substring(j, argData.Length - j));
+								} else {
+									result.AddSwitch(argData.Substring(0, i));
+									++i;
+									result.AddOption(argData.Substring(i, argData.Length - i));
+								}
+							} else {
+								result.AddSwitch(argData);
+							}
 							break;
 						case '@':
 							if (File.Exists(argData)) {
