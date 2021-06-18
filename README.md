@@ -28,8 +28,6 @@ Compatible with **.NET 5.0**.
 * **[TakymLib](./src/TakymLib)** - the common library.
 * **[TakymLib.Aspect](./src/TakymLib.Aspect)** - the common aspect-oriented programming library.
 * **[TakymLib.CommandLine](./src/TakymLib.CommandLine)** - the common command-line arguments parser library.
-* **[TakymLib.Core](./src/TakymLib.Core)** - the common core library.
-* **[TakymLib.Core.Framework](./src/TakymLib.Core.Framework)** - the common core framework library.
 * **[TakymLib.Logging](./src/TakymLib.Logging)** - the common logging library.
 * **[TakymLib.Security](./src/TakymLib.Security)** - the common security library.
 * **[TakymLib.Text](./src/TakymLib.Text)** - the common text library.
@@ -85,8 +83,6 @@ Yigty.ORG で利用される共通ライブラリ群です。
 * **[TakymLib](./src/TakymLib)** - 共通ライブラリです。
 * **[TakymLib.Aspect](./src/TakymLib.Aspect)** - 共通アスペクト指向(分断指向)プログラミングライブラリです。
 * **[TakymLib.CommandLine](./src/TakymLib.CommandLine)** - 共通コマンド行引数解析ライブラリです。
-* **[TakymLib.Core](./src/TakymLib.Core)** - 共通中枢ライブラリです。
-* **[TakymLib.Core.Framework](./src/TakymLib.Core.Framework)** - 共通中枢枠組みライブラリです。
 * **[TakymLib.Logging](./src/TakymLib.Logging)** - 共通ログ出力ライブラリです。
 * **[TakymLib.Security](./src/TakymLib.Security)** - 共通安全保障ライブラリです。
 * **[TakymLib.Text](./src/TakymLib.Text)** - 共通文字列ライブラリです。
