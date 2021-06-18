@@ -15,7 +15,7 @@
 	<PropertyGroup>
 		<Product>TakymLib.Threading.Tasks</Product>
 		<Description>The common asynchronous programming library.</Description>
-		<PackageTags>$(PackageTags), Asynchronous</PackageTags>
+		<PackageTags>$(PackageTags), Threading, Tasks, Asynchronous</PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />

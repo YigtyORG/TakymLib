@@ -15,6 +15,7 @@
 	<PropertyGroup>
 		<Product>TakymLib</Product>
 		<Description>The common aspect-oriented programming library.</Description>
+		<PackageTags>$(PackageTags), Aspect</PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib.Logging/TakymLib.Logging.csproj" />

@@ -15,6 +15,7 @@
 	<PropertyGroup>
 		<Product>TakymLib.Threading.Distributed</Product>
 		<Description>The common distributed computing library.</Description>
+		<PackageTags>$(PackageTags), Threading, Distributed</PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
