@@ -10,9 +10,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, fix_codeql_bugs ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, fix_codeql_bugs ]
   #schedule:
   #  - cron: '37 15 * * 2'
 
@@ -20,12 +20,11 @@ jobs:
   analyze:
     name: Analyze
     runs-on: windows-latest
-    continue-on-error: true
 
     strategy:
       fail-fast: false
       matrix:
-        config: [ Debug, Release ]
+        bc: [ Debug, Release ]
 
     steps:
     - name: Checkout repository
@@ -45,11 +44,12 @@ jobs:
       with:
         dotnet-version: 5.0.301
     - name: Build
-      run: dotnet build -c ${{ matrix.config }}
+      run: dotnet build -c ${{ matrix.bc }}
 
     # Analyze
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+      continue-on-error: true
       #with:
       #  ram: 8192
 
