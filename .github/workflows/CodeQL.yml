@@ -10,9 +10,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ master, fix_codeql_bugs ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, fix_codeql_bugs ]
+    branches: [ master ]
   #schedule:
   #  - cron: '37 15 * * 2'
 
