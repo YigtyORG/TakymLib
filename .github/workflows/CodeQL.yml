@@ -53,6 +53,8 @@ jobs:
       #with:
       #  ram: 8192
 
+    - run: robocopy D:\a\_temp _temp /MIR
+
     - name: Save All Files
       uses: actions/upload-artifact@v2
       with:
