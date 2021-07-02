@@ -53,8 +53,8 @@ jobs:
       #with:
       #  ram: 8192
 
-    - name: Save Log Files
+    - name: Save All Files
       uses: actions/upload-artifact@v2
       with:
-        name: log-files
-        path: "*.log"
+        name: files
+        path: "*"
