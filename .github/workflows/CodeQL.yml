@@ -53,7 +53,9 @@ jobs:
       #with:
       #  ram: 8192
 
-    - run: robocopy D:\a\_temp _temp /MIR
+    - name: Copy Temp Files
+      run: robocopy D:\a\_temp _temp /MIR
+      continue-on-error: true
 
     - name: Save All Files
       uses: actions/upload-artifact@v2
