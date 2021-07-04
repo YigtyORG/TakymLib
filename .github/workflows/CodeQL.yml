@@ -25,17 +25,6 @@ jobs:
       fail-fast: false
       matrix:
         bc: [ Debug, Release ]
-        projects:
-          - "src/TakymLib/TakymLib.csproj"
-          - "src/TakymLib.Aspect/TakymLib.Aspect.csproj"
-          - "src/TakymLib.CommandLine/TakymLib.CommandLine.csproj"
-          - "src/TakymLib.Logging/TakymLib.Logging.csproj"
-          - "src/TakymLib.Security/TakymLib.Security.csproj"
-          - "src/TakymLib.Text/TakymLib.Text.csproj"
-          - "src/TakymLib.Threading.Distributed/TakymLib.Threading.Distributed.csproj"
-          - "src/TakymLib.Threading.Tasks/TakymLib.Threading.Tasks.csproj"
-          - "src/TakymLib.ConsoleApp/TakymLib.ConsoleApp.csproj"
-          - "tests/TakymLibTests.csproj"
 
     steps:
     - name: Checkout repository
@@ -55,7 +44,7 @@ jobs:
       with:
         dotnet-version: 5.0.301
     - name: Build
-      run: dotnet build -c ${{ matrix.bc }} ${{ matrix.projects }}
+      run: dotnet build -c ${{ matrix.bc }}
 
     # Analyze
     - name: Perform CodeQL Analysis
