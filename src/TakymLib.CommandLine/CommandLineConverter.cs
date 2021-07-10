@@ -252,8 +252,8 @@ namespace TakymLib.CommandLine
 
 		private sealed class TypeEntry
 		{
-			private  static readonly Uri                                  _default_uri = new Uri("http://localhost");
-			private  static readonly Version                              _default_ver = new Version(0, 0, 0, 0);
+			private  static readonly Uri                                  _default_uri = new("http://localhost");
+			private  static readonly Version                              _default_ver = new(0, 0, 0, 0);
 			private         readonly CommandLineConverter                 _owner;
 			internal        readonly Type                                 _type;
 			internal        readonly object?                              _inst;
