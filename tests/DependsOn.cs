@@ -6,7 +6,9 @@
  * distributed under the MIT License.
 ****/
 
+using System;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using TakymLib;
 
 namespace TakymLibTests
@@ -36,6 +38,18 @@ namespace TakymLibTests
 		public static void CurrentUICulture(string? locale = null)
 		{
 			CultureInfo.CurrentUICulture = LanguageUtility.GetCulture(locale);
+		}
+
+		public static void Windows(Action test, [CallerMemberName()] string? name = null)
+		{
+			if (OperatingSystem.IsWindows()) {
+				test();
+			} else {
+				if (string.IsNullOrEmpty(name)) {
+					name = "This test";
+				}
+				Console.WriteLine(name + " is only supported on Windows.");
+			}
 		}
 	}
 }
