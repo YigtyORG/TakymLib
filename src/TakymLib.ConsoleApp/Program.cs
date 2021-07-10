@@ -99,6 +99,7 @@ namespace TakymLib.ConsoleApp
 		private static int Main(string[] args)
 		{
 			try {
+				VersionInfo.Current.Print();
 				Run();
 				return 0;
 			} catch (Exception e) {
