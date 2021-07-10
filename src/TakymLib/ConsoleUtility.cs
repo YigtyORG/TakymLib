@@ -16,7 +16,7 @@ namespace TakymLib
 	///  標準入出力ストリームをより便利に扱う為の機能を提供します。
 	///  このクラスは静的クラスです。
 	/// </summary>
-	public static class ConsoleUtil
+	public static class ConsoleUtility
 	{
 		/// <summary>
 		///  利用者がキーを押すまでプログラムの処理を中断します。

@@ -14,7 +14,7 @@ namespace TakymLib
 	///  文字列をより便利に扱う為の機能を提供します。
 	///  このクラスは静的クラスです。
 	/// </summary>
-	public static class StringUtil
+	public static class StringUtility
 	{
 		private const           string _chars = "!#$0aAbBcCdDeEfF%&'gGhH1234()-=IiJjKkLlMmNnOoPp^~@[{]}5678qrstuv;+QRSTUV9WXYZwxyz,._";
 		private static readonly Random _rnd   = new();

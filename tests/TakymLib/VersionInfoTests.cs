@@ -55,6 +55,8 @@ namespace TakymLibTests.TakymLib
 		[TestMethod()]
 		public void GetCaptionTest()
 		{
+			DependsOn.Language();
+
 			DerivedVersionInfoMock dvi;
 
 			dvi = new DerivedVersionInfoMock(ConfigurationNames.Debug);
@@ -68,8 +70,6 @@ namespace TakymLibTests.TakymLib
 
 			var evi = EmptyVersionInfoMock.Instance;
 			Assert.AreEqual(" [v?.?.?.?, cn:]", evi.GetCaption());
-
-			LanguageUtils.SetCulture("iv-IV");
 
 			var nvi = NullVersionInfoMock.Instance;
 			Assert.AreEqual("VersionInfo_DisplayName [v?.?.?.?, cn:unknown]", nvi.GetCaption());
