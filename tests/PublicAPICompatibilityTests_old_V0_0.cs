@@ -239,8 +239,8 @@ namespace TakymLibTests
 		public void LanguageUtilsTest()
 		{
 			CultureInfo cinfo;
-			cinfo = LanguageUtils.SetCulture("en");
-			cinfo = LanguageUtils.SetCulture("ja");
+			cinfo = LanguageUtility.SetCulture("en");
+			cinfo = LanguageUtility.SetCulture("ja");
 		}
 
 		[TestMethod()]
