@@ -32,7 +32,7 @@ jobs:
       run: dotnet build -c Benchmark --no-restore
     # Test
     - name: Test
-      run: dotnet test -c Benchmark --no-build --verbosity normal
+      run: dotnet test -c Benchmark --no-build --verbosity diag
     # Upload Artifacts
     - name: Save Benchmarks Results
       uses: actions/upload-artifact@v2
