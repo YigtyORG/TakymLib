@@ -50,8 +50,8 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
       continue-on-error: true
-      #with:
-      #  ram: 8192
+      with:
+        ram: 8192
 
     - name: Copy Temp Files
       run: robocopy D:\a\_temp _temp /MIR
