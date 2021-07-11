@@ -37,4 +37,4 @@ jobs:
       run: dotnet build -c ${{ matrix.bc }} --no-restore
     # Test
     - name: Test
-      run: dotnet test -c ${{ matrix.bc }} --no-build --verbosity diag
+      run: dotnet test -c ${{ matrix.bc }} --no-build --verbosity detailed
