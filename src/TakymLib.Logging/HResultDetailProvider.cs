@@ -18,7 +18,7 @@ namespace TakymLib.Logging
 	/// </summary>
 	public sealed class HResultDetailProvider : ICustomErrorDetailProvider
 	{
-		private ConcurrentDictionary<int, string> _messages;
+		private readonly ConcurrentDictionary<int, string> _messages;
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Logging.HResultDetailProvider"/>'の新しいインスタンスを生成します。

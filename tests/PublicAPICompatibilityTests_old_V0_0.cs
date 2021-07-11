@@ -172,16 +172,16 @@ namespace TakymLibTests
 		[TestMethod()]
 		public void ConsoleUtilTest()
 		{
-			ConsoleUtil.WriteHorizontalRule();
-			ConsoleUtil.WriteHorizontalRule('=');
-			ConsoleUtil.Print(VersionInfo.Library);
+			ConsoleUtility.WriteHorizontalRule();
+			ConsoleUtility.WriteHorizontalRule('=');
+			ConsoleUtility.Print(VersionInfo.Library);
 			VersionInfo.Library.Print();
 
 			// 存在が確認できれば良い。
-			Action pause = ConsoleUtil.Pause;
-			Func<string, bool> readYesNo = ConsoleUtil.ReadYesNo;
-			Func<SecureString> readPassword = () => ConsoleUtil.ReadPassword();
-			Func<char, SecureString> readPassword2 = ConsoleUtil.ReadPassword;
+			Action pause = ConsoleUtility.Pause;
+			Func<string, bool> readYesNo = ConsoleUtility.ReadYesNo;
+			Func<SecureString> readPassword = () => ConsoleUtility.ReadPassword();
+			Func<char, SecureString> readPassword2 = ConsoleUtility.ReadPassword;
 		}
 
 		[TestMethod()]
@@ -239,8 +239,8 @@ namespace TakymLibTests
 		public void LanguageUtilsTest()
 		{
 			CultureInfo cinfo;
-			cinfo = LanguageUtils.SetCulture("en");
-			cinfo = LanguageUtils.SetCulture("ja");
+			cinfo = LanguageUtility.SetCulture("en");
+			cinfo = LanguageUtility.SetCulture("ja");
 		}
 
 		[TestMethod()]
@@ -356,11 +356,11 @@ namespace TakymLibTests
 		{
 			string str;
 
-			str = StringUtil.GetRandomText();
-			str = StringUtil.GetRandomText(1, 2);
-			str = StringUtil.GetRandomText(3);
-			str = StringUtil.GetRandomText(5, 6, new Random());
-			str = StringUtil.GetRandomText(7, new Random());
+			str = StringUtility.GetRandomText();
+			str = StringUtility.GetRandomText(1, 2);
+			str = StringUtility.GetRandomText(3);
+			str = StringUtility.GetRandomText(5, 6, new Random());
+			str = StringUtility.GetRandomText(7, new Random());
 		}
 
 		[TestMethod()]
