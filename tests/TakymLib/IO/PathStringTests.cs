@@ -6,7 +6,6 @@
  * distributed under the MIT License.
 ****/
 
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib.IO;
 using TakymLibTests.Properties;
@@ -21,14 +20,12 @@ namespace TakymLibTests.TakymLib.IO
 		[TestMethod()]
 		public void ToStringTest()
 		{
-			if (OperatingSystem.IsWindows()) {
+			DependsOn.Windows(() => {
 				string formatted1 = PathStringPool.Get(Path).ToString(PathStringFormatterTests.Format);
 				Assert.AreEqual(Resources.PathStringToStringResult, formatted1);
 				string formatted2 = PathStringPool.Get(Path).ToString("");
 				Assert.AreEqual(Path, formatted2);
-			} else {
-				Console.WriteLine(nameof(ToStringTest) + " is only supported on Windows.");
-			}
+			});
 		}
 	}
 }

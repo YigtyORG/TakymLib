@@ -35,21 +35,21 @@ namespace TakymLibTests.TakymLib.CommandLine
 		[TestMethod()]
 		public void ParseTestIV()
 		{
-			LanguageUtils.SetCulture("iv");
+			DependsOn.Language("iv");
 			this.ParseTest();
 		}
 
 		[TestMethod()]
 		public void ParseTestJA()
 		{
-			LanguageUtils.SetCulture("ja");
+			DependsOn.Language("ja");
 			this.ParseTest();
 		}
 
 		[TestMethod()]
 		public void ParseTestEN()
 		{
-			LanguageUtils.SetCulture("en");
+			DependsOn.Language("en");
 			this.ParseTest();
 		}
 
