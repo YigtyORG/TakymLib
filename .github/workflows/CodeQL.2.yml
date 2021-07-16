@@ -6,15 +6,11 @@
 # * distributed under the MIT License.                      *
 # ***********************************************************
 
-name: "CodeQL"
+name: "CodeQL (2)"
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  #schedule:
-  #  - cron: '37 15 * * 2'
+  schedule:
+    - cron: '* * 1 * *'
 
 jobs:
   analyze:
@@ -22,9 +18,9 @@ jobs:
     runs-on: windows-latest
 
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        bc: [ Debug, Release ]
+        bc: [ Debug, Release, Benchmark ]
 
     steps:
     - name: Checkout repository
@@ -49,16 +45,3 @@ jobs:
     # Analyze
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-      continue-on-error: true
-      with:
-        ram: 8192
-
-    - name: Copy Temp Files
-      run: robocopy D:\a\_temp _temp /MIR
-      continue-on-error: true
-
-    - name: Save All Files
-      uses: actions/upload-artifact@v2
-      with:
-        name: files
-        path: "*"
