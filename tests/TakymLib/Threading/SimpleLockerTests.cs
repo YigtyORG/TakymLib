@@ -106,7 +106,7 @@ namespace TakymLibTests.TakymLib.Threading
 				return Task.WhenAll(tasks);
 			}
 
-			async ValueTask RunAsync()
+			async Task RunAsync()
 			{
 				try {
 					await locker.EnterLockAsync();
