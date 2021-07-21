@@ -40,5 +40,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: benchmarks-results
-        path: |
-          tests/bin/Benchmark/**
+        path: tests/bin/Benchmark/**
