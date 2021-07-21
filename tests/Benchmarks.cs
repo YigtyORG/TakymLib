@@ -96,10 +96,25 @@ namespace TakymLibTests
 		}
 
 		[Benchmark()]
-		public void SimpleLocker()
+		public void SimpleLocker1()
 		{
 			int num = 0;
 			var locker = new SimpleLocker(false);
+			for (int i = 0; i < 16; ++i) {
+				bool lockTaken = false;
+				locker.EnterLock(ref lockTaken);
+				++num;
+				if (lockTaken) {
+					locker.LeaveLock();
+				}
+			}
+		}
+
+		[Benchmark()]
+		public void SimpleLocker2()
+		{
+			int num = 0;
+			var locker = new SimpleLocker(true);
 			for (int i = 0; i < 16; ++i) {
 				bool lockTaken = false;
 				try {
