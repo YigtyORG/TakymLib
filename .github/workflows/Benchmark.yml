@@ -28,7 +28,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
     # Build
-    - name: Build
+    - name: Build (Target Programs)
+      run: dotnet build -c Release --no-restore
+    - name: Build (Testing Environment)
       run: dotnet build -c Benchmark --no-restore
     # Test
     - name: Test
