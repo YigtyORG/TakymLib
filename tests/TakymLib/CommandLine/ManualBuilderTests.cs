@@ -8,7 +8,6 @@
 
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TakymLib;
 using TakymLib.CommandLine;
 using TakymLibTests.Properties;
 
