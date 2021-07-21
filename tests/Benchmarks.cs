@@ -13,6 +13,7 @@ using BenchmarkDotNet.Diagnosers;
 //using BenchmarkDotNet.Jobs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib;
+using TakymLib.Threading;
 
 #if BENCHMARK
 using BenchmarkDotNet.Running;
@@ -79,6 +80,51 @@ namespace TakymLibTests
 			object? num = 123;
 			if (num is null) {
 				throw new ArgumentNullException("number");
+			}
+		}
+
+		[Benchmark()]
+		public void LockStatement()
+		{
+			int num = 0;
+			object obj = new();
+			for (int i = 0; i < 16; ++i) {
+				lock (obj) {
+					++num;
+				}
+			}
+		}
+
+		[Benchmark()]
+		public void SimpleLocker1()
+		{
+			int num = 0;
+			var locker = new SimpleLocker(false);
+			for (int i = 0; i < 16; ++i) {
+				bool lockTaken = false;
+				locker.EnterLock(ref lockTaken);
+				++num;
+				if (lockTaken) {
+					locker.LeaveLock();
+				}
+			}
+		}
+
+		[Benchmark()]
+		public void SimpleLocker2()
+		{
+			int num = 0;
+			var locker = new SimpleLocker(true);
+			for (int i = 0; i < 16; ++i) {
+				bool lockTaken = false;
+				try {
+					locker.EnterLock(ref lockTaken);
+					++num;
+				} finally {
+					if (lockTaken) {
+						locker.LeaveLock();
+					}
+				}
 			}
 		}
 	}

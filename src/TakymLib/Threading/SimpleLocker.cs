@@ -15,34 +15,60 @@ namespace TakymLib.Threading
 	///  単純な排他制御を行います。
 	///  このクラスは継承できません。
 	/// </summary>
+	/// <remarks>
+	///  再帰的に使用した場合の動作は未定義です。
+	/// </remarks>
 	public sealed class SimpleLocker
 	{
-		private const uint SHARED       = 0;
-		private const uint LOCKED       = 1;
-		private const uint LOCKED_ASYNC = 2;
-		private       uint _state;
-		private       int  _thread_id;
+		private const    uint    SHARED       = 0;
+		private const    uint    LOCKED       = 1;
+		private const    uint    LOCKED_ASYNC = 2;
+		private          uint    _state;
+		private          Thread? _thread;
+		private readonly bool    _do_yield;
+
+		/// <summary>
+		///  待機時に別のスレッドへ処理時間を譲るかどうかを示す論理値を取得します。
+		/// </summary>
+		public bool DoYield => _do_yield;
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Threading.SimpleLocker"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		public SimpleLocker()
+		/// <param name="doYield">
+		///  待機時に別のスレッドへ処理時間を譲る場合は<see langword="true"/>、
+		///  それ以外の場合は<see langword="false"/>を指定します。
+		///  既定値は<see langword="true"/>です。
+		/// </param>
+		public SimpleLocker(bool doYield = true)
 		{
-			_state = SHARED;
+			_state    = SHARED;
+			_thread   = null;
+			_do_yield = doYield;
 		}
 
 		/// <summary>
-		///  ロックします。
+		///  ロックを取得します。
 		///  既にロックされている場合は解除されるまで待機します。
 		/// </summary>
-		/// <param name="lockTaken">ロック完了後に<see langword="true"/>に設定する必要のある変数を指定します。</param>
+		/// <param name="lockTaken">
+		///  ロックの取得に成功した場合は<see langword="true"/>を返します。
+		///  現在のスレッドで既にロックされている場合は<see langword="false"/>を返します。
+		/// </param>
 		public void EnterLock(ref bool lockTaken)
 		{
-			while (Interlocked.CompareExchange(ref _state, LOCKED, SHARED) != SHARED) {
-				Thread.Yield();
+			var thread = Thread.CurrentThread;
+			if (_thread == thread && _state == LOCKED) {
+				lockTaken = false;
+				return;
 			}
-			_thread_id = Thread.CurrentThread.ManagedThreadId;
-			lockTaken  = true;
+			while (Interlocked.CompareExchange(ref _state, LOCKED, SHARED) != SHARED) {
+				if (_do_yield) {
+					Thread.Yield();
+				}
+			}
+			_thread   = thread;
+			lockTaken = true;
 		}
 
 		/// <summary>
@@ -53,8 +79,13 @@ namespace TakymLib.Threading
 		public async ValueTask EnterLockAsync()
 		{
 			while (Interlocked.CompareExchange(ref _state, LOCKED_ASYNC, SHARED) != SHARED) {
-				await Task.Yield();
+				if (_do_yield) {
+					await Task.Yield();
+				}
 			}
+
+			// 非同期の場合はスレッドに依存しない。
+			_thread = null;
 		}
 
 		/// <summary>
@@ -66,7 +97,7 @@ namespace TakymLib.Threading
 		/// <returns>成功した場合は<see langword="true"/>、失敗した場合は<see langword="false"/>を返します。</returns>
 		public bool LeaveLock()
 		{
-			if (_thread_id != Thread.CurrentThread.ManagedThreadId) {
+			if (_thread is not null && _thread != Thread.CurrentThread) {
 				return false;
 			}
 			while (true) {
@@ -78,7 +109,9 @@ namespace TakymLib.Threading
 					Interlocked.CompareExchange(ref _state, SHARED, oldStatus) == oldStatus) {
 					return true;
 				}
-				Thread.Yield();
+				if (_do_yield) {
+					Thread.Yield();
+				}
 			}
 		}
 
@@ -97,7 +130,9 @@ namespace TakymLib.Threading
 					Interlocked.CompareExchange(ref _state, SHARED, oldStatus) == oldStatus) {
 					return true;
 				}
-				await Task.Yield();
+				if (_do_yield) {
+					await Task.Yield();
+				}
 			}
 		}
 
