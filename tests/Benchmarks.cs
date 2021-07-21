@@ -99,7 +99,7 @@ namespace TakymLibTests
 		public void SimpleLocker()
 		{
 			int num = 0;
-			var locker = new SimpleLocker();
+			var locker = new SimpleLocker(false);
 			for (int i = 0; i < 16; ++i) {
 				bool lockTaken = false;
 				try {

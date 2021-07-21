@@ -18,9 +18,32 @@ namespace TakymLibTests.TakymLib.Threading
 		#region Test #1
 
 		[TestMethod()]
-		public void Test1()
+		public void Test1_DoYield()
 		{
-			var  locker = new SimpleLocker();
+			Test1(true);
+		}
+
+		[TestMethod()]
+		public void Test1_DoNotYield()
+		{
+			Test1(false);
+		}
+
+		[TestMethod()]
+		public void AsyncTest1_DoYield()
+		{
+			AsyncTest1(true);
+		}
+
+		[TestMethod()]
+		public void AsyncTest1_DoNotYield()
+		{
+			AsyncTest1(false);
+		}
+
+		private static void Test1(bool doYield)
+		{
+			var  locker = new SimpleLocker(doYield);
 			bool taken  = false;
 
 			Assert.AreEqual(SimpleLocker.State.Shared, locker.GetState());
@@ -32,14 +55,13 @@ namespace TakymLibTests.TakymLib.Threading
 			Assert.IsTrue(locker.LeaveLock());
 		}
 
-		[TestMethod()]
-		public void AsyncTest1()
+		private static void AsyncTest1(bool doYield)
 		{
-			AsyncTest1Core().ConfigureAwait(false).GetAwaiter().GetResult();
+			AsyncTest1Core(doYield).ConfigureAwait(false).GetAwaiter().GetResult();
 
-			static async Task AsyncTest1Core()
+			static async Task AsyncTest1Core(bool doYield)
 			{
-				var locker = new SimpleLocker();
+				var locker = new SimpleLocker(doYield);
 
 				Assert.AreEqual(SimpleLocker.State.Shared, locker.GetState());
 				await locker.EnterLockAsync();
@@ -55,9 +77,32 @@ namespace TakymLibTests.TakymLib.Threading
 		#region Test #2
 
 		[TestMethod()]
-		public void Test2()
+		public void Test2_DoYield()
 		{
-			var  locker = new SimpleLocker();
+			Test2(true);
+		}
+
+		[TestMethod()]
+		public void Test2_DoNotYield()
+		{
+			Test2(false);
+		}
+
+		[TestMethod()]
+		public void AsyncTest2_DoYield()
+		{
+			AsyncTest2(true);
+		}
+
+		[TestMethod()]
+		public void AsyncTest2_DoNotYield()
+		{
+			AsyncTest2(false);
+		}
+
+		private static void Test2(bool doYield)
+		{
+			var  locker = new SimpleLocker(doYield);
 			bool taken  = false;
 			int  value  = 0;
 
@@ -87,10 +132,9 @@ namespace TakymLibTests.TakymLib.Threading
 			}
 		}
 
-		[TestMethod()]
-		public void AsyncTest2()
+		private static void AsyncTest2(bool doYield)
 		{
-			var locker = new SimpleLocker();
+			var locker = new SimpleLocker(doYield);
 			int value  = 0;
 
 			AsyncTest2Core().ConfigureAwait(false).GetAwaiter().GetResult();
