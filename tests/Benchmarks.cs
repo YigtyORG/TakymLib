@@ -10,7 +10,7 @@ using System;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Jobs;
+//using BenchmarkDotNet.Jobs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TakymLib;
 
@@ -25,10 +25,12 @@ namespace TakymLibTests
 	[DisassemblyDiagnoser(5, true, true, true, true, true, true)]
 	public class Benchmarks
 	{
-		private static readonly IConfig _config = DefaultConfig.Instance.AddJob(new Job()
-			.Freeze()
-			.WithCustomBuildConfiguration("Benchmark")
-		);
+		private static readonly IConfig _config = DefaultConfig.Instance
+			//.AddJob(new Job()
+			//	.Freeze()
+			//	.WithCustomBuildConfiguration("Benchmark")
+			//)
+			.WithOption(ConfigOptions.KeepBenchmarkFiles, true);
 
 		[TestMethod()]
 		public void Run()

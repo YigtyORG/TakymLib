@@ -28,14 +28,17 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
     # Build
-    - name: Build
+    - name: Build (Target Programs)
+      run: dotnet build -c Release --no-restore
+    - name: Build (Testing Environment)
       run: dotnet build -c Benchmark --no-restore
     # Test
     - name: Test
       run: dotnet test -c Benchmark --no-build --verbosity normal
-    # Save Benchmarks Results
+    # Upload Artifacts
     - name: Save Benchmarks Results
       uses: actions/upload-artifact@v2
       with:
         name: benchmarks-results
-        path: "**/BenchmarkDotNet.Artifacts/results/*"
+        path: |
+          tests/bin/Benchmark/**
