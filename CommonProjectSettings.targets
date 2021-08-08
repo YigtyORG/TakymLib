@@ -27,6 +27,7 @@
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
 		<AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>true</AppendRuntimeIdentifierToOutputPath>
+		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildThisFileDirectory)</SolutionDir>
 		<OutputPath>$(SolutionDir)/bin/$(AssemblyName)/$(Configuration)</OutputPath>
 		<IntermediateOutputPath>$(SolutionDir)/obj/$(AssemblyName)/$(Configuration)</IntermediateOutputPath>
 	</PropertyGroup>
