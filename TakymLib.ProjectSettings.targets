@@ -15,6 +15,9 @@
 		<ChangeLogUrl>https://github.com/YigtyORG/TakymLib/blob/master/CHANGELOG.md</ChangeLogUrl>
 		<ReleasesUrl>https://github.com/YigtyORG/TakymLib/releases</ReleasesUrl>
 	</PropertyGroup>
+	<PropertyGroup Label="SolutionDir">
+		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildThisFileDirectory)</SolutionDir>
+	</PropertyGroup>
 	<Import Project="CommonProjectSettings.targets" />
 	<PropertyGroup Label="Version">
 		<Product>TakymLib</Product>
