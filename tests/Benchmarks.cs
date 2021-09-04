@@ -7,11 +7,13 @@
 ****/
 
 using System;
+using System.Globalization;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
-//using BenchmarkDotNet.Jobs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Perfolizer.Horology;
 using TakymLib;
 using TakymLib.Threading;
 
@@ -27,11 +29,8 @@ namespace TakymLibTests
 	public class Benchmarks
 	{
 		private static readonly IConfig _config = DefaultConfig.Instance
-			//.AddJob(new Job()
-			//	.Freeze()
-			//	.WithCustomBuildConfiguration("Benchmark")
-			//)
-			.WithOption(ConfigOptions.KeepBenchmarkFiles, true);
+			.WithOption(ConfigOptions.KeepBenchmarkFiles, true)
+			.WithSummaryStyle(new(CultureInfo.CurrentCulture, true, SizeUnit.B, TimeUnit.Nanosecond, true, true, 20, RatioStyle.Value));
 
 		[TestMethod()]
 		public void Run()
