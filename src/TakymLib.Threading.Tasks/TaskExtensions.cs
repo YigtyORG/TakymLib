@@ -12,16 +12,19 @@ using TakymLib.Threading.Tasks.Wrappers;
 namespace TakymLib.Threading.Tasks
 {
 	/// <summary>
-	///  型'<see cref="System.Threading.Tasks.Task"/>'と型'<see cref="System.Threading.Tasks.ValueTask"/>'の機能を拡張します。
+	///  型'<see cref="System.Threading.Tasks.Task"/>'、
+	///  型'<see cref="System.Threading.Tasks.Task{TResult}"/>'、
+	///  型'<see cref="System.Threading.Tasks.ValueTask"/>'、
+	///  型'<see cref="System.Threading.Tasks.ValueTask{TResult}"/>'の機能を拡張します。
 	///  このクラスは静的クラスです。
 	/// </summary>
-	public static class TaskExtensions
+	public static partial class TaskExtensions
 	{
 		/// <summary>
-		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトとして利用できる様にラップします。
+		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトとして使用できる様にラップします。
 		/// </summary>
-		/// <param name="task">ラップするタスクです。</param>
-		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトへ変換可能な構造体です。</returns>
+		/// <param name="task">ラップする<see cref="System.Threading.Tasks.Task"/>オブジェクトを指定します。</param>
+		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter"/>を実装した構造体を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static TaskWrapper WrapAwaitable(this Task task)
 		{
@@ -30,10 +33,10 @@ namespace TakymLib.Threading.Tasks
 		}
 
 		/// <summary>
-		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトとして利用できる様にラップします。
+		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトとして使用できる様にラップします。
 		/// </summary>
-		/// <param name="task">ラップするタスクです。</param>
-		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトへ変換可能な構造体です。</returns>
+		/// <param name="task">ラップする<see cref="System.Threading.Tasks.Task{TResult}"/>オブジェクトを指定します。</param>
+		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>を実装した構造体を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static TaskWrapper<TResult> WrapAwaitable<TResult>(this Task<TResult> task)
 		{
@@ -42,10 +45,10 @@ namespace TakymLib.Threading.Tasks
 		}
 
 		/// <summary>
-		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトとして利用できる様にラップします。
+		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトとして使用できる様にラップします。
 		/// </summary>
-		/// <param name="task">ラップするタスクです。</param>
-		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter"/>オブジェクトへ変換可能な構造体です。</returns>
+		/// <param name="task">ラップする<see cref="System.Threading.Tasks.ValueTask"/>オブジェクトを指定します。</param>
+		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter"/>を実装した構造体を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ValueTaskWrapper WrapAwaitable(this ValueTask task)
 		{
@@ -54,10 +57,10 @@ namespace TakymLib.Threading.Tasks
 		}
 
 		/// <summary>
-		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトとして利用できる様にラップします。
+		///  指定されたタスクを<see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトとして使用できる様にラップします。
 		/// </summary>
-		/// <param name="task">ラップするタスクです。</param>
-		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>オブジェクトへ変換可能な構造体です。</returns>
+		/// <param name="task">ラップする<see cref="System.Threading.Tasks.ValueTask{TResult}"/>オブジェクトを指定します。</param>
+		/// <returns><see cref="TakymLib.Threading.Tasks.IAwaiter{TResult}"/>を実装した構造体を返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ValueTaskWrapper<TResult> WrapAwaitable<TResult>(this ValueTask<TResult> task)
 		{
