@@ -25,6 +25,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
+		[Obsolete("現在は ValueTaskWrapper ではサポートされていません。", DiagnosticId = "TakymLib_ValueTaskWrapper")]
 		public object? AsyncState
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -35,6 +36,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
+		[Obsolete("現在は ValueTaskWrapper ではサポートされていません。", DiagnosticId = "TakymLib_ValueTaskWrapper")]
 		public WaitHandle AsyncWaitHandle
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -45,6 +47,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
+		[Obsolete("現在は ValueTaskWrapper ではサポートされていません。", DiagnosticId = "TakymLib_ValueTaskWrapper")]
 		public Exception? Exception
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -91,6 +94,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		///  サポートされていません。常に例外が発生します。
 		/// </summary>
 		/// <exception cref="System.NotSupportedException"/>
+		[Obsolete("現在は ValueTaskWrapper ではサポートされていません。", DiagnosticId = "TakymLib_ValueTaskWrapper")]
 		public bool CompletedSynchronously
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
