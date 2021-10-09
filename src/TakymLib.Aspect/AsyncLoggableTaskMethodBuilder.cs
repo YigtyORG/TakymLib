@@ -26,9 +26,14 @@ namespace TakymLib.Aspect
 		/// <summary>
 		///  <see cref="TakymLib.Aspect.LoggableTask"/>を取得します。
 		/// </summary>
-		public LoggableTask Task => new(_builder.Task);
+		public LoggableTask Task
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => new(_builder.Task);
+		}
 
 		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void Start<TStateMachine>(ref TStateMachine stateMachine)
 			where TStateMachine: IAsyncStateMachine
 		{
