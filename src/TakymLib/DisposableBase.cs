@@ -164,16 +164,9 @@ namespace TakymLib
 		///  現在のインスタンスが破棄されている場合に例外を発生させます。
 		/// </summary>
 		/// <exception cref="System.ObjectDisposedException"/>
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		protected void EnsureNotDisposed()
+		protected virtual void EnsureNotDisposed()
 		{
-			if (this.IsDisposing) {
-				throw new ObjectDisposedException(this.GetType().Name, Resources.DisposableBase_ObjectDisposedException_IsDisposing);
-			}
-			if (this.IsDisposed) {
-				throw new ObjectDisposedException(this.GetType().Name);
-			}
+			this.ThrowIfDisposedCore();
 		}
 
 		/// <summary>
@@ -186,7 +179,19 @@ namespace TakymLib
 		protected void ThrowIfDisposed()
 		{
 			this.LogThrowIfDisposed();
-			this.EnsureNotDisposed();
+			this.ThrowIfDisposedCore();
+		}
+
+		[DebuggerHidden()]
+		[StackTraceHidden()]
+		private void ThrowIfDisposedCore()
+		{
+			if (this.IsDisposing) {
+				throw new ObjectDisposedException(this.GetType().Name, Resources.DisposableBase_ObjectDisposedException_IsDisposing);
+			}
+			if (this.IsDisposed) {
+				throw new ObjectDisposedException(this.GetType().Name);
+			}
 		}
 
 		[DebuggerHidden()]
