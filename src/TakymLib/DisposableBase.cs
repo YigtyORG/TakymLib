@@ -42,6 +42,8 @@ namespace TakymLib
 		/// </summary>
 		protected virtual IList<object?>? Disposables => null;
 
+		protected virtual bool CanClearDisposed => true;
+
 		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
 		/// </summary>
@@ -458,6 +460,42 @@ namespace TakymLib
 				}
 				Thread.Yield();
 			}
+		}
+
+		protected bool TryClearDisposed()
+		{
+			if (this.CanClearDisposed) {
+				int stateValue;
+				while (true) {
+					stateValue = _state;
+					if ((stateValue & _state_disposing) == _state_disposing) {
+						return false;
+					}
+					if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposed, stateValue) == stateValue) {
+						return true;
+					}
+					Thread.Yield();
+				}
+			}
+			return false;
+		}
+
+		protected async ValueTask<bool> TryClearDisposedAsync()
+		{
+			if (this.CanClearDisposed) {
+				int stateValue;
+				while (true) {
+					stateValue = _state;
+					if ((stateValue & _state_disposing) == _state_disposing) {
+						return false;
+					}
+					if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposed, stateValue) == stateValue) {
+						return true;
+					}
+					await Task.Yield();
+				}
+			}
+			return false;
 		}
 	}
 }
