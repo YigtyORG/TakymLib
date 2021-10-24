@@ -140,5 +140,11 @@ namespace TakymLib.Logging
 			await _tw.ConfigureAwait(false).DisposeAsync();
 			await base.DisposeAsyncCore();
 		}
+
+		/// <inheritdoc/>
+		protected sealed override void EnsureNotDisposed()
+		{
+			base.EnsureNotDisposed();
+		}
 	}
 }
