@@ -43,6 +43,13 @@ namespace TakymLib
 		protected virtual IList<object?>? Disposables => null;
 
 		/// <summary>
+		///  上書きされた場合、
+		///  <see cref="TakymLib.DisposableBase.TryClearDisposed"/>、<see cref="TakymLib.DisposableBase.TryClearDisposedAsync"/>
+		///  の実行を許可するかどうかを示す論理値を取得します。
+		/// </summary>
+		protected virtual bool CanClearDisposed => true;
+
+		/// <summary>
 		///  型'<see cref="TakymLib.DisposableBase"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		protected DisposableBase()
@@ -161,32 +168,29 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  現在のインスタンスが破棄されている場合に例外を発生させます。
+		///  現在のインスタンスが破棄されていない事を保証します。
+		///  破棄されている場合、可能であれば再び利用可能にするか、例外を発生させます。
 		/// </summary>
+		/// <remarks>
+		///  デバッグログへログ出力を行いません。
+		/// </remarks>
 		/// <exception cref="System.ObjectDisposedException"/>
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		protected void EnsureNotDisposed()
+		protected virtual void EnsureNotDisposed()
 		{
-			if (this.IsDisposing) {
-				throw new ObjectDisposedException(this.GetType().Name, Resources.DisposableBase_ObjectDisposedException_IsDisposing);
-			}
-			if (this.IsDisposed) {
-				throw new ObjectDisposedException(this.GetType().Name);
-			}
+			this.ThrowIfDisposedCore();
 		}
 
 		/// <summary>
-		///  <see cref="TakymLib.DisposableBase.EnsureNotDisposed"/>を呼び出します。
+		///  現在のインスタンスが破棄されている場合に例外を発生させます。
 		/// </summary>
 		/// <remarks>
-		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
+		///  デバッグログへログ出力を行います。
 		/// </remarks>
 		/// <exception cref="System.ObjectDisposedException"/>
 		protected void ThrowIfDisposed()
 		{
 			this.LogThrowIfDisposed();
-			this.EnsureNotDisposed();
+			this.ThrowIfDisposedCore();
 		}
 
 		[DebuggerHidden()]
@@ -198,6 +202,18 @@ namespace TakymLib
 			Debug.WriteLineIf( this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
 			Debug.Assert     (!this.IsDisposing, $"{this.GetType().Name} is disposing.");
 			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
+		}
+
+		[DebuggerHidden()]
+		[StackTraceHidden()]
+		private void ThrowIfDisposedCore()
+		{
+			if (this.IsDisposing) {
+				throw new ObjectDisposedException(this.GetType().Name, Resources.DisposableBase_ObjectDisposedException_IsDisposing);
+			}
+			if (this.IsDisposed) {
+				throw new ObjectDisposedException(this.GetType().Name);
+			}
 		}
 
 		/// <summary>
@@ -453,6 +469,52 @@ namespace TakymLib
 				}
 				Thread.Yield();
 			}
+		}
+
+		/// <summary>
+		///  破棄状態を初期化します。
+		/// </summary>
+		/// <returns>成功した場合は<see langword="true"/>、失敗した場合は<see langword="false"/>を返します。</returns>
+		protected bool TryClearDisposed()
+		{
+			if (this.CanClearDisposed) {
+				int stateValue;
+				while (true) {
+					stateValue = _state;
+					if ((stateValue & _state_disposing) == _state_disposing) {
+						return false;
+					}
+					if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposed, stateValue) == stateValue) {
+						return true;
+					}
+					Thread.Yield();
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
+		///  破棄状態を非同期的に初期化します。
+		/// </summary>
+		/// <returns>
+		///  成功したかどうかを示す論理値を含むこの処理の非同期操作を返します。
+		/// </returns>
+		protected async ValueTask<bool> TryClearDisposedAsync()
+		{
+			if (this.CanClearDisposed) {
+				int stateValue;
+				while (true) {
+					stateValue = _state;
+					if ((stateValue & _state_disposing) == _state_disposing) {
+						return false;
+					}
+					if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposed, stateValue) == stateValue) {
+						return true;
+					}
+					await Task.Yield();
+				}
+			}
+			return false;
 		}
 	}
 }
