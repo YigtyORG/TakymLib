@@ -42,6 +42,11 @@ namespace TakymLib
 		/// </summary>
 		protected virtual IList<object?>? Disposables => null;
 
+		/// <summary>
+		///  上書きされた場合、
+		///  <see cref="TakymLib.DisposableBase.TryClearDisposed"/>、<see cref="TakymLib.DisposableBase.TryClearDisposedAsync"/>
+		///  の実行を許可するかどうかを示す論理値を取得します。
+		/// </summary>
 		protected virtual bool CanClearDisposed => true;
 
 		/// <summary>
@@ -163,8 +168,12 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  現在のインスタンスが破棄されている場合に例外を発生させます。
+		///  現在のインスタンスが破棄されていない事を保証します。
+		///  破棄されている場合、可能であれば再び利用可能にするか、例外を発生させます。
 		/// </summary>
+		/// <remarks>
+		///  デバッグログへログ出力を行いません。
+		/// </remarks>
 		/// <exception cref="System.ObjectDisposedException"/>
 		protected virtual void EnsureNotDisposed()
 		{
@@ -172,16 +181,27 @@ namespace TakymLib
 		}
 
 		/// <summary>
-		///  <see cref="TakymLib.DisposableBase.EnsureNotDisposed"/>を呼び出します。
+		///  現在のインスタンスが破棄されている場合に例外を発生させます。
 		/// </summary>
 		/// <remarks>
-		///  デバッグログまたはスタックトレースへログ出力を行う場合に利用します。
+		///  デバッグログへログ出力を行います。
 		/// </remarks>
 		/// <exception cref="System.ObjectDisposedException"/>
 		protected void ThrowIfDisposed()
 		{
 			this.LogThrowIfDisposed();
 			this.ThrowIfDisposedCore();
+		}
+
+		[DebuggerHidden()]
+		[StackTraceHidden()]
+		[Conditional("DEBUG")]
+		private void LogThrowIfDisposed()
+		{
+			Debug.WriteLineIf( this.IsDisposing, $"{this.GetType().Name}.{nameof(this.IsDisposing)} == {true}");
+			Debug.WriteLineIf( this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
+			Debug.Assert     (!this.IsDisposing, $"{this.GetType().Name} is disposing.");
+			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
 		}
 
 		[DebuggerHidden()]
@@ -194,17 +214,6 @@ namespace TakymLib
 			if (this.IsDisposed) {
 				throw new ObjectDisposedException(this.GetType().Name);
 			}
-		}
-
-		[DebuggerHidden()]
-		[StackTraceHidden()]
-		[Conditional("DEBUG")]
-		private void LogThrowIfDisposed()
-		{
-			Debug.WriteLineIf( this.IsDisposing, $"{this.GetType().Name}.{nameof(this.IsDisposing)} == {true}");
-			Debug.WriteLineIf( this.IsDisposed,  $"{this.GetType().Name}.{nameof(this.IsDisposed)}  == {true}");
-			Debug.Assert     (!this.IsDisposing, $"{this.GetType().Name} is disposing.");
-			Debug.Assert     (!this.IsDisposed,  $"{this.GetType().Name} is disposed.");
 		}
 
 		/// <summary>
@@ -462,6 +471,10 @@ namespace TakymLib
 			}
 		}
 
+		/// <summary>
+		///  破棄状態を初期化します。
+		/// </summary>
+		/// <returns>成功した場合は<see langword="true"/>、失敗した場合は<see langword="false"/>を返します。</returns>
 		protected bool TryClearDisposed()
 		{
 			if (this.CanClearDisposed) {
@@ -480,6 +493,12 @@ namespace TakymLib
 			return false;
 		}
 
+		/// <summary>
+		///  破棄状態を非同期的に初期化します。
+		/// </summary>
+		/// <returns>
+		///  成功したかどうかを示す論理値を含むこの処理の非同期操作を返します。
+		/// </returns>
 		protected async ValueTask<bool> TryClearDisposedAsync()
 		{
 			if (this.CanClearDisposed) {
