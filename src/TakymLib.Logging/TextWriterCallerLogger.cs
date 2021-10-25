@@ -35,6 +35,9 @@ namespace TakymLib.Logging
 			}
 		}
 
+		/// <inheritdoc/>
+		protected sealed override bool CanClearDisposed => false;
+
 		/// <summary>
 		///  型'<see cref="TakymLib.Logging.TextWriterCallerLogger"/>'の新しいインスタンスを生成します。
 		/// </summary>
