@@ -104,11 +104,11 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringPool.Get(string, string)"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
 		/// <param name="path1">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <param name="path2">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <exception cref="System.ArgumentException" />
@@ -129,15 +129,15 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringPool.Get(string, string, string)"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
 		/// <param name="path1">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <param name="path2">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <param name="path3">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <exception cref="System.ArgumentException" />
@@ -158,19 +158,19 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringPool.Get(string, string, string, string)"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
 		/// <param name="path1">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <param name="path2">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <param name="path3">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <param name="path4">
-		///  新しいインスタンスに設定する分割されたパス文字列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <exception cref="System.ArgumentException" />
@@ -191,7 +191,7 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringPool.Get(string[])"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
 		/// <param name="paths">
-		///  新しいインスタンスに設定する分割されたパス文字列を含む配列です。
+		///  新しいインスタンスに設定する分割されたパス文字列を含む配列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <exception cref="System.ArgumentException" />
@@ -212,7 +212,7 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringPool.Get(string)"/>を利用してキャッシュされたパス文字列を取得します。
 		/// </remarks>
 		/// <param name="path">
-		///  新しいインスタンスに設定するパス文字列です。
+		///  新しいインスタンスに設定するパス文字列を指定します。
 		///  相対パスの場合、絶対パスへ自動的に変換されます。
 		/// </param>
 		/// <exception cref="System.ArgumentNullException">
@@ -252,8 +252,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  現在のパス文字列を直列化します。
 		/// </summary>
-		/// <param name="info">直列化されたデータを含むオブジェクトです。</param>
-		/// <param name="context">ストリームの転送先または転送元に関する文脈情報です。</param>
+		/// <param name="info">直列化されたデータを含むオブジェクトを指定します。</param>
+		/// <param name="context">ストリームの転送先または転送元に関する文脈情報を指定します。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.Runtime.Serialization.SerializationException"/>
 		public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -265,7 +265,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定されたパスを現在のパスと結合します。
 		/// </summary>
-		/// <param name="path">結合するパス文字列です。</param>
+		/// <param name="path">結合するパス文字列を指定します。</param>
 		/// <returns>結合された新しいパス文字列、または、<paramref name="path"/>が空の場合は現在のインスタンスを返します。</returns>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
@@ -282,8 +282,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定された2つのパスを現在のパスと結合します。
 		/// </summary>
-		/// <param name="path1">結合する1つ目のパス文字列です。</param>
-		/// <param name="path2">結合する2つ目のパス文字列です。</param>
+		/// <param name="path1">結合する1つ目のパス文字列を指定します。</param>
+		/// <param name="path2">結合する2つ目のパス文字列を指定します。</param>
 		/// <returns>結合された新しいパス文字列、または、指定された全てのパスが空の場合は現在のインスタンスを返します。</returns>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
@@ -300,9 +300,9 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定された3つのパスを現在のパスと結合します。
 		/// </summary>
-		/// <param name="path1">結合する1つ目のパス文字列です。</param>
-		/// <param name="path2">結合する2つ目のパス文字列です。</param>
-		/// <param name="path3">結合する3つ目のパス文字列です。</param>
+		/// <param name="path1">結合する1つ目のパス文字列を指定します。</param>
+		/// <param name="path2">結合する2つ目のパス文字列を指定します。</param>
+		/// <param name="path3">結合する3つ目のパス文字列を指定します。</param>
 		/// <returns>結合された新しいパス文字列、または、指定された全てのパスが空の場合は現在のインスタンスを返します。</returns>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
@@ -319,7 +319,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  複数のパスを一つのパスに結合します。
 		/// </summary>
-		/// <param name="paths">結合する複数のパス文字列です。</param>
+		/// <param name="paths">結合する複数のパス文字列を指定します。</param>
 		/// <returns>結合された新しいパス文字列、または、<paramref name="paths"/>が空の場合は現在のインスタンスを返します。</returns>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
@@ -409,7 +409,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  パス文字列の拡張子を含むファイル名を変更します。
 		/// </summary>
-		/// <param name="filename">変更後の拡張子を含むファイル名、または、親ディレクトリを取得する場合は空値を指定してください。</param>
+		/// <param name="filename">変更後の拡張子を含むファイル名、または、親ディレクトリを取得する場合は空値を指定します。</param>
 		/// <returns>
 		///  ファイル名が変更されたパス文字列、または、
 		///  ファイル名が変更されなかった場合は現在のインスタンスを返します。
@@ -439,7 +439,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  パス文字列の拡張子を変更します。
 		/// </summary>
-		/// <param name="extension">変更後の拡張子、または、拡張子を削除する場合は空値を指定してください。</param>
+		/// <param name="extension">変更後の拡張子、または、拡張子を削除する場合は空値を指定します。</param>
 		/// <returns>
 		///  拡張子が変更されたパス文字列、または、
 		///  拡張子が変更されなかった場合は現在のインスタンスを返します。
@@ -507,7 +507,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定したパスを基にした相対パスを取得します。
 		/// </summary>
-		/// <param name="relativeTo">相対パスの基底となる絶対パスです。</param>
+		/// <param name="relativeTo">相対パスの基底となる絶対パスを指定します。</param>
 		/// <returns>現在のパスへの相対パスを表す文字列です。</returns>
 		/// <exception cref="System.ArgumentNullException">
 		///  <paramref name="relativeTo"/>が<see langword="null"/>に設定されています。
@@ -536,7 +536,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  現在のディレクトリからディレクトリパスとファイルパスの列挙体を取得します。
 		/// </summary>
-		/// <param name="searchPattern">ファイルとディレクトリの検索に利用するパターン文字列です。</param>
+		/// <param name="searchPattern">ファイルとディレクトリの検索に利用するパターン文字列を指定します。</param>
 		/// <returns>
 		///  現在のパスが有効なディレクトリを指し示している場合は列挙体オブジェクト、
 		///  それ以外の場合は<see langword="null"/>を返します。
@@ -558,8 +558,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  現在のディレクトリからディレクトリパスとファイルパスの列挙体を取得します。
 		/// </summary>
-		/// <param name="searchPattern">ファイルとディレクトリの検索に利用するパターン文字列です。</param>
-		/// <param name="searchOption">子ディレクトリを検索に含めるかどうか設定します。</param>
+		/// <param name="searchPattern">ファイルとディレクトリの検索に利用するパターン文字列を指定します。</param>
+		/// <param name="searchOption">検索設定を指定します。</param>
 		/// <returns>
 		///  現在のパスが有効なディレクトリを指し示している場合は列挙体オブジェクト、
 		///  それ以外の場合は<see langword="null"/>を返します。
@@ -582,8 +582,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  現在のディレクトリからディレクトリパスとファイルパスの列挙体を取得します。
 		/// </summary>
-		/// <param name="searchPattern">ファイルとディレクトリの検索に利用するパターン文字列です。</param>
-		/// <param name="enumerationOptions">検索方法を指定します。</param>
+		/// <param name="searchPattern">ファイルとディレクトリの検索に利用するパターン文字列を指定します。</param>
+		/// <param name="enumerationOptions">検索設定を指定します。</param>
 		/// <returns>
 		///  現在のパスが有効なディレクトリを指し示している場合は列挙体オブジェクト、
 		///  それ以外の場合は<see langword="null"/>を返します。
@@ -690,7 +690,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  パス文字列をURIへ変換します。
 		/// </summary>
-		/// <returns><see cref="System.Uri"/>形式のオブジェクトです。</returns>
+		/// <returns><see cref="System.Uri"/>形式のオブジェクトを返します。</returns>
 		public Uri AsUri()
 		{
 			return _uri;
@@ -762,7 +762,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定したオブジェクトインスタンスの値と現在のインスタンスの値が等価かどうか判定します。
 		/// </summary>
-		/// <param name="obj">判定対象のオブジェクトです。</param>
+		/// <param name="obj">判定対象のオブジェクトを指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public override bool Equals(object? obj)
 		{
@@ -780,7 +780,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定したパス文字列と現在のパス文字列が等価かどうか判定します。
 		/// </summary>
-		/// <param name="other">判定対象のパス文字列です。</param>
+		/// <param name="other">判定対象のパス文字列を指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public bool Equals(PathString? other)
 		{
@@ -790,7 +790,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定した文字列と現在のパス文字列が等価かどうか判定します。
 		/// </summary>
-		/// <param name="other">判定対象の文字列です。</param>
+		/// <param name="other">判定対象の文字列を指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public bool Equals(string? other)
 		{
@@ -800,9 +800,9 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定したオブジェクトインスタンスの値と現在のインスタンスの値を比較します。
 		/// </summary>
-		/// <param name="obj">比較対象のオブジェクトです。</param>
+		/// <param name="obj">比較対象のオブジェクトを指定します。</param>
 		/// <returns>
-		///  等価の場合は<code>0</code>、
+		///  等価の場合は<c>0</c>、
 		///  現在のインスタンスの方が大きい場合は正の値、
 		///  現在のインスタンスの方が小さい場合は負の値を返します。
 		/// </returns>
@@ -820,7 +820,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定したパス文字列と現在のパス文字列を比較します。
 		/// </summary>
-		/// <param name="other">比較対象のパス文字列です。</param>
+		/// <param name="other">比較対象のパス文字列を指定します。</param>
 		/// <returns>
 		///  等価の場合は<c>0</c>、
 		///  現在のインスタンスの方が大きい場合は正の値、
@@ -834,7 +834,7 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定した文字列と現在のパス文字列を比較します。
 		/// </summary>
-		/// <param name="other">比較対象の文字列です。</param>
+		/// <param name="other">比較対象の文字列を指定します。</param>
 		/// <returns>
 		///  等価の場合は<c>0</c>、
 		///  現在のインスタンスの方が大きい場合は正の値、
@@ -857,9 +857,9 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定された二つのパス文字列を結合します。
 		/// </summary>
-		/// <param name="left">基底パスです。</param>
-		/// <param name="right">相対パスです。</param>
-		/// <returns>結合されたパス文字列です。</returns>
+		/// <param name="left">基底パスを指定します。</param>
+		/// <param name="right">相対パスを指定します。</param>
+		/// <returns>結合されたパス文字列を返します。</returns>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
 		/// </exception>
@@ -870,9 +870,9 @@ namespace TakymLib.IO
 		/// <summary>
 		///  <paramref name="right"/>を基にした<paramref name="left"/>の相対パスを計算します。
 		/// </summary>
-		/// <param name="left">絶対パスです。</param>
-		/// <param name="right">基底パスです。</param>
-		/// <returns><paramref name="left"/>への相対パスです。</returns>
+		/// <param name="left">絶対パスを指定します。</param>
+		/// <param name="right">基底パスを指定します。</param>
+		/// <returns><paramref name="left"/>への相対パスを返します。</returns>
 		/// <exception cref="System.PlatformNotSupportedException" />
 		public static string? operator -(PathString? left, PathString? right)
 			=> left?.GetRelativePath(right ?? PathStringPool.Get());
@@ -880,8 +880,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定された二つのパス文字列が等価かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public static bool operator ==(PathString? left, PathString? right)
 			=> left is null ? right is null : left.Equals(right);
@@ -889,8 +889,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定された二つのパス文字列が不等価かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>等しい場合は<see langword="false"/>、等しくない場合は<see langword="true"/>を返します。</returns>
 		public static bool operator !=(PathString? left, PathString? right)
 			=> left is null ? right is not null : !left.Equals(right);
@@ -899,8 +899,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  左辺が右辺未満かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より小さい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator <(PathString? left, PathString? right)
 			=> left is null ? right is not null : left.CompareTo(right) < 0;
@@ -908,8 +908,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  左辺が右辺以下かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より小さいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator <=(PathString? left, PathString? right)
 			=> left is null ? true : left.CompareTo(right) <= 0;
@@ -917,8 +917,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  左辺が右辺超過かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より大きい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator >(PathString? left, PathString? right)
 			=> left is null ? false : left.CompareTo(right) > 0;
@@ -927,8 +927,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  左辺が右辺以上かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より大きいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator >=(PathString? left, PathString? right)
 			=> left is null ? right is null : left.CompareTo(right) >= 0;
@@ -937,13 +937,13 @@ namespace TakymLib.IO
 		/// <summary>
 		///  パス文字列を通常の文字列へ暗黙的に変換します。
 		/// </summary>
-		/// <param name="path">通常の文字列へ変換するパス文字列です。</param>
+		/// <param name="path">通常の文字列へ変換するパス文字列を指定します。</param>
 		public static implicit operator string(PathString? path) => path?._path ?? string.Empty;
 
 		/// <summary>
 		///  通常の文字列をパス文字列へ明示的に変換します。
 		/// </summary>
-		/// <param name="path">パス文字列へ変換する通常の文字列です。</param>
+		/// <param name="path">パス文字列へ変換する通常の文字列を指定します。</param>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
 		/// </exception>
