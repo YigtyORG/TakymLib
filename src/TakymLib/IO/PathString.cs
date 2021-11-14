@@ -699,8 +699,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  パス文字列を可読な文字列へ変換します。
 		/// </summary>
-		/// <returns>現在のパス文字列を表す可読な文字列です。</returns>
-		public override string ToString()
+		/// <returns>現在のパス文字列を表す可読な文字列を返します。</returns>
+		public sealed override string ToString()
 		{
 			return _path;
 		}
@@ -713,8 +713,8 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringFormatter.Format(string?, object?, IFormatProvider?)"/>の
 		///  説明を確認してください。
 		/// </remarks>
-		/// <param name="format">書式設定文字列です。</param>
-		/// <returns>現在のパス文字列を表す可読な文字列です。</returns>
+		/// <param name="format">書式設定文字列を指定します。</param>
+		/// <returns>現在のパス文字列を表す可読な文字列を返します。</returns>
 		public string ToString(string? format)
 		{
 			return this.ToString(format, null);
@@ -723,8 +723,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  書式設定を利用してパス文字列を可読な文字列へ変換します。
 		/// </summary>
-		/// <param name="formatProvider">書式設定サービスを提供する書式設定プロバイダです。</param>
-		/// <returns>現在のパス文字列を表す可読な文字列です。</returns>
+		/// <param name="formatProvider">書式設定サービスを提供する書式設定プロバイダを指定します。</param>
+		/// <returns>現在のパス文字列を表す可読な文字列を返します。</returns>
 		public string ToString(IFormatProvider? formatProvider)
 		{
 			return this.ToString(null, formatProvider);
@@ -738,16 +738,24 @@ namespace TakymLib.IO
 		///  <see cref="TakymLib.IO.PathStringFormatter.Format(string?, object?, IFormatProvider?)"/>の
 		///  説明を確認してください。
 		/// </remarks>
-		/// <param name="format">書式設定文字列です。</param>
-		/// <param name="formatProvider">書式設定サービスを提供する書式設定プロバイダです。</param>
-		/// <returns>現在のパス文字列を表す可読な文字列です。</returns>
-		public string ToString(string? format, IFormatProvider? formatProvider)
+		/// <param name="format">書式設定文字列を指定します。</param>
+		/// <param name="formatProvider">書式設定サービスを提供する書式設定プロバイダを指定します。</param>
+		/// <returns>現在のパス文字列を表す可読な文字列を返します。</returns>
+		public /* virtual */ string ToString(string? format, IFormatProvider? formatProvider)
 		{
-			formatProvider ??= new PathStringFormatter();
-			if (formatProvider.GetFormat(typeof(ICustomFormatter)) is ICustomFormatter formatter) {
-				return formatter.Format(format, this, formatProvider);
-			} else {
-				return this.ToString();
+			switch (formatProvider) {
+			case null:
+				return PathStringFormatter._inst.Format(format, this, null);
+			case PathStringFormatter psf1:
+				return psf1.Format(format, this, psf1);
+			default:
+				if (formatProvider.GetFormat(typeof(PathStringFormatter)) is PathStringFormatter psf2) {
+					return psf2.Format(format, this, psf2);
+				} else if (formatProvider.GetFormat(typeof(ICustomFormatter)) is ICustomFormatter formatter) {
+					return formatter.Format(format, this, formatProvider);
+				} else {
+					return this.ToString();
+				}
 			}
 		}
 
