@@ -34,6 +34,8 @@ namespace TakymLib.IO
 		IComparable<PathString?>,
 		IComparable<string?>
 	{
+		private const    string          ROOT_PATH              = "/";
+		private const    string          DEFAULT_SEARCH_PATTERN = "*";
 		private readonly string          _org_path;
 		private readonly string          _path;
 		private readonly Uri             _uri;
@@ -543,10 +545,10 @@ namespace TakymLib.IO
 		/// <exception cref="System.IO.IOException"/>
 		/// <exception cref="System.UnauthorizedAccessException"/>
 		/// <exception cref="System.Security.SecurityException"/>
-		public FileSystemEntryEnumerator? GetEntries(string searchPattern = "*")
+		public FileSystemEntryEnumerator? GetEntries(string searchPattern = DEFAULT_SEARCH_PATTERN)
 		{
 			if (this.IsDirectory) {
-				searchPattern ??= "*";
+				searchPattern ??= DEFAULT_SEARCH_PATTERN;
 				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern));
 			} else {
 				return null;
@@ -570,7 +572,7 @@ namespace TakymLib.IO
 		public FileSystemEntryEnumerator? GetEntries(string searchPattern, SearchOption searchOption)
 		{
 			if (this.IsDirectory) {
-				searchPattern ??= "*";
+				searchPattern ??= DEFAULT_SEARCH_PATTERN;
 				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern, searchOption));
 			} else {
 				return null;
@@ -595,7 +597,7 @@ namespace TakymLib.IO
 		{
 			enumerationOptions.EnsureNotNull(nameof(enumerationOptions));
 			if (this.IsDirectory) {
-				searchPattern ??= "*";
+				searchPattern ??= DEFAULT_SEARCH_PATTERN;
 				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));
 			} else {
 				return null;
@@ -812,7 +814,7 @@ namespace TakymLib.IO
 		/// </summary>
 		/// <param name="other">比較対象のパス文字列です。</param>
 		/// <returns>
-		///  等価の場合は<code>0</code>、
+		///  等価の場合は<c>0</c>、
 		///  現在のインスタンスの方が大きい場合は正の値、
 		///  現在のインスタンスの方が小さい場合は負の値を返します。
 		/// </returns>
@@ -826,7 +828,7 @@ namespace TakymLib.IO
 		/// </summary>
 		/// <param name="other">比較対象の文字列です。</param>
 		/// <returns>
-		///  等価の場合は<code>0</code>、
+		///  等価の場合は<c>0</c>、
 		///  現在のインスタンスの方が大きい場合は正の値、
 		///  現在のインスタンスの方が小さい場合は負の値を返します。
 		/// </returns>
@@ -854,8 +856,8 @@ namespace TakymLib.IO
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		public static PathString operator +(PathString left, string? right)
-			=> left.Combine(right ?? string.Empty);
+		public static PathString operator +(PathString? left, string? right)
+			=> left?.Combine(right ?? string.Empty) ?? PathStringPool.Get(right ?? ROOT_PATH);
 
 		/// <summary>
 		///  <paramref name="right"/>を基にした<paramref name="left"/>の相対パスを計算します。
@@ -864,8 +866,8 @@ namespace TakymLib.IO
 		/// <param name="right">基底パスです。</param>
 		/// <returns><paramref name="left"/>への相対パスです。</returns>
 		/// <exception cref="System.PlatformNotSupportedException" />
-		public static string? operator -(PathString left, PathString? right)
-			=> left.GetRelativePath(right ?? PathStringPool.Get());
+		public static string? operator -(PathString? left, PathString? right)
+			=> left?.GetRelativePath(right ?? PathStringPool.Get());
 
 		/// <summary>
 		///  指定された二つのパス文字列が等価かどうか判定します。
@@ -873,8 +875,8 @@ namespace TakymLib.IO
 		/// <param name="left">左辺の値です。</param>
 		/// <param name="right">右辺の値です。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
-		public static bool operator ==(PathString left, PathString? right)
-			=> left.Equals(right);
+		public static bool operator ==(PathString? left, PathString? right)
+			=> left is null ? right is null : left.Equals(right);
 
 		/// <summary>
 		///  指定された二つのパス文字列が不等価かどうか判定します。
@@ -882,8 +884,9 @@ namespace TakymLib.IO
 		/// <param name="left">左辺の値です。</param>
 		/// <param name="right">右辺の値です。</param>
 		/// <returns>等しい場合は<see langword="false"/>、等しくない場合は<see langword="true"/>を返します。</returns>
-		public static bool operator !=(PathString left, PathString? right)
-			=> !left.Equals(right);
+		public static bool operator !=(PathString? left, PathString? right)
+			=> left is null ? right is not null : !left.Equals(right);
+			//=> !(left == right);
 
 		/// <summary>
 		///  左辺が右辺未満かどうか判定します。
@@ -891,8 +894,8 @@ namespace TakymLib.IO
 		/// <param name="left">左辺の値です。</param>
 		/// <param name="right">右辺の値です。</param>
 		/// <returns>左辺の方が右辺より小さい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
-		public static bool operator <(PathString left, PathString? right)
-			=> left.CompareTo(right) < 0;
+		public static bool operator <(PathString? left, PathString? right)
+			=> left is null ? right is not null : left.CompareTo(right) < 0;
 
 		/// <summary>
 		///  左辺が右辺以下かどうか判定します。
@@ -900,8 +903,8 @@ namespace TakymLib.IO
 		/// <param name="left">左辺の値です。</param>
 		/// <param name="right">右辺の値です。</param>
 		/// <returns>左辺の方が右辺より小さいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
-		public static bool operator <=(PathString left, PathString? right)
-			=> left.CompareTo(right) <= 0;
+		public static bool operator <=(PathString? left, PathString? right)
+			=> left is null ? true : left.CompareTo(right) <= 0;
 
 		/// <summary>
 		///  左辺が右辺超過かどうか判定します。
@@ -909,8 +912,9 @@ namespace TakymLib.IO
 		/// <param name="left">左辺の値です。</param>
 		/// <param name="right">右辺の値です。</param>
 		/// <returns>左辺の方が右辺より大きい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
-		public static bool operator >(PathString left, PathString? right)
-			=> left.CompareTo(right) > 0;
+		public static bool operator >(PathString? left, PathString? right)
+			=> left is null ? false : left.CompareTo(right) > 0;
+			//=> !(left <= right);
 
 		/// <summary>
 		///  左辺が右辺以上かどうか判定します。
@@ -918,26 +922,24 @@ namespace TakymLib.IO
 		/// <param name="left">左辺の値です。</param>
 		/// <param name="right">右辺の値です。</param>
 		/// <returns>左辺の方が右辺より大きいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
-		public static bool operator >=(PathString left, PathString? right)
-			=> left.CompareTo(right) >= 0;
+		public static bool operator >=(PathString? left, PathString? right)
+			=> left is null ? right is null : left.CompareTo(right) >= 0;
+			//=> !(left < right);
 
 		/// <summary>
-		///  パス文字列を通常の文字列へ暗黙的に変換(キャスト)します。
+		///  パス文字列を通常の文字列へ暗黙的に変換します。
 		/// </summary>
 		/// <param name="path">通常の文字列へ変換するパス文字列です。</param>
 		public static implicit operator string(PathString? path) => path?._path ?? string.Empty;
 
 		/// <summary>
-		///  通常の文字列をパス文字列へ明示的に変換(キャスト)します。
+		///  通常の文字列をパス文字列へ明示的に変換します。
 		/// </summary>
 		/// <param name="path">パス文字列へ変換する通常の文字列です。</param>
-		/// <exception cref="System.ArgumentNullException">
-		///  <paramref name="path"/>が<see langword="null"/>に設定されています。
-		/// </exception>
 		/// <exception cref="TakymLib.IO.InvalidPathFormatException">
 		///  無効なパス文字列が渡されました。
 		/// </exception>
 		/// <exception cref="System.Security.SecurityException" />
-		public static explicit operator PathString(string path) => PathStringPool.Get(path);
+		public static explicit operator PathString(string? path) => PathStringPool.Get(path ?? ROOT_PATH);
 	}
 }
