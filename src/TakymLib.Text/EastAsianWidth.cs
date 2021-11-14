@@ -68,7 +68,7 @@ namespace TakymLib.Text
 		/// <exception cref="System.InvalidOperationException"/>
 		public bool IsHalfWidth(char c, CultureInfo culture)
 		{
-			culture.EnsureNotNull(nameof(culture));
+			culture.EnsureNotNull();
 			string locale;
 			do {
 				locale = culture.Name;

@@ -29,8 +29,8 @@ namespace TakymLib
 		/// <exception cref="System.Security.SecurityException" />
 		public static bool IsEqualWith(this SecureString sstr1, SecureString sstr2)
 		{
-			sstr1.EnsureNotNull(nameof(sstr1));
-			sstr2.EnsureNotNull(nameof(sstr2));
+			sstr1.EnsureNotNull();
+			sstr2.EnsureNotNull();
 			try {
 				if (sstr1 == sstr2) {
 					return true;

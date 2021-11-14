@@ -30,8 +30,8 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public static T?[] Combine<T>(this T?[] baseArray, params T?[][] arrays)
 		{
-			baseArray.EnsureNotNull(nameof(baseArray));
-			arrays   .EnsureNotNull(nameof(arrays));
+			baseArray.EnsureNotNull();
+			arrays   .EnsureNotNull();
 			return baseArray.CombineCore(arrays);
 		}
 
@@ -45,8 +45,8 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public static object?[] Combine(this object?[] baseArray, params object?[][] arrays)
 		{
-			baseArray.EnsureNotNull(nameof(baseArray));
-			arrays   .EnsureNotNull(nameof(arrays));
+			baseArray.EnsureNotNull();
+			arrays   .EnsureNotNull();
 			return baseArray.CombineCore(arrays);
 		}
 
@@ -60,8 +60,8 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ConfiguredTaskAwaitable<T?[]> CombineAsync<T>(this T?[] baseArray, params T?[][] arrays)
 		{
-			baseArray.EnsureNotNull(nameof(baseArray));
-			arrays   .EnsureNotNull(nameof(arrays));
+			baseArray.EnsureNotNull();
+			arrays   .EnsureNotNull();
 			return Task.Run(() => baseArray.CombineCore(arrays)).ConfigureAwait(false);
 		}
 
@@ -74,8 +74,8 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ConfiguredTaskAwaitable<object?[]> CombineAsync(this object?[] baseArray, params object?[][] arrays)
 		{
-			baseArray.EnsureNotNull(nameof(baseArray));
-			arrays   .EnsureNotNull(nameof(arrays));
+			baseArray.EnsureNotNull();
+			arrays   .EnsureNotNull();
 			return Task.Run(() => baseArray.CombineCore(arrays)).ConfigureAwait(false);
 		}
 

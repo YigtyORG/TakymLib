@@ -28,7 +28,7 @@ namespace TakymLib.Threading.Tasks.Core
 		/// <inheritdoc/>
 		public void Start<TStateMachine>(ref TStateMachine stateMachine) where TStateMachine : IAsyncStateMachine
 		{
-			stateMachine.EnsureNotNull(nameof(stateMachine));
+			stateMachine.EnsureNotNull();
 			_task = new();
 			stateMachine.MoveNext();
 		}
@@ -59,22 +59,22 @@ namespace TakymLib.Threading.Tasks.Core
 
 		/// <inheritdoc/>
 		public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
-			where TAwaiter : INotifyCompletion
-			where TStateMachine : IAsyncStateMachine
+			where TAwaiter     : INotifyCompletion
+			where TStateMachine: IAsyncStateMachine
 		{
-			awaiter.EnsureNotNull(nameof(awaiter));
-			stateMachine.EnsureNotNull(nameof(stateMachine));
+			awaiter     .EnsureNotNull();
+			stateMachine.EnsureNotNull();
 			_will_complete_sync = false;
 			awaiter.OnCompleted(stateMachine.MoveNext);
 		}
 
 		/// <inheritdoc/>
 		public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)
-			where TAwaiter : ICriticalNotifyCompletion
-			where TStateMachine : IAsyncStateMachine
+			where TAwaiter     : ICriticalNotifyCompletion
+			where TStateMachine: IAsyncStateMachine
 		{
-			awaiter.EnsureNotNull(nameof(awaiter));
-			stateMachine.EnsureNotNull(nameof(stateMachine));
+			awaiter     .EnsureNotNull();
+			stateMachine.EnsureNotNull();
 			_will_complete_sync = false;
 			awaiter.UnsafeOnCompleted(stateMachine.MoveNext);
 		}

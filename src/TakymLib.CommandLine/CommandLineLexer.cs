@@ -49,7 +49,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public IAsyncEnumerable<string> ScanAsync(TextReader reader)
 		{
-			reader.EnsureNotNull(nameof(reader));
+			reader.EnsureNotNull();
 			return this.ScanAsyncCore(reader);
 		}
 

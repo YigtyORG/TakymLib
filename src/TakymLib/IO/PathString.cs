@@ -225,7 +225,7 @@ namespace TakymLib.IO
 		[Obsolete("不必要なインスタンスを生成しています。代わりに PathStringPool を利用してください。", DiagnosticId = "TakymLib_PathString_ctor")]
 		public PathString(string path)
 		{
-			path.EnsureNotNull(nameof(path));
+			path.EnsureNotNull();
 			_org_path = path;
 			try {
 				_path = Path.GetFullPath(path);
@@ -258,7 +258,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Runtime.Serialization.SerializationException"/>
 		public void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			info.EnsureNotNull(nameof(info));
+			info.EnsureNotNull();
 			info.AddValue("_", _org_path);
 		}
 
@@ -514,7 +514,7 @@ namespace TakymLib.IO
 		/// </exception>
 		public string? GetRelativePath(PathString relativeTo)
 		{
-			relativeTo.EnsureNotNull(nameof(relativeTo));
+			relativeTo.EnsureNotNull();
 			return Path.GetRelativePath(relativeTo._path, _path);
 		}
 
@@ -595,7 +595,7 @@ namespace TakymLib.IO
 		/// <exception cref="System.Security.SecurityException"/>
 		public FileSystemEntryEnumerator? GetEntries(string searchPattern, EnumerationOptions enumerationOptions)
 		{
-			enumerationOptions.EnsureNotNull(nameof(enumerationOptions));
+			enumerationOptions.EnsureNotNull();
 			if (this.IsDirectory) {
 				searchPattern ??= DEFAULT_SEARCH_PATTERN;
 				return new(Directory.EnumerateFileSystemEntries(_path, searchPattern, enumerationOptions));

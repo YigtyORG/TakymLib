@@ -108,7 +108,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ValueTaskWrapper(ValueTask<TResult> task)
 		{
-			task.EnsureNotNull(nameof(task));
+			task.EnsureNotNull();
 			_task = task;
 		}
 

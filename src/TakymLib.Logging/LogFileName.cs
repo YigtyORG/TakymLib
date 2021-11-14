@@ -96,7 +96,7 @@ namespace TakymLib.Logging
 		/// <returns>生成されたログファイルのパス文字列です。</returns>
 		public static PathString CreatePath(PathString dir, DateTime dt, Process proc, string? tag = null, bool useLongName = true)
 		{
-			dir.EnsureNotNull(nameof(dir));
+			dir.EnsureNotNull();
 			return dir.Combine(Create(dt, proc, tag, useLongName));
 		}
 
@@ -126,7 +126,7 @@ namespace TakymLib.Logging
 		/// <returns>生成されたログファイルのパス文字列です。</returns>
 		public static PathString CreatePath(PathString dir)
 		{
-			dir.EnsureNotNull(nameof(dir));
+			dir.EnsureNotNull();
 			return dir.Combine(Create());
 		}
 
@@ -138,7 +138,7 @@ namespace TakymLib.Logging
 		/// <returns>生成されたログファイルのパス文字列です。</returns>
 		public static PathString CreatePath(PathString dir, string? tag)
 		{
-			dir.EnsureNotNull(nameof(dir));
+			dir.EnsureNotNull();
 			return dir.Combine(Create(tag));
 		}
 	}

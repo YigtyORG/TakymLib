@@ -69,7 +69,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.InvalidOperationException"/>
 		public void Schedule(Action action)
 		{
-			action.EnsureNotNull(nameof(action));
+			action.EnsureNotNull();
 			this.RunSafely(this.ScheduleCore, action);
 		}
 

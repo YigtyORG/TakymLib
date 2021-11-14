@@ -112,7 +112,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public VersionInfo(Assembly asm)
 		{
-			asm.EnsureNotNull(nameof(asm));
+			asm.EnsureNotNull();
 			var asmname        = asm.GetName();
 			this.Assembly      = asm;
 			this.Name          = asmname.Name ?? UNKNOWN_NAME;
@@ -164,7 +164,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public virtual bool HasForwardCompatibleWith(VersionInfo other)
 		{
-			other.EnsureNotNull(nameof(other));
+			other.EnsureNotNull();
 			var thisName  = this.Assembly?.GetName();
 			var otherName = this.Assembly?.GetName();
 			return  thisName?.Name        == otherName?.Name
@@ -181,7 +181,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public virtual bool HasBackwardCompatibleWith(VersionInfo other)
 		{
-			other.EnsureNotNull(nameof(other));
+			other.EnsureNotNull();
 			var thisName  = this.Assembly?.GetName();
 			var otherName = this.Assembly?.GetName();
 			return  thisName?.Name        == otherName?.Name

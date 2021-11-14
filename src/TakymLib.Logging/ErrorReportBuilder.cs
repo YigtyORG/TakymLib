@@ -158,8 +158,8 @@ namespace TakymLib.Logging
 		/// <exception cref="System.ArgumentNullException"/>
 		protected ErrorReportBuilder(Exception exception, string option, IEnumerable<ICustomErrorDetailProvider> detailProviders)
 		{
-			exception      .EnsureNotNull(nameof(exception));
-			detailProviders.EnsureNotNull(nameof(detailProviders));
+			exception      .EnsureNotNull();
+			detailProviders.EnsureNotNull();
 			this.DateTime        = DateTime.Now;
 			this.Exception       = exception;
 			this.Option          = option;

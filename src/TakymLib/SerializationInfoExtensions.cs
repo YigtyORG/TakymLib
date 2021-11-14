@@ -21,11 +21,11 @@ namespace TakymLib
 		/// <summary>
 		///  <see cref="System.Runtime.Serialization.SerializationInfo"/>から値を取得します。
 		/// </summary>
-		/// <typeparam name="T">取得する値の型です。</typeparam>
-		/// <param name="info">値が保存されているストアです。</param>
-		/// <param name="name">取得する値の名前です。</param>
+		/// <typeparam name="T">取得する値の型を指定します。</typeparam>
+		/// <param name="info">値が保存されているストアを指定します。</param>
+		/// <param name="name">取得する値の名前を指定します。</param>
 		/// <returns>
-		///  <paramref name="info"/>が保持する<paramref name="name"/>を名前に持つ<typeparamref name="T"/>に変換された値です。
+		///  <paramref name="info"/>が保持する<paramref name="name"/>を名前に持つ<typeparamref name="T"/>に変換された値を返します。
 		/// </returns>
 		/// <exception cref="System.ArgumentNullException">
 		///  <paramref name="info"/>または<paramref name="name"/>が<see langword="null"/>に設定されています。
@@ -36,8 +36,8 @@ namespace TakymLib
 		/// <exception cref="System.Runtime.Serialization.SerializationException" />
 		public static T? GetValue<T>(this SerializationInfo info, string name)
 		{
-			info.EnsureNotNull(nameof(info));
-			name.EnsureNotNull(nameof(name));
+			info.EnsureNotNull();
+			name.EnsureNotNull();
 			try {
 				object? result = info.GetValue(name, typeof(T));
 				if (result is null) {

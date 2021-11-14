@@ -131,7 +131,7 @@ namespace TakymLib.IO
 #pragma warning disable TakymLib_PathString_ctor // 型またはメンバーが旧型式です
 		public static PathString Get(string path)
 		{
-			path.EnsureNotNull(nameof(path));
+			path.EnsureNotNull();
 			return _cache.GetOrAdd(path, path => new(path));
 		}
 #pragma warning restore TakymLib_PathString_ctor // 型またはメンバーが旧型式です

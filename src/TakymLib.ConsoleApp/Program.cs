@@ -8,64 +8,74 @@
 
 using System;
 using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using TakymLib.Text;
 
 namespace TakymLib.ConsoleApp
 {
 	internal static class Program
 	{
-		private static void Run()
+		private static async ValueTask Run()
 		{
 			//DownloadLatestDefinitionAndConvert();
-			using (var wc = new WebClient()) {
-				DownloadEAWDefinitionAndConvert("4.1.0", wc);
-				DownloadEAWDefinitionAndConvert("5.0.0", wc);
-				DownloadEAWDefinitionAndConvert("5.1.0", wc);
-				DownloadEAWDefinitionAndConvert("5.2.0", wc);
-				DownloadEAWDefinitionAndConvert("6.0.0", wc);
-				DownloadEAWDefinitionAndConvert("6.1.0", wc);
-				DownloadEAWDefinitionAndConvert("6.2.0", wc);
-				DownloadEAWDefinitionAndConvert("6.3.0", wc);
-				DownloadEAWDefinitionAndConvert("7.0.0", wc);
-				DownloadEAWDefinitionAndConvert("8.0.0", wc);
-				DownloadEAWDefinitionAndConvert("9.0.0", wc);
-				DownloadEAWDefinitionAndConvert("10.0.0", wc);
-				DownloadEAWDefinitionAndConvert("11.0.0", wc);
-				DownloadEAWDefinitionAndConvert("12.0.0", wc);
-				DownloadEAWDefinitionAndConvert("12.1.0", wc);
-				DownloadEAWDefinitionAndConvert("13.0.0", wc);
+			using (var hc = new HttpClient()) {
+				await DownloadEAWDefinitionAndConvert( "4.1.0", hc);
+				await DownloadEAWDefinitionAndConvert( "5.0.0", hc);
+				await DownloadEAWDefinitionAndConvert( "5.1.0", hc);
+				await DownloadEAWDefinitionAndConvert( "5.2.0", hc);
+				await DownloadEAWDefinitionAndConvert( "6.0.0", hc);
+				await DownloadEAWDefinitionAndConvert( "6.1.0", hc);
+				await DownloadEAWDefinitionAndConvert( "6.2.0", hc);
+				await DownloadEAWDefinitionAndConvert( "6.3.0", hc);
+				await DownloadEAWDefinitionAndConvert( "7.0.0", hc);
+				await DownloadEAWDefinitionAndConvert( "8.0.0", hc);
+				await DownloadEAWDefinitionAndConvert( "9.0.0", hc);
+				await DownloadEAWDefinitionAndConvert("10.0.0", hc);
+				await DownloadEAWDefinitionAndConvert("11.0.0", hc);
+				await DownloadEAWDefinitionAndConvert("12.0.0", hc);
+				await DownloadEAWDefinitionAndConvert("12.1.0", hc);
+				await DownloadEAWDefinitionAndConvert("13.0.0", hc);
+				await DownloadEAWDefinitionAndConvert("14.0.0", hc);
 			}
 		}
 
-		private static void DownloadEAWDefinitionAndConvert(string version, WebClient wc)
+		private static async ValueTask DownloadEAWDefinitionAndConvert(string version, HttpClient hc)
 		{
-			var ranges = EastAsianWidth.DownloadDefinitionFrom($"https://www.unicode.org/Public/{version}/ucd/EastAsianWidth.txt", wc).Ranges;
+			var eaw = await EastAsianWidth.DownloadDefinitionFromAsync(
+				new($"https://www.unicode.org/Public/{version}/ucd/EastAsianWidth.txt"),
+				hc
+			).ConfigureAwait(false);
+
+			var ranges = eaw.Ranges;
 			int count  = ranges.Count;
-			using (var fs = new FileStream(version + ".txt", FileMode.Create, FileAccess.Write, FileShare.None))
-			using (var sw = new StreamWriter(fs, Encoding.UTF8)) {
-				for (int i = 0; i < count; ++i) {
-					var range = ranges[i];
-					if (range.Type == EastAsianWidthType.Invalid) {
-						continue;
+			var fs     = new FileStream(version + ".txt", FileMode.Create, FileAccess.Write, FileShare.None);
+			await using (fs.ConfigureAwait(false)) {
+				var sw = new StreamWriter(fs, Encoding.UTF8);
+				await using (sw.ConfigureAwait(false)) {
+					for (int i = 0; i < count; ++i) {
+						var range = ranges[i];
+						if (range.Type == EastAsianWidthType.Invalid) {
+							continue;
+						}
+						if (range.Start > ushort.MaxValue || range.End > ushort.MaxValue) {
+							continue;
+						}
+						if (range.Start == range.End) {
+							await sw.WriteAsync(string.Format("\'\\u{0:X04}\'", range.Start));
+						} else {
+							await sw.WriteAsync(string.Format(">= \'\\u{0:X04}\' and <= \'\\u{1:X04}\'", range.Start, range.End));
+						}
+						await sw.WriteAsync(" => ");
+						await sw.WriteAsync(nameof(EastAsianWidthType));
+						await sw.WriteAsync('.');
+						await sw.WriteAsync(range.Type.ToString());
+						await sw.WriteLineAsync(",");
 					}
-					if (range.Start > ushort.MaxValue || range.End > ushort.MaxValue) {
-						continue;
-					}
-					if (range.Start == range.End) {
-						sw.Write("\'\\u{0:X04}\'", range.Start);
-					} else {
-						sw.Write(">= \'\\u{0:X04}\' and <= \'\\u{1:X04}\'", range.Start, range.End);
-					}
-					sw.Write(" => ");
-					sw.Write(nameof(EastAsianWidthType));
-					sw.Write('.');
-					sw.Write(range.Type);
-					sw.WriteLine(",");
 				}
 			}
-			Console.WriteLine(version);
+			await Console.Out.WriteLineAsync(version);
 		}
 
 		private static void DownloadLatestDefinitionAndConvert()
@@ -96,11 +106,11 @@ namespace TakymLib.ConsoleApp
 		}
 
 		[STAThread()]
-		private static int Main(string[] args)
+		private static async Task<int> Main(string[] args)
 		{
 			try {
 				VersionInfo.Current.Print();
-				Run();
+				await Run();
 				return 0;
 			} catch (Exception e) {
 				Console.ForegroundColor = ConsoleColor.Red;

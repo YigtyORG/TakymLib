@@ -44,7 +44,7 @@ namespace TakymLib.Logging
 		/// <param name="tw">出力先のライターです。</param>
 		public TextWriterCallerLogger(TextWriter tw)
 		{
-			tw.EnsureNotNull(nameof(tw));
+			tw.EnsureNotNull();
 			_tw = tw;
 		}
 
