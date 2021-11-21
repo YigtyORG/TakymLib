@@ -64,7 +64,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static void WaitAll(bool doYield, params ValueTask[] tasks)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			for (int i = 0; i < tasks.Length; ++i) {
 				tasks[i].Wait(doYield);
 			}
@@ -92,7 +92,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static void WaitAll(this IEnumerable<ValueTask> tasks, bool doYield = true)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			if (tasks is ValueTask[] array) {
 				WaitAll(doYield, array);
 			}
@@ -114,7 +114,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static TResult[] WaitAll<TResult>(bool doYield, params ValueTask<TResult>[] tasks)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			var results = new TResult[tasks.Length];
 			for (int i = 0; i < tasks.Length; ++i) {
 				results[i] = tasks[i].Wait(doYield);
@@ -148,7 +148,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static IEnumerable<TResult> WaitAll<TResult>(this IEnumerable<ValueTask<TResult>> tasks, bool doYield = true)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			if (tasks is ValueTask<TResult>[] array) {
 				return WaitAll(doYield, array);
 			}
@@ -174,7 +174,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static int WaitAny(bool doYield, params ValueTask[] tasks)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			while (true) {
 				for (int i = 0; i < tasks.Length; ++i) {
 					var task = tasks[i];
@@ -213,7 +213,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ValueTask WaitAny(this IEnumerable<ValueTask> tasks, bool doYield = true)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			if (tasks is ValueTask[] array) {
 				return array[WaitAny(doYield, array)];
 			}
@@ -243,7 +243,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static int WaitAny<TResult>(bool doYield, params ValueTask<TResult>[] tasks)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			while (true) {
 				for (int i = 0; i < tasks.Length; ++i) {
 					var task = tasks[i];
@@ -284,7 +284,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ValueTask<TResult> WaitAny<TResult>(this IEnumerable<ValueTask<TResult>> tasks, bool doYield = true)
 		{
-			tasks.EnsureNotNull(nameof(tasks));
+			tasks.EnsureNotNull();
 			if (tasks is ValueTask<TResult>[] array) {
 				return array[WaitAny(doYield, array)];
 			}

@@ -73,7 +73,7 @@ namespace TakymLib.Threading.Distributed
 		/// <exception cref="System.ObjectDisposedException"/>
 		public ExecutionContext GetServerContext(Thread thread)
 		{
-			thread.EnsureNotNull(nameof(thread));
+			thread.EnsureNotNull();
 			this.EnterRunLock();
 			try {
 				return this.GetServerContextCore(thread);
@@ -98,7 +98,7 @@ namespace TakymLib.Threading.Distributed
 		/// <exception cref="System.ObjectDisposedException"/>
 		public ConnectedContext Connect(Thread thread)
 		{
-			thread.EnsureNotNull(nameof(thread));
+			thread.EnsureNotNull();
 			this.EnterRunLock();
 			try {
 				return new ConnectedContext(

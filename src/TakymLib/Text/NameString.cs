@@ -31,8 +31,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された位置にある文字を取得します。
 		/// </summary>
-		/// <param name="index">インデックス番号です。</param>
-		/// <returns>指定された位置にある文字です。</returns>
+		/// <param name="index">インデックス番号を指定します。</param>
+		/// <returns>指定された位置にある文字を指定します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
 		public char this[int index] => DecodeCore((_buf ?? Array.Empty<byte>())[index]);
@@ -40,8 +40,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された位置にある文字を取得します。
 		/// </summary>
-		/// <param name="index">インデックス番号です。</param>
-		/// <returns>指定された位置にある文字です。</returns>
+		/// <param name="index">インデックス番号を指定します。</param>
+		/// <returns>指定された位置にある文字を指定します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
 		public char this[Index index] => DecodeCore((_buf ?? Array.Empty<byte>())[index]);
@@ -49,8 +49,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された範囲の部分文字列を取得します。
 		/// </summary>
-		/// <param name="range">取得する部分文字列の範囲です。</param>
-		/// <returns>指定された範囲の部分文字列です。</returns>
+		/// <param name="range">取得する部分文字列の範囲を指定します。</param>
+		/// <returns>指定された範囲の部分文字列を指定します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
 		public NameString this[Range range] => new((_buf ?? Array.Empty<byte>())[range]);
@@ -58,7 +58,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="s">保持する文字列です。</param>
+		/// <param name="s">保持する文字列を指定します。</param>
 		/// <exception cref="System.ArgumentException"/>
 		public NameString(string s)
 		{
@@ -76,7 +76,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="chars">保持する文字列です。</param>
+		/// <param name="chars">保持する文字列を指定します。</param>
 		/// <exception cref="System.ArgumentException"/>
 		public NameString(params char[] chars)
 		{
@@ -94,7 +94,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="chars">保持する文字列です。</param>
+		/// <param name="chars">保持する文字列を指定します。</param>
 		/// <exception cref="System.ArgumentException"/>
 		public NameString(ReadOnlySpan<char> chars)
 		{
@@ -111,20 +111,20 @@ namespace TakymLib.Text
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="chars">保持する文字列です。</param>
+		/// <param name="chars">保持する文字列を指定します。</param>
 		/// <exception cref="System.ArgumentException"/>
 		public NameString(ReadOnlyMemory<char> chars) : this(chars.Span) { }
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Text.NameString"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="chars">保持する文字列です。</param>
+		/// <param name="chars">保持する文字列を指定します。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentException"/>
 		/// <exception cref="System.InvalidOperationException"/>
 		public NameString(IEnumerable<char> chars)
 		{
-			chars.EnsureNotNull(nameof(chars));
+			chars.EnsureNotNull();
 			var buf = new List<byte>();
 			try {
 				foreach (char c in chars) {
@@ -154,13 +154,13 @@ namespace TakymLib.Text
 		/// <summary>
 		///  現在の名前文字列を直列化します。
 		/// </summary>
-		/// <param name="info">直列化されたデータを含むオブジェクトです。</param>
-		/// <param name="context">ストリームの転送先または転送元に関する文脈情報です。</param>
+		/// <param name="info">直列化されたデータを含むオブジェクトを指定します。</param>
+		/// <param name="context">ストリームの転送先または転送元に関する文脈情報を指定します。</param>
 		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.Runtime.Serialization.SerializationException"/>
 		public void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			info.EnsureNotNull(nameof(info));
+			info.EnsureNotNull();
 			if (_buf is not null) {
 				info.AddValue("_", Compress(_buf));
 			}
@@ -169,8 +169,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された名前文字列を結合し、新しい名前文字列を生成します。
 		/// </summary>
-		/// <param name="ns">結合する名前文字列です。</param>
-		/// <returns>現在の名前文字列に<paramref name="ns"/>が連結された名前文字列です。</returns>
+		/// <param name="ns">結合する名前文字列を指定します。</param>
+		/// <returns>現在の名前文字列に<paramref name="ns"/>が連結された名前文字列を返します。</returns>
 		public NameString Concat(NameString ns)
 		{
 			if (_buf is null) {
@@ -188,8 +188,8 @@ namespace TakymLib.Text
 		/// <remarks>
 		///  この関数は<see cref="TakymLib.Text.NameString.Concat(NameString)"/>の別名です。
 		/// </remarks>
-		/// <param name="ns">結合する名前文字列です。</param>
-		/// <returns>現在の名前文字列に<paramref name="ns"/>が連結された名前文字列です。</returns>
+		/// <param name="ns">結合する名前文字列を指定します。</param>
+		/// <returns>現在の名前文字列に<paramref name="ns"/>が連結された名前文字列を返します。</returns>
 		public NameString Append(NameString ns)
 		{
 			return this.Concat(ns);
@@ -198,7 +198,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  現在の名前文字列から<see langword="NULL"/>文字を削除します。
 		/// </summary>
-		/// <returns><see langword="NULL"/>文字が削除された新しい名前文字列です。</returns>
+		/// <returns><see langword="NULL"/>文字が削除された新しい名前文字列を返します。</returns>
 		public NameString Compact()
 		{
 			if (_buf is null) {
@@ -218,9 +218,9 @@ namespace TakymLib.Text
 		/// <summary>
 		///  現在の名前文字列から部分文字列を取得します。
 		/// </summary>
-		/// <param name="start">開始位置です。</param>
-		/// <param name="length">文字列長です。</param>
-		/// <returns>新しい名前文字列です。</returns>
+		/// <param name="start">開始位置を指定します。</param>
+		/// <param name="length">文字列長を指定します。</param>
+		/// <returns>新しい名前文字列を返します。</returns>
 		public NameString Substring(int start, int length)
 		{
 			return this[start..(start + length)];
@@ -229,7 +229,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定したオブジェクトインスタンスの値と現在のインスタンスの値が等価かどうか判定します。
 		/// </summary>
-		/// <param name="obj">判定対象のオブジェクトです。</param>
+		/// <param name="obj">判定対象のオブジェクトを指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public override bool Equals(object? obj)
 		{
@@ -239,7 +239,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定した名前文字列と現在の名前文字列が等価かどうか判定します。
 		/// </summary>
-		/// <param name="other">判定対象の名前文字列です。</param>
+		/// <param name="other">判定対象の名前文字列を指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public bool Equals(NameString other)
 		{
@@ -262,7 +262,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定したオブジェクトインスタンスの値と現在のインスタンスの値を比較します。
 		/// </summary>
-		/// <param name="obj">比較対象のオブジェクトです。</param>
+		/// <param name="obj">比較対象のオブジェクトを指定します。</param>
 		/// <returns>
 		///  等価の場合は<code>0</code>、
 		///  現在のインスタンスの方が大きい場合は正の値、
@@ -276,7 +276,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定した名前文字列と現在の名前文字列を比較します。
 		/// </summary>
-		/// <param name="other">比較対象の名前文字列です。</param>
+		/// <param name="other">比較対象の名前文字列を指定します。</param>
 		/// <returns>
 		///  等価の場合は<code>0</code>、
 		///  現在のインスタンスの方が大きい場合は正の値、
@@ -305,7 +305,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  現在の名前文字列のハッシュ値を計算します。
 		/// </summary>
-		/// <returns>ハッシュ値です。</returns>
+		/// <returns>ハッシュ値を返します。</returns>
 		public override int GetHashCode()
 		{
 			if (_buf is null) {
@@ -322,7 +322,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  現在の名前文字列と等価の文字列を返します。
 		/// </summary>
-		/// <returns>型'<see cref="string"/>'の値です。</returns>
+		/// <returns>型'<see cref="string"/>'の値を返します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		public override string ToString()
 		{
@@ -340,7 +340,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  現在の名前文字列をバイト配列に変換します。
 		/// </summary>
-		/// <returns>型'<see cref="byte"/>'の配列です。</returns>
+		/// <returns>型'<see cref="byte"/>'の配列を返します。</returns>
 		public byte[] ToBinary()
 		{
 			return Compress(_buf);
@@ -349,8 +349,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定されたバイト配列を名前文字列に変換します。
 		/// </summary>
-		/// <param name="buf">変換するバイト配列です。</param>
-		/// <returns>新しい名前文字列です。</returns>
+		/// <param name="buf">変換するバイト配列を指定します。</param>
+		/// <returns>新しい名前文字列を返します。</returns>
 		public static NameString FromBinary(byte[] buf)
 		{
 			return new NameString(Decompress(buf));
@@ -359,8 +359,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された読み取り専用スパンを名前文字列に変換します。
 		/// </summary>
-		/// <param name="buf">変換する読み取り専用スパンです。</param>
-		/// <returns>新しい名前文字列です。</returns>
+		/// <param name="buf">変換する読み取り専用スパンを指定します。</param>
+		/// <returns>新しい名前文字列を返します。</returns>
 		public static NameString FromBinary(ReadOnlySpan<byte> buf)
 		{
 			return new NameString(Decompress(buf));
@@ -369,7 +369,7 @@ namespace TakymLib.Text
 		/// <summary>
 		///  この名前文字列の文字を列挙します。
 		/// </summary>
-		/// <returns><see cref="System.Collections.Generic.IEnumerator{T}"/>オブジェクトです。</returns>
+		/// <returns><see cref="System.Collections.Generic.IEnumerator{T}"/>オブジェクトを返します。</returns>
 		public IEnumerator<char> GetEnumerator()
 		{
 			if (_buf is not null) {
@@ -387,8 +387,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された文字を符号化します。
 		/// </summary>
-		/// <param name="c">符号化する文字です。</param>
-		/// <returns><paramref name="c"/>を表現する符号無し8ビット整数値です。</returns>
+		/// <param name="c">符号化する文字を指定します。</param>
+		/// <returns><paramref name="c"/>を表現する符号無し8ビット整数値を返します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		public static byte Encode(char c)
 		{
@@ -405,8 +405,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された符号無し8ビット整数値を逆符号化します。
 		/// </summary>
-		/// <param name="b">逆符号化する符号無し8ビット整数値です。</param>
-		/// <returns><paramref name="b"/>が表現している文字です。</returns>
+		/// <param name="b">逆符号化する符号無し8ビット整数値を指定します。</param>
+		/// <returns><paramref name="b"/>が表現している文字を返します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		public static char Decode(byte b)
 		{
@@ -497,17 +497,17 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された二つの名前文字列を結合します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
-		/// <returns>結合された名前文字列です。</returns>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
+		/// <returns>結合された名前文字列を返します。</returns>
 		public static NameString operator +(NameString left, NameString right)
 			=> left.Concat(right);
 
 		/// <summary>
 		///  指定された二つの名前文字列が等価かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>を返します。</returns>
 		public static bool operator ==(NameString left, NameString right)
 			=> left.Equals(right);
@@ -515,8 +515,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定された二つの名前文字列が不等価かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>等しい場合は<see langword="false"/>、等しくない場合は<see langword="true"/>を返します。</returns>
 		public static bool operator !=(NameString left, NameString right)
 			=> !left.Equals(right);
@@ -524,8 +524,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  左辺が右辺未満かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より小さい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator <(NameString left, NameString right)
 			=> left.CompareTo(right) < 0;
@@ -533,8 +533,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  左辺が右辺以下かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より小さいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator <=(NameString left, NameString right)
 			=> left.CompareTo(right) <= 0;
@@ -542,8 +542,8 @@ namespace TakymLib.Text
 		/// <summary>
 		///  左辺が右辺超過かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より大きい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator >(NameString left, NameString right)
 			=> left.CompareTo(right) > 0;
@@ -551,42 +551,47 @@ namespace TakymLib.Text
 		/// <summary>
 		///  左辺が右辺以上かどうか判定します。
 		/// </summary>
-		/// <param name="left">左辺の値です。</param>
-		/// <param name="right">右辺の値です。</param>
+		/// <param name="left">左辺の値を指定します。</param>
+		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より大きいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator >=(NameString left, NameString right)
 			=> left.CompareTo(right) >= 0;
 
 		/// <summary>
-		///  名前文字列を通常の文字列へ暗黙的に変換(キャスト)します。
+		///  名前文字列を通常の文字列へ暗黙的に変換します。
 		/// </summary>
-		/// <param name="name">通常の文字列へ変換する名前文字列です。</param>
+		/// <param name="name">通常の文字列へ変換する名前文字列を指定します。</param>
+		/// <returns>変換後の文字列を返します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		public static implicit operator string(NameString name) => name.ToString();
 
 		/// <summary>
-		///  名前文字列をバイト配列へ暗黙的に変換(キャスト)します。
+		///  名前文字列をバイト配列へ暗黙的に変換します。
 		/// </summary>
-		/// <param name="name">バイト配列へ変換する名前文字列です。</param>
+		/// <param name="name">バイト配列へ変換する名前文字列を指定します。</param>
+		/// <returns>変換後のバイト配列を返します。</returns>
 		public static implicit operator byte[](NameString name) => name.ToBinary();
 
 		/// <summary>
-		///  通常の文字列を名前文字列へ明示的に変換(キャスト)します。
+		///  通常の文字列を名前文字列へ明示的に変換します。
 		/// </summary>
-		/// <param name="name">名前文字列へ変換する通常の文字列です。</param>
+		/// <param name="name">名前文字列へ変換する通常の文字列を指定します。</param>
+		/// <returns>変換後の名前文字列を返します。</returns>
 		/// <exception cref="System.ArgumentException"/>
 		public static explicit operator NameString(string name) => new(name);
 
 		/// <summary>
-		///  バイト配列を名前文字列へ明示的に変換(キャスト)します。
+		///  バイト配列を名前文字列へ明示的に変換します。
 		/// </summary>
-		/// <param name="name">名前文字列へ変換するバイト配列です。</param>
+		/// <param name="name">名前文字列へ変換するバイト配列を指定します。</param>
+		/// <returns>変換後の名前文字列を返します。</returns>
 		public static explicit operator NameString(byte[] name) => FromBinary(name);
 
 		/// <summary>
-		///  バイト配列を名前文字列へ明示的に変換(キャスト)します。
+		///  バイト配列を名前文字列へ明示的に変換します。
 		/// </summary>
-		/// <param name="name">名前文字列へ変換するバイト配列です。</param>
+		/// <param name="name">名前文字列へ変換するバイト配列を指定します。</param>
+		/// <returns>変換後の名前文字列を返します。</returns>
 		public static explicit operator NameString(ReadOnlySpan<byte> name) => FromBinary(name);
 	}
 }

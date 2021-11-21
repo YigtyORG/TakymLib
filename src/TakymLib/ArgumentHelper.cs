@@ -29,7 +29,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNull([NotNull()] this object? obj,
-			[CallerArgumentExpression("obj")] string? argName)
+			[CallerArgumentExpression("obj")] string? argName = null)
 		{
 			if (obj is null) {
 				throw new ArgumentNullException(argName);
@@ -46,7 +46,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNull<T>([NotNull()] this T? obj,
-			[CallerArgumentExpression("obj")] string? argName)
+			[CallerArgumentExpression("obj")] string? argName = null)
 		{
 			if (obj is null) {
 				throw new ArgumentNullException(argName);
@@ -64,7 +64,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureWithinClosedRange(this IComparable? actual, object? min, object? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is not null && (actual.CompareTo(min) < 0 || actual.CompareTo(max) > 0)) {
 				throw new ArgumentOutOfRangeException(
@@ -87,7 +87,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureWithinClosedRange<T>(this IComparable<T>? actual, T? min, T? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is not null && (actual.CompareTo(min!) < 0 || actual.CompareTo(max!) > 0)) {
 				throw new ArgumentOutOfRangeException(
@@ -109,7 +109,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureWithinOpenRange(this IComparable? actual, object? min, object? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is not null && (actual.CompareTo(min) <= 0 || actual.CompareTo(max) >= 0)) {
 				throw new ArgumentOutOfRangeException(
@@ -132,7 +132,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureWithinOpenRange<T>(this IComparable<T>? actual, T? min, T? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is not null && (actual.CompareTo(min!) <= 0 || actual.CompareTo(max!) >= 0)) {
 				throw new ArgumentOutOfRangeException(
@@ -155,7 +155,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinClosedRange([NotNull()] this IComparable? actual, object? min, object? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -182,7 +182,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinClosedRange<T>([NotNull()] this IComparable<T>? actual, T? min, T? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -208,7 +208,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinOpenRange([NotNull()] this IComparable? actual, object? min, object? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -235,7 +235,7 @@ namespace TakymLib
 		[DebuggerHidden()]
 		[StackTraceHidden()]
 		public static void EnsureNotNullWithinOpenRange<T>([NotNull()] this IComparable<T>? actual, T? min, T? max,
-			[CallerArgumentExpression("actual")] string? argName)
+			[CallerArgumentExpression("actual")] string? argName = null)
 		{
 			if (actual is null) {
 				throw new ArgumentNullException(argName);
@@ -259,7 +259,7 @@ namespace TakymLib
 		/// <param name="argName">検証するオブジェクトの引数名です。</param>
 		/// <exception cref="System.ArgumentNullException" />
 		public static void ThrowIfNull([NotNull()] this object? obj,
-			[CallerArgumentExpression("obj")] string? argName)
+			[CallerArgumentExpression("obj")] string? argName = null)
 		{
 			obj.LogThrowIfNull(argName);
 			obj.EnsureNotNull(argName);

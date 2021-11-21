@@ -28,7 +28,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static TaskWrapper WrapAwaitable(this Task task)
 		{
-			task.EnsureNotNull(nameof(task));
+			task.EnsureNotNull();
 			return new(task);
 		}
 
@@ -40,7 +40,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static TaskWrapper<TResult> WrapAwaitable<TResult>(this Task<TResult> task)
 		{
-			task.EnsureNotNull(nameof(task));
+			task.EnsureNotNull();
 			return new(task);
 		}
 
@@ -52,7 +52,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ValueTaskWrapper WrapAwaitable(this ValueTask task)
 		{
-			task.EnsureNotNull(nameof(task));
+			task.EnsureNotNull();
 			return new(task);
 		}
 
@@ -64,7 +64,7 @@ namespace TakymLib.Threading.Tasks
 		/// <exception cref="System.ArgumentNullException"/>
 		public static ValueTaskWrapper<TResult> WrapAwaitable<TResult>(this ValueTask<TResult> task)
 		{
-			task.EnsureNotNull(nameof(task));
+			task.EnsureNotNull();
 			return new(task);
 		}
 	}

@@ -37,7 +37,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public OptionAttribute(string longName)
 		{
-			longName.EnsureNotNull(nameof(longName));
+			longName.EnsureNotNull();
 			this.LongName  = longName;
 			this.ShortName = null;
 		}
@@ -50,7 +50,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public OptionAttribute(string longName, string? shortName)
 		{
-			longName.EnsureNotNull(nameof(longName));
+			longName.EnsureNotNull();
 			this.LongName  = longName;
 			this.ShortName = shortName;
 		}

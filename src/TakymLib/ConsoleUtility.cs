@@ -99,7 +99,7 @@ namespace TakymLib
 		/// <exception cref="System.ArgumentNullException"/>
 		public static void Print(this VersionInfo version)
 		{
-			version.EnsureNotNull(nameof(version));
+			version.EnsureNotNull();
 			Console.WriteLine(version.GetCaption());
 			Console.WriteLine(version.Copyright);
 			Console.WriteLine();

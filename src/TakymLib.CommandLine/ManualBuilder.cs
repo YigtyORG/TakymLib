@@ -34,7 +34,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public ManualBuilder(CommandLineConverter converter)
 		{
-			converter.EnsureNotNull(nameof(converter));
+			converter.EnsureNotNull();
 			_sb   = new StringBuilder();
 			_conv = converter;
 		}
@@ -58,7 +58,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public void WriteVersion(VersionInfo ver)
 		{
-			ver.EnsureNotNull(nameof(ver));
+			ver.EnsureNotNull();
 			_appName = ver.Name;
 			_sb.Append(ver.GetCaption());
 			_sb.Append(" - ");
@@ -188,7 +188,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		public void BuildFull(VersionInfo ver, params string[] usages)
 		{
-			usages.EnsureNotNull(nameof(usages));
+			usages.EnsureNotNull();
 			this.WriteVersion(ver);
 			for (int i = 0; i < usages.Length; ++i) {
 				this.WriteUsage(usages[i]);

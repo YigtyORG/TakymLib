@@ -141,11 +141,19 @@ namespace TakymLib.Text
 		public static EastAsianWidth V13 { get; } = EAW13_0_0.Instance;
 
 		/// <summary>
+		///  バージョン14に準拠した実装を取得します。
+		/// </summary>
+		/// <remarks>
+		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
+		/// </remarks>
+		public static EastAsianWidth V14 { get; } = EAW14_0_0.Instance;
+
+		/// <summary>
 		///  既定の実装を取得します。
 		/// </summary>
 		/// <remarks>
 		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
 		/// </remarks>
-		public static EastAsianWidth Default { get; } = V13;
+		public static EastAsianWidth Default { get; } = V14;
 	}
 }

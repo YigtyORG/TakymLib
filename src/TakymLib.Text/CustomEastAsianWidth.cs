@@ -28,7 +28,7 @@ namespace TakymLib.Text
 		/// <exception cref="System.ArgumentNullException"/>
 		public CustomEastAsianWidth(params (int Start, int End, EastAsianWidthType Type)[] ranges)
 		{
-			ranges.EnsureNotNull(nameof(ranges));
+			ranges.EnsureNotNull();
 			this.Ranges = new ReadOnlyCollection<(int Start, int End, EastAsianWidthType Type)>(ranges);
 		}
 
@@ -39,7 +39,7 @@ namespace TakymLib.Text
 		/// <exception cref="System.ArgumentNullException"/>
 		public CustomEastAsianWidth(IReadOnlyList<(int Start, int End, EastAsianWidthType Type)> ranges)
 		{
-			ranges.EnsureNotNull(nameof(ranges));
+			ranges.EnsureNotNull();
 			this.Ranges = ranges;
 		}
 

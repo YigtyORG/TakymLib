@@ -10,13 +10,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<Configurations>Debug;Release;Benchmark</Configurations>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+		<CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+		<Prefer32Bit>false</Prefer32Bit>
 		<IsPackable>true</IsPackable>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -43,20 +44,17 @@
 		<Optimize>false</Optimize>
 		<DebugType>portable</DebugType>
 		<DebugSymbols>true</DebugSymbols>
-		<Prefer32Bit Condition="'$(OutputType)'=='Exe' Or '$(OutputType)'=='WinExe'">true</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<DefineConstants>RELEASE;TRACE</DefineConstants>
 		<Optimize>true</Optimize>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
-		<Prefer32Bit Condition="'$(OutputType)'=='Exe' Or '$(OutputType)'=='WinExe'">false</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Benchmark'">
 		<DefineConstants>BENCHMARK;TRACE</DefineConstants>
 		<Optimize>true</Optimize>
 		<DebugType>pdbonly</DebugType>
 		<DebugSymbols>true</DebugSymbols>
-		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 </Project>

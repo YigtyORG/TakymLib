@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TakymLib.Text
 {
@@ -30,7 +32,7 @@ namespace TakymLib.Text
 		/// <remarks>
 		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
 		/// </remarks>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
 		public static CustomEastAsianWidth DownloadLatestDefinition()
 		{
 			return DownloadDefinitionFrom(LatestDefinitionUrl);
@@ -39,21 +41,22 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定されたアドレスから東アジアの文字幅の定義データをダウンロードします。
 		/// </summary>
-		/// <param name="url">アドレスを表す文字列です。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="url">アドレスを表す文字列を指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクト返します。</returns>
 		public static CustomEastAsianWidth DownloadDefinitionFrom(string url)
 		{
-			using (var wc = new WebClient()) {
-				return DownloadDefinitionFrom(new Uri(url), wc);
+			using (var hc = new HttpClient()) {
+				return DownloadDefinitionFrom(new Uri(url), hc);
 			}
 		}
 
 		/// <summary>
 		///  指定されたアドレスから東アジアの文字幅の定義データをダウンロードします。
 		/// </summary>
-		/// <param name="url">アドレスを表す文字列です。</param>
-		/// <param name="client">ダウンロードに利用するクライアントです。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="url">アドレスを表す文字列を指定します。</param>
+		/// <param name="client">ダウンロードに利用するクライアントを指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
+		[Obsolete("WebClient は廃止されました。", DiagnosticId = "TakymLib_WebClient")]
 		public static CustomEastAsianWidth DownloadDefinitionFrom(string url, WebClient client)
 		{
 			return DownloadDefinitionFrom(new Uri(url), client);
@@ -62,33 +65,67 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定されたアドレスから東アジアの文字幅の定義データをダウンロードします。
 		/// </summary>
-		/// <param name="url">アドレスを表す<see cref="System.Uri"/>オブジェクトです。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="url">アドレスを表す<see cref="System.Uri"/>オブジェクトを指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
 		public static CustomEastAsianWidth DownloadDefinitionFrom(Uri url)
 		{
-			using (var wc = new WebClient()) {
-				return DownloadDefinitionFrom(url, wc);
+			using (var hc = new HttpClient()) {
+				return DownloadDefinitionFrom(url, hc);
 			}
 		}
 
 		/// <summary>
 		///  指定されたアドレスから東アジアの文字幅の定義データをダウンロードします。
 		/// </summary>
-		/// <param name="url">アドレスを表す<see cref="System.Uri"/>オブジェクトです。</param>
-		/// <param name="client">ダウンロードに利用するクライアントです。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="url">アドレスを表す<see cref="System.Uri"/>オブジェクトを指定します。</param>
+		/// <param name="client">ダウンロードに使用するクライアントを指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
+		[Obsolete("WebClient は廃止されました。", DiagnosticId = "TakymLib_WebClient")]
 		public static CustomEastAsianWidth DownloadDefinitionFrom(Uri url, WebClient client)
 		{
-			url   .EnsureNotNull(nameof(url));
-			client.EnsureNotNull(nameof(client));
+			url   .EnsureNotNull();
+			client.EnsureNotNull();
 			return Parse(client.DownloadString(url));
+		}
+
+		/// <summary>
+		///  指定されたアドレスから東アジアの文字幅の定義データをダウンロードします。
+		/// </summary>
+		/// <param name="url">アドレスを表す<see cref="System.Uri"/>オブジェクトを指定します。</param>
+		/// <param name="client">ダウンロードに利用するクライアントを指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
+		public static CustomEastAsianWidth DownloadDefinitionFrom(Uri url, HttpClient client)
+		{
+			url   .EnsureNotNull();
+			client.EnsureNotNull();
+			return Parse(client.GetStringAsync(url).GetAwaiter().GetResult());
+		}
+
+		/// <summary>
+		///  指定されたアドレスから東アジアの文字幅の定義データを非同期的にダウンロードします。
+		/// </summary>
+		/// <param name="url">アドレスを表す<see cref="System.Uri"/>オブジェクトを指定します。</param>
+		/// <param name="client">ダウンロードに利用するクライアントを指定します。</param>
+		/// <returns>
+		///  解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを含む、
+		///  この処理の非同期操作を返します。
+		/// </returns>
+		public static async ValueTask<CustomEastAsianWidth> DownloadDefinitionFromAsync(Uri url, HttpClient client)
+		{
+			url   .EnsureNotNull();
+			client.EnsureNotNull();
+
+			var stream = await client.GetStreamAsync(url).ConfigureAwait(false);
+			await using (stream.ConfigureAwait(false)) {
+				return await ParseAsync(stream);
+			}
 		}
 
 		/// <summary>
 		///  指定された文字列を解析します。
 		/// </summary>
-		/// <param name="s">解析する文字列です。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="s">解析する文字列を指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
 		public static CustomEastAsianWidth Parse(string? s)
 		{
 			using (var sr = new StringReader(s ?? string.Empty)) {
@@ -99,13 +136,13 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定されたストリームから入力される文字列を解析します。
 		/// </summary>
-		/// <param name="stream">ストリームです。</param>
-		/// <param name="encoding">文字コードです。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="stream">ストリームを指定します。</param>
+		/// <param name="encoding">文字コードを指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static CustomEastAsianWidth Parse(Stream stream, Encoding? encoding = null)
 		{
-			stream.EnsureNotNull(nameof(stream));
+			stream.EnsureNotNull();
 			using (var sr = new StreamReader(stream, encoding ?? Encoding.UTF8, true, -1, true)) {
 				return Parse(sr);
 			}
@@ -114,12 +151,12 @@ namespace TakymLib.Text
 		/// <summary>
 		///  指定されたテキストリーダーから入力される文字列を解析します。
 		/// </summary>
-		/// <param name="tr">テキストリーダーです。</param>
-		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトです。</returns>
+		/// <param name="tr">テキストリーダーを指定します。</param>
+		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
 		/// <exception cref="System.ArgumentNullException"/>
 		public static CustomEastAsianWidth Parse(TextReader tr)
 		{
-			tr.EnsureNotNull(nameof(tr));
+			tr.EnsureNotNull();
 			var ranges = new List<(int Start, int End, EastAsianWidthType Type)>();
 			while (tr.ReadLine() is not null and string line) {
 				ranges.Add(ParseLine(line));
@@ -128,10 +165,32 @@ namespace TakymLib.Text
 		}
 
 		/// <summary>
+		///  指定されたストリームから入力される文字列を非同期的に解析します。
+		/// </summary>
+		/// <param name="stream">ストリームを指定します。</param>
+		/// <param name="encoding">文字コードを指定します。</param>
+		/// <returns>
+		///  解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを含む、
+		///  この処理の非同期操作を返します。
+		/// </returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		public static async ValueTask<CustomEastAsianWidth> ParseAsync(Stream stream, Encoding? encoding = null)
+		{
+			stream.EnsureNotNull();
+			using (var sr = new StreamReader(stream, encoding ?? Encoding.UTF8, true, -1, true)) {
+				var ranges = new List<(int Start, int End, EastAsianWidthType Type)>();
+				while (await sr.ReadLineAsync().ConfigureAwait(false) is not null and string line) {
+					ranges.Add(ParseLine(line));
+				}
+				return new(ranges.AsReadOnly());
+			}
+		}
+
+		/// <summary>
 		///  指定された行を解析し、範囲で表された東アジアの文字幅の列挙値へ変換します。
 		/// </summary>
-		/// <param name="line">解析する一行の文字列です。</param>
-		/// <returns>範囲で表された東アジアの文字幅の列挙値です。</returns>
+		/// <param name="line">解析する一行の文字列を指定します。</param>
+		/// <returns>範囲で表された東アジアの文字幅の列挙値を返します。</returns>
 		public static (int Start, int End, EastAsianWidthType Type) ParseLine(string? line)
 		{
 			if (string.IsNullOrEmpty(line)) {

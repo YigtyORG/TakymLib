@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1F5DA7AD-422E-4F54-832F-F46137F4CB54}"
 	ProjectSection(SolutionItems) = preProject
@@ -53,6 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow Actions", "Workflo
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\Benchmark.yml = .github\workflows\Benchmark.yml
 		.github\workflows\BuildTest.yml = .github\workflows\BuildTest.yml
+		.github\workflows\CodeQL.2.yml = .github\workflows\CodeQL.2.yml
 		.github\workflows\CodeQL.yml = .github\workflows\CodeQL.yml
 		.github\workflows\NuGet.yml = .github\workflows\NuGet.yml
 	EndProjectSection
@@ -179,9 +180,9 @@ Global
 		{48593078-12FE-45B4-9C1F-B16E2446D0B0} = {95730C45-4C76-49B2-ADA4-8746958DE9BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
-		RESX_Rules = {"EnabledRules":[]}
-		RESX_ShowErrorsInErrorList = False
 		RESX_NeutralResourcesLanguage = iv
+		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":[]}
+		SolutionGuid = {8D61A0BF-B9AE-40DB-8CC8-CB114C1EED0B}
 	EndGlobalSection
 EndGlobal

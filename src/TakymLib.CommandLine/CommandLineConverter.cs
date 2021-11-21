@@ -123,7 +123,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.AggregateException"/>
 		public bool AddType(Type t)
 		{
-			t.EnsureNotNull(nameof(t));
+			t.EnsureNotNull();
 			var s = t.GetCustomAttribute<SwitchAttribute>();
 			if (s is null || s.Name is null || _types.ContainsKey(s.Name)) {
 				return false;
@@ -167,7 +167,7 @@ namespace TakymLib.CommandLine
 		/// <returns>有効なインスタンスまたは<see langword="null"/>を返します。</returns>
 		public object? Get(Type t)
 		{
-			t.EnsureNotNull(nameof(t));
+			t.EnsureNotNull();
 			if (_insts.ContainsKey(t)) {
 				return _insts[t];
 			} else {

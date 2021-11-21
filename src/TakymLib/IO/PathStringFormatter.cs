@@ -18,10 +18,11 @@ namespace TakymLib.IO
 	/// </summary>
 	public class PathStringFormatter : IFormatProvider, ICustomFormatter
 	{
-		private readonly IFormatProvider? _provider;
+		internal static readonly PathStringFormatter _inst     = new();
+		private         readonly IFormatProvider?    _provider;
 
 		/// <summary>
-		///  既定のカルチャを利用して、
+		///  既定のカルチャを使用して、
 		///  型'<see cref="TakymLib.IO.PathStringFormatter"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		public PathStringFormatter()
@@ -33,7 +34,7 @@ namespace TakymLib.IO
 		///  既定の書式設定サービスを提供する事ができるオブジェクトを指定して、
 		///  型'<see cref="TakymLib.IO.PathStringFormatter"/>'の新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="formatProvider">書式設定プロバイダです。</param>
+		/// <param name="formatProvider">書式設定プロバイダを指定します。</param>
 		public PathStringFormatter(IFormatProvider formatProvider)
 		{
 			_provider = formatProvider;
@@ -42,8 +43,8 @@ namespace TakymLib.IO
 		/// <summary>
 		///  指定された型の書式設定サービスを取得します。
 		/// </summary>
-		/// <param name="formatType">書式設定サービスの種類です。</param>
-		/// <returns>書式設定サービスを表すオブジェクトです。</returns>
+		/// <param name="formatType">書式設定サービスの種類を指定します。</param>
+		/// <returns>書式設定サービスを表すオブジェクトを返します。</returns>
 		public virtual object? GetFormat(Type? formatType)
 		{
 			if (formatType?.IsAssignableFrom(this.GetType()) ?? false) {
@@ -109,10 +110,10 @@ namespace TakymLib.IO
 		///   </item>
 		///  </list>
 		/// </remarks>
-		/// <param name="format">書式設定文字列です。</param>
-		/// <param name="arg">文字列へ変換するオブジェクトです。</param>
-		/// <param name="formatProvider">書式設定サービスを提供する書式設定プロバイダです。</param>
-		/// <returns>現在のパス文字列を表す可読な文字列です。</returns>
+		/// <param name="format">書式設定文字列を指定します。</param>
+		/// <param name="arg">文字列へ変換するオブジェクトを指定します。</param>
+		/// <param name="formatProvider">書式設定サービスを提供する書式設定プロバイダを指定します。</param>
+		/// <returns>現在のパス文字列を表す可読な文字列を返します。</returns>
 		public virtual string Format(string? format, object? arg, IFormatProvider? formatProvider)
 		{
 			if (arg is PathString path) {
@@ -123,48 +124,26 @@ namespace TakymLib.IO
 				var  formatted = new StringBuilder();
 				bool ignore    = false;
 				for (int i = 0; i < format.Length; ++i) {
+					char ch = format[i];
 					if (ignore) {
-						formatted.Append(format[i]);
+						formatted.Append(ch);
 						ignore = false;
+					} else if (ch == '\\') {
+						ignore = true;
 					} else {
-						switch (format[i]) {
-						case 'B':
-							formatted.Append(path.BasePath);
-							break;
-						case 'D':
-							formatted.Append(path.GetDirectoryName()?.GetFileName());
-							break;
-						case 'F':
-							formatted.Append(path.GetFileName());
-							break;
-						case 'N':
-							formatted.Append(path.GetFileNameWithoutExtension());
-							break;
-						case 'O':
-							formatted.Append(path.GetOriginalString());
-							break;
-						case 'P':
-							formatted.Append(path);
-							break;
-						case 'R':
-							formatted.Append(path.GetRootPath());
-							break;
-						case 'U':
-							formatted.Append(path.AsUri().AbsoluteUri);
-							break;
-						case 'X':
-							formatted.Append(path.GetExtension());
-							break;
-						case '/':
-							formatted.Append(Path.DirectorySeparatorChar);
-							break;
-						case '\\':
-							ignore = true;
-							break;
-						default:
-							formatted.Append(format[i]);
-							break;
-						}
+						formatted.Append(ch switch {
+							'B' => path.BasePath,
+							'D' => path.GetDirectoryName()?.GetFileName(),
+							'F' => path.GetFileName(),
+							'N' => path.GetFileNameWithoutExtension(),
+							'O' => path.GetOriginalString(),
+							'P' => path,
+							'R' => path.GetRootPath(),
+							'U' => path.AsUri().AbsoluteUri,
+							'X' => path.GetExtension(),
+							'/' => Path.DirectorySeparatorChar,
+							_   => ch
+						});
 					}
 				}
 				return formatted.ToString();

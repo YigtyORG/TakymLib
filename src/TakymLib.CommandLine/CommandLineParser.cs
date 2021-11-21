@@ -32,7 +32,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		protected CommandLineParser(string[] args)
 		{
-			args.EnsureNotNull(nameof(args));
+			args.EnsureNotNull();
 			_lexer  = _default_lexer;
 			_source = args;
 		}
@@ -45,7 +45,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		protected CommandLineParser(CommandLineLexer? lexer, string text)
 		{
-			text.EnsureNotNull(nameof(text));
+			text.EnsureNotNull();
 			_lexer  = lexer ?? _default_lexer;
 			_source = text;
 		}
@@ -58,7 +58,7 @@ namespace TakymLib.CommandLine
 		/// <exception cref="System.ArgumentNullException"/>
 		protected CommandLineParser(CommandLineLexer? lexer, Func<TextReader> openReader)
 		{
-			openReader.EnsureNotNull(nameof(openReader));
+			openReader.EnsureNotNull();
 			_lexer  = lexer ?? _default_lexer;
 			_source = openReader;
 		}

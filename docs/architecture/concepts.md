@@ -13,7 +13,7 @@ Copyright (C) 2020-2021 Takym.
 ```csharp
 public void SomeFunc(object arg)
 {
-	arg.EnsureNotNull(nameof(arg));
+	arg.EnsureNotNull();
 	...
 }
 ```
