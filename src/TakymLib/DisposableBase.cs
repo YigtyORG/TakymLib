@@ -87,7 +87,6 @@ namespace TakymLib
 			}
 		}
 
-#pragma warning disable CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
 		/// <summary>
 		///  現在のオブジェクトを非同期的に破棄します。
 		/// </summary>
@@ -104,7 +103,6 @@ namespace TakymLib
 				}
 			}
 		}
-#pragma warning restore CA1816 // Dispose メソッドは、SuppressFinalize を呼び出す必要があります
 
 		/// <summary>
 		///  現在のオブジェクトインスタンスと利用しているリソースを破棄します。

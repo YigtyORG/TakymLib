@@ -912,7 +912,7 @@ namespace TakymLib.IO
 		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より小さいか等しい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator <=(PathString? left, PathString? right)
-			=> left is null ? true : left.CompareTo(right) <= 0;
+			=> left is null || left.CompareTo(right) <= 0;
 
 		/// <summary>
 		///  左辺が右辺超過かどうか判定します。
@@ -921,7 +921,7 @@ namespace TakymLib.IO
 		/// <param name="right">右辺の値を指定します。</param>
 		/// <returns>左辺の方が右辺より大きい場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。</returns>
 		public static bool operator >(PathString? left, PathString? right)
-			=> left is null ? false : left.CompareTo(right) > 0;
+			=> left is not null && left.CompareTo(right) > 0;
 			//=> !(left <= right);
 
 		/// <summary>
