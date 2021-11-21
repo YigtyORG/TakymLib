@@ -103,9 +103,9 @@ namespace TakymLib
 		///  指定された文字数に収まる文字列です。
 		/// </returns>
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
-		public static string Abridge(this string s, int count)
+		public static string Abridge(this string? s, int count)
 		{
-			count.EnsureNotNullWithinClosedRange(4, int.MaxValue, nameof(count));
+			count.EnsureNotNullWithinClosedRange(4, int.MaxValue);
 			s ??= string.Empty;
 			if (s.Length > count) {
 				return s.Remove(count - 3) + "...";
