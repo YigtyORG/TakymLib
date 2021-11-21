@@ -81,7 +81,7 @@ namespace TakymLib.Threading.Tasks.Core
 
 		private void ValidateThread()
 		{
-			if (this.Thread.ManagedThreadId != Thread.CurrentThread.ManagedThreadId) {
+			if (this.Thread.ManagedThreadId != Environment.CurrentManagedThreadId) {
 				throw new InvalidOperationException(Resources.DefaultJoinableThread_ValidateThread_InvalidOperationException);
 			}
 		}

@@ -148,7 +148,7 @@ namespace TakymLib.CommandLine
 
 			internal ArrayAsyncEnumerator(string[] array)
 			{
-				_mtid  = Thread.CurrentThread.ManagedThreadId;
+				_mtid  = Environment.CurrentManagedThreadId;
 				_array = array;
 				_index = -1;
 				_ct    = default;
@@ -165,7 +165,7 @@ namespace TakymLib.CommandLine
 
 			public IAsyncEnumerator<string> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 			{
-				if (Thread.CurrentThread.ManagedThreadId == _mtid) {
+				if (Environment.CurrentManagedThreadId == _mtid) {
 					if (_ct == default) {
 						_ct = cancellationToken;
 					} else {
