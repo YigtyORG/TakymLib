@@ -31,9 +31,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build -c ReleaseW --no-restore
     - name: Pack
-      run: dotnet pack -c Release --no-build --include-symbols --version-suffix ${{ github.sha }}
+      run: dotnet pack -c ReleaseW --no-build --include-symbols --version-suffix ${{ github.sha }}
     - name: Add Source
       run: nuget sources Add -Source https://nuget.pkg.github.com/YigtyORG/index.json -Name "github" -UserName YigtyORG -Password ${{ secrets.GITHUB_TOKEN }}
     - name: Publish

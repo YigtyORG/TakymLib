@@ -33,7 +33,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TakymLib.sln
     # Build
+    - name: BuildW
+      if: matrix.os == 'windows-latest'
+      run: dotnet build -c ${{ matrix.bc }}W --no-restore
     - name: Build
+      if: steps.BuildW.conclusion == 'skipped'
       run: dotnet build -c ${{ matrix.bc }} --no-restore
     # Test
     - name: Test
