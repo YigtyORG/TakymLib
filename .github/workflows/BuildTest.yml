@@ -35,12 +35,12 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: dotnet build -c ${{ matrix.bc }}W
     - name: Build
-      if: steps.BuildW.conclusion == 'skipped'
+      if: matrix.os != 'windows-latest'
       run: dotnet build -c ${{ matrix.bc }}
     # Test
     - name: TestW
       if: matrix.os == 'windows-latest'
       run: dotnet test -c ${{ matrix.bc }}W --no-build --verbosity normal
     - name: Test
-      if: steps.TestW.conclusion == 'skipped'
+      if: matrix.os != 'windows-latest'
       run: dotnet test -c ${{ matrix.bc }} --no-build --verbosity normal
