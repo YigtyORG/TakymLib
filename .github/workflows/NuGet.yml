@@ -28,10 +28,8 @@ jobs:
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-version: latest
-    - name: Restore dependencies
-      run: dotnet restore TakymLib.sln
     - name: Build
-      run: dotnet build -c ReleaseW --no-restore
+      run: dotnet build -c ReleaseW
     - name: Pack
       run: dotnet pack -c ReleaseW --no-build --include-symbols --version-suffix ${{ github.sha }}
     - name: Add Source
