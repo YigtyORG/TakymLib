@@ -18,9 +18,9 @@ namespace TakymLib.Logging
 		/// <summary>
 		///  処理の開始をログに出力します。
 		/// </summary>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
+		/// <param name="memberName">呼び出し元の名前を指定します。</param>
+		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスを指定します。</param>
+		/// <param name="lineNumber">呼び出し元のコードの行番号を指定します。</param>
 		public void Begin(
 			[CallerMemberName()] string memberName = "",
 			[CallerFilePath()]   string filePath   = "",
@@ -30,11 +30,11 @@ namespace TakymLib.Logging
 		/// <summary>
 		///  処理の開始をログに出力します。
 		/// </summary>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <param name="message">出力するメッセージを指定します。</param>
+		/// <param name="memberName">呼び出し元の名前を指定します。</param>
+		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスを指定します。</param>
+		/// <param name="lineNumber">呼び出し元のコードの行番号を指定します。</param>
+		/// <param name="messageExpression">メッセージの式表現を指定します。</param>
 		public void Begin(
 			                                      object? message,
 			[CallerMemberName()]                  string  memberName        = "",
@@ -46,12 +46,12 @@ namespace TakymLib.Logging
 		/// <summary>
 		///  処理の開始をログに出力します。
 		/// </summary>
-		/// <typeparam name="T">メッセージの種類です。</typeparam>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <typeparam name="T">メッセージの種類を指定します。</typeparam>
+		/// <param name="message">出力するメッセージを指定します。</param>
+		/// <param name="memberName">呼び出し元の名前を指定します。</param>
+		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスを指定します。</param>
+		/// <param name="lineNumber">呼び出し元のコードの行番号を指定します。</param>
+		/// <param name="messageExpression">メッセージの式表現を指定します。</param>
 		public void Begin<T>(
 			                                      T?      message,
 			[CallerMemberName()]                  string  memberName        = "",
@@ -63,9 +63,9 @@ namespace TakymLib.Logging
 		/// <summary>
 		///  処理の終了をログに出力します。
 		/// </summary>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
+		/// <param name="memberName">呼び出し元の名前を指定します。</param>
+		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスを指定します。</param>
+		/// <param name="lineNumber">呼び出し元のコードの行番号を指定します。</param>
 		public void End(
 			[CallerMemberName()] string memberName = "",
 			[CallerFilePath()]   string filePath   = "",
@@ -75,11 +75,11 @@ namespace TakymLib.Logging
 		/// <summary>
 		///  処理の終了をログに出力します。
 		/// </summary>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <param name="message">出力するメッセージを指定します。</param>
+		/// <param name="memberName">呼び出し元の名前を指定します。。</param>
+		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスを指定します。</param>
+		/// <param name="lineNumber">呼び出し元のコードの行番号を指定します。</param>
+		/// <param name="messageExpression">メッセージの式表現を指定します。</param>
 		public void End(
 			                                      object? message,
 			[CallerMemberName()]                  string  memberName        = "",
@@ -91,12 +91,12 @@ namespace TakymLib.Logging
 		/// <summary>
 		///  処理の終了をログに出力します。
 		/// </summary>
-		/// <typeparam name="T">メッセージの種類です。</typeparam>
-		/// <param name="message">出力するメッセージです。</param>
-		/// <param name="memberName">呼び出し元の名前です。</param>
-		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスです。</param>
-		/// <param name="lineNumber">呼び出し元のコードの行番号です。</param>
-		/// <param name="messageExpression">メッセージの式表現です。</param>
+		/// <typeparam name="T">メッセージの種類を指定します。</typeparam>
+		/// <param name="message">出力するメッセージを指定します。</param>
+		/// <param name="memberName">呼び出し元の名前を指定します。</param>
+		/// <param name="filePath">呼び出し元のコードを格納しているファイルのパスを指定します。</param>
+		/// <param name="lineNumber">呼び出し元のコードの行番号を指定します。</param>
+		/// <param name="messageExpression">メッセージの式表現を指定します。</param>
 		public void End<T>(
 			                                      T?      message,
 			[CallerMemberName()]                  string  memberName        = "",

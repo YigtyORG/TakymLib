@@ -109,6 +109,8 @@ namespace TakymLib.ConsoleApp
 		private static async Task<int> Main(string[] args)
 		{
 			try {
+				Console.WriteLine("TakymLib Testing Utility");
+				Console.WriteLine("========================");
 				VersionInfo.Current.Print();
 				await Run();
 				return 0;

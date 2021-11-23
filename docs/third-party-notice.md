@@ -8,14 +8,48 @@ Copyright (C) 2020-2021 Takym.
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/sdk>
 	* 利用規約：[MITライセンス](https://github.com/dotnet/sdk/blob/main/LICENSE.TXT)
-* [System.Memory]
+
+## [TakymLib.Extensibility] で利用しているライブラリの一覧
+* [System.Linq.Async]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
-	* リポジトリ：<https://github.com/dotnet/corefx>、<https://github.com/dotnet/runtime>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)
-* [System.Threading.Tasks.Extensions]
+	* リポジトリ：<https://github.com/dotnet/reactive>
+	* ディレクトリ：<https://github.com/dotnet/reactive/tree/main/Ix.NET/Source/System.Linq.Async>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/reactive/blob/main/LICENSE)
+
+## [TakymLib.Logging] で利用しているライブラリの一覧
+* [Microsoft.Extensions.Logging]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
-	* リポジトリ：<https://github.com/dotnet/corefx>、<https://github.com/dotnet/runtime>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/corefx/blob/master/LICENSE.TXT)
+	* リポジトリ：<https://github.com/dotnet/runtime>
+	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Logging>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+
+## [TakymLib.Text] で利用しているライブラリの一覧
+* 東アジアの文字幅 (East Asian Width)
+	* <https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>
+	* 著作権表記：&copy; 2020 Unicode&reg;, Inc.
+	* 利用規約：<http://www.unicode.org/terms_of_use.html>
+
+## [TakymLib.UI] で利用しているライブラリの一覧
+* Microsoft.NET.Sdk.WindowsDesktop
+	* [.NET プロジェクト SDK](https://docs.microsoft.com/ja-jp/dotnet/core/project-sdk/overview)
+	* 著作権表記：Copyright (c) .NET Foundation and Contributors
+	* リポジトリ：<https://github.com/dotnet/sdk>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/sdk/blob/main/LICENSE.TXT)
+* [Microsoft.Extensions.Hosting]
+	* 著作権表記：Copyright (c) .NET Foundation and Contributors
+	* リポジトリ：<https://github.com/dotnet/runtime>
+	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Hosting>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+* [Microsoft.Extensions.Configuration.Xml]
+	* 著作権表記：Copyright (c) .NET Foundation and Contributors
+	* リポジトリ：<https://github.com/dotnet/runtime>
+	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Xml>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+* [Microsoft.Extensions.Configuration.Ini]
+	* 著作権表記：Copyright (c) .NET Foundation and Contributors
+	* リポジトリ：<https://github.com/dotnet/runtime>
+	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Ini>
+	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 
 ## [TakymLibTests] で利用しているライブラリの一覧
 * [Microsoft.NET.Test.Sdk]
@@ -50,22 +84,24 @@ Copyright (C) 2020-2021 Takym.
 	* リポジトリ：<https://github.com/dotnet/docfx>
 	* 利用規約：[MITライセンス](https://github.com/dotnet/docfx/blob/dev/LICENSE)
 
-## 東アジアの文字幅 (East Asian Width)
-* <https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>
-* 著作権表記：&copy; 2020 Unicode&reg;, Inc.
-* 利用規約：<http://www.unicode.org/terms_of_use.html>
 
 
 
-
-[TakymLibTests]:                     https://github.com/YigtyORG/TakymLib/tree/master/tests/
-[docs]:                              https://github.com/YigtyORG/TakymLib/tree/master/docs/
-[System.Memory]:                     https://www.nuget.org/packages/System.Memory/
-[System.Threading.Tasks.Extensions]: https://www.nuget.org/packages/System.Threading.Tasks.Extensions/
-[Microsoft.NET.Test.Sdk]:            https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/
-[MSTest.TestAdapter]:                https://www.nuget.org/packages/MSTest.TestAdapter/
-[MSTest.TestFramework]:              https://www.nuget.org/packages/MSTest.TestFramework/
-[coverlet.collector]:                https://www.nuget.org/packages/coverlet.collector/
-[BenchmarkDotNet]:                   https://www.nuget.org/packages/BenchmarkDotNet/
-[docfx.console]:                     https://www.nuget.org/packages/docfx.console/
-[memberpage]:                        https://www.nuget.org/packages/memberpage/
+[TakymLib.Extensibility]:                 https://github.com/YigtyORG/TakymLib/tree/master/src/TakymLib.Extensibility
+[TakymLib.Logging]:                       https://github.com/YigtyORG/TakymLib/tree/master/src/TakymLib.Logging
+[TakymLib.Text]:                          https://github.com/YigtyORG/TakymLib/tree/master/src/TakymLib.Text
+[TakymLib.UI]:                            https://github.com/YigtyORG/TakymLib/tree/master/src/TakymLib.UI
+[TakymLibTests]:                          https://github.com/YigtyORG/TakymLib/tree/master/tests/
+[docs]:                                   https://github.com/YigtyORG/TakymLib/tree/master/docs/
+[System.Linq.Async]:                      https://www.nuget.org/packages/System.Linq.Async/
+[BenchmarkDotNet]:                        https://www.nuget.org/packages/BenchmarkDotNet/
+[coverlet.collector]:                     https://www.nuget.org/packages/coverlet.collector/
+[docfx.console]:                          https://www.nuget.org/packages/docfx.console/
+[memberpage]:                             https://www.nuget.org/packages/memberpage/
+[Microsoft.Extensions.Configuration.Ini]: https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Ini
+[Microsoft.Extensions.Configuration.Xml]: https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Ini
+[Microsoft.Extensions.Hosting]:           https://www.nuget.org/packages/Microsoft.Extensions.Hosting
+[Microsoft.Extensions.Logging]:           https://www.nuget.org/packages/Microsoft.Extensions.Logging
+[Microsoft.NET.Test.Sdk]:                 https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/
+[MSTest.TestAdapter]:                     https://www.nuget.org/packages/MSTest.TestAdapter/
+[MSTest.TestFramework]:                   https://www.nuget.org/packages/MSTest.TestFramework/
