@@ -38,14 +38,4 @@
 			<DependentUpon>appsettings.json</DependentUpon>
 		</Content>
 	</ItemGroup>
-	<ItemGroup>
-	  <Compile Update="Properties\Resources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	  </Compile>
-	</ItemGroup>
-	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources - コピー.ja.resx">
-	    <DependentUpon>Resources.resx</DependentUpon>
-	  </EmbeddedResource>
-	</ItemGroup>
 </Project>
