@@ -16,13 +16,13 @@ namespace TakymLib.Logging
 	/// </summary>
 	public class CallerLoggerAdapter : ICallerLogger
 	{
-		private readonly ILogger _logger;
+		private readonly ILogger? _logger;
 
 		/// <summary>
 		///  型'<see cref="TakymLib.Logging.CallerLoggerAdapter"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="logger">ログの出力先を指定します。</param>
-		public CallerLoggerAdapter(ILogger logger)
+		public CallerLoggerAdapter(ILogger? logger)
 		{
 			_logger = logger;
 		}
@@ -98,7 +98,7 @@ namespace TakymLib.Logging
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void LogCore<T>(T? message, string type, string memberName, string filePath, int lineNumber, string messageExpression)
 		{
-			_logger.LogTrace(
+			_logger?.LogTrace(
 				"{message}; {{ type={type}, memberName={memberName}, filePath={filePath}, lineNumber={lineNumber}, messageExpression={messageExpression} }}",
 				message,
 				type,
