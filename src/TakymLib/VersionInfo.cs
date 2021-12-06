@@ -269,5 +269,11 @@ namespace TakymLib
 			}
 			return edition;
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return this.GetFullVersionString();
+		}
 	}
 }

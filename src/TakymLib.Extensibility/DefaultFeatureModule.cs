@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -102,11 +102,12 @@ namespace TakymLib.Extensibility
 			private readonly static ConcurrentDictionary<object, ObjectAdapter> _cache = new();
 			private readonly        object                                      _obj;
 
-			public string? DisplayName => _obj is IPlugin p ? p.DisplayName : string.Empty;
-			public string? Description => _obj is IPlugin p ? p.Description : string.Empty;
+			public string? DisplayName => _obj is IPlugin p ? p.DisplayName : _obj.GetType().Name;
+			public string? Description => _obj is IPlugin p ? p.Description : _obj.ToString();
 
 			private ObjectAdapter(object obj)
 			{
+				Debug.Assert(obj is not null);
 				_obj = obj;
 			}
 
@@ -120,20 +121,22 @@ namespace TakymLib.Extensibility
 
 			public IEnumerable<IPlugin> EnumerateChildren()
 			{
-				if (_obj is IPlugin p) {
-					return p.EnumerateChildren();
-				} else {
-					return Enumerable.Empty<IPlugin>();
-				}
+				return _obj switch {
+					IPlugin                   p => p.EnumerateChildren(),
+					IEnumerable<IPlugin>      e => e,
+					IAsyncEnumerable<IPlugin> e => e.ToEnumerable(),
+					_                           => Enumerable.Empty<IPlugin>()
+				};
 			}
 
 			public IAsyncEnumerable<IPlugin> EnumerateChildrenAsync()
 			{
-				if (_obj is IPlugin p) {
-					return p.EnumerateChildrenAsync();
-				} else {
-					return AsyncEnumerable.Empty<IPlugin>();
-				}
+				return _obj switch {
+					IPlugin                   p => p.EnumerateChildrenAsync(),
+					IEnumerable<IPlugin>      e => e.ToAsyncEnumerable(),
+					IAsyncEnumerable<IPlugin> e => e,
+					_                           => AsyncEnumerable.Empty<IPlugin>()
+				};
 			}
 
 			public override bool Equals(object? obj)
