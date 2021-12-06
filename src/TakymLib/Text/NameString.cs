@@ -143,12 +143,7 @@ namespace TakymLib.Text
 
 		private NameString(SerializationInfo info, StreamingContext context)
 		{
-			byte[]? data = info.GetValue<byte[]>("_");
-			if (data is not null) {
-				_buf = Decompress(data);
-			} else {
-				_buf = null;
-			}
+			_buf = info.GetValue<byte[]>("_") is not null and var data ? Decompress(data) : null;
 		}
 
 		/// <summary>
