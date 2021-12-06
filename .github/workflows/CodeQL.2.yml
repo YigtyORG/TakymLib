@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        bc: [ Debug, Release, Benchmark ]
+        bc: [ Debug, DebugW, Release, ReleaseW, Benchmark, BenchmarkW ]
 
     steps:
     - name: Checkout repository
