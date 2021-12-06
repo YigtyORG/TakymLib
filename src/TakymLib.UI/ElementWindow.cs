@@ -26,17 +26,6 @@ namespace TakymLib.UI
 		/// </summary>
 		public UIElement UIElement => _eh.Child;
 
-		/// <inheritdoc/>
-		public override string Text
-		{
-			get => _eh?.Text ?? base.Text;
-			set
-			{
-				base.Text = value;
-				if (_eh is not null) _eh.Text = value;
-			}
-		}
-
 		/// <summary>
 		///  型'<see cref="ElementWindow"/>'の新しいインスタンスを生成します。
 		/// </summary>
@@ -44,13 +33,23 @@ namespace TakymLib.UI
 		/// <exception cref="ArgumentNullException"/>
 		public ElementWindow(UIElement uiElement)
 		{
-			if (uiElement is null) throw new ArgumentNullException(nameof(uiElement));
+			uiElement.EnsureNotNull();
 			this.SuspendLayout();
 			_eh        = new();
 			_eh.Dock   = DockStyle.Fill;
 			_eh.Child  = uiElement;
 			_eh.Parent = this;
+			if (uiElement is IElementWindowTitleProvider titleProvider) {
+				this.Text = titleProvider.Title;
+			}
 			this.ResumeLayout(false);
+		}
+
+		/// <inheritdoc/>
+		protected override void Dispose(bool disposing)
+		{
+			_eh.Child = null;
+			base.Dispose(disposing);
 		}
 	}
 }

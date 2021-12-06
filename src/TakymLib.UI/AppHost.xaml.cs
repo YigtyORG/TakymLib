@@ -34,7 +34,6 @@ namespace TakymLib.UI
 		private const    string         ENVIRONMENT_VARIABLES_PREFIX = "TAKYM_LIB_UI_APP_";
 		private const    double         MIN_DELAY_FOR_SPLASH         = 1000.0D;
 		private readonly IHost          _host;
-		private readonly FormMain       _mwnd;
 		private readonly IConfiguration _config;
 		private readonly ILogger        _logger;
 
@@ -79,7 +78,6 @@ namespace TakymLib.UI
 				)
 				.Build();
 
-			_mwnd = new(this, _host.Services);
 			_config = _host.Services.GetRequiredService<IConfiguration>();
 			_logger = _host.Services.GetRequiredService<ILogger<AppHost>>();
 
@@ -105,7 +103,7 @@ namespace TakymLib.UI
 
 			var task = _host.StartAsync();
 			if (task.IsCompleted) {
-				WinFormsApp.Run(_mwnd);
+				WinFormsApp.Run(CreateFormMain());
 			} else if (_config.ShowSplash()) {
 				var dtBegin = DateTime.Now;
 				var splash  = new FormSplash();
@@ -113,15 +111,20 @@ namespace TakymLib.UI
 				task.ContinueWith(async _ => {
 					int delay = unchecked((int)(MIN_DELAY_FOR_SPLASH - (DateTime.Now - dtBegin).TotalMilliseconds));
 					if (delay > 0) await Task.Delay(delay);
-					splash.Invoke(new Action(() => {
+					splash.Invoke(() => {
 						splash.Close();
-						_mwnd.Show();
-					}));
+						CreateFormMain().Show();
+					});
 				});
 				WinFormsApp.Run();
 			} else {
 				task.ConfigureAwait(false).GetAwaiter().GetResult();
-				WinFormsApp.Run(_mwnd);
+				WinFormsApp.Run(CreateFormMain());
+			}
+
+			FormMain CreateFormMain()
+			{
+				return new FormMain(this, _host.Services);
 			}
 		}
 

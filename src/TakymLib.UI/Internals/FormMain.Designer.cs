@@ -1,4 +1,4 @@
-﻿
+
 namespace TakymLib.UI.Internals
 {
 	partial class FormMain
@@ -19,57 +19,63 @@ namespace TakymLib.UI.Internals
 			this.mainMenu = new System.Windows.Forms.MenuStrip();
 			this.statusBar = new System.Windows.Forms.StatusStrip();
 			this.btnSystemSettings = new System.Windows.Forms.ToolStripButton();
+			this.btnPluginManager = new System.Windows.Forms.ToolStripButton();
 			this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.lblCopyright = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusBar.SuspendLayout();
 			this.SuspendLayout();
-			//
+			// 
 			// mainMenu
-			//
+			// 
 			this.mainMenu.Location = new System.Drawing.Point(0, 0);
 			this.mainMenu.Name = "mainMenu";
 			this.mainMenu.Size = new System.Drawing.Size(800, 24);
 			this.mainMenu.TabIndex = 1;
 			this.mainMenu.Text = "mainMenu";
-			//
+			// 
 			// statusBar
-			//
+			// 
 			this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSystemSettings,
+            this.btnPluginManager,
             this.lblStatus,
             this.lblCopyright});
-			this.statusBar.Location = new System.Drawing.Point(0, 428);
 			this.statusBar.Name = "statusBar";
-			this.statusBar.Size = new System.Drawing.Size(800, 22);
 			this.statusBar.TabIndex = 2;
 			this.statusBar.Text = "statusBar";
-			//
+			// 
 			// btnSystemSettings
-			//
+			// 
 			this.btnSystemSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.btnSystemSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSystemSettings.Image")));
 			this.btnSystemSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btnSystemSettings.Name = "btnSystemSettings";
-			this.btnSystemSettings.Size = new System.Drawing.Size(16, 17);
 			this.btnSystemSettings.Text = "btnSystemSettings";
 			this.btnSystemSettings.Click += new System.EventHandler(this.btnSystemSettings_Click);
-			//
+			// 
+			// btnPluginManager
+			// 
+			this.btnPluginManager.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btnPluginManager.Image = ((System.Drawing.Image)(resources.GetObject("btnSystemSettings.Image")));
+			this.btnPluginManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnPluginManager.Name = "btnPluginManager";
+			this.btnPluginManager.Text = "btnPluginManager";
+			this.btnPluginManager.Click += new System.EventHandler(this.btnPluginManager_Click);
+			// 
 			// lblStatus
-			//
+			// 
 			this.lblStatus.Name = "lblStatus";
-			this.lblStatus.Size = new System.Drawing.Size(666, 17);
 			this.lblStatus.Spring = true;
 			this.lblStatus.Text = "lblStatus";
 			this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			//
+			// 
 			// lblCopyright
-			//
+			// 
 			this.lblCopyright.Name = "lblCopyright";
-			this.lblCopyright.Size = new System.Drawing.Size(72, 17);
 			this.lblCopyright.Text = "lblCopyright";
-			//
+			// 
 			// FormMain
-			//
+			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
@@ -92,5 +98,6 @@ namespace TakymLib.UI.Internals
 		private System.Windows.Forms.ToolStripStatusLabel lblCopyright;
 		private System.Windows.Forms.ToolStripStatusLabel lblStatus;
 		private System.Windows.Forms.ToolStripButton btnSystemSettings;
+		private System.Windows.Forms.ToolStripButton btnPluginManager;
 	}
 }
