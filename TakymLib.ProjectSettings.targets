@@ -24,7 +24,7 @@
 		<Authors>Takym</Authors>
 		<Copyright>Copyright (C) 2020-2021 Yigty.ORG; all rights reserved. Copyright (C) 2020-2021 Takym.</Copyright>
 		<VersionPrefix>0.0.0.0</VersionPrefix>
-		<InformationalVersion>alpha00a0</InformationalVersion>
+		<InformationalVersion>intols00a0</InformationalVersion>
 		<PackageTags>Library, Common, Core, Framework</PackageTags>
 	</PropertyGroup>
 	<PropertyGroup Label="Strong Name Key" Condition="Exists('$(SolutionDir)/TakymLib.StrongNameKey.snk')">

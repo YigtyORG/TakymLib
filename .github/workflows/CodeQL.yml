@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        bc: [ Debug, Release ]
+        bc: [ DebugW, ReleaseW ]
 
     steps:
     - name: Checkout repository

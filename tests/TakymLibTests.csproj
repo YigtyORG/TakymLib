@@ -31,7 +31,7 @@
 		</PackageReference>
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
 
-		<!-- ライブラリへの参照は下記のプロジェクトに追加する。 -->
+		<!-- 各ライブラリへの参照は下記のプロジェクトに追加する。 -->
 		<ProjectReference Include="../src/TakymLib.ConsoleApp/TakymLib.ConsoleApp.csproj" />
 
 		<EmbeddedResource Update="Properties/Resources.resx">

@@ -13,7 +13,7 @@
 	</PropertyGroup>
 	<Import Project="../../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
-		<Product>TakymLib</Product>
+		<Product>TakymLib.Aspect</Product>
 		<Description>The common aspect-oriented programming library.</Description>
 		<PackageTags>$(PackageTags), Aspect</PackageTags>
 	</PropertyGroup>

@@ -25,16 +25,14 @@ jobs:
       uses: actions/setup-dotnet@v1.8.2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore TakymLib.sln
     # Build
     - name: Build (Target Programs)
-      run: dotnet build -c Release --no-restore
+      run: dotnet build -c ReleaseW
     - name: Build (Testing Environment)
-      run: dotnet build -c Benchmark --no-restore
+      run: dotnet build -c BenchmarkW
     # Test
     - name: Test
-      run: dotnet test -c Benchmark --no-build --verbosity normal
+      run: dotnet test -c BenchmarkW --no-build --verbosity normal
     # Upload Artifacts
     - name: Save Benchmarks Results
       uses: actions/upload-artifact@v2

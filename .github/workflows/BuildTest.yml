@@ -30,11 +30,17 @@ jobs:
       uses: actions/setup-dotnet@v1.8.2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore TakymLib.sln
     # Build
+    - name: BuildW
+      if: matrix.os == 'windows-latest'
+      run: dotnet build -c ${{ matrix.bc }}W
     - name: Build
-      run: dotnet build -c ${{ matrix.bc }} --no-restore
+      if: matrix.os != 'windows-latest'
+      run: dotnet build -c ${{ matrix.bc }}
     # Test
+    - name: TestW
+      if: matrix.os == 'windows-latest'
+      run: dotnet test -c ${{ matrix.bc }}W --no-build --verbosity normal
     - name: Test
+      if: matrix.os != 'windows-latest'
       run: dotnet test -c ${{ matrix.bc }} --no-build --verbosity normal

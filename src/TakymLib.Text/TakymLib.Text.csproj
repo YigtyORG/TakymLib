@@ -13,7 +13,7 @@
 	</PropertyGroup>
 	<Import Project="../../TakymLib.ProjectSettings.targets" />
 	<PropertyGroup>
-		<Product>TakymLib</Product>
+		<Product>TakymLib.Text</Product>
 		<Description>The common text library.</Description>
 		<PackageTags>$(PackageTags), Text, String, Unicode, East Asian Width</PackageTags>
 	</PropertyGroup>
