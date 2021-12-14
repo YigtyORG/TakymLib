@@ -244,8 +244,6 @@ namespace TakymLib.Extensibility
 				case FeatureModule module:
 					return module;
 				case not null and var obj:
-					// The module object in the loading assembly is not a feature module,
-					// so the system will convert this as a default module.
 					self.Logger.LogWarning("Converting the native object as a feature module...");
 					return new DefaultFeatureModule(obj);
 				default:

@@ -88,7 +88,6 @@ namespace TakymLib.UI
 
 			LoadComponent(this, new Uri("/TakymLib.UI;component/apphost.xaml", UriKind.Relative));
 			Debug.Assert(this.ShutdownMode == ShutdownMode.OnExplicitShutdown);
-			//this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
 			_mwnd = new FormMain(this, _host.Services);
 
