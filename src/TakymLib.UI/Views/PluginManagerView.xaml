@@ -17,7 +17,7 @@
 	d:DesignHeight="450" d:DesignWidth="800">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
+			<ColumnDefinition MaxWidth="300"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<TreeView Grid.Column="0" ItemsSource="{Binding PluginTree}" SelectedItemChanged="TreeView_SelectedItemChanged">

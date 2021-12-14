@@ -7,28 +7,27 @@
 ****/
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TakymLib.Extensibility;
 using TakymLib.UI.Models;
 using TakymLib.UI.Views;
+using MICI = TakymLib.UI.Internals.ModuleInitializationContextInternal;
 
 namespace TakymLib.UI.Internals
 {
 	internal sealed partial class FormMain : Form
 	{
-		private readonly AppHost                                  _app_host;
-		private readonly IServiceProvider                         _provider;
-		private readonly ILogger                                  _logger;
-		private readonly ValueTask<IReadOnlyList<PluginTreeNode>> _loader;
-		private          FormSystemSettings?                      _fss;
-		private          ElementWindow?                           _pmgr;
-		private          PluginManagerView?                       _pmgr_view;
-		private readonly PluginManagerModel                       _pmgr_model;
+		private readonly AppHost             _app_host;
+		private readonly IServiceProvider    _provider;
+		private readonly ILogger             _logger;
+		private readonly MICI?               _mici;
+		private          FormSystemSettings? _fss;
+		private          ElementWindow?      _pmgr;
+		private          PluginManagerView?  _pmgr_view;
+		private readonly PluginManagerModel  _pmgr_model;
 
 		internal FormMain(AppHost appHost, IServiceProvider provider)
 		{
@@ -38,46 +37,12 @@ namespace TakymLib.UI.Internals
 			_app_host   = appHost;
 			_provider   = provider;
 			_logger     = provider.GetRequiredService<ILogger<FormMain>>();
+			_mici       = provider.GetService<ModuleInitializationContext>() as MICI;
 			_pmgr_model = new();
 
 			this.InitializeComponent();
 
-#pragma warning disable CA2012 // ValueTask を正しく使用する必要があります
-			if (_provider.GetService<ModuleInitializationContext>() is ModuleInitializationContextInternal mici) {
-				_loader = LoadModulesAsync(mici.Modules);
-				if (_loader.IsCompleted) {
-					_pmgr_model.PluginTree = _loader.Result;
-				} else {
-					_loader.GetAwaiter().OnCompleted(this.WhenCompletedToLoadModules);
-				}
-			}
-#pragma warning restore CA2012 // ValueTask を正しく使用する必要があります
-
 			_logger.LogInformation("The main window is initialized.");
-		}
-
-		private void WhenCompletedToLoadModules()
-		{
-			_pmgr_model.PluginTree = _loader.Result;
-		}
-
-		private static async ValueTask<IReadOnlyList<PluginTreeNode>> LoadModulesAsync(List<FeatureModule> modules)
-		{
-			int count = modules.Count;
-			var nodes = new PluginTreeNode[count];
-			for (int i = 0; i < count; ++i) {
-				nodes[i] = await LoadPluginsAsync(modules[i]).ConfigureAwait(false);
-			}
-			return Array.AsReadOnly(nodes);
-
-			static async ValueTask<PluginTreeNode> LoadPluginsAsync(IPlugin plugin)
-			{
-				var result = new List<PluginTreeNode>();
-				await foreach (var item in plugin.EnumerateChildrenAsync().ConfigureAwait(false)) {
-					result.Add(await LoadPluginsAsync(item).ConfigureAwait(false));
-				}
-				return new(plugin, result.AsReadOnly());
-			}
 		}
 
 		private void FormMain_Load(object sender, EventArgs e)
@@ -108,6 +73,10 @@ namespace TakymLib.UI.Internals
 			btnPluginManager.Text        = _pmgr.Text;
 			btnPluginManager.ToolTipText = _pmgr.Text;
 			btnPluginManager.Image       = _pmgr.Icon.ToBitmap();
+
+			if (_mici is not null) {
+				_pmgr_model.PluginTree = _mici.Plugins;
+			}
 
 			_logger.LogInformation("Loaded");
 		}

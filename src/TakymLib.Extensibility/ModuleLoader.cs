@@ -7,6 +7,7 @@
 ****/
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -23,6 +24,8 @@ namespace TakymLib.Extensibility
 	/// </summary>
 	public class ModuleLoader
 	{
+		private static readonly ConcurrentDictionary<Assembly, FeatureModule?> _cache = new();
+
 		private static readonly EnumerationOptions _eo = new() {
 			AttributesToSkip         = FileAttributes.Hidden | FileAttributes.System,
 			BufferSize               = 0,
@@ -232,21 +235,32 @@ namespace TakymLib.Extensibility
 			CancellationToken           cancellationToken = default)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
-			var attr = assembly.GetCustomAttribute<FeatureAddonAttribute>();
-			if (attr is null) {
-				return null;
-			}
-			switch (Activator.CreateInstance(attr.ModuleType)) {
-			case FeatureModule module:
+			var module = _cache.GetOrAdd(assembly, (assembly, self) => {
+				var attr = assembly.GetCustomAttribute<FeatureAddonAttribute>();
+				if (attr is null) {
+					return null;
+				}
+				switch (Activator.CreateInstance(attr.ModuleType)) {
+				case FeatureModule module:
+					return module;
+				case not null and var obj:
+					// The module object in the loading assembly is not a feature module,
+					// so the system will convert this as a default module.
+					self.Logger.LogWarning("Converting the native object as a feature module...");
+					return new DefaultFeatureModule(obj);
+				default:
+					return null;
+				};
+			}, this);
+			if (module is not (null or DefaultFeatureModule) &&
+				Interlocked.CompareExchange(
+					ref module._init_state,
+					FeatureModule.INIT_STATE_IN_PROCESS,
+					FeatureModule.INIT_STATE_NOT_YET) == FeatureModule.INIT_STATE_NOT_YET) {
 				await module.InitializeAsync(context, cancellationToken).ConfigureAwait(false);
-				return module;
-			case not null and var obj:
-				this.Logger.LogWarning("Converting the native object as a feature module...");
-				// this.Logger.LogWarning("The module object in the loading assembly is not a feature module, so the system will convert this as a default module.");
-				return new DefaultFeatureModule(obj);
-			default:
-				return null;
+				module._init_state = FeatureModule.INIT_STATE_COMPLETED;
 			}
+			return module;
 		}
 	}
 }
