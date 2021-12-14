@@ -36,6 +36,7 @@ namespace TakymLib.UI
 		private readonly IHost          _host;
 		private readonly IConfiguration _config;
 		private readonly ILogger        _logger;
+		private readonly FormMain       _mwnd;
 
 		/// <summary>
 		///  型'<see cref="TakymLib.UI.AppHost"/>'の新しいインスタンスを生成します。
@@ -87,7 +88,8 @@ namespace TakymLib.UI
 
 			LoadComponent(this, new Uri("/TakymLib.UI;component/apphost.xaml", UriKind.Relative));
 			Debug.Assert(this.ShutdownMode == ShutdownMode.OnExplicitShutdown);
-			//this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+			_mwnd = new FormMain(this, _host.Services);
 
 			_logger.LogInformation("The application host is constructed.");
 		}
@@ -103,7 +105,7 @@ namespace TakymLib.UI
 
 			var task = _host.StartAsync();
 			if (task.IsCompleted) {
-				WinFormsApp.Run(CreateFormMain());
+				WinFormsApp.Run(_mwnd);
 			} else if (_config.ShowSplash()) {
 				var dtBegin = DateTime.Now;
 				var splash  = new FormSplash();
@@ -113,18 +115,13 @@ namespace TakymLib.UI
 					if (delay > 0) await Task.Delay(delay);
 					splash.Invoke(() => {
 						splash.Close();
-						CreateFormMain().Show();
+						_mwnd.Show();
 					});
 				});
 				WinFormsApp.Run();
 			} else {
 				task.ConfigureAwait(false).GetAwaiter().GetResult();
-				WinFormsApp.Run(CreateFormMain());
-			}
-
-			FormMain CreateFormMain()
-			{
-				return new FormMain(this, _host.Services);
+				WinFormsApp.Run(_mwnd);
 			}
 		}
 

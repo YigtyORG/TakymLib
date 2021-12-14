@@ -1,4 +1,4 @@
-﻿/****
+/****
  * TakymLib
  * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
  * Copyright (C) 2020-2021 Takym.
@@ -9,6 +9,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using TakymLib.Aspect;
@@ -21,8 +22,12 @@ namespace TakymLib.Extensibility
 	/// </summary>
 	public abstract class FeatureModule : IPlugin
 	{
-		private readonly Assembly    _asm;
-		private readonly VersionInfo _ver;
+		private  readonly Assembly    _asm;
+		private  readonly VersionInfo _ver;
+		internal volatile int         _init_state;
+		internal const    int         INIT_STATE_NOT_YET    = 0;
+		internal const    int         INIT_STATE_IN_PROCESS = 1;
+		internal const    int         INIT_STATE_COMPLETED  = 2;
 
 		/// <summary>
 		///  この拡張機能のアセンブリ情報を取得します。
@@ -51,18 +56,30 @@ namespace TakymLib.Extensibility
 		public virtual VersionInfo Version => _ver;
 
 		/// <summary>
+		///  現在の<see cref="TakymLib.Extensibility.FeatureModule"/>オブジェクトの状態を取得します。
+		/// </summary>
+		public FeatureModuleState State => _init_state switch {
+			INIT_STATE_NOT_YET    => FeatureModuleState.NotInitializedYet,
+			INIT_STATE_IN_PROCESS => FeatureModuleState.Initializing,
+			INIT_STATE_COMPLETED  => FeatureModuleState.Initialized,
+			_                     => FeatureModuleState.Invalid
+		};
+
+		/// <summary>
 		///  型'<see cref="TakymLib.Extensibility.FeatureModule"/>'の新しいインスタンスを生成します。
 		/// </summary>
 		protected FeatureModule()
 		{
-			_asm = this.GetType().Assembly;
-			_ver = new VersionInfo(_asm);
+			_asm        = this.GetType().Assembly;
+			_ver        = new VersionInfo(_asm);
+			_init_state = INIT_STATE_NOT_YET;
 		}
 
 		protected private FeatureModule(Assembly asm)
 		{
-			_asm = asm;
-			_ver = new VersionInfo(asm);
+			_asm        = asm;
+			_ver        = new VersionInfo(asm);
+			_init_state = INIT_STATE_NOT_YET;
 		}
 
 		/// <summary>
@@ -115,5 +132,19 @@ namespace TakymLib.Extensibility
 		/// <param name="cancellationToken">処理の中断を通知するトークンを指定します。</param>
 		/// <returns>この処理の非同期操作を返します。</returns>
 		protected abstract ValueTask InitializeAsyncCore(ModuleInitializationContext context, CancellationToken cancellationToken);
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public sealed override bool Equals(object? obj)
+		{
+			return base.Equals(obj);
+		}
+
+		/// <inheritdoc/>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
 	}
 }

@@ -7,29 +7,33 @@
 ****/
 
 using System;
-using System.Runtime.ExceptionServices;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TakymLib.Extensibility;
+using TakymLib.UI.Models;
+using MICI      = TakymLib.UI.Internals.ModuleInitializationContextInternal;
+using MIContext = TakymLib.Extensibility.ModuleInitializationContext;
 
 namespace TakymLib.UI.Internals
 {
 	internal sealed class MainWorker : IHostedService
 	{
-		private readonly ILogger                     _logger;
-		private readonly ModuleLoader                _loader;
-		private readonly ModuleInitializationContext _context;
-		private readonly IConfiguration              _config;
+		private readonly ILogger        _logger;
+		private readonly ModuleLoader   _loader;
+		private readonly MIContext      _context;
+		private readonly IConfiguration _config;
 
 		public MainWorker(
-			ILogger<MainWorker>         logger,
-			ModuleLoader                loader,
-			ModuleInitializationContext context,
-			IConfiguration              config,
-			IHostApplicationLifetime    lifetime)
+			ILogger<MainWorker>      logger,
+			ModuleLoader             loader,
+			MIContext                context,
+			IConfiguration           config,
+			IHostApplicationLifetime lifetime)
 		{
 			logger .EnsureNotNull();
 			loader .EnsureNotNull();
@@ -58,44 +62,67 @@ namespace TakymLib.UI.Internals
 			if (_logger.IsEnabled(LogLevel.Debug)) {
 				bool showSplash = _config.ShowSplash();
 				_logger.LogDebug("{Key} = {Value}", SystemSettings.Keys.DisallowExtensions, disallowExtensions);
-				_logger.LogDebug("{Key} = {Value}", SystemSettings.Keys.ShowSplash, showSplash);
+				_logger.LogDebug("{Key} = {Value}", SystemSettings.Keys.ShowSplash,         showSplash);
 			}
 
 			return disallowExtensions
 				? Task.CompletedTask
-				: Task.Run(() => WaitForLoadModules(_logger, _loader, _context, cancellationToken), cancellationToken);
+				: WaitForLoadModules(_logger, _loader, _context, cancellationToken);
 
-			static async Task WaitForLoadModules(
-				ILogger                     logger,
-				ModuleLoader                loader,
-				ModuleInitializationContext context,
-				CancellationToken           cancellationToken)
+			static async Task WaitForLoadModules(ILogger logger, ModuleLoader loader, MIContext context, CancellationToken ct)
 			{
-				var loadModules = LoadModules(logger, loader, context, cancellationToken).ConfigureAwait(false);
-				if (await loadModules is not null and var oce) ExceptionDispatchInfo.Throw(oce);
-			}
-
-			static async ValueTask<OperationCanceledException?> LoadModules(
-				ILogger                     logger,
-				ModuleLoader                loader,
-				ModuleInitializationContext context,
-				CancellationToken           cancellationToken)
-			{
-				if (context is ModuleInitializationContextInternal mici) {
-					var result  = mici.Modules;
-					var modules = loader.LoadFromDirectoryAsync(context, AppContext.BaseDirectory, cancellationToken: cancellationToken);
-					try {
-						await foreach (var module in modules.ConfigureAwait(false)) {
-							result.Add(module);
-							cancellationToken.ThrowIfCancellationRequested();
-						}
-						return null;
-					} catch (OperationCanceledException oce) when (oce.CancellationToken == cancellationToken) {
-						return oce;
-					}
+				await Task.Yield();
+				if (context is MICI mici) {
+					var modules = await LoadModules   (loader, context, ct).ConfigureAwait(false);
+					var plugins = await MakePluginTree(modules,         ct).ConfigureAwait(false);
+					mici.SetModulesAndPlugins(modules.AsReadOnly(), plugins);
 				} else {
 					logger.LogWarning("The specified module initialization context does not support loading modules.");
-					return null;
+				}
+			}
+
+			static async ValueTask<List<FeatureModule>> LoadModules(ModuleLoader loader, MIContext context, CancellationToken ct)
+			{
+				var result  = new List<FeatureModule>();
+				var modules = loader
+					.LoadFromDirectoryAsync(context, AppContext.BaseDirectory, cancellationToken: ct)
+					.OrderBy(m => m.DisplayName);
+				
+				await foreach (var module in modules.ConfigureAwait(false).WithCancellation(ct)) {
+					if (!result.Contains(module)) {
+						result.Add(module);
+					}
+					ct.ThrowIfCancellationRequested();
+					await Task.Yield();
+				}
+
+				return result;
+			}
+
+			static async ValueTask<IReadOnlyList<PluginTreeNode>> MakePluginTree(List<FeatureModule> modules, CancellationToken ct)
+			{
+				int count = modules.Count;
+				var nodes = new PluginTreeNode[count];
+				for (int i = 0; i < count; ++i) {
+					nodes[i] = await MakePluginTreeCore(modules[i], ct).ConfigureAwait(false);
+					await Task.Yield();
+				}
+				return Array.AsReadOnly(nodes);
+
+				static async ValueTask<PluginTreeNode> MakePluginTreeCore(IPlugin plugin, CancellationToken ct)
+				{
+					var result  = new List<PluginTreeNode>();
+					var plugins = plugin
+						.EnumerateChildrenAsync()
+						.OrderBy(p => p.DisplayName);
+
+					await foreach (var item in plugins.ConfigureAwait(false).WithCancellation(ct)) {
+						result.Add(await MakePluginTreeCore(item, ct).ConfigureAwait(false));
+						ct.ThrowIfCancellationRequested();
+						await Task.Yield();
+					}
+
+					return new(plugin, result.AsReadOnly());
 				}
 			}
 		}
