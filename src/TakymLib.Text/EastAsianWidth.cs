@@ -17,7 +17,7 @@ namespace TakymLib.Text
 	///  このクラスは抽象クラスです。
 	/// </summary>
 	/// <remarks>
-	///  詳しくは https://www.unicode.org/reports/tr11/ をご覧ください。
+	///  詳しくは<see href="https://www.unicode.org/reports/tr11/"/>をご覧ください。
 	/// </remarks>
 	public abstract partial class EastAsianWidth
 	{

@@ -9,7 +9,7 @@
 namespace TakymLib.Text.Internals
 {
 	/// <remarks>
-	///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
+	///  The Unicode Consortium が定める<see href="http://www.unicode.org/terms_of_use.html">利用規約</see>に従って利用してください。
 	/// </remarks>
 	internal sealed class EAW14_0_0 : EastAsianWidth
 	{
