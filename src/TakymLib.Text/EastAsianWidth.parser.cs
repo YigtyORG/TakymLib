@@ -22,7 +22,7 @@ namespace TakymLib.Text
 		///  最新の東アジアの文字幅の定義データをダウンロードのダウンロード元のアドレスを取得します。
 		/// </summary>
 		/// <remarks>
-		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
+		///  The Unicode Consortium が定める<see href="http://www.unicode.org/terms_of_use.html">利用規約</see>に従って利用してください。
 		/// </remarks>
 		public const string LatestDefinitionUrl = "https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt";
 
@@ -30,7 +30,7 @@ namespace TakymLib.Text
 		///  最新の東アジアの文字幅の定義データをダウンロードします。
 		/// </summary>
 		/// <remarks>
-		///  The Unicode Consortium が定める利用規約(http://www.unicode.org/terms_of_use.html)に従って利用してください。
+		///  The Unicode Consortium が定める<see href="http://www.unicode.org/terms_of_use.html">利用規約</see>に従って利用してください。
 		/// </remarks>
 		/// <returns>解析結果を格納している<see cref="TakymLib.Text.CustomEastAsianWidth"/>オブジェクトを返します。</returns>
 		public static CustomEastAsianWidth DownloadLatestDefinition()
