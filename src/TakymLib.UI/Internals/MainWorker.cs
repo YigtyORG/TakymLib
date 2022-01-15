@@ -1,7 +1,7 @@
 /****
  * TakymLib
- * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
- * Copyright (C) 2020-2021 Takym.
+ * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2022 Takym.
  *
  * distributed under the MIT License.
 ****/
@@ -87,7 +87,7 @@ namespace TakymLib.UI.Internals
 				var modules = loader
 					.LoadFromDirectoryAsync(context, AppContext.BaseDirectory, cancellationToken: ct)
 					.OrderBy(m => m.DisplayName);
-				
+
 				await foreach (var module in modules.ConfigureAwait(false).WithCancellation(ct)) {
 					if (!result.Contains(module)) {
 						result.Add(module);

@@ -10,8 +10,8 @@
 
 namespace Exrecodel.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
     /// </summary>
@@ -23,15 +23,15 @@ namespace Exrecodel.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
@@ -45,7 +45,7 @@ namespace Exrecodel.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
@@ -59,15 +59,15 @@ namespace Exrecodel.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
         ///&lt;!DOCTYPE xsd:schema&gt;
         ///&lt;!--*
         /// * Exrecodel - &quot;Extensible Regulation/Convention Descriptor Language&quot;
         /// *    「拡張可能な規則/規約記述言語」
-        /// * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
-        /// * Copyright (C) 2020-2021 Takym.
+        /// * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved.
+        /// * Copyright (C) 2020-2022 Takym.
         /// *
         /// * distributed under the MIT License.
         ///**--&gt;
@@ -84,7 +84,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XmlSchema", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlAddressInfo_Format {0} {1} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -93,7 +93,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlAddressInfo_Format", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlAddressInfo_NoPostCode に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -102,7 +102,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlAddressInfo_NoPostCode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlContactInformation_Name_InvalidOperationException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -111,7 +111,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlContactInformation_Name_InvalidOperationException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlContactInformationEnumerator_InvalidOperationException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -120,7 +120,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlContactInformationEnumerator_InvalidOperationException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocument_Load_InvalidDataException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -129,7 +129,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocument_Load_InvalidDataException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocument_Load_InvalidOperationException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -138,7 +138,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocument_Load_InvalidOperationException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocument_Load_IOException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -147,7 +147,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocument_Load_IOException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocument_Save_InvalidDataException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -156,7 +156,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocument_Save_InvalidDataException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocument_Save_InvalidOperationException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -165,7 +165,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocument_Save_InvalidOperationException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocument_Save_IOException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -174,7 +174,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocument_Save_IOException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlDocumentImplementation_LoadCore_XmlSchemaException に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -183,7 +183,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlDocumentImplementation_LoadCore_XmlSchemaException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlEmailInfo_Format {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -192,7 +192,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlEmailInfo_Format", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlLinkInfo_Format {0} {1} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -201,7 +201,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlLinkInfo_Format", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlLinkInfo_NoTitle に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -210,7 +210,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlLinkInfo_NoTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlPhoneNumberInfo_Format {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -219,7 +219,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlPhoneNumberInfo_Format", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlPhoneNumberInfo_Format_Facsimile {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -228,7 +228,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlPhoneNumberInfo_Format_Facsimile", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlPhoneNumberInfo_Format_ShortMessageService {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -237,7 +237,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlPhoneNumberInfo_Format_ShortMessageService", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlPhoneNumberInfo_Format_Telephone {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -246,7 +246,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlPhoneNumberInfo_Format_Telephone", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlPhoneNumberInfo_Normalize_FormatException {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -255,7 +255,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlPhoneNumberInfo_Normalize_FormatException", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlSocialAccountInfo_Format {0} {1} に類似しているローカライズされた文字列を検索します。
         /// </summary>
@@ -264,7 +264,7 @@ namespace Exrecodel.Properties {
                 return ResourceManager.GetString("XrcdlSocialAccountInfo_Format", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   XrcdlSocialAccountInfo_NoServiceName に類似しているローカライズされた文字列を検索します。
         /// </summary>
