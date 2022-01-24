@@ -1,7 +1,7 @@
 /****
  * TakymLib
- * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
- * Copyright (C) 2020-2021 Takym.
+ * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2022 Takym.
  *
  * distributed under the MIT License.
 ****/
@@ -56,7 +56,7 @@ namespace TakymLib.Threading.Tasks.Wrappers
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get => _task.IsCompleted;
 		}
-		
+
 		/// <summary>
 		///  <see cref="System.Threading.Tasks.Task.IsCompletedSuccessfully"/>の値を取得します。
 		/// </summary>

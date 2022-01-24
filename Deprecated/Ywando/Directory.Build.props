@@ -2,8 +2,8 @@
 <!DOCTYPE Project>
 <!--*
  * Ywando
- * Copyright (C) 2020-2021 Yigty.ORG; all rights reserved.
- * Copyright (C) 2020-2021 Takym.
+ * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved.
+ * Copyright (C) 2020-2022 Takym.
  *
  * distributed under the MIT License.
 **-->
@@ -40,7 +40,7 @@
 	<PropertyGroup Label="Version">
 		<Product>Ywando</Product>
 		<Authors>Takym</Authors>
-		<Copyright>Copyright (C) 2020-2021 Yigty.ORG; all rights reserved. Copyright (C) 2020-2021 Takym.</Copyright>
+		<Copyright>Copyright (C) 2020-2022 Yigty.ORG; all rights reserved. Copyright (C) 2020-2022 Takym.</Copyright>
 		<Version>0.0.0.0</Version>
 		<InformationalVersion>alpha00a0</InformationalVersion>
 	</PropertyGroup>
