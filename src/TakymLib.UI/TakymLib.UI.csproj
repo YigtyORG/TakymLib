@@ -23,7 +23,7 @@
 		<PackageTags>$(PackageTags), UI, User Interface</PackageTags>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="6.0.0" />
 		<ProjectReference Include="../TakymLib.Extensibility/TakymLib.Extensibility.csproj" />
