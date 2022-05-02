@@ -60,6 +60,7 @@ namespace TakymLib.CommandLine
 		/// <returns><see cref="System.Collections.Generic.IAsyncEnumerable{T}"/>オブジェクトを返します。</returns>
 		protected virtual async IAsyncEnumerable<string> ScanAsyncCore(TextReader tr)
 		{
+			// TODO: リダイレクトとパイプを実装する
 			int depth = 0;
 			var sb    = new StringBuilder();
 

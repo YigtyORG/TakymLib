@@ -20,5 +20,6 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<ProjectReference Include="../TakymLib/TakymLib.csproj" />
+		<Compile Include="../TakymLib/Text/BuildString.cs" Link="Text/BuildString" />
 	</ItemGroup>
 </Project>

@@ -7,8 +7,8 @@
 ****/
 
 using System;
-using System.Text;
 using TakymLib.Properties;
+using TakymLib.Text;
 
 namespace TakymLib
 {
@@ -320,10 +320,7 @@ namespace TakymLib
 			if (s.Length == 0) {
 				return ReadOnlySpan<char>.Empty;
 			} else {
-				var sb = new StringBuilder(mode switch {
-					ControlCharsReplaceMode.ConvertToText => s.Length * 5,
-					_                                     => s.Length
-				});
+				var sb = BuildString.Begin();
 				for (int i = 0; i < s.Length; ++i) {
 					char c = s[i];
 					switch (mode) {
@@ -439,7 +436,7 @@ namespace TakymLib
 						break;
 					}
 				}
-				return sb.ToString().AsSpan();
+				return BuildString.End(sb).AsSpan();
 			}
 		}
 	}

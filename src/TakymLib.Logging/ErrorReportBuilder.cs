@@ -14,6 +14,7 @@ using System.Text;
 using TakymLib.IO;
 using TakymLib.Logging.Globalization;
 using TakymLib.Logging.Properties;
+using TakymLib.Text;
 
 namespace TakymLib.Logging
 {
@@ -224,11 +225,11 @@ namespace TakymLib.Logging
 		/// <returns>生成されたエラーレポートを表す文字列です。</returns>
 		protected virtual string Build()
 		{
-			var sb = new StringBuilder();
+			var sb = BuildString.Begin();
 			this.BuildHeader(sb, this.DateTime, Environment.ProcessId);
 			this.BuildBody(sb, this.Exception);
 			sb.AppendLine();
-			return sb.ToString();
+			return BuildString.End(sb);
 		}
 
 		/// <summary>

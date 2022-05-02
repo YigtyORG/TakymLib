@@ -16,4 +16,7 @@
 		<Product>TakymLib</Product>
 		<Description>The common library.</Description>
 	</PropertyGroup>
+	<ItemGroup>
+		<Compile Update="Text/BuildString.cs" Pack="true"/>
+	</ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
  *
  * distributed under the MIT License.
 **-->
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<AssemblyName>TakymLib.UI.App</AssemblyName>
 		<RootNamespace>TakymLib.UI.App</RootNamespace>

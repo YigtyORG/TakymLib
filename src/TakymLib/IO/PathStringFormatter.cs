@@ -9,7 +9,7 @@
 using System;
 using System.Globalization;
 using System.IO;
-using System.Text;
+using TakymLib.Text;
 
 namespace TakymLib.IO
 {
@@ -121,7 +121,7 @@ namespace TakymLib.IO
 				if (format.Length == 0) {
 					return path.ToString();
 				}
-				var  formatted = new StringBuilder();
+				var  formatted = BuildString.Begin();
 				bool ignore    = false;
 				for (int i = 0; i < format.Length; ++i) {
 					char ch = format[i];
@@ -146,7 +146,7 @@ namespace TakymLib.IO
 						});
 					}
 				}
-				return formatted.ToString();
+				return BuildString.End(formatted);
 			} else {
 				if (arg is IFormattable formattable) {
 					return formattable.ToString(format, formatProvider ?? _provider) ?? string.Empty;

@@ -15,10 +15,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
 using System.Text.Json;
 using System.Xml;
 using TakymLib.IO;
+using TakymLib.Text;
 
 namespace TakymLib.Logging
 {
@@ -39,7 +39,7 @@ namespace TakymLib.Logging
 		/// <inheritdoc/>
 		public string GetLocalizedDetail(Exception exception)
 		{
-			var sb = new StringBuilder();
+			var sb = BuildString.Begin();
 			sb.AppendLine("Detailed information (English):");
 			switch (exception) {
 			case ApplicationException:
@@ -137,7 +137,7 @@ namespace TakymLib.Logging
 				sb.AppendLine(" - No more information.");
 				break;
 			}
-			return sb.ToString();
+			return BuildString.End(sb);
 		}
 
 		/// <inheritdoc/>

@@ -80,7 +80,7 @@ namespace TakymLib.ConsoleApp
 
 		private static void DownloadLatestDefinitionAndConvert()
 		{
-			var sb     = new StringBuilder();
+			var sb     = BuildString.Begin();
 			var ranges = EastAsianWidth.DownloadLatestDefinition().Ranges;
 			int count  = ranges.Count;
 			for (int i = 0; i < count; ++i) {
@@ -102,7 +102,7 @@ namespace TakymLib.ConsoleApp
 				sb.Append(range.Type);
 				sb.AppendLine(",");
 			}
-			Console.WriteLine(sb.ToString());
+			Console.WriteLine(BuildString.End(sb));
 		}
 
 		[STAThread()]
