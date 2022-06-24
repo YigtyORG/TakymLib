@@ -143,7 +143,7 @@ namespace TakymLib.CommandLine
 										++i;
 										result.AddOption(argData.Substring(i, j - i));
 										++j;
-										result.AddOption(argData.Substring(j, argData.Length - j));
+										result.AddValue (argData.Substring(j, argData.Length - j));
 									} else {
 										result.AddSwitch(argData.Substring(0, i));
 										++i;
