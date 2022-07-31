@@ -18,7 +18,7 @@ namespace TakymLibTests.TakymLib
 		[TestMethod()]
 		public void EnsureNotNullTest()
 		{
-			object? notnullobj = new object();
+			object? notnullobj = new();
 			notnullobj.EnsureNotNull();
 
 			object? nullobj = null;
@@ -31,24 +31,17 @@ namespace TakymLibTests.TakymLib
 			Assert.ThrowsException<ArgumentNullException>(() => nullstr.EnsureNotNull());
 		}
 
-#if false
 		[TestMethod()]
 		public void EnsureNotNullTest2()
 		{
-			try {
-				Function();
-			} catch (ArgumentNullException e) {
-				Assert.AreEqual("nullObj", e.ParamName);
-				return;
-			}
-			Assert.Fail();
+			var e = Assert.ThrowsException<ArgumentNullException>(() => Function());
+			Assert.AreEqual("nullObj", e.ParamName);
 
 			static void Function(object? nullObj = null)
 			{
 				nullObj.EnsureNotNull();
 			}
 		}
-#endif
 
 		[TestMethod()]
 		public void EnsureWithinClosedRangeTest()
