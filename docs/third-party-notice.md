@@ -7,82 +7,82 @@ Copyright (C) 2020-2022 Takym.
 	* [.NET プロジェクト SDK](https://docs.microsoft.com/ja-jp/dotnet/core/project-sdk/overview)
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/sdk>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/sdk/blob/main/LICENSE.TXT)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/sdk/blob/main/LICENSE.TXT)
 
 ## [TakymLib.Extensibility] で利用しているライブラリの一覧
 * [System.Linq.Async]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/reactive>
 	* ディレクトリ：<https://github.com/dotnet/reactive/tree/main/Ix.NET/Source/System.Linq.Async>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/reactive/blob/main/LICENSE)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/reactive/blob/main/LICENSE)
 
 ## [TakymLib.Logging] で利用しているライブラリの一覧
 * [Microsoft.Extensions.Logging]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/runtime>
 	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Logging>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 
 ## [TakymLib.Text] で利用しているライブラリの一覧
 * 東アジアの文字幅 (East Asian Width)
 	* <https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt>
 	* 著作権表記：&copy; 2020 Unicode&reg;, Inc.
-	* 利用規約：<http://www.unicode.org/terms_of_use.html>
+	* 使用許諾：<http://www.unicode.org/terms_of_use.html>
 
 ## [TakymLib.UI] で利用しているライブラリの一覧
 * Microsoft.NET.Sdk.WindowsDesktop
 	* [.NET プロジェクト SDK](https://docs.microsoft.com/ja-jp/dotnet/core/project-sdk/overview)
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/sdk>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/sdk/blob/main/LICENSE.TXT)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/sdk/blob/main/LICENSE.TXT)
 * [Microsoft.Extensions.Hosting]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/runtime>
 	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Hosting>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 * [Microsoft.Extensions.Configuration.Xml]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/runtime>
 	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Xml>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 * [Microsoft.Extensions.Configuration.Ini]
 	* 著作権表記：Copyright (c) .NET Foundation and Contributors
 	* リポジトリ：<https://github.com/dotnet/runtime>
 	* ディレクトリ：<https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration.Ini>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/runtime/blob/main/LICENSE.TXT)
 
 ## [TakymLibTests] で利用しているライブラリの一覧
 * [Microsoft.NET.Test.Sdk]
 	* 著作権表記：Copyright (c) 2020 Microsoft Corporation
 	* リポジトリ：<https://github.com/microsoft/vstest/>
-	* 利用規約：[MITライセンス](https://github.com/microsoft/vstest/blob/master/LICENSE)
-	* 利用規約：<https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm>
+	* 使用許諾：[MITライセンス](https://github.com/microsoft/vstest/blob/master/LICENSE)
+	* 使用許諾：<https://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm>
 * [MSTest.TestAdapter]
 	* 著作権表記：Copyright (c) 2020 Microsoft Corporation
 	* リポジトリ：<https://github.com/microsoft/testfx>
-	* 利用規約：[MITライセンス](https://github.com/microsoft/testfx/blob/master/LICENSE.txt)
+	* 使用許諾：[MITライセンス](https://github.com/microsoft/testfx/blob/master/LICENSE.txt)
 * [MSTest.TestFramework]
 	* 著作権表記：Copyright (c) 2020 Microsoft Corporation
 	* リポジトリ：<https://github.com/microsoft/testfx>
-	* 利用規約：[MITライセンス](https://github.com/microsoft/testfx/blob/master/LICENSE.txt)
+	* 使用許諾：[MITライセンス](https://github.com/microsoft/testfx/blob/master/LICENSE.txt)
 * [coverlet.collector]
 	* 著作権表記：Copyright (c) 2018 Toni Solarin-Sodara
 	* リポジトリ：<https://github.com/coverlet-coverage/coverlet>
-	* 利用規約：[MITライセンス](https://github.com/coverlet-coverage/coverlet/blob/master/LICENSE)
+	* 使用許諾：[MITライセンス](https://github.com/coverlet-coverage/coverlet/blob/master/LICENSE)
 * [BenchmarkDotNet]
 	* 著作権表記：Copyright (c) 2013–2021 .NET Foundation and contributors
 	* リポジトリ：<https://github.com/dotnet/BenchmarkDotNet>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/BenchmarkDotNet/blob/master/LICENSE.md)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/BenchmarkDotNet/blob/master/LICENSE.md)
 
 ## [docs] で利用しているライブラリの一覧
 * [docfx.console]
 	* 著作権表記：Copyright (c) Microsoft Corporation
 	* リポジトリ：<https://github.com/dotnet/docfx>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/docfx/blob/dev/LICENSE)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/docfx/blob/dev/LICENSE)
 * [memberpage]
 	* 著作権表記：Copyright (c) Microsoft Corporation
 	* リポジトリ：<https://github.com/dotnet/docfx>
-	* 利用規約：[MITライセンス](https://github.com/dotnet/docfx/blob/dev/LICENSE)
+	* 使用許諾：[MITライセンス](https://github.com/dotnet/docfx/blob/dev/LICENSE)
 
 
 
