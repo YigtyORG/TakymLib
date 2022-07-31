@@ -2,7 +2,7 @@
 	"editor.insertSpaces":            false,
 	"editor.renderWhitespace":        "all",
 	"editor.renderControlCharacters": true,
-	"editor.renderIndentGuides":      true,
+	"editor.guides.indentation":      true,
 	"editor.tabSize":                 4,
 	"editor.detectIndentation":       false,
 	"editor.trimAutoWhitespace":      true,
