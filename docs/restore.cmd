@@ -1,3 +1,4 @@
+@echo off
 @REM ***********************************************************
 @REM * TakymLib                                                *
 @REM * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved. *
@@ -5,7 +6,7 @@
 @REM *                                                         *
 @REM * distributed under the MIT License.                      *
 @REM ***********************************************************
-@echo off
-@echo begin: restore.cmd
-@dotnet restore --packages=./packages
-@echo end: restore.cmd
+@echo restore.cmd: begin
+@cd %~dp0
+@call dotnet.exe restore --packages=./packages
+@echo restore.cmd: end
