@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # ***********************************************************
 # * TakymLib                                                *
 # * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved. *
@@ -7,7 +6,7 @@
 # *                                                         *
 # * distributed under the MIT License.                      *
 # ***********************************************************
-
-echo begin: restore.sh
+echo restore.sh: begin
+cd `dirname $0`
 dotnet restore --packages=./packages
-echo end: restore.sh
+echo restore.sh: end
