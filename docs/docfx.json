@@ -38,7 +38,7 @@
 		"fileMetadataFiles": [],
 		"template": [
 			"statictoc",
-			"packages/memberpage/2.59.3/content",
+			"packages/memberpage/2.59.4/content",
 			"template"
 		],
 		"postProcessors": [],
