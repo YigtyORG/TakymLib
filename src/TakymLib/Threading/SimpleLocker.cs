@@ -8,6 +8,7 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using TakymLib.Threading.Tasks;
 
 namespace TakymLib.Threading
 {
@@ -64,7 +65,7 @@ namespace TakymLib.Threading
 			}
 			while (Interlocked.CompareExchange(ref _state, LOCKED, SHARED) != SHARED) {
 				if (_do_yield) {
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 				}
 			}
 			_thread   = thread;
@@ -80,7 +81,7 @@ namespace TakymLib.Threading
 		{
 			while (Interlocked.CompareExchange(ref _state, LOCKED_ASYNC, SHARED) != SHARED) {
 				if (_do_yield) {
-					await Task.Yield();
+					await TaskUtility.Yield();
 				}
 			}
 
@@ -110,7 +111,7 @@ namespace TakymLib.Threading
 					return true;
 				}
 				if (_do_yield) {
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 				}
 			}
 		}
@@ -131,7 +132,7 @@ namespace TakymLib.Threading
 					return true;
 				}
 				if (_do_yield) {
-					await Task.Yield();
+					await TaskUtility.Yield();
 				}
 			}
 		}

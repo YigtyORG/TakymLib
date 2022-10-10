@@ -7,6 +7,7 @@
 ****/
 
 using System.Threading.Tasks;
+using TakymLib.Threading.Tasks;
 
 namespace TakymLib.Threading.Distributed
 {
@@ -78,7 +79,7 @@ namespace TakymLib.Threading.Distributed
 					if (data.Sender == this.Server) {
 						return data.Value;
 					}
-					await Task.Yield();
+					await TaskUtility.Yield();
 				}
 			} finally {
 				this.LeaveRunLock();

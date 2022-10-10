@@ -53,7 +53,7 @@ namespace TakymLib.Threading.Tasks.Core
 				this.ValidateThread();
 				while (!cancellationToken.IsCancellationRequested) {
 					this.RunNextCore();
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 				}
 			} finally {
 				this.LeaveRunLock();

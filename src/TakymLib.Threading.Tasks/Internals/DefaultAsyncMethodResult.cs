@@ -38,7 +38,7 @@ namespace TakymLib.Threading.Tasks.Internals
 		public TResult? GetResult()
 		{
 			while (!this.IsCompleted) {
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 			}
 			var exception = this.Exception;
 			if (exception is not null) {
@@ -52,7 +52,7 @@ namespace TakymLib.Threading.Tasks.Internals
 			Exception? e1, e2;
 			LoadException();
 			while (Interlocked.CompareExchange(ref _exception, e2, e1) != e1) {
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 				LoadException();
 			}
 			this.CompleteCore(completedSynchronously);
@@ -85,7 +85,7 @@ namespace TakymLib.Threading.Tasks.Internals
 		{
 			var c1 = _continuation;
 			while (Interlocked.CompareExchange(ref _continuation, c1 + continuation, c1) != c1) {
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 				c1 = _continuation;
 			}
 		}

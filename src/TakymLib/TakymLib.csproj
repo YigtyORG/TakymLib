@@ -17,6 +17,6 @@
 		<Description>The common library.</Description>
 	</PropertyGroup>
 	<ItemGroup>
-		<Compile Update="Text/BuildString.cs" Pack="true"/>
+		<Compile Update="Text/BuildString.cs" Pack="true" />
 	</ItemGroup>
 </Project>

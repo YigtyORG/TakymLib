@@ -33,7 +33,7 @@ namespace TakymLib.Threading.Tasks.Internals
 				if (_queue.TryDequeue(out var action)) {
 					action();
 				}
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 			}
 		}
 

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TakymLib.Extensibility;
+using TakymLib.Threading.Tasks;
 using TakymLib.UI.Models;
 using MICI      = TakymLib.UI.Internals.ModuleInitializationContextInternal;
 using MIContext = TakymLib.Extensibility.ModuleInitializationContext;
@@ -93,7 +94,7 @@ namespace TakymLib.UI.Internals
 						result.Add(module);
 					}
 					ct.ThrowIfCancellationRequested();
-					await Task.Yield();
+					await TaskUtility.Yield();
 				}
 
 				return result;
@@ -105,7 +106,7 @@ namespace TakymLib.UI.Internals
 				var nodes = new PluginTreeNode[count];
 				for (int i = 0; i < count; ++i) {
 					nodes[i] = await MakePluginTreeCore(modules[i], ct).ConfigureAwait(false);
-					await Task.Yield();
+					await TaskUtility.Yield(i);
 				}
 				return Array.AsReadOnly(nodes);
 
@@ -119,7 +120,7 @@ namespace TakymLib.UI.Internals
 					await foreach (var item in plugins.ConfigureAwait(false).WithCancellation(ct)) {
 						result.Add(await MakePluginTreeCore(item, ct).ConfigureAwait(false));
 						ct.ThrowIfCancellationRequested();
-						await Task.Yield();
+						await TaskUtility.Yield();
 					}
 
 					return new(plugin, result.AsReadOnly());

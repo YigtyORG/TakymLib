@@ -10,6 +10,7 @@ using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using TakymLib.Threading.Tasks;
 
 namespace TakymLib.UI.Models
 {
@@ -35,7 +36,7 @@ namespace TakymLib.UI.Models
 		{
 			var oldValue = location;
 			while (Interlocked.CompareExchange(ref location, value, oldValue) != oldValue) {
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 				oldValue = location;
 			}
 			this.OnPropertyChanged(CachedPropertyChangedEventArgs.Get(name));

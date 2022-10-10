@@ -8,6 +8,7 @@
 
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
+using TakymLib.Threading.Tasks;
 
 namespace TakymLib.Threading.Distributed
 {
@@ -91,7 +92,7 @@ namespace TakymLib.Threading.Distributed
 			try {
 				(ExecutionContext?, object?) result;
 				while (_objs.TryDequeue(out result)) {
-					await Task.Yield();
+					await TaskUtility.Yield();
 				}
 				return result;
 			} finally {

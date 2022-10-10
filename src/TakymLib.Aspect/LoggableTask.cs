@@ -34,7 +34,7 @@ namespace TakymLib.Aspect
 			{
 				var logger = _logger;
 				while (Interlocked.CompareExchange(ref _logger, value, logger) != logger) {
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 					logger = _logger;
 				}
 			}
