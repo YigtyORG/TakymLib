@@ -74,7 +74,7 @@ namespace TakymLib.UI.Internals
 
 			internal static PreservationContext BeginSave()
 			{
-				while (_pc_cache.IsEmpty) {
+				while (!_pc_cache.IsEmpty) {
 					if (_pc_cache.TryTake(out var result) && result._free) {
 						result._free = false;
 						return result;
@@ -126,9 +126,17 @@ namespace TakymLib.UI.Internals
 					} else {
 						root.RemoveAll();
 					}
-					if (this.DisallowExtensions is bool disallowExtensions) AddValue(root, Keys.DisallowExtensions, disallowExtensions);
-					if (this.ShowSplash is bool showSplash) AddValue(root, Keys.ShowSplash, showSplash);
+					AddNullableValue(root, Keys.DisallowExtensions, this.DisallowExtensions);
+					AddNullableValue(root, Keys.ShowSplash,         this.ShowSplash);
 					_xdoc.Save(Files.Generated);
+				}
+
+				void AddNullableValue<T>(XmlElement root, string key, T? value)
+					where T: struct
+				{
+					if (value.HasValue) {
+						AddValue(root, key, value.Value);
+					}
 				}
 
 				void AddValue<T>(XmlElement root, string key, T value)

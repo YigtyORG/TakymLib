@@ -13,14 +13,31 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using TakymLib.Properties;
+using TakymLib.Threading.Tasks;
 
 namespace TakymLib
 {
 	/// <summary>
+	///  同期的または非同期的にオブジェクトを破棄する仕組みを提供します。
+	/// </summary>
+	public interface IDisposableBase : IDisposable, IAsyncDisposable
+	{
+		/// <summary>
+		///  このオブジェクトの破棄処理を実行している場合は<see langword="true"/>、それ以外の場合は<see langword="false"/>を返します。
+		/// </summary>
+		public bool IsDisposing { get; }
+
+		/// <summary>
+		///  このオブジェクトが破棄されている場合は<see langword="true"/>、有効な場合は<see langword="false"/>を返します。
+		/// </summary>
+		public bool IsDisposed { get; }
+	}
+
+	/// <summary>
 	///  破棄可能なオブジェクトの基底クラスです。
 	///  このクラスは抽象クラスです。
 	/// </summary>
-	public abstract class DisposableBase : IDisposable, IAsyncDisposable
+	public abstract class DisposableBase : IDisposableBase
 	{
 		private volatile uint _run_locks;
 		private volatile int  _state;
@@ -119,22 +136,19 @@ namespace TakymLib
 			if (this.IsDisposed) {
 				return;
 			}
-			if (this.Disposables is not null and var disposables) {
-				if (disposing) {
-					int count = disposables.Count;
-					for (int i = 0; i < count; ++i) {
-						switch (disposables[i]) {
-						case IAsyncDisposable o:
-							o.ConfigureAwait(false).DisposeAsync().GetAwaiter().GetResult();
-							break;
-						case IDisposable o:
-							o.Dispose();
-							break;
-						}
+			if (disposing) {
+				foreach (object? item in this.EnumerateDisposables()) {
+					switch (item) {
+					case IAsyncDisposable o:
+						o.ConfigureAwait(false).DisposeAsync().GetAwaiter().GetResult();
+						break;
+					case IDisposable o:
+						o.Dispose();
+						break;
 					}
 				}
-				disposables.Clear();
 			}
+			this.Disposables?.Clear();
 			this.SetDisposed();
 		}
 
@@ -150,17 +164,53 @@ namespace TakymLib
 			if (this.IsDisposed) {
 				return;
 			}
+			await foreach (object? item in this.EnumerateDisposablesAsync().ConfigureAwait(false)) {
+				switch (item) {
+				case IAsyncDisposable o:
+					await o.ConfigureAwait(false).DisposeAsync();
+					break;
+				case IDisposable o:
+					o.Dispose();
+					break;
+				}
+			}
+		}
+
+		/// <summary>
+		///  破棄可能なオブジェクトを同期的に列挙します。
+		/// </summary>
+		/// <remarks>
+		///  上書きし基底の関数を呼び出さない場合、<see cref="TakymLib.DisposableBase.Disposables"/>の列挙が抑制されます。
+		/// </remarks>
+		/// <returns>
+		///  <see cref="System.IDisposable"/>または<see cref="System.IAsyncDisposable"/>を実装したオブジェクトを列挙するオブジェクトを返します。
+		/// </returns>
+		protected virtual IEnumerable<object?> EnumerateDisposables()
+		{
 			if (this.Disposables is not null and var disposables) {
 				int count = disposables.Count;
 				for (int i = 0; i < count; ++i) {
-					switch (disposables[i]) {
-					case IAsyncDisposable o:
-						await o.ConfigureAwait(false).DisposeAsync();
-						break;
-					case IDisposable o:
-						o.Dispose();
-						break;
-					}
+					yield return disposables[i];
+				}
+			}
+		}
+
+		/// <summary>
+		///  破棄可能なオブジェクトを非同期的に列挙します。
+		/// </summary>
+		/// <remarks>
+		///  上書きし基底の関数を呼び出さない場合、<see cref="TakymLib.DisposableBase.Disposables"/>の列挙が抑制されます。
+		/// </remarks>
+		/// <returns>
+		///  <see cref="System.IDisposable"/>または<see cref="System.IAsyncDisposable"/>を実装したオブジェクトを列挙するオブジェクトを返します。
+		/// </returns>
+		protected virtual async IAsyncEnumerable<object?> EnumerateDisposablesAsync()
+		{
+			if (this.Disposables is not null and var disposables) {
+				int count = disposables.Count;
+				for (int i = 0; i < count; ++i) {
+					yield return disposables[i];
+					await TaskUtility.Yield(i);
 				}
 			}
 		}
@@ -182,7 +232,7 @@ namespace TakymLib
 		///  現在のインスタンスが破棄されている場合に例外を発生させます。
 		/// </summary>
 		/// <remarks>
-		///  デバッグログへログ出力を行います。
+		///  <see langword="TakymLib"/>がデバッグ版としてビルドされた場合、デバッグログへログ出力を行います。
 		/// </remarks>
 		/// <exception cref="System.ObjectDisposedException"/>
 		protected void ThrowIfDisposed()
@@ -245,7 +295,7 @@ namespace TakymLib
 				if (Interlocked.CompareExchange(ref _run_locks, locks - 1, locks) == locks) {
 					return;
 				}
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 			}
 		}
 
@@ -267,7 +317,7 @@ namespace TakymLib
 				if (Interlocked.CompareExchange(ref _run_locks, locks - 1, locks) == locks) {
 					return;
 				}
-				await Task.Yield();
+				await TaskUtility.Yield();
 			}
 		}
 
@@ -403,11 +453,11 @@ namespace TakymLib
 				}
 				if (Interlocked.CompareExchange(ref _state, stateValue | _state_disposing, stateValue) == stateValue) {
 					while (_run_locks != 0) {
-						Thread.Yield();
+						TaskUtility.YieldAndWait();
 					}
 					return true;
 				}
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 			}
 		}
 
@@ -422,11 +472,11 @@ namespace TakymLib
 				}
 				if (Interlocked.CompareExchange(ref _state, stateValue | _state_disposing, stateValue) == stateValue) {
 					while (_run_locks != 0) {
-						await Task.Yield();
+						await TaskUtility.Yield();
 					}
 					return true;
 				}
-				await Task.Yield();
+				await TaskUtility.Yield();
 			}
 		}
 
@@ -439,7 +489,7 @@ namespace TakymLib
 				if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposing, stateValue) == stateValue) {
 					return;
 				}
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 			}
 		}
 
@@ -452,7 +502,7 @@ namespace TakymLib
 				if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposing, stateValue) == stateValue) {
 					return;
 				}
-				await Task.Yield();
+				await TaskUtility.Yield();
 			}
 		}
 
@@ -465,7 +515,7 @@ namespace TakymLib
 				if (Interlocked.CompareExchange(ref _state, stateValue | _state_disposed, stateValue) == stateValue) {
 					return;
 				}
-				Thread.Yield();
+				TaskUtility.YieldAndWait();
 			}
 		}
 
@@ -485,7 +535,7 @@ namespace TakymLib
 					if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposed, stateValue) == stateValue) {
 						return true;
 					}
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 				}
 			}
 			return false;
@@ -509,7 +559,7 @@ namespace TakymLib
 					if (Interlocked.CompareExchange(ref _state, stateValue & ~_state_disposed, stateValue) == stateValue) {
 						return true;
 					}
-					await Task.Yield();
+					await TaskUtility.Yield();
 				}
 			}
 			return false;

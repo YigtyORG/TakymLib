@@ -27,7 +27,7 @@ namespace TakymLib.Threading.Tasks
 		{
 			while (!task.IsCompleted) {
 				if (doYield) {
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 				}
 			}
 		}
@@ -47,7 +47,7 @@ namespace TakymLib.Threading.Tasks
 		{
 			while (!task.IsCompleted) {
 				if (doYield) {
-					Thread.Yield();
+					TaskUtility.YieldAndWait();
 				}
 			}
 			return task.Result;
@@ -182,7 +182,7 @@ namespace TakymLib.Threading.Tasks
 						return i;
 					} else {
 						if (doYield) {
-							Thread.Yield();
+							TaskUtility.YieldAndWait(i);
 						}
 					}
 				}
@@ -223,7 +223,7 @@ namespace TakymLib.Threading.Tasks
 						return task;
 					} else {
 						if (doYield) {
-							Thread.Yield();
+							TaskUtility.YieldAndWait();
 						}
 					}
 				}
@@ -251,7 +251,7 @@ namespace TakymLib.Threading.Tasks
 						return i;
 					} else {
 						if (doYield) {
-							Thread.Yield();
+							TaskUtility.YieldAndWait(i);
 						}
 					}
 				}
@@ -294,7 +294,7 @@ namespace TakymLib.Threading.Tasks
 						return task;
 					} else {
 						if (doYield) {
-							Thread.Yield();
+							TaskUtility.YieldAndWait();
 						}
 					}
 				}

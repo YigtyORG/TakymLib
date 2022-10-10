@@ -59,7 +59,7 @@ namespace TakymLib.UI
 				)
 				.ConfigureAppConfiguration(config => config
 					.AddXmlFile(SystemSettings.Files.Generated, true, true)
-					.AddIniFile(SystemSettings.Files.Custom, true, true)
+					.AddIniFile(SystemSettings.Files.Custom,    true, true)
 					.AddCommandLine(args) // コマンド行引数を最優先させる。
 				)
 				.ConfigureLogging(logging => logging
