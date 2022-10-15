@@ -1,0 +1,61 @@
+{
+	"metadata": [
+		{
+			"src": [
+				{
+					"files": [
+						"bin/Exyzer*/Debug/net5.0/Exyzer*.dll"
+					],
+					"src": "../"
+				}
+			],
+			"dest": "api/d/"
+		},
+		{
+			"src": [
+				{
+					"files": [
+						"bin/Exyzer*/Debug/net5.0/Exyzer*.dll"
+					],
+					"src": "../"
+				}
+			],
+			"dest": "api/r/"
+		}
+	],
+	"build": {
+		"content": [
+			{
+				"files": [
+					"api/**/*.yml",
+					"api/**/index.md",
+					"api/index.md"
+				]
+			},
+			{
+				"files": [
+					"toc.yml",
+					"**/*.md"
+				]
+			}
+		],
+		"resource": [
+			{
+				"files": [ "**/images/**" ],
+				"exclude": [ "**/bin/**", "**/obj/**", "**.meta" ]
+			}
+		],
+		"xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
+		"dest": "_site",
+		"globalMetadataFiles": [],
+		"fileMetadataFiles": [],
+		"template": [
+			"statictoc",
+			"packages/memberpage/2.57.2/content",
+			"template"
+		],
+		"postProcessors": [],
+		"markdownEngineName": "markdig",
+		"noLangKeyword": false
+	}
+}

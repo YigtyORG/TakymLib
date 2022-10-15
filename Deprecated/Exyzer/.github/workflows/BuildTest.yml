@@ -1,0 +1,39 @@
+# ***********************************************************
+# * Exyzer                                                  *
+# * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved. *
+# * Copyright (C) 2020-2022 Takym.                          *
+# *                                                         *
+# * distributed under the MIT License.                      *
+# ***********************************************************
+
+name: "BuildTest"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  BuildTest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ windows-latest, ubuntu-latest, macos-latest ]
+        bc: [ Debug, Release ]
+    steps:
+    - uses: actions/checkout@v3.1.0
+      with:
+        submodules: recursive
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3.0.2
+      with:
+        dotnet-version: 5.0.301
+    - name: Restore dependencies
+      run: dotnet restore Exyzer.sln
+    # Build
+    - name: Build
+      run: dotnet build -c ${{ matrix.bc }} --no-restore
+    # Test
+    - name: Test
+      run: dotnet test -c ${{ matrix.bc }} --no-build --verbosity normal
