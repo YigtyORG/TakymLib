@@ -1,3 +1,3 @@
-このフォルダには廃止されたライブラリを参考の為に保管しています。
+このフォルダには廃止されたプログラムを参考の為に保管しています。
 
-This directory stores deprecated library projects that no longer available. Left for in case of reference.
+This folder stores deprecated programs that are no longer available. Left for in case of reference.

@@ -1,0 +1,40 @@
+# ***********************************************************
+# * Exyzer                                                  *
+# * Copyright (C) 2020-2022 Yigty.ORG; all rights reserved. *
+# * Copyright (C) 2020-2022 Takym.                          *
+# *                                                         *
+# * distributed under the MIT License.                      *
+# ***********************************************************
+
+name: "NuGet"
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  NuGet:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3.1.0
+      with:
+        submodules: recursive
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3.0.2
+      with:
+        dotnet-version: 5.0.301
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.1.1
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-version: 5.9.1
+    - name: Restore dependencies
+      run: dotnet restore Exyzer.sln
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    - name: Pack
+      run: dotnet pack -c Release --no-build --include-symbols --version-suffix ${{ github.sha }}
+    - name: Add Source
+      run: nuget sources Add -Source https://nuget.pkg.github.com/YigtyORG/index.json -Name "github" -UserName YigtyORG -Password ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish
+      run: nuget push "bin/Exyzer*/Release/Exyzer.*-*.nupkg" -Source "github" -SkipDuplicate
