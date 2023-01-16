@@ -29,7 +29,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.4" />
 
 		<!-- 各ライブラリへの参照は下記のプロジェクトに追加する。 -->
 		<ProjectReference Include="../src/TakymLib.ConsoleApp/TakymLib.ConsoleApp.csproj" />
