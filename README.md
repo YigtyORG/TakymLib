@@ -15,6 +15,12 @@ Copyright (C) 2020-2022 Takym.
 [![GitHub Stars](https://img.shields.io/github/stars/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/YigtyORG/TakymLib?style=social)](https://github.com/YigtyORG/TakymLib/network/members)
 
+このリポジトリにコミットしなくなってからかなり久しいです。
+現在、大きく再実装し、新たなプロジェクトへ移行する準備を進めております。
+
+It has been a while since I committed last.
+I plan to re-implement big and migrate to a renewed project.
+
 [日本語](#ja)
 [English](#en)
 
